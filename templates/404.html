@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block title %}
+<p>Avís!</p>
+{% endblock %}
+
+{% block content %}
+<p><img src="{{ MEDIA_URL }}404.png" alt="{% trans "404 Not Found"%}" title="{% trans "404 Not Found"%}"/></p>
+{% endblock%}

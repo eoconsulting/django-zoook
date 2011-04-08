@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="primary-content span-9 last">
+    <h1>{{content.name}}</h1>
+    {{content.description|safe}}
+</div>
+{% load modules %}{% render_modules_right %}
+{% endblock %}

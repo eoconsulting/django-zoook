@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-02-02 10:26+0100\n"
+"PO-Revision-Date: 2011-02-22 11:54+0100\n"
+"Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: enums.py:10
+msgid "Active"
+msgstr "Actiu"
+
+#: enums.py:11
+msgid "Inactive"
+msgstr "Inactiu"
+
+#: models.py:11
+msgid "created by"
+msgstr "creat per"
+
+#: models.py:12
+msgid "created on"
+msgstr "creat"
+
+#: models.py:13
+msgid "updated on"
+msgstr "actualitzat"
+
+#: models.py:14
+msgid "updated by"
+msgstr "actualitzat per"
+
+#: models.py:20
+msgid "slug"
+msgstr "slug"
+
+#: models.py:20
+msgid "This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"
+msgstr "Aquest és un identificador únic que permet mostrar els detalls del seu contingut, per exemple 'com-puc-contribuir'"
+
+#: models.py:21
+msgid "description"
+msgstr "descripció"
+
+#: models.py:24
+msgid "status"
+msgstr "estat"
+
+#: models.py:24
+msgid "Only contents with their status set to 'Active' will be displayed."
+msgstr "Només es mostraran els continguts amb l'opció 'Actiu'."
+
+#: models.py:25
+msgid "sort order"
+msgstr "Ordenació"
+
+#: models.py:25
+msgid "The order you would like the content to be displayed."
+msgstr "L'ordre amb que li agradaria que es mostrés el contingut."
+
+#: models.py:26
+msgid "If don't specific template, use default.html template"
+msgstr "Si no s'especifica cap plantilla, s'utilitzarà la plantilla default.html"
+
+#: models.py:29
+msgid "content"
+msgstr "contingut"
+
+#: models.py:30
+msgid "contents"
+msgstr "continguts"
+

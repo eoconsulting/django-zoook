@@ -1,0 +1,421 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-08 16:58+0200\n"
+"PO-Revision-Date: 2011-04-08 16:59+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: settings.py:36
+msgid "Spanish"
+msgstr "Castellano"
+
+#: settings.py:37
+msgid "Catalan"
+msgstr "Catalán"
+
+#: views.py:30
+msgid "Zoook :: e-sale for OpenERP"
+msgstr "Zoook :: Canal de venta online para OpenERP"
+
+#: templates/404.html:9
+msgid "404 Not Found"
+msgstr "404 Not Found"
+
+#: templates/error.html:5
+msgid "Error"
+msgstr "Error"
+
+#: templates/error.html:10
+msgid "An unexpected error has occurred and has not been able to continue. Repeat again or contact us."
+msgstr "Ha sucedido un error inesperado y no se puede continuar. Inténtelo de nuevo o contacte con nosotros."
+
+#: templates/accounts/changepassword.html:19
+msgid "Insert your new password"
+msgstr "Introduzca su nueva contraseña"
+
+#: templates/accounts/changepassword.html:32
+#: templates/accounts/menu.html:7
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+#: templates/accounts/login.html:13
+msgid "Log in or Create an Account"
+msgstr "Identifíquese o cree una cuenta"
+
+#: templates/accounts/login.html:19
+#: templates/accounts/register.html:40
+msgid "New customers"
+msgstr "Nuevo cliente"
+
+#: templates/accounts/login.html:20
+msgid "By creating an account with our store, you will be able to move through the checkout process faster, view and track your orders and instances in your account and more."
+msgstr "Creando una cuenta en nuestro SaaS, podrá realizar todo el proceso de alta de las nuevas instáncias de OpenERP, el seguimiento de los pedidos y más."
+
+#: templates/accounts/login.html:23
+msgid "Registered customers"
+msgstr "Clientes registrados"
+
+#: templates/accounts/login.html:24
+msgid "If you have an account with us, please log in."
+msgstr "Si tiene una cuenta con nosotros, identifíquese por favor."
+
+#: templates/accounts/login.html:40
+#: templates/accounts/register.html:73
+msgid "Create new account"
+msgstr "Crear una cuenta"
+
+#: templates/accounts/login.html:45
+msgid "Login"
+msgstr "Identificarse"
+
+#: templates/accounts/login.html:45
+#: templates/accounts/register.html:58
+msgid "Remember?"
+msgstr "Recordar?"
+
+#: templates/accounts/login.html:46
+#: templates/accounts/register.html:74
+msgid "Required Fields"
+msgstr "Campos requeridos"
+
+#: templates/accounts/menu.html:4
+msgid "Instance"
+msgstr "Instancia"
+
+#: templates/accounts/menu.html:4
+msgid "Instances"
+msgstr "Instancias"
+
+#: templates/accounts/menu.html:5
+msgid "Account"
+msgstr "Cuenta"
+
+#: templates/accounts/menu.html:5
+msgid "Your account"
+msgstr "Su cuenta"
+
+#: templates/accounts/menu.html:6
+msgid "Invoice"
+msgstr "Factura"
+
+#: templates/accounts/menu.html:6
+msgid "Invoices"
+msgstr "Facturas"
+
+#: templates/accounts/menu.html:8
+msgid "Logout"
+msgstr "Salir"
+
+#: templates/accounts/partner.html:32
+#: templates/accounts/partner.html.py:33
+msgid "Partner"
+msgstr "Empresa"
+
+#: templates/accounts/partner.html:34
+msgid "VAT"
+msgstr "NIF"
+
+#: templates/accounts/partner.html:40
+#: templates/contact/form.html:35
+msgid "Name"
+msgstr "Nombre"
+
+#: templates/accounts/partner.html:41
+msgid "Street"
+msgstr "Calle"
+
+#: templates/accounts/partner.html:42
+msgid "Zip"
+msgstr "Código postal"
+
+#: templates/accounts/partner.html:43
+msgid "City"
+msgstr "Ciudad"
+
+#: templates/accounts/partner.html:44
+msgid "Country"
+msgstr "País"
+
+#: templates/accounts/partner.html:52
+msgid "email"
+msgstr "Correo electrónico"
+
+#: templates/accounts/partner.html:53
+msgid "phone"
+msgstr "Teléfono"
+
+#: templates/accounts/partner.html:54
+msgid "Save Data"
+msgstr "Guardar datos"
+
+#: templates/accounts/profile.html:18
+#, python-format
+msgid "Hello %(full_name)s."
+msgstr "Hola %(full_name)s."
+
+#: templates/accounts/profile.html:21
+msgid "List all instances"
+msgstr "Listar todas las instáncias"
+
+#: templates/accounts/profile.html:22
+msgid "Create an instance"
+msgstr "Crear una instanica"
+
+#: templates/accounts/profile.html:23
+msgid "Your details"
+msgstr "Su cuenta"
+
+#: templates/accounts/profile.html:24
+msgid "Your invoices"
+msgstr "Sus facturas"
+
+#: templates/accounts/register.html:44
+msgid "Login user"
+msgstr "Usuario registrado"
+
+#: templates/accounts/register.html:55
+#: templates/accounts/remember.html:33
+#: templates/contact/form.html:36
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: templates/accounts/register.html:62
+msgid "For create an Account insert same number"
+msgstr "Para crear una cuenta introduzca el texto siguiente"
+
+#: templates/accounts/remember.html:29
+msgid "Insert your email and username and new password are you send it"
+msgstr "Introduzca el correo electrónico y se le enviará una nueva contraseña."
+
+#: templates/accounts/remember.html:39
+msgid "Remember"
+msgstr "Recuerde"
+
+#: templates/contact/form.html:30
+#: templates/contact/form.html.py:34
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/contact/form.html:37
+msgid "Message"
+msgstr "Mensaje"
+
+#: templates/contact/form.html:40
+#: templates/search/resultSearch.html:11
+msgid "Submit"
+msgstr "Enviar"
+
+#: templates/search/resultSearch.html:8
+#: templates/search/resultSearch.html:10
+msgid "Search"
+msgstr "Buscar"
+
+#: templates/search/resultSearch.html:16
+#, python-format
+msgid "There are %(num_results)s resultat(s)."
+msgstr "Hay %(num_results)s resultado(s)."
+
+#: templates/search/resultSearch.html:23
+#, python-format
+msgid "There aren't some result with %(search)s."
+msgstr "No hay ningún resultado con %(search)s."
+
+#~ msgid "ZZSaaS. Your OpenERP application get it"
+#~ msgstr "ZZSaas. Tu OpenERP listo para usar"
+#~ msgid "ZZSaaS :: OpenERP online ready to work"
+#~ msgstr "ZZSaas. Tu OpenERP listo para usar"
+#~ msgid "OpenERP"
+#~ msgstr "OpenERP"
+#~ msgid "Online demo are avaible"
+#~ msgstr "Versión demo disponible"
+#~ msgid "OpenERP Demostration"
+#~ msgstr "Demostración OpenERP"
+#~ msgid "Demo"
+#~ msgstr "Demo"
+#~ msgid "More About OpenERP"
+#~ msgstr "Más sobre OpenERP"
+#~ msgid "See all the power and functionality OpenERP"
+#~ msgstr "Véase toda la potencia y funcionalidad de OpenERP"
+#~ msgid "About OpenERP"
+#~ msgstr "Acerca de OpenERP"
+#~ msgid "Learn More"
+#~ msgstr "Leer más"
+#~ msgid "Create Account"
+#~ msgstr "Crear una cuenta"
+#~ msgid ""
+#~ "Create Account is very easy. Only requiered one name and your OpenERP are "
+#~ "use to work"
+#~ msgstr ""
+#~ "Crear su propio OpenERP es muy sencillo. Sólo requiere un nombre y su "
+#~ "OpenERP estará listo para trabajar"
+#~ msgid "Download"
+#~ msgstr "Descargar"
+#~ msgid "Download GTK and Koo client for Desktop"
+#~ msgstr "Desargue el cliente GTK o Koo para su escriptorio"
+#~ msgid "Prices"
+#~ msgstr "Tarifas"
+#~ msgid ""
+#~ "OpenERP SaaS: 50 euros/month<br/>Spanish localization configuration are "
+#~ "avaible"
+#~ msgstr ""
+#~ "OpenERP SaaS: 50 euros/mes<br/>Configuración de localización española "
+#~ "disponible."
+#~ msgid "ZZSaas is a service OpenERP Software as Service by Zikzakmedia"
+#~ msgstr "ZZSaaS es un servicio del programa OpenERP de Zikzakmedia"
+#~ msgid "About us"
+#~ msgstr "Sobre nosotros"
+#~ msgid "ZZSaas - Your OpenERP application get it"
+#~ msgstr "ZZSaas. Tu OpenERP listo para usar"
+#~ msgid "Blog"
+#~ msgstr "Blog"
+#~ msgid "My account"
+#~ msgstr "Mi cuenta"
+#~ msgid "SaaS Service"
+#~ msgstr "Servicio SaaS"
+#~ msgid "FAQ"
+#~ msgstr "FAQ"
+#~ msgid "Modules"
+#~ msgstr "Módulos"
+#~ msgid "Historial"
+#~ msgstr "Historial"
+#~ msgid "OpenERP Clients"
+#~ msgstr "Clientes OpenERP"
+#~ msgid "OpenERP Modules"
+#~ msgstr "Módulos OpenERP"
+#~ msgid "Documentation"
+#~ msgstr "Documentación"
+#~ msgid "Suport"
+#~ msgstr "Soporte"
+#~ msgid "News"
+#~ msgstr "Novedades"
+#~ msgid "See all blog"
+#~ msgstr "Ver todas las novedades"
+#~ msgid "Service"
+#~ msgstr "Servicio"
+#~ msgid "Avaible services"
+#~ msgstr "Servicios disponibles"
+#~ msgid "Services and conditions"
+#~ msgstr "Servicios y condiciones"
+#~ msgid "previous"
+#~ msgstr "anterior"
+#~ msgid "Page"
+#~ msgstr "Página"
+#~ msgid "of"
+#~ msgstr "de"
+#~ msgid "next"
+#~ msgstr "siguiente"
+#~ msgid "Thanks for your feedback"
+#~ msgstr "Gracias por su feedback"
+#~ msgid "Feedback"
+#~ msgstr "Feedback"
+#~ msgid ""
+#~ "Questions? Not find an answer to your question? Help us to improve this "
+#~ "documentation."
+#~ msgstr ""
+#~ "Preguntas? No ha encontrado la respuesta? Ayúdenos a mejorar la "
+#~ "documentación."
+#~ msgid "All last 100 changes history (logs) by Zikzakmedia"
+#~ msgstr ""
+#~ "A continuación se listan los últimos 100 cambios del historial (logs), "
+#~ "realizados en el repositorio de OpenERP de Zikzakmedia."
+#~ msgid "Description legend"
+#~ msgstr "Leyenda de las descripciones"
+#~ msgid "[ADD] Add"
+#~ msgstr "[ADD] Añadir"
+#~ msgid "[IMP] Improve"
+#~ msgstr "[IMP] Mejoras, nuevas funcionalidades"
+#~ msgid "[DEL] Delete"
+#~ msgstr "[DEL] Eliminar"
+#~ msgid "[FIX] Fixed"
+#~ msgstr "[FIX] Corrección de errores"
+#~ msgid "History"
+#~ msgstr "Historial"
+#~ msgid "Author"
+#~ msgstr "Autor"
+#~ msgid "Version"
+#~ msgstr "Versión"
+#~ msgid "Your Payment are successfully"
+#~ msgstr "Su pago se ha realizado correctamente"
+#~ msgid "Redirection a Servired. One moment..."
+#~ msgstr "Redireccionando a Servired. Un momento..."
+#~ msgid "Password"
+#~ msgstr "Contraseña"
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+#~ msgid "Create"
+#~ msgstr "Crear"
+#~ msgid "Enter your firstname"
+#~ msgstr "Introduzaca el nombre"
+#~ msgid "Enter your password"
+#~ msgstr "Introduzca la contraseña"
+#~ msgid "Accept"
+#~ msgstr "Acceptar"
+#~ msgid "Create Instance"
+#~ msgstr "Crear una instancia"
+#~ msgid ""
+#~ "The creation of the instance is not valid until payment for it by credit "
+#~ "card. Until your payment, your request will not be created."
+#~ msgstr ""
+#~ "La creación de la instancia no sera válida hasta el pago de ella mediante "
+#~ "targeta  de crédito. Hasta su pago, su instancia no será creada."
+#~ msgid "Only az09 characters"
+#~ msgstr "Sólo carácteres az09"
+#~ msgid "Min. 6 characters"
+#~ msgstr "Mín. 6 carácteres"
+#~ msgid "Min. 8 characters"
+#~ msgstr "Mín. 8 carácteres"
+#~ msgid "I have read and accept the Terms of Use."
+#~ msgstr "He leído y aceptado las condiciones de uso."
+#~ msgid "Generate Instance"
+#~ msgstr "Generar instáncia"
+#~ msgid "Payment Credit Card"
+#~ msgstr "Pagar con tarjeta de crédito"
+#~ msgid "Status"
+#~ msgstr "Estado"
+#~ msgid "Server"
+#~ msgstr "Servidor"
+#~ msgid "NET-RPC"
+#~ msgstr "NET-RPC"
+#~ msgid "XML-RPC"
+#~ msgstr "XML-RPC"
+#~ msgid "Payment"
+#~ msgstr "Pago"
+#~ msgid "There are not instance avaible. Create one"
+#~ msgstr "No hay instancias disponibles. Crear una"
+#~ msgid "Create New Instance"
+#~ msgstr "Crear una nueva instancia"
+#~ msgid "Number"
+#~ msgstr "Número"
+#~ msgid "Date"
+#~ msgstr "Fecha"
+#~ msgid "Description"
+#~ msgstr "Descripción"
+#~ msgid "Total"
+#~ msgstr "Total"
+#~ msgid "State"
+#~ msgstr "Estado"
+#~ msgid "There are not invoices avaible."
+#~ msgstr "No hay facturas disponibles."
+#~ msgid "500 Error"
+#~ msgstr "500 Error"
+#~ msgid "Thanks for your message. We will respond soon."
+#~ msgstr ""
+#~ "Gracias por su mensaje. En breve nos pondremos en contacto con ustedes."
+#~ msgid "What is OpenERP"
+#~ msgstr "Que es  openerp"
+#~ msgid "Trainning"
+#~ msgstr "Formación"
+#~ msgid "Evolution of OpenERP"
+#~ msgstr "Evolución de OpenERP"
+

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block head %}
+    <link href="{{ MEDIA_URL }}css/form.css" rel="stylesheet" type="text/css" media="screen">
+    <script src="{{ MEDIA_URL }}js/jquery.validate.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+	    $("#contactForm").validate();
+    });
+    </script>
+
+    <script type="text/javascript">
+     var RecaptchaOptions = {
+        theme : 'clean'
+     };
+     </script>
+{% endblock %}
+
+{% block content %}
+<div class="primary-content span-12 last">
+    {% if message %}
+        <div id="message">
+            <h1>{{ message }}</h1>
+        </div>
+    {% endif %}
+
+    <div id="contact">
+        <h1>{% trans "Contact" %}</h1>
+
+        <form action="/{{ LANGUAGE_CODE }}/contact/" class="cmxform" id="contactForm" method="post">
+        <fieldset>
+        <legend>{% trans "Contact" %}</legend>
+        <p><label for="name">{% trans "Name" %}:</label><input id="name" type="text" name="name" class="required" maxlength="100" value="{{ name }}"/></p>
+        <p><label for="email">{% trans "Email" %}:</label><input id="email" type="text" name="email" class="required email" value="{{ email }}"/></p>
+        <p><label for="contact_text">{% trans "Message" %}:</label><textarea name="contact_text" id="contact_text" class="required" cols="50" rows="5">{{ contact_text }}</textarea></p>
+        {% csrf_token %}
+        {{ html_captcha|safe }}
+        <input type="submit" value="{% trans "Submit" %}" />
+        </fieldset>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
