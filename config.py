@@ -22,6 +22,9 @@
 
 DEBUG = True
 
+OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
+LOGFILE = '/home/resteve/django/zoook/log/zoook.log' #path zoook log
+djpath = '/home/resteve/django/zoook'
 """
 Database conf
 """
@@ -37,17 +40,18 @@ DATABASES = {
 }
 
 """
-OOOP Conf = OpenERP Webservice Connection
+OpenERP Webservice Connection
 """
-OOOP_CONF = {
+OERP_CONF = {
     'username':'admin',
     'password':'admin',
     'dbname':'oerp6_zoook',
-    'uri':'localhost',
+#    'protocol':'xmlrpc', #xmlrpc
 #    'uri':'http://localhost', #xmlrpc
 #    'port':8069, #xmlrpc
-    'port':8071,
-    'protocol':'pyro'
+    'protocol':'pyro', #pyro
+    'uri':'localhost', #pyro
+    'port':8071, #pyro
 }
 
 LIVE_URL = "http://127.0.0.1:8000/"

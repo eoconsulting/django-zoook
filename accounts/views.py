@@ -44,7 +44,7 @@ from accounts.models import *
 from base.models import *
 
 from settings import *
-from tools.conn import connection, xmlrpc
+from tools.conn import conn_webservice
 
 import xmlrpclib
 
@@ -294,12 +294,11 @@ def partner(request):
             addr_email = form.cleaned_data['addr_email']
             addr_phone = form.cleaned_data['addr_phone']
 
-            #TODO: save_all() Last OOOP commit have bug and we don't use save_all()
             #check if this vat exists
             vat = form.cleaned_data['vat_code']+form.cleaned_data['vat']
-            server_object = '%s:%s/xmlrpc/object' % (OOOP_CONF['uri'],OOOP_CONF['port'])
+            server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
             sock = xmlrpclib.ServerProxy(server_object)
-            check_vat = sock.execute(OOOP_CONF['dbname'], uid, OOOP_CONF['password'], 'res.partner', 'dj_check_vat', vat)
+            check_vat = sock.execute(OERP_CONF['dbname'], uid, OERP_CONF['password'], 'res.partner', 'dj_check_vat', vat)
 
             if not check_vat:
                 message = _('Vat not valid. Check if vat is correct')

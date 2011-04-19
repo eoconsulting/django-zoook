@@ -29,14 +29,14 @@ try:
 except:
     pyro = False
 
-from settings import OOOP_CONF
+from settings import OERP_CONF
 
-def connection():
+def conn_ooop():
     """Connection OpenERP with OOOP"""
     try:
         #o = OOOP(user='admin',pwd='admin',dbname='oerp6_zoook',uri='http://localhost',port=8069,protocol='xmlrpc')
         #o = OOOP(user='admin',pwd='admin',dbname='oerp6_zoook',uri='localhost',port=8071,protocol='pyro')
-        conn = OOOP(user=OOOP_CONF['username'],pwd=OOOP_CONF['password'],dbname=OOOP_CONF['dbname'],uri=OOOP_CONF['uri'],port=OOOP_CONF['port'],protocol=OOOP_CONF['protocol'])
+        conn = OOOP(user=OERP_CONF['username'],pwd=OERP_CONF['password'],dbname=OERP_CONF['dbname'],uri=OERP_CONF['uri'],port=OERP_CONF['port'],protocol=OERP_CONF['protocol'])
         return conn
     except:
         return False
@@ -45,11 +45,44 @@ def xmlrpc():
     """Connection OpenERP with XMLRPC"""
     try:
         # Get the uid
-        server_common = '%s:%s/xmlrpc/common' % (OOOP_CONF['uri'],OOOP_CONF['port'])
-        server_object = '%s:%s/xmlrpc/object' % (OOOP_CONF['uri'],OOOP_CONF['port'])
+        server_common = '%s:%s/xmlrpc/common' % (OERP_CONF['uri'],OERP_CONF['port'])
+        server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
 
         sock_common = xmlrpclib.ServerProxy(server_common)
-        uid = sock_common.login(OOOP_CONF['dbname'], OOOP_CONF['username'], OOOP_CONF['password'])
-        return uid
+        uid = sock_common.login(OERP_CONF['dbname'], OERP_CONF['username'], OERP_CONF['password'])
+        server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
+        sock = xmlrpclib.ServerProxy(server_object)
+        return uid, sock
     except:
         return False
+
+def pyro():
+    """Connection OpenERP with PYRO"""
+    try:
+        # Get the uid
+        url = 'PYROLOC://%s:%s/rpc' % (OERP_CONF['uri'],OERP_CONF['port'])
+
+        proxy = Pyro.core.getProxyForURI(url)
+        uid = proxy.dispatch( 'common', 'login', OERP_CONF['dbname'], OERP_CONF['username'], OERP_CONF['password'])
+        return uid, proxy
+    except:
+        return False
+
+def conn_webservice(model, call, values=[]):
+    """Connection OpenERP with webservice
+    model: OpenERP model
+    call: def model
+    values: list parameters
+
+    Example call:
+    results = conn_webservice(model, call, values)
+    """
+
+    if OERP_CONF['protocol'] == 'pyro':
+        uid, proxy = pyro()
+        results = proxy.dispatch( 'object', 'execute', OERP_CONF['dbname'], uid, OERP_CONF['password'], model, call, *values)
+    else:
+        uid, sock = xmlrpc()
+        results = sock.execute(OERP_CONF['dbname'], uid, OERP_CONF['password'], model, call, *values)
+
+    return results

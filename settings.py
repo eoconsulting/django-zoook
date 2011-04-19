@@ -52,6 +52,7 @@ ugettext = lambda s: s
 #Edit your languages
 LANGUAGE_CODE = 'es'
 LANGUAGES = (
+    ('en', ugettext('English')),
     ('es', ugettext('Spanish')),
     ('ca', ugettext('Catalan')),
 )
@@ -115,9 +116,11 @@ INSTALLED_APPS = (
     'localeurl',
     'base',
     'content',
-    'modules',
     'contact',
+    'catalog',
+    'modules',
 #    'search',
+
     'accounts',
 )
 

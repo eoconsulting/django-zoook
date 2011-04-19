@@ -24,6 +24,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from transmeta import TransMeta
+
 from datetime import datetime
 import content.enums as enums
 
@@ -37,6 +39,8 @@ class ContentBase(models.Model):
 
 class Content(ContentBase):
     """Content"""
+    __metaclass__ = TransMeta
+
     name = models.CharField(max_length=256)
     slug = models.SlugField(_('slug'), max_length=100, help_text=_("This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"), unique=True)
     description = models.TextField( _('description'))
@@ -50,6 +54,7 @@ class Content(ContentBase):
         verbose_name = _('content')
         verbose_name_plural = _('contents')
         ordering = ['-created_on']
+        translate = ('description','metadesc','metakey',)
 
     def __unicode__(self):
         return self.name
