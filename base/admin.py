@@ -24,7 +24,7 @@ from django.contrib import admin
 
 from base.models import *
 
-class CountryAdmin(admin.ModelAdmin):
+class ResCountryAdmin(admin.ModelAdmin):
 
     search_fields = ["name"]
 
@@ -34,4 +34,16 @@ class CountryAdmin(admin.ModelAdmin):
         'status',
     )
 
-admin.site.register(Country, CountryAdmin)
+admin.site.register(ResCountry, ResCountryAdmin)
+
+class ResCountryStateAdmin(admin.ModelAdmin):
+
+    search_fields = ["name"]
+
+    list_display = (
+        'name',
+        'code',
+        'country',
+    )
+
+admin.site.register(ResCountryState, ResCountryStateAdmin)
