@@ -102,7 +102,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'zoook.urls'
 
 TEMPLATE_DIRS = (  
-    os.path.join(PATH, "templates"),
+    os.path.join(PATH, "templates"+"/"+BASE_TEMPLATE),
 )
 
 INSTALLED_APPS = (
@@ -120,7 +120,6 @@ INSTALLED_APPS = (
     'catalog',
     'modules',
 #    'search',
-
     'accounts',
 )
 

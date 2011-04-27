@@ -25,7 +25,7 @@ from django.utils.translation import ugettext_lazy as _
 
 '''OpenERP Models'''
 
-class Country(models.Model):
+class ResCountry(models.Model):
     """Country OpenERP"""
     code = models.CharField(_('code'), max_length=2)
     name = models.CharField(_('name'), max_length=64)
@@ -36,3 +36,18 @@ class Country(models.Model):
         verbose_name = _('country')
         verbose_name_plural = _('countries')
         ordering = ['code']
+
+class ResCountryState(models.Model):
+    """ResCountryState OpenERP"""
+
+    code = models.CharField(_('State Code'), max_length=128, null=True, blank=True)
+    country = models.ForeignKey('ResCountry', null=True, blank=True)
+    name = models.CharField(_('State Name'), max_length=128, null=True, blank=True)
+
+    class Meta:
+        db_table = 'res_country_state'
+        verbose_name = _('state')
+        verbose_name_plural = _('states')
+
+    def __unicode__(self):
+        return self.name

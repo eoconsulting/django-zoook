@@ -32,7 +32,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 from settings import *
 from django.utils.translation import ugettext as _
-from catalog.models import ProductProduct, ProductTemplate
+from catalog.models import ProductProduct, ProductTemplate, ProductManufacturerAttribute
 from tools.conn import conn_webservice
 
 logging.basicConfig(filename=LOGFILE,level=logging.INFO)
@@ -42,7 +42,6 @@ logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products.
 Product Template
 """
 results = conn_webservice('sale.shop', 'dj_export_products_template', [[OERP_SALE]])
-results = [3, 2, 1]
 
 if len(results) == 0:
     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Not products template news or modified')))
@@ -107,6 +106,23 @@ for result in results:
         try:
             prod.save()
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Product save ID %s') % product['id']))
+
+            #product attribute
+            attributes = conn_webservice('sale.shop', 'dj_export_products_attribute', [product['id'], OERP_SALE])
+            print attributes
+            if len(attributes) > 0:
+                print "Dins if"
+                values = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.product.manufacturer.attribute', attributes])
+                print values
+                for attributes in values:
+                    prod_attributes = ProductManufacturerAttribute(**attributes)
+                    try:
+                        prod_attributes.save()
+                    except:
+                        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Attribute. Error save ID %s') % product['id']))
+
+                if DEBUG:
+                    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
         except:
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Error save ID %s') % product['id']))
 

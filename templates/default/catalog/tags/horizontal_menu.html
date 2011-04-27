@@ -1,0 +1,7 @@
+<div class="header-navigation">
+    <ul id="nav">
+    {% for value in values %}
+        <li><a href="/catalog/{{value.slug}}/" title="{{value.name}}" >{{value.id}} - {{value.name}} - {{value.parent_id}}</a></li>
+    {% endfor %}
+    </ul>
+</div>

@@ -55,6 +55,8 @@ class ProductCategory(models.Model):
 
     class Meta:
         db_table = 'product_category'
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
         translate = (
             'name',
             'description',
@@ -114,6 +116,8 @@ class ProductTemplate(models.Model):
 
     class Meta:
         db_table = 'product_template'
+        verbose_name = _('template')
+        verbose_name_plural = _('templates')
         translate = ('name', 'slug', 'shortdescription', 'description', 'metadescription', 'metakeyword', 'metatitle')
 
     def __unicode__(self):
@@ -132,7 +136,39 @@ class ProductProduct(models.Model):
 
     class Meta:
         db_table = 'product_product'
+        verbose_name = _('product')
+        verbose_name_plural = _('products')
 #        translate = ( )
 
     def __unicode__(self):
         return self.code
+
+class ProductManufacturerAttribute(models.Model):
+    """ProductManufacturerAttribute OpenERP"""
+
+    name = models.CharField(_('Attribute'), max_length=128, null=True, blank=True)
+    product = models.ForeignKey('ProductProduct', null=True, blank=True)
+    value = models.CharField(_('Value'), max_length=128, null=True, blank=True)
+
+    class Meta:
+        db_table = 'product_manufacturer_attribute'
+        verbose_name = _('attribute')
+        verbose_name_plural = _('attributes')
+
+    def __unicode__(self):
+        return self.name
+
+class ProductImages(models.Model):
+    """ProductImages OpenERP"""
+
+    name = models.CharField(_('Image Title'), max_length=128, null=True, blank=True)
+    product = models.ForeignKey('ProductProduct', null=True, blank=True)
+    filename = models.CharField(_('File Location'), max_length=128, null=True, blank=True)
+
+    class Meta:
+        db_table = 'product_images'
+        verbose_name = _('image')
+        verbose_name_plural = _('images')
+
+    def __unicode__(self):
+        return self.name
