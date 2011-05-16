@@ -17,20 +17,61 @@
     <![endif]-->
     <link href="{{ MEDIA_URL }}css/print.css" rel="stylesheet" type="text/css" media="print">
 
-    <script src="{{ MEDIA_URL }}js/jquery.js" type="text/javascript"></script>
-    <script src="{{ MEDIA_URL }}js/jquery.ui.core.js" type="text/javascript"></script>
-    <script src="{{ MEDIA_URL }}js/jquery.ui.widget.js" type="text/javascript"></script>
-    <script src="{{ MEDIA_URL }}js/jquery.ui.tabs.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 
     {% block head %}{% endblock %}
 </head>
 <body>
 
-{% load category %}{% render_horizontal_menu %}
+<div class="page">
 
-<div id="page-wrap">
-    {% block content %}{% endblock %}
-</div>
+    <div class="header-container">
+    
+    <h1 id="logo"><a href="/{{ LANGUAGE_CODE }}/"><img src="{{ MEDIA_URL }}images/logo.png" title="{% trans "Zoook - e-sale for OpenERP" %}"/></a></h1>
+
+	<div class="navigation">        
+        <form id="search_mini_form" action="/{{ LANGUAGE_CODE }}/search" method="get">
+            <fieldset class="form-search">
+                <input id="search" type="text" class="input-text-search" name="q" value="{% trans "search" %}" onfocus="if (this.value=='{% trans "search" %}') this.value = ''"/>
+                <button type="submit" class="button-search-mini"></button>
+            </fieldset>
+        </form>
+
+        <ul class="links">
+            <li class="first"><a href="/{{ LANGUAGE_CODE }}/account">{% trans "My Account" %}</a></li>
+            <li><a href="/{{ LANGUAGE_CODE }}/checkout">{% trans "My Cart" %}</a></li>
+            <li class="last"><a href="/{{ LANGUAGE_CODE }}/account">{% trans "Login" %}</a></li>
+        </ul>
+	</div>
+    {% load category %}{% render_horizontal_menu %}
+    </div>
+
+    <div id="page-wrap">
+        {% block content %}{% endblock %}
+    </div>
+</div>  
+
+<script type="text/javascript"> 
+function mainmenu()
+{
+    $("#nav .sub").css({display: "none"}); // Correcció per opera
+    $("#nav .topmenu").hover(function(){
+		    $(this).find('.sub').css({visibility: "visible",display: "none"}).fadeIn(250);
+		    },function(){
+		    $(this).find('.sub').fadeOut(200);
+		    });
+
+    $("#nav .topmenu").hover(function(){
+		    $('a:first',this).css('color','#703f45');
+		    },function(){
+		    $('a:first',this).css('color','#e2001a');
+		    });
+    }
+
+$(document).ready(function(){
+	mainmenu();
+});
+</script>
 
 </body>
 </html>

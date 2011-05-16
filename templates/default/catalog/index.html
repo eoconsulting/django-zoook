@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="categories">
+<ul>
+{% for value in values %}
+    {% if  value.parent %}
+    <li class="categories-list"><a href="/catalog/{{ value.slug }}/">{{ value.name }}</a></li>
+    {% else %}
+    <li class="categories-list"><a href="/catalog/{{ value.slug }}/">{{ value.name }}</a></li>
+    {% endif %}
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

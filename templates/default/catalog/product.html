@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="catalog-product">
+    <h1>{{product.name}}</h1>
+    <p>{{product.shortdescription}}</p>
+    {% for product in products %}<div id="code"><span class="code">{% trans "Code" %}:</span> {{product.code}}</code>
+    {% if product.ean13 %}<div id="ean13"><span class="ean13">{% trans "EAN13" %}:</span> {{product.ean13}}</code>{% endif %}{% endfor %}
+    <p>{% if base_image %}<img src="{{base_image.filename}}" alt="{{base_image.name}}" title="{{base_image.name}}" />{% endif %}{{product.description}}</p>
+    <div id="catalog-gallery"></div>{% for image in thumb_images %}
+    <img src="{{image.filename}}" alt="{{image.name}}" title="{{image.name}}" />{% endfor %}
+</div>
+{% endblock %}

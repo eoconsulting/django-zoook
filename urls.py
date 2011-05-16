@@ -30,11 +30,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r"^$", index),
+    (r"^catalog/", include("catalog.urlsCatalog")),
+    (r"^product/", include("catalog.urlsProduct")),
     (r"^contact/", include("contact.urlsContact")),
 #    (r"^search/", include("search.urlsSearch")),
     (r"^accounts/", include("accounts.urlsAccounts")),
 #    (r'^oficina/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include(admin.site.urls)),
+    (r'^manager/', include(admin.site.urls)),
     (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
     (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
 )

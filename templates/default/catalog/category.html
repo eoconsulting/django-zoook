@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="catalog-grid">
+    <h1>{{title}}</h1>
+
+    <ul id="catalog-grid-list">{% for product in products.object_list %}
+        <li><a href="/{{ LANGUAGE_CODE }}/product/{{product.slug}}/" alt="{{product.name}}" title="{{product.name}}">{{product.name}}</a></li>{% endfor %}
+    </ul>
+    {% if products.paginator.num_pages > 1 %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}<a href="?page={{ products.previous_page_number }}">{% trans "previous" %}</a>{% endif %}
+            <span class="current">
+                {% trans "Page" %} {{ products.number }} of {{ products.paginator.num_pages }}.
+            </span>
+            {% if products.has_next %}<a href="?page={{ products.next_page_number }}">{% trans "next" %}</a>{% endif %}
+        </span>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

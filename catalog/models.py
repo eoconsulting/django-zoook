@@ -69,19 +69,12 @@ class ProductCategory(models.Model):
     def __unicode__(self):
         return self.name
 
-#class ProductTemplateCateg(models.Model):
-#    producttemplate = models.ForeignKey('ProductTemplate')
-#    productcategory = models.ForeignKey('ProductCategory')
-
-#    class Meta:
-#        db_table = 'product_template_categ'
-
 class ProductTemplate(models.Model):
     """ProductTemplate OpenERP"""
     __metaclass__ = TransMeta
 
     name = models.CharField(_('Name'), max_length=128)
-    categ = models.ManyToManyField('ProductCategory', blank=True, related_name='categ_s')
+    categ = models.ManyToManyField('ProductCategory', null=True, blank=True, related_name='categ_s')
     shortdescription = models.TextField(_('Short Description'), null=True, blank=True)
     description = models.TextField(_('Sale Description'), null=True, blank=True)
     slug = models.CharField(_('Slug'), max_length=128, null=True, blank=True)
@@ -164,6 +157,8 @@ class ProductImages(models.Model):
     name = models.CharField(_('Image Title'), max_length=128, null=True, blank=True)
     product = models.ForeignKey('ProductProduct', null=True, blank=True)
     filename = models.CharField(_('File Location'), max_length=128, null=True, blank=True)
+    base_image = models.BooleanField(_('Base Image'), default=False)
+    exclude = models.BooleanField(_('Exclude'), default=False)
 
     class Meta:
         db_table = 'product_images'

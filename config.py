@@ -47,12 +47,12 @@ OERP_CONF = {
     'username':'admin',
     'password':'admin',
     'dbname':'oerp6_zoook',
-#    'protocol':'xmlrpc', #xmlrpc
-#    'uri':'http://localhost', #xmlrpc
-#    'port':8069, #xmlrpc
-    'protocol':'pyro', #pyro
-    'uri':'localhost', #pyro
-    'port':8071, #pyro
+    'protocol':'xmlrpc', #xmlrpc
+    'uri':'http://localhost', #xmlrpc
+    'port':8051, #xmlrpc
+#    'protocol':'pyro', #pyro
+#    'uri':'localhost', #pyro
+#    'port':8071, #pyro
 }
 
 LIVE_URL = "http://127.0.0.1:8000/"

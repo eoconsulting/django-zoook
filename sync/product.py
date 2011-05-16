@@ -73,12 +73,14 @@ for result in results:
         #ptemplate.categ.remove(8)
         #ptemplate.categ.add(3,6)
         #ptemplate.save()
-        for k,v in m2m_template.iteritems():
-            getattr(prod_template, k).clear()
-            getattr(prod_template, k).add(*v) #TODO: remove?
 
         try:
             prod_template.save()
+            for k,v in m2m_template.iteritems():
+                getattr(prod_template, k).clear()
+                getattr(prod_template, k).add(*v) #TODO: remove?
+            prod_template.save_m2m()
+
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template save ID %s') % product_template['id']))
         except:
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Error save ID %s') % product_template['id']))
