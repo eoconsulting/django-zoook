@@ -4,5 +4,5 @@ from catalog.views import *
 """Urls Product"""
 
 urlpatterns = patterns("",
-    (r"^(?P<product>[^/]+)/$", 'catalog.views.product'),
+    (r"^(?P<product>[^/]+)$", 'catalog.views.product'),
 )

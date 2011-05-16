@@ -5,6 +5,6 @@ from catalog.views import *
 
 urlpatterns = patterns("",
     (r'^$', 'catalog.views.index'),
-    (r"^(?P<category>[^/]+)/$", 'catalog.views.category'),
-#TODO: catagory/category
+    (r"^.+/(?P<category>[^/]+)/$", 'catalog.views.category'),
+#    (r"^(?P<category>[^/]+)/$", 'catalog.views.category'),
 )
