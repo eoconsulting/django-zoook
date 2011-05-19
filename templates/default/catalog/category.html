@@ -6,7 +6,7 @@
     <h1>{{title}}</h1>
 
     <ul id="catalog-grid-list">{% for product in products.object_list %}
-        <li><a href="/{{ LANGUAGE_CODE }}/product/{{product.slug}}/" alt="{{product.name}}" title="{{product.name}}">{{product.name}}</a></li>{% endfor %}
+        <li><a href="/{{ LANGUAGE_CODE }}/product/{{product.slug}}" alt="{{product.name}}" title="{{product.name}}">{{product.name}}</a></li>{% endfor %}
     </ul>
     {% if products.paginator.num_pages > 1 %}
     <div class="pagination">

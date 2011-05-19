@@ -1,14 +1,11 @@
 {% extends "layout.html" %}
+{% load i18n %}
 
 {% block content %}
 <div id="categories">
 <ul>
-{% for value in values %}
-    {% if  value.parent %}
-    <li class="categories-list"><a href="/catalog/{{ value.slug }}/">{{ value.name }}</a></li>
-    {% else %}
-    <li class="categories-list"><a href="/catalog/{{ value.slug }}/">{{ value.name }}</a></li>
-    {% endif %}
+{% for value, level, oldlevel in values %}
+    <li class="categories-list-{{ level }}"><a href="/{{ LANGUAGE_CODE }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}{%endif%}/">{{ value.name }}</a></li>
 {% endfor %}
 </ul>
 </div>

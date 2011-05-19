@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% load i18n %}
 
+{% block head %}
+    <link rel="canonical" href="{{ url }}/{{ LANGUAGE_CODE }}/product/{{product.slug}}" />
+{% endblock %}
+
 {% block content %}
 <div id="catalog-product">
     <h1>{{product.name}}</h1>

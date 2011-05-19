@@ -78,7 +78,7 @@ for result in results:
             prod_template.save()
             for k,v in m2m_template.iteritems():
                 getattr(prod_template, k).clear()
-                getattr(prod_template, k).add(*v) #TODO: remove?
+                getattr(prod_template, k).add(*v) #TODO: m2m fields deleted (not create all fields)
             prod_template.save_m2m()
 
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template save ID %s') % product_template['id']))

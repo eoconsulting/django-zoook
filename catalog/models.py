@@ -32,6 +32,7 @@ class ProductCategory(models.Model):
     name = models.CharField(_('Name'), max_length=128)
     description = models.TextField(_('Description'), null=True, blank=True)
     slug = models.CharField(_('Slug'), max_length=128, null=True, blank=True)
+    fslug = models.CharField(_('Full Slug'), max_length=256, null=True, blank=True)
     metatitle = models.CharField(_('Title'), max_length=128, null=True, blank=True)
     metakeyword = models.TextField(_('Keyword'), null=True, blank=True)
     metadescription = models.TextField(_('Description'), null=True, blank=True)
@@ -61,6 +62,7 @@ class ProductCategory(models.Model):
             'name',
             'description',
             'slug',
+            'fslug',
             'metatitle',
             'metakeyword',
             'metadescription',

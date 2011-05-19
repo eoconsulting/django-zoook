@@ -1,76 +1,10 @@
 {% load set_var %}
 {% load i18n %}{% get_current_language as LANGUAGE_CODE %}{% get_available_languages as LANGUAGES %}
 
-<br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-name -- id -- parent.id-- level -- oldlevel<br/>
-
-{% for value, level, oldlevel in values %}
-    {{value.name}} -- {{value.id}} -- {{value.parent.id}} -- {{level}} -- {{oldlevel}} <br/>
-
-{% endfor %}
-
-
-
-<br/><br/><br/><br/><br/>
-
 <ul id="nav">
 {% for value, level, oldlevel in values %}
-    {%if level == 3 and oldlevel == 3 %}2222</li>{%endif%}
-    {%if level == 2 and oldlevel == 2 %}2222</li>{%endif%}
-    {%if level < 3 and oldlevel == 3 %}aa</ul>{%endif%}
-    {%if level < 2 and oldlevel == 3 %}aa</li>{%endif%}
-    {%if level < 2 and oldlevel >= 2 %}bb</ul>{%endif%}
-    {%if level == 2 and oldlevel == 3 %}111</li>{%endif%}
-    {%if level == 2 and oldlevel == 3 %}<ul class="sub">{%endif%}
-
-    {%if level == 1%}<li class="item-{{level}} topmenu">{{value.name}}{%endif%}
-    {%if level == 2 and oldlevel == 1 %}<ul class="sub">{%endif%}
-    {%if level == 2%}<li>{{value.name}}{%endif%}
-    {%if level == 3 and oldlevel == 2 %}<ul>{%endif%}
-    {%if level == 3%}<li>{{value.name}}</li>{%endif%}
+    {%if level == 5 and oldlevel >= 5 %}</li>{%endif%}{%if level < 5 and oldlevel >= 5 %}</li></ul>{%endif%}{%if level == 4 and oldlevel >= 4 %}</li>{%endif%}{%if level < 4 and oldlevel >= 4 %}</li></ul>{%endif%}{%if level == 3 and oldlevel >= 3 %}</li>{%endif%}{%if level < 3 and oldlevel >= 3 %}</li></ul>{%endif%}{%if level == 2 and oldlevel >= 2 %}</li>{%endif%}{%if level < 2 and oldlevel >= 2 %}</li></ul>{%endif%}{%if level == 1 and oldlevel >= 1 %}</li>{%endif%}{%if level == 1%}<li class="item-1 topmenu"><a href="/{{ LANGUAGE_CODE }}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}{%endif%}">{{value.name}}</a>{%endif%}{%if level == 2 and oldlevel == 1 %}<ul class="sub">{%endif%}{%if level == 2%}<li><a href="/{{ LANGUAGE_CODE }}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}{%endif%}">{{value.name}}</a>{%endif%}{%if level == 3 and oldlevel == 2 %}<ul>{%endif%}{%if level == 3%}<li><a href="/{{ LANGUAGE_CODE }}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}{%endif%}">{{value.name}}</a>{%endif%}{%if level == 4 and oldlevel == 3 %}<ul>{%endif%}{%if level == 4%}<li><a href="/{{ LANGUAGE_CODE }}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}{%endif%}">{{value.name}}</a>{%endif%}{%if level == 5 and oldlevel == 4 %}<ul>{%endif%}{%if level == 5%}<li><a href="/{{ LANGUAGE_CODE }}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}{%endif%}">{{value.name}}</a>{%endif%}
 {% endfor %}
-</li>
-</ul> 
-
-
-
-
-
-
-{% comment %} 
-<br/><br/><br/><br/><br/>
-
-{% for value, level, oldlevel in values %}
-    {{level}} {{oldlevel}}
-
-    {%if level < 3 and oldlevel == 3 %}
-                            tanquem tercer<br/>
-    {%endif%}
-    {%if level < 2 and oldlevel >= 2 %}
-                    tanquem segon<br/>
-    {%endif%}
-    {%if level == 2 and oldlevel == 3 %}
-                    Obrim segon (B)<br/>
-    {%endif%}
-
-    {%if level == 1%}
-                Obrim primer{{value.name}}<br/>
-    {%endif%}
-    {%if level == 2 and oldlevel == 1 %}
-                    Obrim segon<br/>
-    {%endif%}
-    {%if level == 2%}
-                        segon{{value.name}}<br/>
-    {%endif%}
-    {%if level == 3 and oldlevel == 2 %}
-                            Obrim tercer<br/>
-    {%endif%}
-    {%if level == 3%}
-                                tercer {{value.name}}<br/>
-    {%endif%}
-
-
-{% endfor %}
-{% endcomment %}
+    {%if lastlevel >= 5 %}</li></ul>{%endif%}{%if lastlevel >= 4 %}</li></ul>{%endif%}{%if lastlevel >= 3 %}</li></ul>{%endif%}{%if lastlevel >= 2 %}</li></ul>{%endif%}
+    </li>
+</ul>

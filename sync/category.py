@@ -43,6 +43,8 @@ results = conn_webservice('sale.shop', 'dj_export_categories', [[OERP_SALE]])
 if len(results) == 0:
     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Not categories news or modified')))
 
+cat2 = []
+
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
     values = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.product.category',[result]])
@@ -52,12 +54,27 @@ for result in results:
 
     if len(values) > 0:
         cat = values[0]
+
+        # create category without parent_id. After, we will create same category with parent_id
+        if 'parent_id' in cat:
+            cat2.append(cat.copy())
+            del cat['parent_id']
+
         category = ProductCategory(**cat)
+
         try:
             category.save()
+
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Category save ID %s') % cat['id']))
         except:
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Error save ID %s') % cat['id']))
+
+#save category with parent_id value
+for cat in cat2:
+    if cat['parent_id']:
+        category = ProductCategory(**cat)
+        category.save()
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Category update ID %s') % cat['id']))
 
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Done')))
 

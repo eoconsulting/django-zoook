@@ -25,6 +25,7 @@ DEBUG = True
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
 LOGFILE = '/home/resteve/django/zoook/log/zoook.log' #path zoook log
 BASE_TEMPLATE = 'default'
+URL_DOMAIN = 'http://localhost'
 
 """
 Database conf
