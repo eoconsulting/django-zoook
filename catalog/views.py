@@ -77,9 +77,24 @@ def category(request,category):
         categories = ProductCategory.objects.filter(**kwargs)
 
         if len(categories)>0:
-            products = ProductTemplate.objects.filter(Q(productproduct__active=True),Q(categ=categories[0]), Q(visibility='all') | Q(visibility='catalog'))
+            products = ProductTemplate.objects.filter(Q(productproduct__active=True), Q(categ=categories[0]), Q(visibility='all') | Q(visibility='catalog'))
 
-            paginator = Paginator(products, TOTAL_PAGINATOR)
+            # == Session Catalog ==
+            # paginator options = session
+            request.session['paginator'] = request.GET.get('paginator') and int(request.GET.get('paginator')) or  request.session['paginator'] or PAGINATOR_TOTAL
+
+            # mode options = session
+            request.session['mode'] = request.GET.get('mode') and request.GET.get('mode') or request.session['mode'] or 'grid'
+
+            # order options = session
+            request.session['order'] = request.GET.get('order') and request.GET.get('order') or request.session['order'] or 'price'
+
+            # order_by options = session
+            request.session['order_by'] = request.GET.get('order_by') and request.GET.get('order_by') or request.session['order_by'] or 'asc'
+
+            # == pagination ==
+            total = len(products)
+            paginator = Paginator(products, request.session['paginator'])
 
             try:
                 page = int(request.GET.get('page', '1'))
@@ -92,9 +107,39 @@ def category(request,category):
             except (EmptyPage, InvalidPage):
                 products = paginator.page(paginator.num_pages)
 
+            # get price and base_image product            
+            for tplproduct in products.object_list:
+                prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id).order_by('price')
+
+                prod_images = ProductImages.objects.filter(product=prods[0].id,exclude=False)
+
+                base_image = False
+                if len(prod_images) > 0:
+                    base_image = prod_images[0]
+
+                values.append({'product': tplproduct, 'name': tplproduct.name.lower(), 'product_variant': len(prods), 'price': prods[0].price, 'base_image': base_image})
+
+            # == order by name or price ==
+            values.sort(key=lambda x: x[request.session['order']], reverse = request.session['order_by'] == 'desc')
+
+            # == template values ==
             title = _('%(category)s - Page %(page)s of %(total)s') % {'category': categories[0].name, 'page': products.number, 'total': products.paginator.num_pages}
             metadescription = _('%(category)s. Page %(page)s of %(total)s') % {'category': categories[0].description, 'page': products.number, 'total':products.paginator.num_pages}
-            return render_to_response("catalog/category.html", {'title':title, 'metadescription': metadescription, 'products': products}, context_instance=RequestContext(request))
+            category_values = {
+                'title': title,
+                'category_title': categories[0].name,
+                'metadescription': metadescription,
+                'values': values,
+                'products': products,
+                'paginator_option': request.session['paginator'],
+                'mode_option': request.session['mode'],
+                'order_option': request.session['order'],
+                'order_by_option': request.session['order_by'],
+                'paginator_items': PAGINATOR_ITEMS,
+                'catalog_orders': CATALOG_ORDERS,
+                'total': total,
+            }
+            return render_to_response("catalog/category.html", category_values, context_instance=RequestContext(request))
         else:
             raise Http404(_('This category is not available because you navigate with bookmarks or search engine. Use navigation menu'))
     else:

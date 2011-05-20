@@ -1,23 +1,69 @@
 {% extends "layout.html" %}
 {% load i18n %}
+{% block head %}<script type="text/javascript" src="{{ MEDIA_URL }}js/zoook.js"></script>{% endblock %}
 
 {% block content %}
-<div id="catalog-grid">
-    <h1>{{title}}</h1>
-
-    <ul id="catalog-grid-list">{% for product in products.object_list %}
-        <li><a href="/{{ LANGUAGE_CODE }}/product/{{product.slug}}" alt="{{product.name}}" title="{{product.name}}">{{product.name}}</a></li>{% endfor %}
-    </ul>
-    {% if products.paginator.num_pages > 1 %}
-    <div class="pagination">
-        <span class="step-links">
-            {% if products.has_previous %}<a href="?page={{ products.previous_page_number }}">{% trans "previous" %}</a>{% endif %}
-            <span class="current">
-                {% trans "Page" %} {{ products.number }} of {{ products.paginator.num_pages }}.
-            </span>
-            {% if products.has_next %}<a href="?page={{ products.next_page_number }}">{% trans "next" %}</a>{% endif %}
-        </span>
+<div id="page-wrap" class="clearfix">
+    <div id="sidebar">
+    	<div class="block border5">
+        	<h2>Sidebar block title 1</h2>
+            <div class="block-content">
+            	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.</p>
+            </div>
+        </div>
     </div>
-    {% endif %}
+
+    <div id="content">
+        <div id="catalog-grid" class="block border5 clearfix">
+            <h1 class="{{category_title}}">{{category_title}}</h1>
+
+            <div class="toolbar">
+                <div class="items-pager">
+                    <span class="items-drop">{% trans "Show" %} <select onchange="setLocation('paginator',this.value)">{% for item in paginator_items %}<option value="{{ item }}"{% if paginator_option == item %} selected="selected"{% endif %}>{{ item }}</option>{% endfor %}</select> {% trans "items" %}</span>
+                	<span class="view-mode">{{ values|length }}/{{ total }} {% trans "item" %}{{ products.object_list|pluralize }}</span>
+                </div>
+                <div class="items-sort">
+                    <span class="sort-drop">{% trans "Sort by" %}
+                    <select onchange="setLocation('order',this.value)">{% for order in catalog_orders %}<option value="{{ order }}"{% if order_option == order %} selected="selected"{% endif %}>{{ order }}</option>{% endfor %}</select>
+                    {% if order_by_option = 'desc' %}<a href="?order_by=asc">{% trans "ASC" %}</a>{% else %}<a href="?order_by=desc">{% trans "DESC" %}</a>{% endif %}</span>
+                	<span class="view-mode">{% trans "View as" %}: 
+                        {% if mode_option == 'grid' %}<span class="active">{% trans "Grid" %}</span>{% else %} <a href="?mode=grid">{% trans "Grid" %}</a>{% endif %}
+                        {% if mode_option == 'list' %}<span class="active">{% trans "List" %}</span>{% else %} <a href="?mode=list">{% trans "List" %}</a>{% endif %}
+                    </span>
+                </div>
+            </div>
+            {% if mode_option == 'grid' %}
+            <ul id="catalog-grid-list">{% for value in values %}
+                <li id="product-{{forloop.counter}}" class="product-item block border5{% cycle '' '' ' last' %}">
+                    <a href="/{{ LANGUAGE_CODE }}/product/{{value.product.slug}}" class="product-img"><img src="{% firstof value.base_image.filename '/static/images/product_zoook.png' %}" width="150" height="150" title="{{value.product.name}}" class="product-image-grid" /></a>
+                    <a href="/{{ LANGUAGE_CODE }}/product/{{value.product.slug}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
+                    <div id="product-price-{{forloop.counter}}" class="price-box">
+                    	<span class="regular-price">
+                            <span class="price">{{value.price}} €</span>
+                        </span>
+                    </div>
+                    {% if value.product_variant > 1 %}<button class="border2">{% trans "Details" %}</button>{% else %}<button class="border2" onclick="addCart('{{value.product.slug}}')">{% trans "Add to cart" %}</button>{% endif %}
+                    <ul class="add-to">
+                    	<li><a href="#">{% trans "Add to Wishlist" %}</a></li>
+                    	<li><a href="#">{% trans "Add to Compare" %}</a></li>
+                    </ul>
+                </li>{% endfor %}
+            </ul>
+            {% else %}
+                #TODO: List Page CSS is cooking.....
+            {% endif %}
+            {% if products.paginator.num_pages > 1 %}
+            <div id="paginator" class="pagination">
+                <span class="step-links">
+                    {% if products.has_previous %}<a href="?page={{ products.previous_page_number }}">{% trans "Previous" %}</a>{% endif %}
+                    <span class="current">
+                        {% trans "Page" %} {{ products.number }} of {{ products.paginator.num_pages }}.
+                    </span>
+                    {% if products.has_next %}<a href="?page={{ products.next_page_number }}">{% trans "Next" %}</a>{% endif %}
+                </span>
+            </div>{% endif %}
+        </div>
+    </div>
+
 </div>
 {% endblock %}
