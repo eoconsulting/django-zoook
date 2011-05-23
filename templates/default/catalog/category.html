@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% load i18n %}
+{% load thumbnail %}
+
 {% block head %}<script type="text/javascript" src="{{ MEDIA_URL }}js/zoook.js"></script>{% endblock %}
 
 {% block content %}
@@ -35,7 +37,7 @@
             {% if mode_option == 'grid' %}
             <ul id="catalog-grid-list">{% for value in values %}
                 <li id="product-{{forloop.counter}}" class="product-item block border5{% cycle '' '' ' last' %}">
-                    <a href="/{{ LANGUAGE_CODE }}/product/{{value.product.slug}}" class="product-img"><img src="{% firstof value.base_image.filename '/static/images/product_zoook.png' %}" width="150" height="150" title="{{value.product.name}}" class="product-image-grid" /></a>
+                    <a href="/{{ LANGUAGE_CODE }}/product/{{value.product.slug}}" class="product-img"><img src="{% thumbnail value.base_image.filename 150x150 /static/images/product_zoook.png %}" width="150" height="150" title="{{value.product.name}}" class="product-image-grid" /></a>
                     <a href="/{{ LANGUAGE_CODE }}/product/{{value.product.slug}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
                     <div id="product-price-{{forloop.counter}}" class="price-box">
                     	<span class="regular-price">

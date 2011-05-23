@@ -58,8 +58,6 @@ def index(request):
             values.append((ProductCategory.objects.get(id=category), level, oldlevel))
             oldlevel = level
 
-    print values
-
     title = _('Categories')
     metadescription = _('List all categories of %s') % SITE_TITLE
     return render_to_response("catalog/index.html", {'title': title, 'metadescription': metadescription, 'values': values}, context_instance=RequestContext(request))
@@ -165,4 +163,4 @@ def product(request,product):
     title = _('%(product)s') % {'product': product.name}
     metadescription = _('%(metadescription)s') % {'metadescription': product.metadescription}
 
-    return render_to_response("catalog/product.html", {'title': title, 'metadescription': metadescription, 'product': product, 'products': products, 'base_image': base_image, 'thumb_images': thumb_images, 'url': URL_DOMAIN}, context_instance=RequestContext(request))
+    return render_to_response("catalog/product.html", {'title': title, 'metadescription': metadescription, 'product': product, 'products': products, 'base_image': base_image, 'thumb_images': thumb_images, 'url': LIVE_URL}, context_instance=RequestContext(request))

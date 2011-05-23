@@ -22,10 +22,26 @@
 
 DEBUG = True
 
+"""
+OpenERP shop
+"""
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
+
+"""
+Log's conf
+"""
 LOGFILE = '/home/resteve/django/zoook/log/zoook.log' #path zoook log
+
+"""
+Base template
+"""
 BASE_TEMPLATE = 'default'
-URL_DOMAIN = 'http://localhost'
+
+"""
+Url's conf
+"""
+LIVE_URL = "http://127.0.0.1:8000/"
+MEDIA_URL = "http://127.0.0.1:8000/static/"
 
 """
 Database conf
@@ -56,14 +72,17 @@ OERP_CONF = {
 #    'port':8071, #pyro
 }
 
-LIVE_URL = "http://127.0.0.1:8000/"
-MEDIA_URL = "http://127.0.0.1:8000/static/"
-
+"""
+Email conf
+"""
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+"""
+Captcha conf
+"""
 RECAPTCHA_PUB_KEY = ""
 RECAPTCHA_PRIVATE_KEY = ""

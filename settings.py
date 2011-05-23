@@ -36,7 +36,7 @@ CATALOG_ORDERS = ['price','name']
 USER_LENGHT = 8
 KEY_LENGHT = 10
 
-SITE_TITLE = _('Zoook. e-sale for OpenERP')
+SITE_TITLE = _('Zoook. OpenERP e-sale')
 CONTACT_EMAIL = ['zikzak@zikzakmedia.com']
 
 VAT_CODE = ['ES']
