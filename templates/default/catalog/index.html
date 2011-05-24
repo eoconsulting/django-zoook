@@ -2,11 +2,20 @@
 {% load i18n %}
 
 {% block content %}
-<div id="categories">
-<ul>
-{% for value, level, oldlevel in values %}
-    <li class="categories-list-{{ level }}"><a href="/{{ LANGUAGE_CODE }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}{%endif%}/">{{ value.name }}</a></li>
-{% endfor %}
-</ul>
+<div id="page-wrap" class="clearfix">
+    <div id="sidebar">
+    	<div class="block border5">
+            {% module catalog.right %}
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="catalog-grid" class="block border5 clearfix">
+            <ul>
+                {% for value, level, oldlevel in values %}<li class="categories-list-{{ level }}"><a href="/{{ LANGUAGE_CODE }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{ value.name }}</a></li>{% endfor %}
+            </ul>
+        </div>
+    </div>
+
 </div>
 {% endblock %}

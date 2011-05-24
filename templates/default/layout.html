@@ -41,11 +41,13 @@
             <li class="first"><a href="/{{ LANGUAGE_CODE }}/account">{% trans "My Account" %}</a></li>
             <li><a href="/{{ LANGUAGE_CODE }}/checkout">{% trans "My Cart" %}</a></li>
             <li class="last"><a href="/{{ LANGUAGE_CODE }}/account">{% trans "Login" %}</a></li>
+            {% for language in LANGUAGES %}<li><a href="/{{ language.0 }}/" alt="{{ language.1 }}">{{ language.1|capfirst  }}</a></li>{% endfor %}
         </ul>
+
 	</div>
     {% load category %}{% render_horizontal_menu %}
     </div>
-
+    {% block pathway %}{% endblock %}
     <div id="page-wrap">
         {% block content %}{% endblock %}
     </div>

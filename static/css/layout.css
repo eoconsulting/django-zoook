@@ -52,3 +52,17 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 
 /* Paginator */
 #paginator  { float:left; width:680px; padding-top:10px; text-align:center; border-top:1px solid #e7e7e7;}
+
+/* Message */
+.error-msg,
+.success-msg,
+.note-msg,
+.notice-msg { border-style:solid !important; border-width:1px !important; background-position:10px 10px !important; background-repeat:no-repeat !important; min-height:24px !important; padding:8px 8px 8px 32px !important; font-size:10px !important; font-weight:bold !important; }
+.error-msg { border-color:#f16048; background-color:#faebe7; background-image:url(../images/icons/error_msg.gif); color:#df280a; }
+.success-msg { border-color:#446423; background-color:#eff5ea; background-image:url(../images/icons/success_msg.gif); color:#3d6611; }
+.note-msg,
+.notice-msg { border-color:#fcd344; background-color:#fafaec; background-image:url(../images/icons/note_msg.gif); color:#3d6611; }
+
+/* Pathway */
+#pathway    { margin-bottom:10px }
+#pathway li { display:inline; list-style-type:none; padding-right:5px}

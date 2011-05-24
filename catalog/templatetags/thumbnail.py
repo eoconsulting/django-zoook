@@ -76,7 +76,7 @@ class ThumbnailNode(Node):
 
 def thumbnail(parser, token):
     """
-    Creates a thumbnail of an url link.
+    Creates a thumbnail image file.
 
     Basic tag Syntax::
         {% thumbnail [source] [size] [base image]%}
@@ -97,7 +97,6 @@ def thumbnail(parser, token):
     """
 
     parts = token.split_contents()
-    print parts
 
     if len(parts) < 3:
         raise template.TemplateSyntaxError("'thumbnail' tag must be of the form:  {% thumbnail [source] [size] [base image]%}")

@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 {% load i18n %}
 {% load thumbnail %}
+{% load modules %}
 
 {% block head %}<script type="text/javascript" src="{{ MEDIA_URL }}js/zoook.js"></script>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/catalog/">{% trans "Catalog" %}</a></li>
+{% for path in categories_path %}<li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/catalog/{{path.fslug}}">{{path.name}}</a></li>{% endfor %}</ul></div>
+{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
     <div id="sidebar">
     	<div class="block border5">
-        	<h2>Sidebar block title 1</h2>
-            <div class="block-content">
-            	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.</p>
-            </div>
+            {% module catalog.right %}
         </div>
     </div>
 
@@ -34,6 +35,7 @@
                     </span>
                 </div>
             </div>
+            {% if values|length == 0 %}<p class="note-msg">{% trans "There are no products matching the selection." %}</p>{% endif %}
             {% if mode_option == 'grid' %}
             <ul id="catalog-grid-list">{% for value in values %}
                 <li id="product-{{forloop.counter}}" class="product-item block border5{% cycle '' '' ' last' %}">

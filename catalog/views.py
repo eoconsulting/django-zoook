@@ -45,6 +45,22 @@ def collect_children(category, level=0, children=None):
 
     return children
 
+"""Category Path"""
+def pathcategory(category):
+    categories = ProductCategory.objects.filter(id=category)
+
+
+    path = []
+    path.append({'name':categories[0].name,'slug':categories[0].slug})
+
+    while categories[0].parent:
+        categories = ProductCategory.objects.filter(id=categories[0].parent.id)
+        path.append({'name':categories[0].name,'fslug':categories[0].fslug})
+    path.pop() #delete last category = firts category
+    path.reverse()
+    print path
+    return path
+
 def index(request):
     """Index Catalog. All Categories list"""
     root_category = ProductCategory.objects.filter(parent=None)
@@ -75,20 +91,33 @@ def category(request,category):
         categories = ProductCategory.objects.filter(**kwargs)
 
         if len(categories)>0:
+            categories_path = pathcategory(categories[0].id) #pathway
             products = ProductTemplate.objects.filter(Q(productproduct__active=True), Q(categ=categories[0]), Q(visibility='all') | Q(visibility='catalog'))
 
-            # == Session Catalog ==
+            # == Sessions Catalog ==
             # paginator options = session
-            request.session['paginator'] = request.GET.get('paginator') and int(request.GET.get('paginator')) or  request.session['paginator'] or PAGINATOR_TOTAL
+            if 'paginator' in request.session:
+                request.session['paginator'] = request.GET.get('paginator') and int(request.GET.get('paginator')) or request.session['paginator'] or PAGINATOR_TOTAL
+            else:
+                request.session['paginator'] = request.GET.get('paginator') and int(request.GET.get('paginator')) or PAGINATOR_TOTAL
 
             # mode options = session
-            request.session['mode'] = request.GET.get('mode') and request.GET.get('mode') or request.session['mode'] or 'grid'
+            if 'mode' in request.session:
+                request.session['mode'] = request.GET.get('mode') and request.GET.get('mode') or request.session['mode'] or 'grid'
+            else:
+                request.session['mode'] = request.GET.get('mode') and request.GET.get('mode') or 'grid'
 
             # order options = session
-            request.session['order'] = request.GET.get('order') and request.GET.get('order') or request.session['order'] or 'price'
+            if 'order' in request.session:
+                request.session['order'] = request.GET.get('order') and request.GET.get('order') or request.session['order'] or 'price'
+            else:
+                request.session['order'] = request.GET.get('order') and request.GET.get('order') or 'price'
 
             # order_by options = session
-            request.session['order_by'] = request.GET.get('order_by') and request.GET.get('order_by') or request.session['order_by'] or 'asc'
+            if 'order_by' in request.session:
+                request.session['order_by'] = request.GET.get('order_by') and request.GET.get('order_by') or request.session['order_by'] or 'asc'
+            else:
+                request.session['order_by'] = request.GET.get('order_by') and request.GET.get('order_by') or 'asc'
 
             # == pagination ==
             total = len(products)
@@ -136,6 +165,7 @@ def category(request,category):
                 'paginator_items': PAGINATOR_ITEMS,
                 'catalog_orders': CATALOG_ORDERS,
                 'total': total,
+                'categories_path': categories_path,
             }
             return render_to_response("catalog/category.html", category_values, context_instance=RequestContext(request))
         else:

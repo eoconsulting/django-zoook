@@ -21,107 +21,41 @@
 ############################################################################################
 
 from django import template
-
+from django.template import Library, Node
 from zoook.modules.models import Modules
 
 register = template.Library()
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user1():
-    entry = ''
-    entries = Modules.objects.filter(position='user1',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+class ModuleNode(Node):
+    def __init__(self, position):
+        self.position = position
+ 
+    def render(self, context):
+        entry = ''
+        entries = Modules.objects.filter(position=self.position,status=True)
+        if entries:
+            entry = entries[0].description
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user2():
-    entry = ''
-    entries = Modules.objects.filter(position='user2',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+        return entry
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user3():
-    entry = ''
-    entries = Modules.objects.filter(position='user3',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+def module(parser, token):
+    """
+    Show Module data CMS:
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user4():
-    entry = ''
-    entries = Modules.objects.filter(position='user4',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+    Basic tag Syntax::
+        {% module [position]%}
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user5():
-    entry = ''
-    entries = Modules.objects.filter(position='user5',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+    *position* Key ID position Module
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user6():
-    entry = ''
-    entries = Modules.objects.filter(position='user6',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+    Demo:
+      {% module catalog.right %}
+    """
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user7():
-    entry = ''
-    entries = Modules.objects.filter(position='user7',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+    parts = token.split_contents()
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_user8():
-    entry = ''
-    entries = Modules.objects.filter(position='user8',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+    if len(parts) < 1:
+        raise template.TemplateSyntaxError("'module' tag must be of the form:  {% module identification%}")
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_left():
-    entry = ''
-    entries = Modules.objects.filter(position='left',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+    return ModuleNode(parts[1])
 
-@register.inclusion_tag('modules/default.html')
-def render_modules_right():
-    entry = ''
-    entries = Modules.objects.filter(position='right',status=True)
-    if entries:
-        entry = entries[0]
-    return {
-        'entry': entry,
-    }
+register.tag(module)

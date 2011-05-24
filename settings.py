@@ -127,9 +127,7 @@ INSTALLED_APPS = (
 )
 
 LOCALE_INDEPENDENT_PATHS = (
-    re.compile('^/search/'),
     re.compile('^/static/'),
     re.compile('^/media/'),
-    re.compile('^/accounts/'),
     re.compile('^/admin/'),
 )
