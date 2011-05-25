@@ -6,32 +6,47 @@
 .categories-list-5 { padding-left:40px }
 .categories-list-6 { padding-left:50px }
 
+/* CATALOG CATEGORY */
+#catalog-category					{ padding:10px }
+#catalog-category .product-name h2  { font-size:13px; line-height:18px; font-weight:bold }
+
 /* CATALOG CATEGORY GRID */
-#catalog-grid					{ padding:10px }
-#catalog-grid .product-name h2  { font-size:13px; line-height:18px; font-weight:bold }
+#catalog-grid .product-item					{ width:196px; height:310px; padding:15px 10px; margin:0 10px 10px 0; float:left; text-align:center }
+#catalog-grid .product-item .product-img	{ display:block; margin-bottom:10px }
+
+/* CATALOG CATEGORY LIST */
+#catalog-list .product-item                 { width:650px; height:180px; padding:15px 10px; margin-bottom:10px; float:left; text-align:left }
+#catalog-list .product-item .product-img    { display:block; margin-right:10px; float:left }
+#catalog-list .price-box					{ }
+#catalog-list .product-description			{ }
 
 .product-item					{ width:196px; height:310px; padding:15px 10px; margin:0 10px 10px 0; float:left; text-align:center }
 .product-item .product-img		{ display:block; margin-bottom:10px }
 
 /* CATALOG TOOLBAR */
-.toolbar				{ display:block; clear:both; padding-bottom:20px; font-size:11px }
-.toolbar select 			{ color:#86657f }
+.toolbar			{ display:block; clear:both; padding-bottom:20px; font-size:11px }
+.toolbar select 	{ color:#86657f }
+.toolbar-top        { border-bottom:1px solid #e7e7e7; margin-bottom:10px }
+.toolbar-bottom     { border-top:1px solid #e7e7e7; margin-top: 10px }
 .items-pager, items-sort 	{ height:32px; line-height:32px }
 
 .view-mode a 		{ text-decoration:underline }
-.view-mode .active		{ font-weight:bold }
+.view-mode .active	{ font-weight:bold }
 
 .sort-drop, .items-drop { display:block; float:right }
 
 /* PRODUCT */
-.product-name h2			{ color:#769a9a; margin-bottom:10px }
-.product-name:hover h2 			{ color:#0a6c77 }
+.product-name h2		{ color:#769a9a; margin-bottom:10px }
+.product-name:hover h2 	{ color:#0a6c77 }
 
 .product-item button		{ padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#0a6c77; color:#fff; font-weight:bold }
-.product-item button:hover		{ background-color:#000 }
+.product-item button:hover	{ background-color:#000 }
 
-.price-box	{ margin-bottom:10px }
-.price			{ color:#da5406; font-size:24px; font-weight:bold }
+/* PRICE BOX */
+.price-box		{ margin-bottom:10px }
+.price			{ color:#da5406; font-size:24px; line-height:32px; font-weight:bold }
+
+.price-box .loader { padding:0 0 0 5px }
 
 .product-image-grid { border:1px solid #e7e7e7;}
 
@@ -40,13 +55,15 @@
 .add-to a		{ text-decoration:underline }
 .add-to .separator { padding:0 4px }
 
+#update-price-info { display:none; position:fixed; bottom:10px; right:10px; padding:0 15px 0 50px; height:60px; line-height:60px; font-size:20px; font-weight:bold; background:#da5406 url(../images/price_loader.gif) 10px center no-repeat; color:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }
+
 /* SPECIAL CLASSES -------------------------------------------------------------------------------------------- */
-.border2		{ border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
-.border5		{ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }
-.last			{ margin-right:0 !important }
+.border2    { border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
+.border5	{ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }
+.last		{ margin-right:0 !important }
 
 /* SIDEBAR -------------------------------------------------------------------------------------------- */
-#sidebar h2 { padding:8px 10px; font-size:11px; font-weight:bold; text-transform:uppercase; color:#555 }
+#sidebar h3 { padding:8px 10px; font-size:11px; font-weight:bold; text-transform:uppercase; color:#555 }
 
-#sidebar .block		{ background-color:#f9f9f9 }
+#sidebar .block		{ margin-bottom:20px; background-color:#f9f9f9 }
 #sidebar .block-content { padding:0 10px 10px 10px; color:#777 }

@@ -1,9 +1,8 @@
 {% extends "layout.html" %}
 {% load i18n %}
 
-{% block head %}
-    <link rel="canonical" href="{{ url }}/{{ LANGUAGE_CODE }}/product/{{product.slug}}" />
-{% endblock %}
+{% block head %}<link rel="canonical" href="{{ url }}/{{ LANGUAGE_CODE }}/product/{{product.slug}}" />{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/product/{{product.slug}}">{{product.name}}</a></li></ul></div>{% endblock %}
 
 {% block content %}
 <div id="catalog-product">

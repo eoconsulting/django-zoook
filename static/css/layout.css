@@ -16,7 +16,7 @@ body		{ font-family:sans-serif; font-size:12px; color:#000 }
 a			{ color:#e2001a; text-decoration:none }
 a:hover		{ color:#703f45 }
 
-h1, h2, h3, h4, h5 { color:#ff0404 }
+h1, h2, h3, h4, h5 { }
 h1	{ font-size:24px }
 h2	{ font-size:18px }
 h3	{ font-size:14px }
@@ -32,7 +32,7 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 #content	{ float:left; width:700px }
 
 /* MAIN -------------------------------------------------------------------------------------------- */
-#content h1 { border-bottom:1px solid #ff0404; margin-bottom:10px }
+#content h1 { color:#ff0404; border-bottom:1px solid #ff0404; padding-bottom:5px; margin-bottom:10px }
 
 /* CONTENT -------------------------------------------------------------------------------------------- */
 

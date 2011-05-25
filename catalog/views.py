@@ -21,16 +21,25 @@
 ############################################################################################
 
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.utils.translation import get_language
 from django.db.models import Q
+from django.utils import simplejson
 
 from settings import *
 
 from catalog.models import *
+
+"""Update Price. Check Json"""
+def updateprice(request):
+#    values = {"11":{"regularPrice":"436.73 \u20ac"},"30":{"regularPrice":"385.21 \u20ac"}}
+    values = {}
+    data = simplejson.dumps(values)
+    return HttpResponse(data, mimetype='application/javascript')
+
 
 """Category Children"""
 def collect_children(category, level=0, children=None):
@@ -49,7 +58,6 @@ def collect_children(category, level=0, children=None):
 def pathcategory(category):
     categories = ProductCategory.objects.filter(id=category)
 
-
     path = []
     path.append({'name':categories[0].name,'slug':categories[0].slug})
 
@@ -58,7 +66,7 @@ def pathcategory(category):
         path.append({'name':categories[0].name,'fslug':categories[0].fslug})
     path.pop() #delete last category = firts category
     path.reverse()
-    print path
+
     return path
 
 def index(request):

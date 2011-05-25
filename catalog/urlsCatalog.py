@@ -26,6 +26,7 @@ from catalog.views import *
 """Urls Catalog"""
 
 urlpatterns = patterns("",
+    (r"^updateprice", 'catalog.views.updateprice',''),
     (r'^$', 'catalog.views.index'),
     (r"^.+/(?P<category>[^/]+)/$", 'catalog.views.category'),
     (r"(?P<category>[^/]+)/$", 'catalog.views.category'),
