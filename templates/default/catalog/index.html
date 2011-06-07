@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load modules %}
 
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/catalog/">{% trans "Catalog" %}</a></li></div>{% endblock %}
+
 {% block content %}
 <div id="page-wrap" class="clearfix">
     <div id="sidebar">
@@ -11,7 +13,7 @@
     </div>
 
     <div id="content">
-        <div id="catalog-grid" class="block border5 clearfix">
+        <div id="catalog-index" class="block border5 clearfix">
             <ul>
                 {% for value, level, oldlevel in values %}<li class="categories-list-{{ level }}"><a href="/{{ LANGUAGE_CODE }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{ value.name }}</a></li>{% endfor %}
             </ul>

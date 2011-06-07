@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load modules %}
+
+{% block head %}
+    <link href="{{ MEDIA_URL }}css/form.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ MEDIA_URL }}css/user.css" rel="stylesheet" type="text/css" media="screen">
+    <script src="{{ MEDIA_URL }}js/jquery.validate.js" type="text/javascript"></script>
+    <script src="{{ MEDIA_URL }}js/jquery.metadata.js" type="text/javascript"></script>
+
+    <script type="text/javascript"> 
+    $.validator.setDefaults({
+        submitHandler: function() {
+            document.forms["paymentForm"].submit();
+        }
+    });
+        
+    $.metadata.setType("attr", "validate");
+     
+    $(document).ready(function() {
+        $("#paymentForm").validate();
+    });
+    </script> 
+{% endblock %}
+
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/sale/">{% trans "Orders" %}</a></li><li><span>&gt;</span> {% trans "Payment" %}</li></ul></div>{% endblock %}
+
+{% block content %}
+<div id="page-wrap" class="clearfix">
+    <div id="sidebar">
+        <div class="block border5">
+            {% module catalog.right_sale %}
+        </div>
+    </div>
+    <div id="content">
+        <div id="payment-order" class="block border5 clearfix"> 
+            <h1>{{title}}</h1>
+            <p>
+            <strong>{% trans "Number" %}:</strong> {{ value.name }}<br/>
+            <strong>{% trans "Date" %}:</strong> {{ value.date_order|date:"D j F Y" }}<br/>
+            <strong>{% trans "Total" %}:</strong> {{ value.amount_total }}
+            </p>
+            {% if value.amount_total != 0.0 %}<p id="order-confirm">
+            <form action="/{{ LANGUAGE_CODE }}/checkout/payment/" class="cmxform" id="paymentForm" method="post">
+            <fieldset>
+                <fieldset>
+                <legend>{% trans "Select payment" %}</legend>
+                {% for payment in payments %}
+                <label for="payment_{{ payment.esale_module }}"> 
+                    <input  type="radio" id="{{ payment.esale_module }}" value="{{ payment.esale_module }}" name="payment" validate="required:true" />{{ payment.name }}</label> 
+                {% endfor %}
+                <label for="payment" class="error">{% trans "Please select payment" %}</label> 
+                </fieldset> 
+            {% csrf_token %}
+            </fieldset>
+            <input type="submit" value="{% trans "Make Payment" %}" />
+            </form>
+            </p>{% endif %}
+        </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

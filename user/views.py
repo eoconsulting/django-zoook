@@ -40,13 +40,14 @@ from django.core.mail import EmailMessage
 
 from recaptcha.client import captcha
 
-from accounts.models import *
+from user.models import *
 from base.models import *
 
 from settings import *
 from tools.conn import conn_webservice
+from tools.zoook import checkPartnerID, checkFullName, connOOOP
 
-import xmlrpclib
+import base64
 
 def is_valid_email(email):
     """Email validation"""
@@ -57,7 +58,7 @@ def login(request):
     """Login Page and authenticate. If exists session, redirect profile"""
 
     if request.user.is_authenticated(): #redirect profile
-        return HttpResponseRedirect("/accounts/profile/")
+        return HttpResponseRedirect("/user/profile/")
 
     title = _('Login')
     metadescription = _('Account frontpage of %(site)s') % {'site':SITE_TITLE}
@@ -70,20 +71,26 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
-                return HttpResponseRedirect("/accounts/profile/")
+                redirect = '/user/profile/'
+                if 'redirect' in request.POST:
+                    redirect = base64.b64decode(request.POST['redirect'])
+                return HttpResponseRedirect(redirect)
             else:
                 error = _('Sorry. Your user is not active.')
         else:
             error = _('Sorry. Your username or password is not valid.')
 
     form = UserCreationForm()
-    return render_to_response("accounts/login.html", locals(), context_instance=RequestContext(request))
+    if request.GET.get('next'):
+        redirect = base64.b64encode(request.GET.get('next'))
+
+    return render_to_response("user/login.html", locals(), context_instance=RequestContext(request))
 
 def register(request):
     """Registration page. If exists session, redirect profile"""
 
     if request.user.is_authenticated(): #redirect profile
-        return HttpResponseRedirect("/accounts/profile/")
+        return HttpResponseRedirect("/user/profile/")
 
     title = _('Create an Account')
     metadescription = _('Create an Account of %(site)s') % {'site':SITE_TITLE}
@@ -99,6 +106,9 @@ def register(request):
         username = data['username']
         email = data['email']
         password = data['password1']
+        name = data['name']
+        vat_code = data['vat_code']
+        vat = data['vat']
 
         if data['password1'] == data['password2']:
             if form.is_valid():
@@ -129,11 +139,54 @@ def register(request):
                     msg = _('Sorry. This email are exists. Use another email or remember password')
                     error.append(msg)
 
+                #check if this vat exists ERP
                 if not error:
+                    conn = connOOOP()
+
+                    partner = conn.ResPartner.filter(vat__ilike=data['vat_code']+data['vat'])
+                    if len(partner) > 0:
+                        msg = _('Sorry. This VAT exists our ERP. Contact Us for create a new user')
+                        error.append(msg)
+
+                #check if this vat valid
+                if not error:
+                    vat = data['vat_code']+data['vat']
+                    check_vat = conn_webservice('res.partner', 'dj_check_vat', [vat, OERP_SALE])
+
+                    if not check_vat:
+                        msg = _('Vat not valid. Check if vat is correct')
+                        error.append(msg)
+
+                #create new partner and user
+                if not error:
+                    # create partner OpenERP (without address)
+                    partner = conn.ResPartner.new()
+                    partner.name = data['name']
+                    partner.vat = vat
+                    partner.dj_username = data['username']
+                    partner.dj_email = data['email']
+                    partner_id = partner.save()
+
                     # create user
+                    # split name: first_name + last name
+                    name = data['name'].split(' ')
+                    if len(name) > 1:
+                        first_name = name[0]
+                        del name[0]
+                        last_name = " ".join(name)
+                    else:
+                        first_name = ''
+                        last_name = data['name']
                     user = User.objects.create_user(username, email, password)
+                    user.first_name = first_name
+                    user.last_name = last_name
                     user.is_staff = False
                     user.save()
+
+                    # create authProfile
+                    authProfile = AuthProfile(user=user,partner_id=partner_id)
+                    authProfile.save()
+
                     # send email
                     subject = _('New user added - %(name)s') % {'name':SITE_TITLE}
                     body = _("This is email automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':SITE_TITLE,'username':username,'password':password,'live_url':LIVE_URL}
@@ -142,7 +195,7 @@ def register(request):
                     # authentification / login user
                     user = authenticate(username=username, password=password)
                     auth_login(request, user)
-                    return HttpResponseRedirect("/accounts/profile/")
+                    return HttpResponseRedirect("/user/profile/")
             else:
                 msg = _("Sorry. Error form values. Try again")
                 error.append(msg)
@@ -152,8 +205,9 @@ def register(request):
 
     form = UserCreationForm()
     html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
+    vat_code = VAT_CODE
 
-    return render_to_response("accounts/register.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("user/register.html", locals(), context_instance=RequestContext(request))
 
 def remember(request):
     """Remember password"""
@@ -202,22 +256,17 @@ def remember(request):
     form = UserCreationForm()
     html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
 
-    return render_to_response("accounts/remember.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("user/remember.html", locals(), context_instance=RequestContext(request))
 
 @login_required
 def profile(request):
     """Profile page"""
-
-    full_name = request.user.get_full_name()
-    if not full_name:
-        full_name = request.user
+    full_name = checkFullName(request)
 
     title = _('Profile %(full_name)s') % {'full_name':full_name}
     metadescription = _('Account frontpage of %(site)s') % {'site':SITE_TITLE}
 
-    #saas module
-
-    return render_to_response("accounts/profile.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("user/profile.html", locals(), context_instance=RequestContext(request))
 
 @login_required
 def changepassword(request):
@@ -250,98 +299,19 @@ def changepassword(request):
             error = _("Sorry. Passwords don't match. Try again")
 
     form = UserCreationForm()
-    return render_to_response("accounts/changepassword.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("user/changepassword.html", locals(), context_instance=RequestContext(request))
 
 @login_required
 def partner(request):
     """Partner page"""
+    partner_id = checkPartnerID(request)
+    conn = connOOOP()
 
-    # OERP Connection
-    o = connection()
-    uid = xmlrpc()
+    partner = conn.ResPartner.get(partner_id)
+    address_invoice = conn.ResPartnerAddress.filter(type='invoice',partner_id=partner_id)
+    address_delivery = conn.ResPartnerAddress.filter(type='delivery',partner_id=partner_id)
 
-    if not o or not uid:
-        error = _('Error connecting with our ERP. Try again or cantact us')
-        return render_to_response("accounts/error.html", locals(), context_instance=RequestContext(request))
-
-    user_id = request.user.id
-
-    partner = Partner.objects.filter(user=user_id)
-    if partner:
-        partner = Partner.objects.get(user=user_id)
-
-    title = _('Partner Profile')
-    metadescription = _('Partner profile of %(site)s') % {'site':SITE_TITLE}
-
-    vat_code = VAT_CODE
-
-    country_default = COUNTRY_DEFAULT
-
-#    countries = o.ResCountry.all()
-    countries =  Country.objects.all().order_by('name')
-    countries = countries.filter(status=True)
-
-    #form send
-    if request.method == 'POST':
-        form = PartnerForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            addr_name = form.cleaned_data['addr_name']
-            addr_street = form.cleaned_data['addr_street']
-            addr_zip = form.cleaned_data['addr_zip']
-            addr_city = form.cleaned_data['addr_city']
-            addr_addr_country_id = form.cleaned_data['addr_country_id']
-            addr_email = form.cleaned_data['addr_email']
-            addr_phone = form.cleaned_data['addr_phone']
-
-            #check if this vat exists
-            vat = form.cleaned_data['vat_code']+form.cleaned_data['vat']
-            server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
-            sock = xmlrpclib.ServerProxy(server_object)
-            check_vat = sock.execute(OERP_CONF['dbname'], uid, OERP_CONF['password'], 'res.partner', 'dj_check_vat', vat)
-
-            if not check_vat:
-                message = _('Vat not valid. Check if vat is correct')
-                return render_to_response("accounts/partner.html", locals(), context_instance=RequestContext(request))
-            #partner
-            if not partner:
-                n = o.ResPartner.new()
-                n.name = name
-                n.vat = vat
-                n.dj_username = request.user.username
-                n.dj_email = request.user.email
-                partner_id = n.save()
-
-                partner_oerp = o.ResPartner.get(partner_id)
-                addr = o.ResPartnerAddress.new()
-                addr.partner_id = partner_oerp
-            else:
-                partner_oerp = o.ResPartner.get(partner.partner_id)
-                addr = o.ResPartnerAddress.get(partner.address_id)
-
-            #address
-            addr.name = addr_name
-            addr.street = addr_street
-            addr.zip = addr_zip
-            addr.city = addr_city
-            #        addr.country_id = addr_addr_country_id
-            addr.email = addr_email
-            addr.phone = addr_phone
-            address_id = addr.save()
-
-            #Save into django table id partner/partner_address
-            if not partner:
-                partner = Partner.objects.create(user=request.user,partner_id=partner_id,address_id=address_id) #save partner
-                partner = Partner.objects.get(id=partner.id) #get info partner
-            message = _('Your details are updated successfully')
-            full_name = request.user.get_full_name()
-            return render_to_response("accounts/profile.html", locals(), context_instance=RequestContext(request))
-        else:
-            message = _('Error validation form. Try again')
-
-    #show form partner values
-    if partner:
-        partner_oerp = o.ResPartner.get(partner.partner_id)
-        addr_oerp = o.ResPartnerAddress.get(partner.address_id)
-
-    return render_to_response("accounts/partner.html", locals(), context_instance=RequestContext(request))
+    title = _('User Profile')
+    metadescription = _('User profile of %(site)s') % {'site':SITE_TITLE}
+    
+    return render_to_response("user/partner.html", locals(), context_instance=RequestContext(request))

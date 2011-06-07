@@ -28,18 +28,36 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.utils.translation import get_language
 from django.db.models import Q
 from django.utils import simplejson
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from settings import *
+from tools.conn import conn_webservice
+from tools.zoook import checkPartnerID, checkFullName, connOOOP
 
 from catalog.models import *
 
 """Update Price. Check Json"""
+@login_required
 def updateprice(request):
-#    values = {"11":{"regularPrice":"436.73 \u20ac"},"30":{"regularPrice":"385.21 \u20ac"}}
-    values = {}
-    data = simplejson.dumps(values)
-    return HttpResponse(data, mimetype='application/javascript')
+    data = ''
+    product_ids = request.GET.get('ides').split(',') #get values ides
 
+    if len(product_ids):
+        try:
+            partner_id = request.user.get_profile().partner_id
+        except:
+            partner_id = False
+
+        if partner_id:
+            products = []
+            for product in product_ids:
+                products.append({'product_id':int(product),'quantity':1})
+            # values => {"1":{"regularPrice":"50"},"2":{"regularPrice":"100"}}
+            values = conn_webservice('product.product','zoook_compute_price', [OERP_SALE, products, partner_id])
+            data = simplejson.dumps(values)
+        
+    return HttpResponse(data, mimetype='application/javascript')
 
 """Category Children"""
 def collect_children(category, level=0, children=None):
@@ -85,7 +103,6 @@ def index(request):
     title = _('Categories')
     metadescription = _('List all categories of %s') % SITE_TITLE
     return render_to_response("catalog/index.html", {'title': title, 'metadescription': metadescription, 'values': values}, context_instance=RequestContext(request))
-
 
 def category(request,category):
     """All Questions filtered by category"""
@@ -202,3 +219,68 @@ def product(request,product):
     metadescription = _('%(metadescription)s') % {'metadescription': product.metadescription}
 
     return render_to_response("catalog/product.html", {'title': title, 'metadescription': metadescription, 'product': product, 'products': products, 'base_image': base_image, 'thumb_images': thumb_images, 'url': LIVE_URL}, context_instance=RequestContext(request))
+
+""" Whistlist """
+@login_required
+def whistlist(request):
+    partner_id = checkPartnerID(request)
+    full_name = checkFullName(request)
+    conn = connOOOP()
+
+    prod_whistlist = False
+    partner = conn.ResPartner.get(partner_id)
+    product_obj = partner.product_whistlist_ids
+
+    path = request.path_info.split('/')
+    if 'remove' in path:
+        kwargs = {
+            'slug_'+get_language(): path[-1], #slug is unique
+        }
+        tplproduct = ProductTemplate.objects.filter(**kwargs)
+        if len(tplproduct) > 0:
+            try:
+                for prod in product_obj:
+                    if prod.id == tplproduct[0].id: #exist this product whistlist
+                        prod_whistlist = conn_webservice('res.partner','write', [[partner_id], {'product_whistlist_ids':[(3, tplproduct[0].id)]}])
+            except:
+                prod_whistlist = True
+                
+    if 'add' in path:
+        kwargs = {
+            'slug_'+get_language(): path[-1], #slug is unique
+        }
+        tplproduct = ProductTemplate.objects.filter(**kwargs)
+        if len(tplproduct) > 0:
+            check_add = False
+            if product_obj:
+                for prod in product_obj:
+                    if prod.id == tplproduct[0].id: #exist this product whistlist
+                        check_add = True
+            if not check_add:
+                prod_whistlist = conn_webservice('res.partner','write', [[partner_id], {'product_whistlist_ids':[(4, tplproduct[0].id)]}])
+
+    title = _('Whislist')
+    metadescription = _('Whislist of %s') % full_name
+    
+    if prod_whistlist:
+        partner = conn.ResPartner.get(partner_id) #refresh product_whistlist_ids if add or remove
+        product_obj = partner.product_whistlist_ids
+    
+    products = []
+    if product_obj:
+        for prod in product_obj:
+            prods = ProductProduct.objects.filter(product_tmpl=prod.id).order_by('price')
+            tplproduct = ProductTemplate.objects.get(id=prod.id)
+            prod_images = ProductImages.objects.filter(product=prod.id,exclude=False)
+            base_image = False
+            if len(prod_images) > 0:
+                base_image = prod_images[0]
+
+            products.append({'product': tplproduct, 'name': tplproduct.name, 'price': prods[0].price, 'base_image': base_image})
+
+    return render_to_response("catalog/whistlist.html", {'title': title, 'metadescription': metadescription, 'products': products}, context_instance=RequestContext(request))
+
+""" Compare """
+def compare(request):
+
+    return render_to_response("catalog/compare.html", {'title': title, 'metadescription': metadescription, 'products': products}, context_instance=RequestContext(request))

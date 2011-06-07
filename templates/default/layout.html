@@ -17,7 +17,8 @@
     <![endif]-->
     <link href="{{ MEDIA_URL }}css/print.css" rel="stylesheet" type="text/css" media="print">
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/zoook.js"></script>
 
     {% block head %}{% endblock %}
 </head>
@@ -29,7 +30,7 @@
     
     <h1 id="logo"><a href="/{{ LANGUAGE_CODE }}/"><img src="{{ MEDIA_URL }}images/logo.png" title="{% trans "Zoook - e-sale for OpenERP" %}"/></a></h1>
 
-	<div class="navigation">        
+    <div class="navigation">        
         <form id="search_mini_form" action="/{{ LANGUAGE_CODE }}/search" method="get">
             <fieldset class="form-search">
                 <input id="search" type="text" class="input-text-search" name="q" value="{% trans "search" %}" onfocus="if (this.value=='{% trans "search" %}') this.value = ''"/>
@@ -38,13 +39,14 @@
         </form>
 
         <ul class="links">
-            <li class="first"><a href="/{{ LANGUAGE_CODE }}/account">{% trans "My Account" %}</a></li>
-            <li><a href="/{{ LANGUAGE_CODE }}/checkout">{% trans "My Cart" %}</a></li>
-            <li class="last"><a href="/{{ LANGUAGE_CODE }}/account">{% trans "Login" %}</a></li>
+            <li class="first">{% if not user.is_authenticated %}<a href="/{{ LANGUAGE_CODE }}/user/">{% trans "Login" %}</a>{% else %}<a href="/{{ LANGUAGE_CODE }}/user/logout/">{% trans "Logout" %}</a>{% endif %}</li>
+            {% if user.is_authenticated %}<li class="first"><a href="/{{ LANGUAGE_CODE }}/user/">{% trans "My Account" %}</a></li>{% endif %}
+            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/catalog/whistlist/">{% trans "My Whistlist" %}</a></li>{% endif %}
+            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/checkout/">{% trans "My Cart" %}</a></li>{% endif %}
             {% for language in LANGUAGES %}<li><a href="/{{ language.0 }}/" alt="{{ language.1 }}">{{ language.1|capfirst  }}</a></li>{% endfor %}
         </ul>
 
-	</div>
+    </div>
     {% load category %}{% render_horizontal_menu %}
     </div>
     {% block pathway %}{% endblock %}
@@ -53,25 +55,10 @@
     </div>
 </div>  
 
-<script type="text/javascript"> 
-function mainmenu()
-{
-    $("#nav .sub").css({display: "none"}); // Correcció per opera
-    $("#nav .topmenu").hover(function(){
-		    $(this).find('.sub').css({visibility: "visible",display: "none"}).fadeIn(250);
-		    },function(){
-		    $(this).find('.sub').fadeOut(200);
-		    });
-
-    $("#nav .topmenu").hover(function(){
-		    $('a:first',this).css('color','#703f45');
-		    },function(){
-		    $('a:first',this).css('color','#e2001a');
-		    });
-    }
-
-$(document).ready(function(){
-	mainmenu();
+<script type="text/javascript">
+$(document).ready(function() {
+    mainmenu();
+    {% block jqueryload %}{% endblock %}
 });
 </script>
 

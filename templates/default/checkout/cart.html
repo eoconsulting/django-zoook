@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block head %}{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/checkout/cart/">{% trans "My Cart" %}</a></li></ul></div>{% endblock %}
+
+{% block content %}
+<form action="http://cms.template-help.com/magento_32466/checkout/cart/updatePost/" method="post">
+<fieldset>
+<table id="shopping-cart-table" class="data-table cart-table">
+<thead>
+    <tr>
+        <th rowspan="1">&nbsp;</th>
+        <th rowspan="1"><span class="nobr">Product Name</span></th>
+        <th class="a-center" colspan="1"><span class="nobr">Unit Price</span></th>
+        <th rowspan="1" class="a-center">Qty</th>
+        <th class="a-center" colspan="1">Subtotal</th>
+        <th rowspan="1" class="a-center">&nbsp;</th>
+    </tr>
+</thead>
+<tfoot>
+    <tr>
+        <td colspan="50" class="a-right">
+            <button type="button" title="Continue Shopping" class="button left btn-continue" onclick="setLocation('http://cms.template-help.com/magento_32466/')"><span><span>Continue Shopping</span></span></button>
+            <button type="submit" title="Update Shopping Cart" class="button btn-update"><span><span>Update Shopping Cart</span></span></button>
+        </td>
+    </tr>
+</tfoot>
+<tbody>
+    <tr>
+        <td><a href="" title="Sony Ericsson C510 Black" class="product-image"><img src="http://cms.template-help.com/magento_32466/media/catalog/product/cache/1/thumbnail/114x141/9df78eab33525d08d6e5fb8d27136e95/p/r/product_4.jpg" width="114" height="141" alt="Sony Ericsson C510 Black" /></a></td>
+        <td><h2 class="product-name"><a href="http://cms.template-help.com/magento_32466/sony-ericsson-c510-black.html">Sony Ericsson C510 Black</a></h2></td>
+        <td class="a-right"><span class="cart-price"><span class="price">$95.99</span></span></td>
+        <td class="a-center"><input name="cart[566][qty]" value="1" size="4" title="Qty" class="input-text qty" maxlength="12" /></td>
+        <td class="a-right"><span class="cart-price"><span class="price">$95.99</span></span></td>
+        <td class="a-center"><a href="http://cms.template-help.com/magento_32466/checkout/cart/delete/id/566/uenc/aHR0cDovL2Ntcy50ZW1wbGF0ZS1oZWxwLmNvbS9tYWdlbnRvXzMyNDY2L2NoZWNrb3V0L2NhcnQv/" title="Remove item" class="btn-remove btn-remove2">Remove item</a></td>
+    </tr>
+</tbody>
+</table>
+
+{% endblock %}

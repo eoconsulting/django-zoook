@@ -30,17 +30,22 @@ TEMPLATE_DEBUG = DEBUG
 
 PAGINATOR_TOTAL = 9
 PAGINATOR_ITEMS = [9,18,36]
+PAGINATOR_ORDER_TOTAL = 5
+PAGINATOR_INVOICE_TOTAL = 5
 
 CATALOG_ORDERS = ['price','name']
 
 USER_LENGHT = 8
-KEY_LENGHT = 10
+KEY_LENGHT = 6
 
 SITE_TITLE = _('Zoook. OpenERP e-sale')
 CONTACT_EMAIL = ['zikzak@zikzakmedia.com']
 
 VAT_CODE = ['ES']
 COUNTRY_DEFAULT = 'ES'
+
+LOGIN_URL = '/user/login'
+LOGIN_REDIRECT_URL = '/'
 
 ADMINS = (
     ('Zikzakmedia','zikzak@zikzakmedia.com'),
@@ -123,8 +128,11 @@ INSTALLED_APPS = (
     'catalog',
     'modules',
 #    'search',
-    'accounts',
+    'user',
+    'sale',
 )
+
+AUTH_PROFILE_MODULE = "user.AuthProfile"
 
 LOCALE_INDEPENDENT_PATHS = (
     re.compile('^/static/'),

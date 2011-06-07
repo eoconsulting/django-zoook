@@ -21,17 +21,17 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from accounts.views import *
+from user.views import *
 
-"""Urls Accounts"""
-
+"""Urls User"""
 urlpatterns = patterns("",
-    (r'^$', 'accounts.views.login'),
-    (r'^login', 'accounts.views.login'),
-    (r'^profile', 'accounts.views.profile'),
-    (r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/accounts/"}),
-    (r'^register', 'accounts.views.register'),
-    (r'^remember', 'accounts.views.remember'),
-    (r'^changepassword', 'accounts.views.changepassword'),
-    (r'^partner', 'accounts.views.partner'),
+    (r'^$', 'user.views.login'),
+    (r'^login', 'user.views.login'),
+    (r'^profile', 'user.views.profile'),
+    #~ (r'^profile', 'sale.views.orders'),
+    (r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/user/"}),
+    (r'^register', 'user.views.register'),
+    (r'^remember', 'user.views.remember'),
+    (r'^changepassword', 'user.views.changepassword'),
+    (r'^partner', 'user.views.partner'),
 )

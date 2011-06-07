@@ -20,15 +20,18 @@
 #
 ############################################################################################
 
-from django.contrib import admin
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
+from django import forms
 
-from accounts.models import *
+class AuthProfile(models.Model):
+    """Partner"""
+    user = models.ForeignKey(User, verbose_name="User", related_name="user_profile_s", unique=True, null=True, blank=True)
+    partner_id = models.IntegerField(null=True, blank=True)
 
-class PartnerAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'user',
-        'partner_id',
-    )
-
-admin.site.register(Partner, PartnerAdmin)
+class PartnerForm(forms.Form):
+    """Partner Form"""
+    name = forms.CharField(max_length=128)
+    vat_code = forms.CharField(max_length=2)
+    vat = forms.CharField(max_length=32)

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load modules %}
+
+{% block head %}<link href="{{ MEDIA_URL }}css/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/account/">{% trans "Invoices" %}</a></li><li><span>&gt;</span> {{ title }}</li></ul></div>{% endblock %}
+
+{% block content %}
+<div id="page-wrap" class="clearfix">
+    {% include 'user/menu.html' %}
+
+    <div id="sidebar">
+        <div class="block border5">
+            {% module catalog.right_sale %}
+        </div>
+    </div>
+    <div id="content">
+        <div id="catalog-order" class="block border5 clearfix">
+            <h2>{{ title }}</h2>
+            <ul id="order-details">
+                <li><strong>{% trans "Date" %}</strong>: {{ value.date_invoice }}</li>
+                <li><strong>{% trans "State" %}</strong>: {% trans value.state|capfirst %}</li>
+                {% if value.origin %}<li><strong>{% trans "Source Document" %}</strong>: {{ value.origin }}</li>{% endif %}
+                {% if value.payment_type %}<li><strong>{% trans "Payment Type" %}</strong>: {{ value.payment_type.name }}</li>{% endif %}
+            </ul>
+            
+            <h2>{% trans "Address Invoice" %}</h2>
+            <ul id="order-invoice">
+                {% if value.address_invoice_id.name %}<li>{{ value.address_invoice_id.name }}</li>{% endif %}
+                <li>{{ value.address_invoice_id.street }}<br/>
+                {{ value.address_invoice_id.zip }} {{ value.address_invoice_id.city }}
+                </li>
+            </ul>
+
+            <table id="order-cart-table" class="order-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Reference" %}</th>
+                    <th><span class="nobr">{% trans "Qty" %}</span></th>
+                    <th><span class="nobr">{% trans "Discount" %}</span></th>
+                    <th><span class="nobr">{% trans "Unit Price" %}</span></th>
+                    <th><span class="nobr">{% trans "Subtotal" %}</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in value.invoice_line %}<tr class="{% cycle 'row1' 'row2' %}">
+                    <td>{{ line.name }}</a></td>
+                    <td>{{ line.quantity }}</td>
+                    <td>{{ line.discount }}</td>
+                    <td>{{ line.price_unit }}</td>
+                    <td>{{ line.price_subtotal }}</td>
+                </tr>{% endfor %}
+            </tbody>
+            </table>
+            <ul class="amount-invoice">
+                <li><strong>{% trans "Untaxed" %}:</strong> {{ value.amount_untaxed }} {{ value.currency_id.name }}</li>
+                <li><strong>{% trans "Tax" %}:</strong> {{ value.amount_tax }} {{ value.currency_id.name }}</li>
+                <li><strong>{% trans "Total" %}:</strong> {{ value.amount_total }} {{ value.currency_id.name }}</li>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

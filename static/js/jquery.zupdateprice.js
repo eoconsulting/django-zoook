@@ -4,8 +4,9 @@
 
  		// Default options of plugin
         var defaults = {
-			url: '../json/test.php',
+			url: 'json/test.php',
             timeInterval: '10000',
+            delayUpdater: '5000',
 			idPriceAttr: 'product-price-',
 			textAlert: 'Updating prices ...'
         }
@@ -21,49 +22,58 @@
         plugin.init = function() {
 // ---------------------------------------------------------- PLUGIN ACTION --------------------------------------------------
             plugin.settings = $.extend({}, defaults, options)
-			var ides_envio;
+
 			// Activem l'interval d'actualització de preus
-			setInterval( function() {
+//			setInterval( function() {
 
 			if(!element.timeInterval) { element.timeInterval = plugin.settings.timeInterval }
 			if(!element.idPriceAttr) { element.idPriceAttr = plugin.settings.idPriceAttr }
 			if(!element.textAlert) { element.textAlert = plugin.settings.textAlert }
 			if(!element.url) { element.textAlert = plugin.settings.url }
+			if(!element.delayUpdater) { element.delayUpdater = plugin.settings.delayUpdater }
 			
 			// Recorro tot el contingut cercant els price-box per obtenir la id del div i extreure el ID del producte
-			var ides_producto = [];
-			var ide_extract;
+			var ids_sended;
+			var ids_product = [];
+			var id_extract;
 			
-			if( !ides_envio )
+			if( !ids_sended )
 			{
-			$('#content .price-box').each( function()
-				{
-					ide_extract = $(this).prop('id');
-					ides_producto.push( ide_extract.replace(element.idPriceAttr ,'') );
-				}
-			);
-				// Coloquem el loader cada cop que demani dades als preus del contingut
-				$('body').ajaxSend(function() {
-				  $(this).prepend('<div id="update-price-info">'+ element.textAlert +'</div>');
-				  $('#update-price-info').fadeIn(250);
-				});
-				ides_envio =  ides_producto.join(',');
+				$('.price-box').each( function()
+					{
+						id_extract = $(this).prop('id');
+						ids_product.push( id_extract.replace(element.idPriceAttr ,'') );
+					}
+				);
+				ids_sended =  ids_product.join(',');
 			}
-					
-				 $.getJSON(element.url, {"ides": ides_envio}, function(data) 
-					{ 
-						// Recorro el JSON retornat per test.php amb les IDS=product i els PREUS=prices
-						// Faig un petit efecte d'opacitat per resaltar els preus
-						$.each(data, function(product, prices){
-							$('#'+ element.idPriceAttr + product +' .price').animate({opacity:0.5},250, function() { $(this).animate({opacity:1},250) })
-							.html( prices.regularPrice ); 
-						});
-					} 
-				 )
-				 .success( function() { $('#update-price-info').fadeOut(250).remove(); } )
-				 .error( function() { $('#update-price-info').fadeOut(250).remove(); } ); 
+
+			// Coloquem el loader cada cop que demani dades als preus del contingut
+			$('body').ajaxSend(function() {
+				if( $('#update-price-info').length == 0 )
+				{
+					$(this).prepend('<div id="update-price-info">'+ element.textAlert +'</div>');
+					$('#update-price-info').fadeIn(250).delay(element.delayUpdater).fadeOut(250);
+				} else {
+					$('#update-price-info').fadeIn(250).delay(element.delayUpdater).fadeOut(250);
+				}
+			});
 			
-			}, element.timeInterval); // end setInterval
+							
+			$.getJSON(element.url, {"ides": ids_sended}, function(data) 
+			{ 
+					// Recorro el JSON retornat per test.php amb les IDS=product i els PREUS=prices
+					// Faig un petit efecte d'opacitat per resaltar els preus
+					$.each(data, function(product, prices){
+						$('#'+ element.idPriceAttr + product +' .regular-price .price').animate({opacity:0.5},250, function() { $(this).animate({opacity:1},250) })
+						.html( prices.regularPrice ); 
+					});
+				} 
+			 )
+			 .success( function() {  } )
+			 .error( function() {  } ); 
+			
+//			}, element.timeInterval); // end setInterval
 
         }
         plugin.init();

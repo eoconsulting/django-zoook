@@ -21,16 +21,10 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from catalog.views import *
 
-"""Urls Catalog"""
+"""Urls Account"""
 
 urlpatterns = patterns("",
-    (r'^$', 'catalog.views.index'),
-    (r"^updateprice", 'catalog.views.updateprice',''),
-    (r"^compare", 'catalog.views.compare',''),
-    (r"^whistlist", 'catalog.views.whistlist',''),
-    (r"^.+/(?P<category>[^/]+)/$", 'catalog.views.category'),
-    (r"(?P<category>[^/]+)/$", 'catalog.views.category'),
-#    (r"^(?P<category>[^/]+)/$", 'catalog.views.category'),
+    (r'^$', 'account.views.invoices'),
+    (r"^invoice/(?P<invoice>[^/]+)$", 'account.views.invoice'),
 )

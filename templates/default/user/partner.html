@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block head %}
+    <link href="{{ MEDIA_URL }}css/user.css" rel="stylesheet" type="text/css" media="screen">
+{% endblock %}
+
+{% block content %}
+<div id="page-wrap" class="clearfix">
+    {% include 'user/menu.html' %}
+    <div id="partner-details">
+        <h1>{{title}}</h1>
+
+        <p><strong>{% trans "Name" %}:</strong> {{ partner.name }}</p>
+        <p><strong>{% trans "VAT" %}:</strong> {{ partner.vat }}</p>
+
+        <h2>{% trans "Address" %}</h2>
+        <p><strong>{% trans "Invoice" %}</strong></p>
+        {% if address_invoice|length = 0 %}{% trans "There are not invoice address available" %}{% endif %}
+        {% for invoice in address_invoice %}
+            <p class="address">{{ invoice.street }}<br/>{{ invoice.zip }} {{ invoice.city }} {{ invoice.country_id.name }}</p>
+        {% endfor %}
+        <p><strong>{% trans "Delivery" %}</strong></p>
+        {% if address_invoice|length = 0 %}{% trans "There are not delivery address available" %}{% endif %}
+        {% for delivery in address_delivery %}
+            <p class="address">{{ delivery.street }}<br/>{{ delivery.zip }} {{ delivery.city }} {{ delivery.country_id.name }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

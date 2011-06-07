@@ -24,6 +24,8 @@ p	{ font-size:11px; line-height:16px }
 
 input, select, textarea	{ font-family:sans-serif; font-size:12px }
 
+.nobr   { white-space:nowrap !important; }
+
 /* Containers -------------------------------------------------------------------------------------------- */
 .page	{ width:940px; margin:0 auto }
 .page-wrap	{ }
@@ -66,3 +68,21 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 /* Pathway */
 #pathway    { margin-bottom:10px }
 #pathway li { display:inline; list-style-type:none; padding-right:5px}
+
+/* Columns */
+#top-header { background: #333; color:#fff; padding: 5px; margin-bottom:10px}
+.col2-set, .col3-set, .col4-set, .col5-set { clear:both; background-color:#000; }
+.col2-set .col-1, .col2-set .col-2 { width:48.5%; }
+.col2-set .col-1 { float:left; }
+.col2-set .col-2 { float:right; }
+
+/* User */
+.new-users h3{ color:#e2001a; font-size:18px}
+.registered-users h3{ color:#e2001a; font-size:18px}
+.register-users h3{ color:#e2001a}
+.required{color:#e2001a}
+.profile{ list-style: none}
+.login-box .content { min-height:230px; }
+
+/* Message */
+#message h1 { font-size:18px}

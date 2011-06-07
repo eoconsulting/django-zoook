@@ -96,4 +96,5 @@ form.cmxform input.submit {
 	margin-left: 103px;
 }
 
+form.cmxform label.error { display: none; }	
 /*\*//*/ form.cmxform legend { display: inline-block; } /* IE Mac legend fix */

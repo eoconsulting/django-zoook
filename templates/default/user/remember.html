@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block head %}
-    <link href="{{ MEDIA_URL }}css/account.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ MEDIA_URL }}css/user.css" rel="stylesheet" type="text/css" media="screen">
 
     <script type="text/javascript">
      var RecaptchaOptions = {
@@ -27,7 +27,7 @@
 {% endif %}
 
 <p>{% trans "Insert your email and username and new password are you send it" %}</p>
-<form method="post" action="/accounts/remember/">
+<form method="post" action="/{{ LANGUAGE_CODE }}/user/remember/">
     <table>
         <tr> 
             <td><label for="id_email">{% trans "Email" %}</label></td> 

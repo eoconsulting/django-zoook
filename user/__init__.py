@@ -19,18 +19,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ############################################################################################
-
-from django.conf.urls.defaults import *
-from catalog.views import *
-
-"""Urls Catalog"""
-
-urlpatterns = patterns("",
-    (r'^$', 'catalog.views.index'),
-    (r"^updateprice", 'catalog.views.updateprice',''),
-    (r"^compare", 'catalog.views.compare',''),
-    (r"^whistlist", 'catalog.views.whistlist',''),
-    (r"^.+/(?P<category>[^/]+)/$", 'catalog.views.category'),
-    (r"(?P<category>[^/]+)/$", 'catalog.views.category'),
-#    (r"^(?P<category>[^/]+)/$", 'catalog.views.category'),
-)
