@@ -25,6 +25,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from transmeta import TransMeta
 
+'''OpenERP Models'''
 class ProductCategory(models.Model):
     """ProductCategory OpenERP"""
     __metaclass__ = TransMeta
@@ -87,15 +88,6 @@ class ProductTemplate(models.Model):
         ('none', 'None'),
     )
     visibility = models.CharField(_('Visibility'), choices=VISIBILITY_CHOICES, default='', max_length=40)
-    PRODUCT_TYPE_CHOICES = (
-        ('simple', 'Simple Product'),
-        ('grouped', 'Grouped Product'),
-        ('configurable', 'Configurable Product'),
-        ('virtual', 'Virtual Product'),
-        ('bundle', 'Bundle Product'),
-        ('downloadable', 'Downloadable Product')
-    )
-    product_type = models.CharField(_('Product Type'), choices=PRODUCT_TYPE_CHOICES, default='simple', max_length=40)
     metatitle = models.CharField(_('Meta Title'), max_length=128, null=True, blank=True)
     metadescription = models.TextField(_('Meta Description'), null=True, blank=True)
     metakeyword = models.TextField(_('Meta Keyword'), null=True, blank=True)
@@ -108,6 +100,7 @@ class ProductTemplate(models.Model):
     warranty = models.FloatField(_('Warranty (months)'),null=True, blank=True)
     weight = models.FloatField(_('Gross weight'),null=True, blank=True)
     weight_net = models.FloatField(_('Net weight'), null=True, blank=True)
+    status = models.BooleanField(_('Status'), default=False)
 
     class Meta:
         db_table = 'product_template'

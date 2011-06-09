@@ -16,7 +16,7 @@
 
 <div id="top-header">{% trans "Log in or Create an Account" %}</div>
 
-<form action="/{{ LANGUAGE_CODE }}/user/" method="post" id="login-form">
+<form action="/{{ LANGUAGE_CODE }}/partner/" method="post" id="login-form">
 <fieldset>
     <div class="col2-set">
         <div class="col-1 new-users">
@@ -41,12 +41,12 @@
     <div class="col2-set">
         <div class="col-1">
             <div class="buttons-set">
-                <a href="/{{ LANGUAGE_CODE }}/user/register/"><span class="add">{% trans "Create new account" %}</span></a>
+                <a href="/{{ LANGUAGE_CODE }}/partner/register/"><span class="add">{% trans "Create new account" %}</span></a>
             </div>
         </div>
         <div class="col-2">
             <div class="buttons-set">
-                <input type="submit" value="{% trans "Login" %}" /> <a href="/{{ LANGUAGE_CODE }}/user/remember/">{% trans "Remember?" %}</a>
+                <input type="submit" value="{% trans "Login" %}" /> <a href="/{{ LANGUAGE_CODE }}/partner/remember/">{% trans "Remember?" %}</a>
                 <p class="required">* {% trans "Required Fields" %}</p>
             </div>
         </div>

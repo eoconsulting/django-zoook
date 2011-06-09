@@ -23,10 +23,13 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-'''OpenERP Models'''
+from transmeta import TransMeta
 
+'''OpenERP Models'''
 class ResCountry(models.Model):
     """Country OpenERP"""
+    __metaclass__ = TransMeta
+    
     code = models.CharField(_('code'), max_length=2)
     name = models.CharField(_('name'), max_length=64)
     status = models.BooleanField(_('status'), default=True)
@@ -35,7 +38,10 @@ class ResCountry(models.Model):
         db_table = 'res_country'
         verbose_name = _('country')
         verbose_name_plural = _('countries')
-        ordering = ['code']
+        translate = (
+            'code',
+            'name',
+            )
 
 class ResCountryState(models.Model):
     """ResCountryState OpenERP"""

@@ -20,24 +20,19 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from views import index
-from settings import MEDIA_ROOT
+from django import template
 
-# Uncomment the next two lines to enable the admin:
-from django.contrib import admin
-admin.autodiscover()
+from catalog.models import ProductTemplate, ProductProduct
 
-urlpatterns = patterns('',
-    (r"^$", index),
-    (r"^catalog/", include("catalog.urlsCatalog")),
-    (r"^product/", include("catalog.urlsProduct")),
-    (r"^contact/", include("contact.urlsContact")),
-#    (r"^search/", include("search.urlsSearch")),
-    (r"^partner/", include("partner.urlsPartner")),
-    (r"^sale/", include("sale.urlsSale")),
-    (r"^account/", include("account.urlsAccount")),
-    (r'^manager/', include(admin.site.urls)),
-    (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
-    (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
-)
+register = template.Library()
+
+@register.inclusion_tag('catalog/tags/product_related.html', takes_context = True)
+def render_product_related(context):
+    values = []
+    
+    if 'related_products' in context:
+        values = context['related_products']
+
+    return {
+        'values': values,
+    }

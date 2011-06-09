@@ -1,17 +1,153 @@
 {% extends "layout.html" %}
 {% load i18n %}
+{% load thumbnail %}
+{% load modules %}
 
-{% block head %}<link rel="canonical" href="{{ url }}/{{ LANGUAGE_CODE }}/product/{{product.slug}}" />{% endblock %}
+{% block head %}<link href="{{ MEDIA_URL }}css/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
+<link rel="canonical" href="{{ url }}/{{ LANGUAGE_CODE }}/product/{{product.slug}}" />{% endblock %}
+
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/product/{{product.slug}}">{{product.name}}</a></li></ul></div>{% endblock %}
 
 {% block content %}
-<div id="catalog-product">
-    <h1>{{product.name}}</h1>
-    <p>{{product.shortdescription}}</p>
-    {% for product in products %}<div id="code"><span class="code">{% trans "Code" %}:</span> {{product.code}}</code>
-    {% if product.ean13 %}<div id="ean13"><span class="ean13">{% trans "EAN13" %}:</span> {{product.ean13}}</code>{% endif %}{% endfor %}
-    <p>{% if base_image %}<img src="{{base_image.filename}}" alt="{{base_image.name}}" title="{{base_image.name}}" />{% endif %}{{product.description}}</p>
-    <div id="catalog-gallery"></div>{% for image in thumb_images %}
-    <img src="{{image.filename}}" alt="{{image.name}}" title="{{image.name}}" />{% endfor %}
+    <div id="page-wrap" class="clearfix">
+        <div id="sidebar">
+            <div class="block block-default ico border5">
+                {% module product.right %}
+            </div>
+            
+            <div class="block block-product-related ico border5">
+                <h3>{% trans "Product Related" %}</h3>
+                <div class="block-content">
+                    {% load product_related %}{% render_product_related %}
+                </div>
+            </div>
+            
+            <div class="block block-minicart ico border5">
+                <h3>{% trans "Your shopping cart" %}</h3>
+                <div class="block-content">
+                    <p>{% trans "You don't have any items inside your cart." %}</p>
+                    <button class="border2 cart-checkout">{% trans "View shopping cart" %}</button>
+                </div>
+            </div>
+            
+            <div class="block block-newsletter ico border5">
+                <h3>{% trans "Newsletter" %}</h3>
+                <div class="block-content">
+                    <form method="post">
+                        <label>{% trans "Subscribe our newsletter." %}</label>
+                        <input type="text" class="text border2" placeholder="Your e-mail" name="email" />
+                        <button type="submit" class="border2 orange">{% trans "Subscribe" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content">
+            <div id="product-{{product.id}}" class="product-page block border5 clearfix">
+                <div class="product-imgbox">
+                    <a rel="zoom" href="{% thumbnail base_image.filename 600x600 /static/images/product_detail_zoook.png %}" class="product-img zoom"><span class="zoom-icon"></span>
+                    <img src="{% thumbnail base_image.filename 300x300 /static/images/product_detail_zoook.png %}" width="300" height="300" title="{{base_image.name}}" /></a>
+                    <ul class="other-img">
+                        <li><a rel="zoom" href="{% thumbnail base_image.filename 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail base_image.filename 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{base_image.name}}" /></a></li>
+                        {% for image in thumb_images %}
+                        <li><a rel="zoom" href="{% thumbnail image.filename 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail image.filename 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{image.name}}" /></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="product-item block border5 clearfix">
+                   <div class="product-name" title="{{product.name}}"><h2>{{product.name}}</h2></div>
+                    <ul class="add-to">
+                        <li><a href="/{{ LANGUAGE_CODE }}/catalog/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a></li>
+                        {% if user.is_authenticated %}<li><span class="separator">|</span><a href="/{{ LANGUAGE_CODE }}/catalog/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
+                    </ul>
+
+                    <div class="social_network">
+                        <div class="tweet">
+                            <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="microfusa" >Tweet</a>
+                        </div>
+                        <div class="facebook">
+                            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                            <iframe  src="http://www.facebook.com/plugins/like.php?href={{ url }}/{{ LANGUAGE_CODE }}/product/{{product.slug}}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="product-description">
+                        {{product.shortdescription}}
+                    </div>
+                    
+                    {% if product.status %}
+                        {% if products|length > 1 %}{% include "catalog/type/variants.html" %}{%else%}{% include "catalog/type/simple.html" %}{% endif %}
+                    {% else %}
+                        <div class="out-service ico border3b"><h3>{% trans "This product is out of service" %}</h3></div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    <!--# TABS -->
+    <div class="product-info">
+        <ul class="tabs">
+            <li><a href="#tab1">{% trans "Description" %}</a></li>
+            <li><a href="#tab2">{% trans "Related Products" %}</a></li>
+            <li><a href="#tab3">{% trans "Up-sells" %}</a></li>
+            <li><a href="#tab4">{% trans "Keywords" %}</a></li>
+        </ul>
+        
+        <div class="tab-container">
+            <div id="tab1" class="tab-content">
+                {{product.description}}
+            </div>
+
+            <div id="tab2" class="tab-content">
+                <table id="product-related-table" class="cart-table">
+                <tbody>
+                    {% for product in related_products %}<tr>
+                        <td><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><h2 class="product-name"><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}">{{ product.product.name }}</a></h2></td>
+                        <td class="a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
+                        <td class="a-right">
+                            <div id="product-price-{{product.product.id}}" class="price-box">
+                            <span class="regular-price">
+                                <span class="price">{{product.products.0.price}} €</span>
+                            </span>
+                            </div>
+                        </td>
+                    </tr>{% endfor %}
+                </tbody>
+                </table>
+            </div>
+
+            <div id="tab3" class="tab-content">
+                <table id="product-related-table" class="cart-table">
+                <tbody>
+                    {% for product in upsells_products %}<tr>
+                        <td><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><h2 class="product-name"><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}">{{ product.product.name }}</a></h2></td>
+                        <td class="a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
+                        <td class="a-right">
+                            <div id="product-price-{{product.product.id}}" class="price-box">
+                            <span class="regular-price">
+                                <span class="price">{{product.products.0.price}} €</span>
+                            </span>
+                            </div>
+                        </td>
+                    </tr>{% endfor %}
+                </tbody>
+                </table>
+            </div>
+            
+            <div id="tab4" class="tab-content">
+                {% for search_keyword in search_keywords %}<a href="/{{ LANGUAGE_CODE }}/search/{{ search_keyword }}" alt="{{ search_keyword }}" title="{{ search_keyword }}">{{ search_keyword }}</a> {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zproduct.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.fancybox-1.3.4.pack.js"></script>
+{% if user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 {% endblock %}
+
+{% block jqueryload %}{% if values|length > 0 %}$.zUpdatePrice( {url: 'http://127.0.0.1:8000/es/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );
+    $("a.zoom").fancybox({overlayColor:'#333'});{% endif %}{% endblock %}

@@ -87,8 +87,8 @@ def pathcategory(category):
 
     return path
 
+"""Index Catalog. All Categories list"""
 def index(request):
-    """Index Catalog. All Categories list"""
     root_category = ProductCategory.objects.filter(parent=None)
 
     values = []
@@ -104,8 +104,8 @@ def index(request):
     metadescription = _('List all categories of %s') % SITE_TITLE
     return render_to_response("catalog/index.html", {'title': title, 'metadescription': metadescription, 'values': values}, context_instance=RequestContext(request))
 
+"""All Questions filtered by category"""
 def category(request,category):
-    """All Questions filtered by category"""
     values = []
 
     if category:
@@ -198,34 +198,79 @@ def category(request,category):
     else:
         raise Http404(_('This category is not available because you navigate with bookmarks or search engine. Use navigation menu'))
 
+"""Product View"""
 def product(request,product):
-    """Product View"""
-
     kwargs = {
         'slug_'+get_language(): product, #slug is unique
-        'productproduct__active': True,
     }
 
-    product = get_object_or_404(ProductTemplate, **kwargs) #ProductTemplate
-    products = ProductProduct.objects.filter(product_tmpl=product.id) #ProductProduct
+    tplproduct = get_object_or_404(ProductTemplate, **kwargs) #ProductTemplate
+    
+    products = ProductProduct.objects.filter(product_tmpl=tplproduct.id) #ProductProduct
+    product_attributes = ProductManufacturerAttribute.objects.filter(product=products[0].id) #ProductAttributes
 
+    # get price and base_image product
+    prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id).order_by('price')
+
+    prod_images = ProductImages.objects.filter(product=prods[0].id,exclude=False)
+ 
+    base_image = False
+    if len(prod_images) > 0:
+        base_image = prod_images[0]
+    
     base_image = ProductImages.objects.filter(product__in=products, exclude=False, base_image=True) #Product Image Base
     thumb_images = ProductImages.objects.filter(product__in=products, exclude=False, base_image=False) #Product Image Thumbs
 
     if len(base_image) > 0:
         base_image = base_image[0]
 
-    title = _('%(product)s') % {'product': product.name}
-    metadescription = _('%(metadescription)s') % {'metadescription': product.metadescription}
+    title = _('%(product)s') % {'product': tplproduct.name}
+    metadescription = _('%(metadescription)s') % {'metadescription': tplproduct.metadescription}
+    
+    search_keywords = tplproduct.metakeyword and tplproduct.metakeyword.split(',') or []
+    metakeywords = tplproduct.metakeyword and tplproduct.metakeyword or ''
 
-    return render_to_response("catalog/product.html", {'title': title, 'metadescription': metadescription, 'product': product, 'products': products, 'base_image': base_image, 'thumb_images': thumb_images, 'url': LIVE_URL}, context_instance=RequestContext(request))
+    #related
+    related_products = []
+    for product in tplproduct.related.all():
+        products = ProductProduct.objects.filter(product_tmpl=product.id).order_by('price')
+        related_products.append({'product':product, 'products':products})
+
+    #upsells
+    upsells_products = []
+    for product in tplproduct.upsells.all():
+        products = ProductProduct.objects.filter(product_tmpl=product.id).order_by('price')
+        upsells_products.append({'product':product, 'products':products})
+
+    values = {
+        'title': title,
+        'metadescription': metadescription,
+        'metakeywords': metakeywords,
+        'product': tplproduct,
+        'products': products,
+        'related_products': related_products,
+        'upsells_products': upsells_products,
+        'price': prods[0].price,
+        'base_image': base_image,
+        'thumb_images': thumb_images,
+        'search_keywords': search_keywords,
+        'url': LIVE_URL,
+    }
+    return render_to_response("catalog/product.html", values, context_instance=RequestContext(request))
 
 """ Whistlist """
 @login_required
 def whistlist(request):
     partner_id = checkPartnerID(request)
+    if not partner_id:
+        error = _('Are you a customer? Please, contact us. We will create a new role')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
+
     full_name = checkFullName(request)
     conn = connOOOP()
+    if not conn:
+        error = _('Error connecting with our ERP. Try again or cantact us')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     prod_whistlist = False
     partner = conn.ResPartner.get(partner_id)

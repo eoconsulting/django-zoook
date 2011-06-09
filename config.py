@@ -23,9 +23,10 @@
 DEBUG = True
 
 """
-OpenERP shop
+OpenERP Conf
 """
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
+OERP_COMPANY = 1 #Account Invoice. All invoices... use this Company ID.
 
 """
 Log's conf
@@ -53,7 +54,8 @@ DATABASES = {
         'USER': 'openerp',      # Not used with sqlite3.
         'PASSWORD': 'openerp',  # Not used with sqlite3.
         'HOST': 'localhost',    # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
+#        'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
+        'PORT': '5433',
     }
 }
 

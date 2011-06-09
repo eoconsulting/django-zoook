@@ -21,23 +21,17 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from views import index
-from settings import MEDIA_ROOT
+from partner.views import *
 
-# Uncomment the next two lines to enable the admin:
-from django.contrib import admin
-admin.autodiscover()
-
-urlpatterns = patterns('',
-    (r"^$", index),
-    (r"^catalog/", include("catalog.urlsCatalog")),
-    (r"^product/", include("catalog.urlsProduct")),
-    (r"^contact/", include("contact.urlsContact")),
-#    (r"^search/", include("search.urlsSearch")),
-    (r"^partner/", include("partner.urlsPartner")),
-    (r"^sale/", include("sale.urlsSale")),
-    (r"^account/", include("account.urlsAccount")),
-    (r'^manager/', include(admin.site.urls)),
-    (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
-    (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
+"""Urls Partner"""
+urlpatterns = patterns("",
+    (r'^$', 'partner.views.login'),
+    (r'^login', 'partner.views.login'),
+    (r'^profile', 'partner.views.profile'),
+    #~ (r'^profile', 'sale.views.orders'),
+    (r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/partner/"}),
+    (r'^register', 'partner.views.register'),
+    (r'^remember', 'partner.views.remember'),
+    (r'^changepassword', 'partner.views.changepassword'),
+    (r'^partner', 'partner.views.partner'),
 )

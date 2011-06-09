@@ -20,24 +20,14 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from views import index
-from settings import MEDIA_ROOT
-
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-admin.autodiscover()
+from partner.models import *
 
-urlpatterns = patterns('',
-    (r"^$", index),
-    (r"^catalog/", include("catalog.urlsCatalog")),
-    (r"^product/", include("catalog.urlsProduct")),
-    (r"^contact/", include("contact.urlsContact")),
-#    (r"^search/", include("search.urlsSearch")),
-    (r"^partner/", include("partner.urlsPartner")),
-    (r"^sale/", include("sale.urlsSale")),
-    (r"^account/", include("account.urlsAccount")),
-    (r'^manager/', include(admin.site.urls)),
-    (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
-    (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
-)
+class AuthProfileAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'user',
+        'partner_id',
+    )
+
+admin.site.register(AuthProfile, AuthProfileAdmin)

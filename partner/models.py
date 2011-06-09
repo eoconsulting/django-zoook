@@ -20,24 +20,21 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from views import index
-from settings import MEDIA_ROOT
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
+from django import forms
 
-# Uncomment the next two lines to enable the admin:
-from django.contrib import admin
-admin.autodiscover()
+class AuthProfile(models.Model):
+    """Partner"""
+    user = models.ForeignKey(User, verbose_name="User", related_name="user_profile_s", unique=True, null=True, blank=True)
+    partner_id = models.IntegerField(null=True, blank=True)
 
-urlpatterns = patterns('',
-    (r"^$", index),
-    (r"^catalog/", include("catalog.urlsCatalog")),
-    (r"^product/", include("catalog.urlsProduct")),
-    (r"^contact/", include("contact.urlsContact")),
-#    (r"^search/", include("search.urlsSearch")),
-    (r"^partner/", include("partner.urlsPartner")),
-    (r"^sale/", include("sale.urlsSale")),
-    (r"^account/", include("account.urlsAccount")),
-    (r'^manager/', include(admin.site.urls)),
-    (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
-    (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
-)
+class PartnerForm(forms.Form):
+    """Partner Form"""
+    name = forms.CharField(max_length=128)
+    vat_code = forms.CharField(max_length=2)
+    vat = forms.CharField(max_length=32)
+    street = forms.CharField(max_length=128)
+    zip = forms.CharField(max_length=32)
+    city = forms.CharField(max_length=128)

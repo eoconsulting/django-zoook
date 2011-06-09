@@ -35,14 +35,20 @@ from tools.zoook import checkPartnerID, checkFullName, connOOOP, paginationOOOP
 @login_required
 def invoices(request):
     partner_id = checkPartnerID(request)
+    if not partner_id:
+        error = _('Are you a customer? Please, contact us. We will create a new role')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
+    if not conn:
+        error = _('Error connecting with our ERP. Try again or cantact us')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     
     values = {}
-    total = len(conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft'))
+    total = len(conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft', company_id=OERP_COMPANY))
     offset, page_previous, page_next = paginationOOOP(request, total, PAGINATOR_INVOICE_TOTAL)
 
-    values = conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft', offset=offset,limit=PAGINATOR_INVOICE_TOTAL,order='id')
+    values = conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft', company_id=OERP_COMPANY, offset=offset,limit=PAGINATOR_INVOICE_TOTAL,order='id')
 
     title = _('All Orders')
     metadescription = _('List all orders of %s') % full_name
@@ -53,10 +59,16 @@ def invoices(request):
 @login_required
 def invoice(request, invoice):
     partner_id = checkPartnerID(request)
+    if not partner_id:
+        error = _('Are you a customer? Please, contact us. We will create a new role')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
+    if not conn:
+        error = _('Error connecting with our ERP. Try again or cantact us')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
-    values = conn.AccountInvoice.filter(partner_id=partner_id, number=invoice)
+    values = conn.AccountInvoice.filter(partner_id=partner_id, number=invoice, company_id=OERP_COMPANY)
     if len(values) == 0:
         error = _('Not allow view this section or not found. Use navigation menu.')
         return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))

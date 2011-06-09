@@ -1,4 +1,4 @@
-{% load i18n %}{% get_current_language as LANGUAGE_CODE %}{% get_available_languages as LANGUAGES %}
+{% load i18n %}{% get_current_language as LANGUAGE_CODE %}
 
 <ul id="nav">
 {% spaceless %}{% for value, level, oldlevel in values %}
@@ -12,7 +12,7 @@
     {%if level < 2 and oldlevel >= 2 %}</li></ul>{%endif%}
     {%if level == 1 and oldlevel >= 1 %}</li>{%endif%}
 
-    {%if level == 1%}<li class="item-1 topmenu"><a href="/{{ LANGUAGE_CODE }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
+    {%if level == 1%}<li class="item-1 topmenu"><a href="/{{ LANGUAGE_CODE }}/catalog{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
     {%if level == 2 and oldlevel == 1 %}<ul class="sub">{%endif%}
     {%if level == 2%}<li><a href="/{{ LANGUAGE_CODE }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
     {%if level == 3 and oldlevel == 2 %}<ul>{%endif%}

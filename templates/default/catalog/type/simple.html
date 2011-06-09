@@ -1,0 +1,18 @@
+{% load i18n %}
+                    <ul class="product-options border3t">
+                        {% for product in products %}<li><strong>{% trans "Code" %}:</strong> {{product.code}}</li>
+                        {% if product.ean13 %}<li><strong>{% trans "EAN13" %}:</strong> {{product.ean13}}{% endif %}{% endfor %}</li>
+                    </ul>
+                    <div class="cart-box border3b">
+                        {% for product in products %}{% if product.active %}<form class="cart-add-form" method="post" action="/{{ LANGUAGE_CODE }}/checkout/">
+                            <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
+                            <input name="qty" type="text" value="1" class="qty border2" />
+                            <input name="code" type="hidden" value="{{ product.code }}"/>
+                            {% csrf_token %}
+                        </form>{%endif %}{% endfor %}
+                        <div id="product-price-{{product.product.id}}" class="price-box">
+                            <span class="regular-price">
+                                <span class="price">{{price}} €</span>
+                            </span>
+                        </div>
+                    </div>

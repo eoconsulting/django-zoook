@@ -35,14 +35,20 @@ from tools.zoook import checkPartnerID, checkFullName, connOOOP, paginationOOOP
 @login_required
 def orders(request):
     partner_id = checkPartnerID(request)
+    if not partner_id:
+        error = _('Are you a customer? Please, contact us. We will create a new role')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
-    
+    if not conn:
+        error = _('Error connecting with our ERP. Try again or cantact us')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
+
     values = {}
-    total = len(conn.SaleOrder.filter(partner_id=partner_id))
+    total = len(conn.SaleOrder.filter(partner_id=partner_id, shop_id=OERP_SALE))
     offset, page_previous, page_next = paginationOOOP(request, total, PAGINATOR_ORDER_TOTAL)
 
-    values = conn.SaleOrder.filter(partner_id=partner_id,offset=offset,limit=PAGINATOR_ORDER_TOTAL,order='id')
+    values = conn.SaleOrder.filter(partner_id=partner_id, shop_id=OERP_SALE, offset=offset, limit=PAGINATOR_ORDER_TOTAL,  order='id')
 
     title = _('All Orders')
     metadescription = _('List all orders of %s') % full_name
@@ -53,10 +59,16 @@ def orders(request):
 @login_required
 def order(request, order):
     partner_id = checkPartnerID(request)
+    if not partner_id:
+        error = _('Are you a customer? Please, contact us. We will create a new role')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
+    if not conn:
+        error = _('Error connecting with our ERP. Try again or cantact us')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
-    values = conn.SaleOrder.filter(partner_id=partner_id, name=order)
+    values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
     if len(values) == 0:
         error = _('Not allow view this section or not found. Use navigation menu.')
         return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
@@ -71,8 +83,14 @@ def order(request, order):
 @login_required
 def payment(request, order):
     partner_id = checkPartnerID(request)
+    if not partner_id:
+        error = _('Are you a customer? Please, contact us. We will create a new role')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
+    if not conn:
+        error = _('Error connecting with our ERP. Try again or cantact us')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order)
     if len(values) == 0:

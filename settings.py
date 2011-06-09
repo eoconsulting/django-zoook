@@ -123,16 +123,16 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'localeurl',
     'base',
+    'partner',
     'content',
     'contact',
     'catalog',
     'modules',
 #    'search',
-    'user',
     'sale',
 )
 
-AUTH_PROFILE_MODULE = "user.AuthProfile"
+AUTH_PROFILE_MODULE = "partner.AuthProfile"
 
 LOCALE_INDEPENDENT_PATHS = (
     re.compile('^/static/'),

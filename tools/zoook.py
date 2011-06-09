@@ -20,6 +20,7 @@
 #
 ############################################################################################
 
+from django.shortcuts import render_to_response
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 
@@ -30,10 +31,9 @@ from tools.conn import conn_ooop
 def checkPartnerID(request):
     try:
         partner_id = request.user.get_profile().partner_id
-        return partner_id
     except:
-        error = _('Error connecting with our ERP. Try again or cantact us')
-        return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
+        partner_id = False
+    return partner_id
 
 """ Check Full Name"""
 @login_required
@@ -46,9 +46,6 @@ def checkFullName(request):
 """ OOOP Connection"""
 def connOOOP():
     conn = conn_ooop()
-    if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
-        return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
     return conn
 
 """ OOOP Pagination"""
@@ -56,10 +53,6 @@ def paginationOOOP(request, total=0, limit=10):
     offset = 0
     page_previous = False
     page_next = False
-    
-    print "=========="
-    print total
-    print limit
 
     try:
         page = int(request.GET.get('page'))
