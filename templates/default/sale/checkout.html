@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load modules %}
+
+{% block head %}<link href="{{ MEDIA_URL }}css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />    
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#confirm").click(function() {
+            jConfirm('{% trans "Can you confirm this order?\nAfter you will redirect payment type to finish your order" %}', '{% trans "Order confirmation" %}', function(r) {
+            if (r){
+                document.forms["checkoutForm"].submit();
+                return true
+            }else{
+                jAlert('error', '{% trans "You are cancel this order! You do like it?" %}', '{% trans "Error" %}');
+                return false;
+            }
+            });
+        });
+    });
+</script>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {{ title }}</li></ul></div>{% endblock %}
+
+{% block content %}
+<div id="page-wrap" class="clearfix">
+    <div id="sidebar">
+        <div class="block border5">
+            {% module sale.right_checkout %}
+        </div>
+    </div>
+    <div id="content">
+        <form id="checkoutForm" class="checkout" method="post" action="/{{ LANGUAGE_CODE }}/sale/checkout/confirm/">
+        <div id="catalog-order" class="block border5 clearfix">
+            {% if message %}
+                <div id="message">
+                    <h1>{{ message }}</h1>
+                </div>
+            {% endif %}
+
+            <table id="order-cart-table" class="order-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Reference" %}</th>
+                    <th><span class="nobr">{% trans "Qty" %}</span></th>
+                    <th><span class="nobr">{% trans "Discount" %}</span></th>
+                    <th><span class="nobr">{% trans "Unit Price" %}</span></th>
+                    <th><span class="nobr">{% trans "Subtotal" %}</span></th>
+                    <th><span class="nobr">{% trans "Delete" %}</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if lines|length == 0 %}<tr><td colspan="6">{% trans "Your cart is empy" %}</td></tr>{%endif%}
+                {% for line in lines %}<tr class="{% cycle 'row1' 'row2' %}">
+                    <td>{{ line.name }}</a></td>
+                    <td>{{ line.product_uom_qty }}</td>
+                    <td>{{ line.discount }}</td>
+                    <td>{{ line.price_unit }}</td>
+                    <td>{{ line.price_subtotal }}</td>
+                    <td class="a-center"><a href="/{{ LANGUAGE_CODE }}/sale/checkout/remove/{{line.product_id.code}}" title="{% trans "Remove Item" %}" class="btn-trash">{% trans "Remove Item" %}</a></td>
+                </tr>{% endfor %}
+            </tbody>
+            </table>
+            {% if order.state == 'draft' and order.amount_total != 0.0 %}
+            <div id="checkout-total">
+                <p class="amount"><strong>{% trans "Untaxed Amount" %}:</strong> {{ order.amount_untaxed }}<br/>
+                <strong>{% trans "Taxes" %}:</strong>  {{ order.amount_tax }}<br/>
+                <strong>{% trans "Total" %}:</strong> <span class="total">{{ order.amount_total }}</span></p>
+                <div class="checkout-options">
+                    <p>{% trans "Delivery" %}:
+                    <select name="delivery" class="delivery">
+                    {% for delivery in deliveries %}
+                        <option value="{{  delivery.name }}|{{ delivery.cost }}">{{  delivery.name }} (+{{  delivery.cost }})</option>
+                    {% endfor %}
+                    </select></p>
+                    <p>{% trans "Payment" %}:
+                    <select name="payment" class="payment">
+                    {% for payment in payments %}
+                        <option value="{{ payment.app_payment }}">{{ payment.payment_type_id.name }}</option> 
+                    {% endfor %}
+                    </select></p>
+                </div>
+                <input id="confirm" type="button" value="{% trans "Confirm" %}" class="border2 button-confirm"/>    
+            </div>
+            <div id="checkout-address">
+                <h2>{% trans "Address Invoice" %}</h2>
+                <select name="address_invoice" class="address">
+                {% for address_invoice in address_invoices %}
+                    <option value="{{ address_invoice.id }}" {% if order.partner_invoice_id.id == address_invoice.id %} selected="selected"{% endif %}}>{{ address_invoice.street }} {{ address_invoice.zip }} {{ address_invoice.city }}</option>
+                {% endfor %}
+                </select>
+                <h2>{% trans "Address Delivery" %}</h2>
+                <select name="address_delivery" class="address">
+                {% for address_delivery in address_deliveries %}
+                    <option value="{{ address_delivery.id }}" {% if order.partner_shipping_id.id == address_delivery.id %} selected="selected"{% endif %}}>{{ address_delivery.street }} {{ address_delivery.zip }} {{ address_delivery.city }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+        </div>
+        {% csrf_token %}
+        </form>
+    </div>
+</div>
+  
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.alerts.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.ui.draggable.js"></script>
+
+{% endblock %}
