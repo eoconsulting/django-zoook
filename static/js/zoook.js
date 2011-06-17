@@ -24,7 +24,3 @@ function mainmenu()
 function setLocation(key, value){
     window.location.href = '?'+key+'='+value;
 }
-
-function addCart(sku){
-    window.location.href = '/checkout/cart/'+sku;
-}

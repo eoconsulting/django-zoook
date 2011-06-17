@@ -175,7 +175,7 @@ def register(request):
                     partner_id = partner.save()
                     
                     # create address partner
-                    address_types = ['delivery','invoice']
+                    address_types = ['contact','invoice','delivery']
                     for address_type in address_types:
                         address = conn.ResPartnerAddress.new()
                         address.name = data['name']

@@ -4,7 +4,7 @@
                         {% if product.ean13 %}<li><strong>{% trans "EAN13" %}:</strong> {{product.ean13}}{% endif %}{% endfor %}</li>
                     </ul>
                     <div class="cart-box border3b">
-                        {% for product in products %}{% if product.active %}<form class="cart-add-form" method="post" action="/{{ LANGUAGE_CODE }}/checkout/">
+                        {% for product in products %}{% if product.active %}<form class="cart-add-form" method="post" action="/{{ LANGUAGE_CODE }}/sale/checkout/">
                             <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
                             <input name="qty" type="text" value="1" class="qty border2" />
                             <input name="code" type="hidden" value="{{ product.code }}"/>

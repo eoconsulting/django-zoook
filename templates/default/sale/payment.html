@@ -46,8 +46,8 @@
                 <fieldset>
                 <legend>{% trans "Select payment" %}</legend>
                 {% for payment in payments %}
-                <label for="payment_{{ payment.esale_module }}"> 
-                    <input  type="radio" id="{{ payment.esale_module }}" value="{{ payment.esale_module }}" name="payment" validate="required:true" />{{ payment.name }}</label> 
+                <label for="payment_{{ payment.payment_type_id.name }}"> 
+                    <input  type="radio" id="{{ payment.app_payment }}" value="{{ payment.app_payment }}" name="payment" validate="required:true" />{{ payment.payment_type_id.name }}</label> 
                 {% endfor %}
                 <label for="payment" class="error">{% trans "Please select payment" %}</label> 
                 </fieldset> 

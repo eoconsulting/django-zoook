@@ -41,4 +41,4 @@ def content_detail(request, content):
     if content.template is not 'default.html':
         if not os.path.exists(TEMPLATE_DIRS[0]+'/content/'+tpl):
             tpl = 'default.html'
-    return render_to_response("content/"+tpl, {'title':title,'metakeywords':metakeywords,'metadescription':metadescription,'content':content}, context_instance=RequestContext(request))
+    return render_to_response("content/"+tpl, {'title':title,'metakeywords':metakeywords,'metadescription':metadescription,'content':content,'url':LIVE_URL}, context_instance=RequestContext(request))

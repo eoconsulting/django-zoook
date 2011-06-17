@@ -21,7 +21,8 @@
 #catalog-list .price-box					{ }
 #catalog-list .product-description			{ }
 
-
+.button-details{ width:250px; margin-top:10px; padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#0a6c77; color:#fff; font-weight:bold}
+.button-details a:hover{ color:#fff}
 
 /* CATALOG TOOLBAR */
 .toolbar			{ display:block; clear:both; padding-bottom:20px; font-size:11px }
@@ -179,3 +180,15 @@ button:hover			{ background-color:#000 }
 .order-table tfoot td{padding:10px}
 .order-table .row1 { }
 .order-table .row2 { background-color:#f3f5f6}
+
+#checkout-total{ display:block; float:right; margin-top:10px; width:250px; border-top:1px solid #D2D6D8;}
+#checkout-total .amount{ border-bottom:1px solid #D2D6D8}
+#checkout-total .total{ color:#0a6c77; font-weight:bold}
+#checkout-address .address{ width:200px}
+#checkout-address h2{ font-size:12px; color:#0a6c77}
+
+.checkout-options .delivery{ width:150px}
+.checkout-options .payment{ width:150px}
+
+.checkout-options p {font-size:12px; color:#0a6c77}
+.button-confirm { width:250px; margin-top:10px; padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#0a6c77; color:#fff; font-weight:bold }

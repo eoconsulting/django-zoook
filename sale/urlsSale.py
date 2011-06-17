@@ -28,4 +28,7 @@ urlpatterns = patterns("",
     (r'^$', 'sale.views.orders'),
     (r'^payment/(?P<order>[^/]+)$', 'sale.views.payment'),
     (r"^order/(?P<order>[^/]+)$", 'sale.views.order'),
+    (r"^checkout/remove/(?P<code>[^/]+)$", 'sale.views.checkout_remove'),
+    (r"^checkout/confirm/", 'sale.views.checkout_confirm'),
+    (r"^checkout/", 'sale.views.checkout'),
 )

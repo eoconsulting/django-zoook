@@ -20,6 +20,8 @@
 #
 ############################################################################################
 
+from settings import *
+
 from ooop import OOOP
 import xmlrpclib
 
@@ -36,7 +38,7 @@ def conn_ooop():
     try:
         #o = OOOP(user='admin',pwd='admin',dbname='oerp6_zoook',uri='http://localhost',port=8069,protocol='xmlrpc')
         #o = OOOP(user='admin',pwd='admin',dbname='oerp6_zoook',uri='localhost',port=8071,protocol='pyro')
-        conn = OOOP(user=OERP_CONF['username'],pwd=OERP_CONF['password'],dbname=OERP_CONF['dbname'],uri=OERP_CONF['uri'],port=OERP_CONF['port'],protocol=OERP_CONF['protocol'])
+        conn = OOOP(user=OERP_CONF['username'],pwd=OERP_CONF['password'],dbname=OERP_CONF['dbname'],uri=OERP_CONF['uri'],port=OERP_CONF['port'],protocol=OERP_CONF['protocol'], debug=DEBUG)
         return conn
     except:
         return False

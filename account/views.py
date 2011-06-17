@@ -48,10 +48,10 @@ def invoices(request):
     total = len(conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft', company_id=OERP_COMPANY))
     offset, page_previous, page_next = paginationOOOP(request, total, PAGINATOR_INVOICE_TOTAL)
 
-    values = conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft', company_id=OERP_COMPANY, offset=offset,limit=PAGINATOR_INVOICE_TOTAL,order='id')
+    values = conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft', company_id=OERP_COMPANY, offset=offset, limit=PAGINATOR_INVOICE_TOTAL, order='name DESC')
 
-    title = _('All Orders')
-    metadescription = _('List all orders of %s') % full_name
+    title = _('All Invoices')
+    metadescription = _('List all invoices of %s') % full_name
 
     return render_to_response("account/invoices.html", {'title':title, 'metadescription':metadescription, 'values':values, 'page_previous':page_previous, 'page_next':page_next}, context_instance=RequestContext(request))
 
