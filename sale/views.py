@@ -34,6 +34,7 @@ from catalog.models import ProductProduct, ProductTemplate
 
 import datetime
 import time
+import re
 
 """Orders. All Orders Partner Available"""
 @login_required
@@ -117,7 +118,7 @@ def payment(request, order):
 
 """Check Order"""
 def check_Order(conn, partner_id, OERP_SALE):
-    orders = conn.SaleOrder.filter(partner_id=partner_id, state='draft', shop_id=OERP_SALE)
+    orders = conn.SaleOrder.filter(partner_id=partner_id, state='draft', payment_state ='draft', shop_id=OERP_SALE)
     
     if not orders: # create a new order
         partner = conn.ResPartner.get(partner_id)
@@ -172,6 +173,9 @@ def check_product(conn, code):
 """Checkout. Order cart"""
 @login_required
 def checkout(request):
+    if 'sale_order' in request.session:
+        return HttpResponseRedirect("/sale/order/%s" % request.session['sale_order'])
+
     message = False
     partner_id = checkPartnerID(request)
     if not partner_id:
@@ -185,7 +189,7 @@ def checkout(request):
 
     order = check_Order(conn, partner_id, OERP_SALE)
 
-    if request.method == 'POST': # If the form has been submitted...
+    if request.method == 'POST':
         qty = int(request.POST['qty'])
         code = request.POST['code']
         #check product is available to add to cart
@@ -222,7 +226,7 @@ def checkout(request):
                     order_line.notes = product_id_change['value']['notes']
                     order_line.product_id = product
                     order_line.product_uom_qty = qty
-                    order_line.product_uom = order_line.product_uom = product.product_tmpl_id.uom_id
+                    order_line.product_uom = product.product_tmpl_id.uom_id
                     order_line.delay = product_id_change['value']['delay']
                     order_line.th_weight = product_id_change['value']['th_weight']
                     order_line.type = product_id_change['value']['type']
@@ -282,3 +286,94 @@ def checkout_remove(request, code):
             order_line.delete()
 
     return HttpResponseRedirect("/sale/checkout/")
+
+"""Checkout. Confirm"""
+@login_required
+def checkout_confirm(request):
+    if 'sale_order' in request.session:
+        return HttpResponseRedirect("/sale/order/%s" % request.session['sale_order'])
+
+    if request.method == 'POST':
+        partner_id = checkPartnerID(request)
+        if not partner_id:
+            error = _('Are you a customer? Please, contact us. We will create a new role')
+            return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
+        full_name = checkFullName(request)
+        conn = connOOOP()
+        if not conn:
+            error = _('Error connecting with our ERP. Try again or cantact us')
+            return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
+            
+        partner = conn.ResPartner.get(partner_id)
+        order = check_Order(conn, partner_id, OERP_SALE)
+
+        if order.state != 'draft':
+            return HttpResponseRedirect("/sale/")
+
+        delivery = request.POST['delivery']
+        payment = request.POST['payment']
+        address_invoice = int(request.POST['address_invoice'])
+        address_delivery = int(request.POST['address_delivery'])
+
+        #delivery
+        delivery = delivery.split('|')
+        carrier = conn.DeliveryCarrier.filter(code=delivery[0])
+        if len(carrier) == 0:
+            return HttpResponseRedirect("/sale/checkout/")
+        carrier = carrier[0]
+
+        values = [
+            [order.id], #ids
+            partner.property_product_pricelist.id, #pricelist
+            carrier.product_id.id, #product
+            1, #qty
+            False, #uom
+            0, #qty_uos
+            False, #uos
+            '', #name
+            partner.id, #partner_id
+        ]
+
+        product_id_change = conn_webservice('sale.order.line','product_id_change', values)
+        order_line = conn.SaleOrderLine.new()
+        order_line.order_id = order
+        order_line.name = carrier.product_id.name
+        order_line.product_id = carrier.product_id
+        order_line.product_uom_qty = 1
+        order_line.product_uom = carrier.product_id.product_tmpl_id.uom_id
+        order_line.delay = product_id_change['value']['delay']
+        order_line.th_weight = product_id_change['value']['th_weight']
+        order_line.type = product_id_change['value']['type']
+        order_line.price_unit = float(re.sub(',','.',delivery[1]))
+        order_line.tax_id = [conn.AccountTax.get(t_id) for t_id in product_id_change['value']['tax_id']]
+        order_line.product_packaging = ''
+        order_line.save()
+
+        #delivery
+        order.carrier_id = carrier
+
+        #payment type
+        payment_type = conn.ZoookSaleShopPaymentType.filter(app_payment=payment)
+        if len(payment_type) > 0:
+            order.payment_type = payment_type[0].payment_type_id
+            order.picking_policy = payment_type[0].picking_policy
+            order.order_policy = payment_type[0].order_policy
+            order.invoice_quantity = payment_type[0].invoice_quantity
+
+        #Replace invoice address and delivery address
+        if address_invoice:
+            address_invoice = conn.ResPartnerAddress.get(address_invoice)
+            if address_invoice:
+                order.partner_invoice_id = address_invoice
+        if address_delivery:
+            address_delivery = conn.ResPartnerAddress.get(address_delivery)
+            if address_delivery:
+                order.partner_shipping_id = address_delivery
+
+        #payment state
+        order.payment_state = 'checking'
+        order.save()
+
+        request.session['sale_order'] = order.name
+
+    return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)

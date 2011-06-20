@@ -44,7 +44,7 @@ CONTACT_EMAIL = ['zikzak@zikzakmedia.com']
 VAT_CODE = ['ES']
 COUNTRY_DEFAULT = 'ES'
 
-LOGIN_URL = '/user/login'
+LOGIN_URL = '/partner/'
 LOGIN_REDIRECT_URL = '/'
 
 ADMINS = (
@@ -130,6 +130,8 @@ INSTALLED_APPS = (
     'modules',
 #    'search',
     'sale',
+    'check',
+    'cashondelivery',
 )
 
 AUTH_PROFILE_MODULE = "partner.AuthProfile"

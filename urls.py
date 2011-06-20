@@ -40,4 +40,6 @@ urlpatterns = patterns('',
     (r'^manager/', include(admin.site.urls)),
     (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
     (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
+    (r"^payment/check/", 'check.views.index'),
+    (r"^payment/cashondelivery/", 'cashondelivery.views.index'),
 )

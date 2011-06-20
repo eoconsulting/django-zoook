@@ -68,7 +68,7 @@
                     <p>{% trans "Delivery" %}:
                     <select name="delivery" class="delivery">
                     {% for delivery in deliveries %}
-                        <option value="{{  delivery.name }}|{{ delivery.cost }}">{{  delivery.name }} (+{{  delivery.cost }})</option>
+                        <option value="{{  delivery.code }}|{{ delivery.cost }}">{{  delivery.name }} (+{{  delivery.cost }})</option>
                     {% endfor %}
                     </select></p>
                     <p>{% trans "Payment" %}:
