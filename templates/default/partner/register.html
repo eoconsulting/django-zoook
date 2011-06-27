@@ -22,11 +22,11 @@
 {% block content %}
 <div class="primary-content span-12 last">
 
-{% if error %}
+{% if message %}
     <div id="message">
         <h1>
-        {% for err in error %}
-           {{ err }}<br/>
+        {% for msg in message %}
+           {{ msg }}<br/>
         {% endfor %}
         </h1>
     </div>

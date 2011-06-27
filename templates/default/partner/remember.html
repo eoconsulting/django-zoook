@@ -16,11 +16,11 @@
 
 <div id="top-header">{{ title }}</div>
 
-{% if error %}
+{% if message %}
     <div id="message">
         <h1>
-        {% for err in error %}
-           {{ err }}<br/>
+        {% for msg in message %}
+           {{ msg }}<br/>
         {% endfor %}
         </h1>
     </div>

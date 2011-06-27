@@ -96,7 +96,7 @@ def register(request):
     metadescription = _('Create an Account of %(site)s') % {'site':SITE_TITLE}
 
     if request.method == "POST":
-        error = []
+        message = []
         users = ''
         emails = ''
 
@@ -118,10 +118,10 @@ def register(request):
             if form.is_valid():
                 if len(username) < USER_LENGHT:
                     msg = _('Username is short. Minimum %(size)s characters') % {'size': USER_LENGHT}
-                    error.append(msg)
+                    message.append(msg)
                 if len(password) < KEY_LENGHT:
                     msg = _('Password is short. Minimum %(size)s characters') % {'size': KEY_LENGHT}
-                    error.append(msg)
+                    message.append(msg)
 
                 if is_valid_email(email):
                     # check if user not exist
@@ -129,22 +129,22 @@ def register(request):
                     emails = User.objects.filter(email__exact=email)
                 else:
                     msg = _('Sorry. This email is not valid. Try again')
-                    error.append(msg)
+                    message.append(msg)
 
                 check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
                 if check_captcha.is_valid is False: # captcha not valid
                     msg = _('Error with captcha number. Copy same number.')
-                    error.append(msg)
+                    message.append(msg)
 
                 if users:
                     msg = _('Sorry. This user are exists. Use another username')
-                    error.append(msg)
+                    message.append(msg)
                 if emails:
                     msg = _('Sorry. This email are exists. Use another email or remember password')
-                    error.append(msg)
+                    message.append(msg)
 
                 #check if this vat exists ERP
-                if not error:
+                if not message:
                     conn = connOOOP()
                     if not conn:
                         error = _('Error connecting with our ERP. Try again or cantact us')
@@ -156,7 +156,7 @@ def register(request):
                         error.append(msg)
 
                 #check if this vat valid
-                if not error:
+                if not message:
                     vat = data['vat_code']+data['vat']
                     check_vat = conn_webservice('res.partner', 'dj_check_vat', [vat, OERP_SALE])
 
@@ -165,7 +165,7 @@ def register(request):
                         error.append(msg)
                 
                 #create new partner and user
-                if not error:
+                if not message:
                     # create partner
                     partner = conn.ResPartner.new()
                     partner.name = data['name']
@@ -219,10 +219,10 @@ def register(request):
                     return HttpResponseRedirect("/partner/profile/")
             else:
                 msg = _("Sorry. Error form values. Try again")
-                error.append(msg)
+                message.append(msg)
         else:
             msg = _("Sorry. Passwords don't match. Try again")
-            error.append(msg)
+            message.append(msg)
 
     form = UserCreationForm()
     html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
@@ -236,7 +236,7 @@ def register(request):
 def remember(request):
     """Remember password"""
 
-    error = []
+    message = []
 
     title = _('Remember')
     metadescription = _('Remember account of %(site)s') % {'site':SITE_TITLE}
@@ -250,7 +250,7 @@ def remember(request):
         check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
         if check_captcha.is_valid is False: # captcha not valid
             msg = _('Error with captcha number. Copy same number.')
-            error.append(msg)
+            message.append(msg)
         else:
             if is_valid_email(email):
                 # check if user  exist
@@ -269,13 +269,13 @@ def remember(request):
                     email.send()
                     email = ''
                     msg = _('A new password are you send it to %(email)s') % {'email':user.email}
-                    error.append(msg)
+                    message.append(msg)
                 else:
                     msg = _('Sorry. This email not exist. Try again')
-                    error.append(msg)
+                    message.append(msg)
             else:
                 msg = _('Sorry. This email is not valid. Try again')
-                error.append(msg)
+                message.append(msg)
 
     form = UserCreationForm()
     html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
