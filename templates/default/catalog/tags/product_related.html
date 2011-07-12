@@ -2,4 +2,4 @@
 <ul>{% for value in values %}
 <li><a href="/{{ LANGUAGE_CODE }}/product/{{value.product.slug}}">{{value.product.name}}</a></li>
 {% endfor %}</ul>
-{% if values|length == 0 %}<p>{% trans "There aren't related products"%}</p>{% endif %}
+{% if values|length == 0 %}<p>{% trans "There are not related products"%}</p>{% endif %}

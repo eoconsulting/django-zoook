@@ -34,7 +34,7 @@
                     </span>
                 </div>
             </div>
-            {% if values|length == 0 %}<p class="note-msg">{% trans "There are no products matching the selection." %}</p>{% endif %}
+            {% if values|length == 0 %}<p class="note-msg">{% trans "There are any products matching the selection." %}</p>{% endif %}
             {% if mode_option == 'grid' %}
             <ul id="catalog-grid">{% for value in values %}
                 <li id="product-{{value.product.id}}" class="product-item block border5{% cycle '' '' ' last' %}">

@@ -6,12 +6,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $("#confirm").click(function() {
-            jConfirm('{% trans "Can you confirm this order?\nAfter you will redirect payment type to finish your order" %}', '{% trans "Order confirmation" %}', function(r) {
+            jConfirm('{% trans "Could you confirm the order?\nThen you will redirect payment type to finish your order" %}', '{% trans "Order confirmation" %}', function(r) {
             if (r){
                 document.forms["checkoutForm"].submit();
                 return true
             }else{
-                jAlert('error', '{% trans "You are cancel this order! You do like it?" %}', '{% trans "Error" %}');
+                jAlert('error', '{% trans "You are cancel this order! Don't you like it?" %}', '{% trans "Error" %}');
                 return false;
             }
             });
@@ -48,7 +48,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% if lines|length == 0 %}<tr><td colspan="6">{% trans "Your cart is empy" %}</td></tr>{%endif%}
+                {% if lines|length == 0 %}<tr><td colspan="6">{% trans "Your cart is empty" %}</td></tr>{%endif%}
                 {% for line in lines %}<tr class="{% cycle 'row1' 'row2' %}">
                     <td>{{ line.name }}</a></td>
                     <td>{{ line.product_uom_qty }}</td>

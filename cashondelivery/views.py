@@ -38,12 +38,12 @@ OpenERP Payment Type App is: cashondelivery
 @login_required
 def index(request):
     if not 'sale_order' in request.session:
-        error = _('Order number not available. Use navigation menu.')
+        error = _('Order number is not available. Use navigation menu.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     payment_type = conn.ZoookSaleShopPaymentType.filter(app_payment='cashondelivery')

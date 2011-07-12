@@ -46,15 +46,15 @@ def contactForm(request):
             check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
             if check_captcha.is_valid is False:
                 # Captcha is wrong show a error ...
-                message = _('Error with captcha number. Copy same number.')
+                message = _('Error with captcha number. Copy the same number.')
             else:
                 subject = _('Contact - %(name)s') % {'name':SITE_TITLE}
-                body = _('This is email generates with Contact Module from %(site)s\n\n%(name)s - %(email)s\n%(message)s') % {'site':SITE_TITLE,'name':name,'email':email,'message':contact_text}
+                body = _('This email is generated with Contact Module from %(site)s\n\n%(name)s - %(email)s\n%(message)s') % {'site':SITE_TITLE,'name':name,'email':email,'message':contact_text}
 
                 email = EmailMessage(subject, body, to=CONTACT_EMAIL)
                 email.send()
 
-                message = _('Thanks for your message. We will respond soon.')
+                message = _('Thanks for your message. We will answer soon.')
         else:
             message = _('Sorry! This form is not valid. Try again.')
 

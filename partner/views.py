@@ -137,22 +137,22 @@ def register(request):
                     message.append(msg)
 
                 if users:
-                    msg = _('Sorry. This user are exists. Use another username')
+                    msg = _('Sorry. This user already exists. Use another username')
                     message.append(msg)
                 if emails:
-                    msg = _('Sorry. This email are exists. Use another email or remember password')
+                    msg = _('Sorry. This email already exists. Use another email or remember password')
                     message.append(msg)
 
                 #check if this vat exists ERP
                 if not message:
                     conn = connOOOP()
                     if not conn:
-                        error = _('Error connecting with our ERP. Try again or cantact us')
+                        error = _('Error when connecting with our ERP. Try again or cantact us')
                         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
                     partner = conn.ResPartner.filter(vat__ilike=data['vat_code']+data['vat'])
                     if len(partner) > 0:
-                        msg = _('Sorry. This VAT exists our ERP. Contact Us for create a new user')
+                        msg = _('Sorry. This VAT already exists our ERP. Contact Us for create a new user')
                         error.append(msg)
 
                 #check if this vat valid
@@ -209,8 +209,8 @@ def register(request):
                     authProfile.save()
 
                     # send email
-                    subject = _('New user added - %(name)s') % {'name':SITE_TITLE}
-                    body = _("This is email automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':SITE_TITLE,'username':username,'password':password,'live_url':LIVE_URL}
+                    subject = _('New user is added - %(name)s') % {'name':SITE_TITLE}
+                    body = _("This email is generated automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':SITE_TITLE,'username':username,'password':password,'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[email])
                     email.send()
                     # authentification / login user
@@ -221,7 +221,7 @@ def register(request):
                 msg = _("Sorry. Error form values. Try again")
                 message.append(msg)
         else:
-            msg = _("Sorry. Passwords don't match. Try again")
+            msg = _("Sorry. Passwords do not match. Try again")
             message.append(msg)
 
     form = UserCreationForm()
@@ -249,7 +249,7 @@ def remember(request):
 
         check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
         if check_captcha.is_valid is False: # captcha not valid
-            msg = _('Error with captcha number. Copy same number.')
+            msg = _('Error with captcha number. Copy the same number.')
             message.append(msg)
         else:
             if is_valid_email(email):
@@ -264,11 +264,11 @@ def remember(request):
                     user.save()
                     # send email
                     subject = _('Remember username - %(name)s') % {'name':SITE_TITLE}
-                    body = _("This is email automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':SITE_TITLE,'username':user.username,'password':key,'live_url':LIVE_URL}
+                    body = _("This email is generated  automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':SITE_TITLE,'username':user.username,'password':key,'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[user.email])
                     email.send()
                     email = ''
-                    msg = _('A new password are you send it to %(email)s') % {'email':user.email}
+                    msg = _('A new password are sent to %(email)s') % {'email':user.email}
                     message.append(msg)
                 else:
                     msg = _('Sorry. This email not exist. Try again')
@@ -312,11 +312,11 @@ def changepassword(request):
                 request.user.save()
                 if request.user.email:
                     # send email
-                    subject = _('New password added - %(name)s') % {'name':SITE_TITLE}
-                    body = _("This is email automatically from %(site)s\n\nNew password: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':SITE_TITLE,'password':data['password1'],'live_url':LIVE_URL}
+                    subject = _('New password is added - %(name)s') % {'name':SITE_TITLE}
+                    body = _("This email is generated  automatically from %(site)s\n\nNew password: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':SITE_TITLE,'password':data['password1'],'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[request.user.email])
                     email.send()
-                error = _("New password added")
+                error = _("New password is added")
             else:
                 error = _("Sorry. Passwords need %(size)s characters or more. Try again") % {'size':KEY_LENGHT}
         else:
@@ -334,7 +334,7 @@ def partner(request):
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     partner = conn.ResPartner.get(partner_id)

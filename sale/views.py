@@ -46,7 +46,7 @@ def orders(request):
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = {}
@@ -70,12 +70,12 @@ def order(request, order):
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
     if len(values) == 0:
-        error = _('Not allow view this section or not found. Use navigation menu.')
+        error = _('It is Not allowed to view this section or not found. Use navigation menu.')
         return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
@@ -94,12 +94,12 @@ def payment(request, order):
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
     if len(values) == 0:
-        error = _('Not allow view this section or not found. Use navigation menu.')
+        error = _('It is not allowed to view this section or not found. Use navigation menu.')
         return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
@@ -184,7 +184,7 @@ def checkout(request):
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     order = check_Order(conn, partner_id, OERP_SALE)
@@ -277,7 +277,7 @@ def checkout_remove(request, code):
         full_name = checkFullName(request)
         conn = connOOOP()
         if not conn:
-            error = _('Error connecting with our ERP. Try again or cantact us')
+            error = _('Error when connecting with our ERP. Try again or cantact us')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
         order = check_Order(conn, partner_id, OERP_SALE)
         order_lines = conn.SaleOrderLine.filter(order.id, product_id=products[0].id)
@@ -301,7 +301,7 @@ def checkout_confirm(request):
         full_name = checkFullName(request)
         conn = connOOOP()
         if not conn:
-            error = _('Error connecting with our ERP. Try again or cantact us')
+            error = _('Error when connecting with our ERP. Try again or cantact us')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
             
         partner = conn.ResPartner.get(partner_id)

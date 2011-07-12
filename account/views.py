@@ -41,7 +41,7 @@ def invoices(request):
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     
     values = {}
@@ -65,12 +65,12 @@ def invoice(request, invoice):
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = conn.AccountInvoice.filter(partner_id=partner_id, number=invoice, company_id=OERP_COMPANY)
     if len(values) == 0:
-        error = _('Not allow view this section or not found. Use navigation menu.')
+        error = _('It is not allowed to view this section or not found. Use navigation menu.')
         return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
