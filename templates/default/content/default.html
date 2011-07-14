@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
+{% load inplace_edit %}
+   {% inplace_media %}
 
 {% block head %}<link rel="canonical" href="{{ url }}{{ LANGUAGE_CODE }}/{{content.slug}}" />{% endblock %}
 
-{% block content %}
+{% block content %}	
 <div class="primary-content span-9 last">
     <h1>{{content.name}}</h1>
     {{content.description|safe}}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-15 08:46+0100\n"
+"POT-Creation-Date: 2011-07-12 10:55+0200\n"
 "PO-Revision-Date: 2011-02-22 13:31+0100\n"
 "Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,44 +16,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: enums.py:10
+#: enums.py:32
 msgid "Active"
 msgstr "Activo"
 
-#: enums.py:11
+#: enums.py:33
 msgid "Inactive"
 msgstr "Inactivo"
 
-#: models.py:12
+#: models.py:34
 msgid "name"
 msgstr "nombre"
 
-#: models.py:13
+#: models.py:35
 msgid "position"
 msgstr "posición"
 
-#: models.py:14
+#: models.py:36
 msgid "description"
 msgstr "descripción"
 
-#: models.py:15
+#: models.py:37
 msgid "status"
 msgstr "estado"
 
-#: models.py:15
+#: models.py:37
 msgid "Only modules with their status set to 'Active' will be displayed."
 msgstr "Sólo se mostrarán los módulos con el estado 'Activo'."
 
-#: models.py:18
+#: models.py:40
 msgid "module"
 msgstr "módulo"
 
-#: models.py:19
+#: models.py:41
 msgid "modules"
 msgstr "módulos"
 
 #~ msgid "spanish"
 #~ msgstr "espalol"
+
 #~ msgid "catalan"
 #~ msgstr "catalan"
-

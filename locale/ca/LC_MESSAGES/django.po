@@ -7,361 +7,828 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-08 16:58+0200\n"
-"PO-Revision-Date: 2011-04-08 16:59+0100\n"
-"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-07-14 09:46+0200\n"
+"PO-Revision-Date: 2011-07-14 00:12+0100\n"
+"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: settings.py:36
-msgid "Spanish"
-msgstr "Castellà"
-
-#: settings.py:37
-msgid "Catalan"
-msgstr "Català"
-
-#: views.py:30
-msgid "Zoook :: e-sale for OpenERP"
-msgstr "Zoook :: Canal de venda  online per a OpenERP"
-
-#: templates/404.html:9
+#: templates/default/404.html:9
 msgid "404 Not Found"
 msgstr "404 Not Found"
 
-#: templates/error.html:5
+#: templates/default/error.html:5 templates/default/sale/checkout.html:14
 msgid "Error"
 msgstr "Error"
 
-#: templates/error.html:10
-msgid "An unexpected error has occurred and has not been able to continue. Repeat again or contact us."
-msgstr "S'ha produït un error inesperat que no permet continuar. Repetiu l'operació o contacteu amb nosaltres."
+#: templates/default/error.html:10
+msgid ""
+"An unexpected error has occurred and has not been able to continue. Repeat "
+"again or contact us."
+msgstr ""
+"S'ha produït un error inesperat que no permet continuar. Repetiu l'operació "
+"o contacteu amb nosaltres."
 
-#: templates/accounts/changepassword.html:19
-msgid "Insert your new password"
-msgstr "Introduiu la nova contrasenya"
+#: templates/default/layout.html:31
+msgid "Zoook - e-sale for OpenERP"
+msgstr "Zoook :: Canal de venda  online per a OpenERP"
 
-#: templates/accounts/changepassword.html:32
-#: templates/accounts/menu.html:7
-msgid "Change password"
-msgstr "Canvia contrasenya"
+#: templates/default/layout.html:36
+msgid "search"
+msgstr "Cerca"
 
-#: templates/accounts/login.html:13
-msgid "Log in or Create an Account"
-msgstr "Identifiqueu-vos o creeu un compte"
-
-#: templates/accounts/login.html:19
-#: templates/accounts/register.html:40
-msgid "New customers"
-msgstr "Nous clients"
-
-#: templates/accounts/login.html:20
-msgid "By creating an account with our store, you will be able to move through the checkout process faster, view and track your orders and instances in your account and more."
-msgstr "Amb la creació d'un compte al nostre SaaS, podreu realitzar el procés d'alta d'instàncies d'OpenERP, el seguiment de les seves comandes i més."
-
-#: templates/accounts/login.html:23
-msgid "Registered customers"
-msgstr "Clients registrats"
-
-#: templates/accounts/login.html:24
-msgid "If you have an account with us, please log in."
-msgstr "Si teniu un compte amb nosaltres, si us plau, identifiqueu-vos."
-
-#: templates/accounts/login.html:40
-#: templates/accounts/register.html:73
-msgid "Create new account"
-msgstr "Crea un compte"
-
-#: templates/accounts/login.html:45
+#: templates/default/layout.html:42 templates/default/partner/login.html:49
 msgid "Login"
 msgstr "Identifiqueu-vos"
 
-#: templates/accounts/login.html:45
-#: templates/accounts/register.html:58
-msgid "Remember?"
-msgstr "Recorda?"
-
-#: templates/accounts/login.html:46
-#: templates/accounts/register.html:74
-msgid "Required Fields"
-msgstr "Camps requerits"
-
-#: templates/accounts/menu.html:4
-msgid "Instance"
-msgstr "Instància"
-
-#: templates/accounts/menu.html:4
-msgid "Instances"
-msgstr "Instàncies"
-
-#: templates/accounts/menu.html:5
-msgid "Account"
-msgstr "Compte"
-
-#: templates/accounts/menu.html:5
-msgid "Your account"
-msgstr "El seu compte"
-
-#: templates/accounts/menu.html:6
-msgid "Invoice"
-msgstr "Factura"
-
-#: templates/accounts/menu.html:6
-msgid "Invoices"
-msgstr "Factures"
-
-#: templates/accounts/menu.html:8
+#: templates/default/layout.html:42 templates/default/partner/menu.html:9
+#: templates/default/partner/profile.html:21
 msgid "Logout"
 msgstr "Surt"
 
-#: templates/accounts/partner.html:32
-#: templates/accounts/partner.html.py:33
-msgid "Partner"
-msgstr "Empresa"
+#: templates/default/layout.html:43
+msgid "My Account"
+msgstr "El meu compte"
 
-#: templates/accounts/partner.html:34
-msgid "VAT"
-msgstr "NIF"
+#: templates/default/layout.html:44 templates/default/partner/menu.html:7
+msgid "My Whistlist"
+msgstr "La meva llista de desitjos"
 
-#: templates/accounts/partner.html:40
-#: templates/contact/form.html:35
+#: templates/default/layout.html:45
+msgid "My Cart"
+msgstr "La meva cistella"
+
+#: templates/default/account/invoice.html:6
+#: templates/default/account/invoices.html:6
+#: templates/default/catalog/category.html:7
+#: templates/default/catalog/index.html:5
+#: templates/default/catalog/product.html:9
+#: templates/default/catalog/whistlist.html:7
+#: templates/default/sale/checkout.html:21 templates/default/sale/order.html:6
+#: templates/default/sale/orders.html:6 templates/default/sale/payment.html:26
+msgid "Home"
+msgstr "Inici"
+
+#: templates/default/account/invoice.html:6
+#: templates/default/account/invoices.html:6
+#: templates/default/partner/menu.html:5
+#: templates/default/partner/profile.html:18
+msgid "Invoices"
+msgstr "Factures"
+
+#: templates/default/account/invoice.html:21
+#: templates/default/account/invoices.html:23
+#: templates/default/sale/order.html:20 templates/default/sale/orders.html:23
+#: templates/default/sale/payment.html:40
+msgid "Date"
+msgstr "Data"
+
+#: templates/default/account/invoice.html:22
+#: templates/default/account/invoices.html:25
+#: templates/default/sale/order.html:22 templates/default/sale/orders.html:26
+msgid "State"
+msgstr "Estat"
+
+#: templates/default/account/invoice.html:23
+msgid "Source Document"
+msgstr "Font del document"
+
+#: templates/default/account/invoice.html:24
+msgid "Payment Type"
+msgstr "Tipus de pagament"
+
+#: templates/default/account/invoice.html:27
+#: templates/default/sale/checkout.html:84
+#: templates/default/sale/order.html:27
+msgid "Address Invoice"
+msgstr "Adreça de la factura"
+
+#: templates/default/account/invoice.html:38
+#: templates/default/account/invoices.html:22
+#: templates/default/sale/checkout.html:42
+#: templates/default/sale/order.html:46 templates/default/sale/orders.html:22
+msgid "Reference"
+msgstr "Referènica"
+
+#: templates/default/account/invoice.html:39
+#: templates/default/sale/checkout.html:43
+#: templates/default/sale/order.html:47
+msgid "Qty"
+msgstr "Qty"
+
+#: templates/default/account/invoice.html:40
+#: templates/default/sale/checkout.html:44
+#: templates/default/sale/order.html:48
+msgid "Discount"
+msgstr "Descompte"
+
+#: templates/default/account/invoice.html:41
+#: templates/default/sale/checkout.html:45
+#: templates/default/sale/order.html:49
+msgid "Unit Price"
+msgstr "Preu unitari"
+
+#: templates/default/account/invoice.html:42
+#: templates/default/sale/checkout.html:46
+#: templates/default/sale/order.html:50
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: templates/default/account/invoice.html:56
+#: templates/default/sale/order.html:64
+msgid "Untaxed"
+msgstr "Base"
+
+#: templates/default/account/invoice.html:57
+#: templates/default/sale/order.html:65
+msgid "Tax"
+msgstr "Impost"
+
+#: templates/default/account/invoice.html:58
+#: templates/default/account/invoices.html:24
+#: templates/default/sale/checkout.html:66
+#: templates/default/sale/order.html:66 templates/default/sale/orders.html:25
+#: templates/default/sale/payment.html:41
+msgid "Total"
+msgstr "Total"
+
+#: templates/default/account/invoices.html:28
+#: templates/default/catalog/category.html:77
+#: templates/default/sale/orders.html:30
+msgid "Previous"
+msgstr "Anterior"
+
+#: templates/default/account/invoices.html:28
+#: templates/default/catalog/category.html:81
+#: templates/default/sale/orders.html:30
+msgid "Next"
+msgstr "Següent"
+
+#: templates/default/account/invoices.html:37
+msgid "The invoices  are not  avaible. Don't you like something?"
+msgstr "Les factures no estan disponibles,. No t'agrada alguna cosa?"
+
+#: templates/default/catalog/category.html:7
+#: templates/default/catalog/index.html:5
+msgid "Catalog"
+msgstr "Catàleg"
+
+#: templates/default/catalog/category.html:24
+msgid "Show"
+msgstr "Mostra"
+
+#: templates/default/catalog/category.html:24
+msgid "items"
+msgstr "Articles"
+
+#: templates/default/catalog/category.html:25
+msgid "item"
+msgstr "Article"
+
+#: templates/default/catalog/category.html:28
+msgid "Sort by"
+msgstr "Ordena per"
+
+#: templates/default/catalog/category.html:30
+msgid "ASC"
+msgstr "ASC"
+
+#: templates/default/catalog/category.html:30
+msgid "DESC"
+msgstr "DESC"
+
+#: templates/default/catalog/category.html:31
+msgid "View as"
+msgstr "Veure com"
+
+#: templates/default/catalog/category.html:32
+msgid "Grid"
+msgstr "Graella"
+
+#: templates/default/catalog/category.html:33
+msgid "List"
+msgstr "Llista"
+
+#: templates/default/catalog/category.html:37
+msgid "There are any products matching the selection."
+msgstr "No hi ha cap producte que concordi amb la selecció."
+
+#: templates/default/catalog/category.html:48
+#: templates/default/catalog/category.html:66
+msgid "Details"
+msgstr "Detalls"
+
+#: templates/default/catalog/category.html:50
+#: templates/default/catalog/category.html:68
+#: templates/default/catalog/product.html:62
+msgid "Add to Wishlist"
+msgstr "Afegeix a la llista de desitjos"
+
+#: templates/default/catalog/category.html:51
+#: templates/default/catalog/category.html:69
+#: templates/default/catalog/product.html:61
+msgid "Add to Compare"
+msgstr "Comparar"
+
+#: templates/default/catalog/category.html:79
+msgid "Page"
+msgstr "Pàgina"
+
+#: templates/default/catalog/category.html:91
+#: templates/default/catalog/product.html:152
+#: templates/default/catalog/whistlist.html:53
+msgid "Price updating..."
+msgstr "Actualització dels preus ..."
+
+#: templates/default/catalog/product.html:9
+msgid "Products"
+msgstr "Productes"
+
+#: templates/default/catalog/product.html:19
+msgid "Product Related"
+msgstr "Productes relacionats"
+
+#: templates/default/catalog/product.html:26
+msgid "Your shopping cart"
+msgstr "La seva cistella de la compra"
+
+#: templates/default/catalog/product.html:28
+msgid "You don't have any items inside your cart."
+msgstr "Cap article dins la seva cistella."
+
+#: templates/default/catalog/product.html:29
+msgid "View shopping cart"
+msgstr "Veure cistella de la compra"
+
+#: templates/default/catalog/product.html:34
+msgid "Newsletter"
+msgstr "Butlletí"
+
+#: templates/default/catalog/product.html:37
+msgid "Subscribe our newsletter."
+msgstr "Subscripció al nostre butlletí."
+
+#: templates/default/catalog/product.html:39
+msgid "Subscribe"
+msgstr "Subscripció"
+
+#: templates/default/catalog/product.html:82
+msgid "This product is out of service"
+msgstr "Aquest producte està fora de servei"
+
+#: templates/default/catalog/product.html:91
+#: templates/default/catalog/whistlist.html:25
+msgid "Description"
+msgstr "Descripció"
+
+#: templates/default/catalog/product.html:92
+msgid "Related Products"
+msgstr "Productes relacionats"
+
+#: templates/default/catalog/product.html:93
+msgid "Up-sells"
+msgstr "Vendes sugerides"
+
+#: templates/default/catalog/product.html:94
+msgid "Keywords"
+msgstr "Paraules clau"
+
+#: templates/default/catalog/whistlist.html:7
+msgid "Whistlist"
+msgstr "Llista de desitjos"
+
+#: templates/default/catalog/whistlist.html:24
+msgid "Product Name"
+msgstr "Nom del producte"
+
+#: templates/default/catalog/whistlist.html:26
+msgid "Price"
+msgstr "Preu"
+
+#: templates/default/catalog/whistlist.html:42
+#: templates/default/sale/checkout.html:58
+msgid "Remove Item"
+msgstr "Treu el producte"
+
+#: templates/default/catalog/tags/product_related.html:5
+msgid "There are not related products"
+msgstr "No hi ha productes relacionats"
+
+#: templates/default/catalog/type/simple.html:3
+#: templates/default/catalog/type/variants.html:3
+msgid "Code"
+msgstr "Codi"
+
+#: templates/default/catalog/type/simple.html:4
+#: templates/default/catalog/type/variants.html:4
+msgid "EAN13"
+msgstr "EAN13"
+
+#: templates/default/catalog/type/simple.html:8
+#: templates/default/catalog/type/variants.html:11
+msgid "Add to cart"
+msgstr "Afegeix a la cistella"
+
+#: templates/default/contact/form.html:30
+#: templates/default/contact/form.html:34
+msgid "Contact"
+msgstr "Contacta"
+
+#: templates/default/contact/form.html:35
+#: templates/default/partner/partner.html:14
 msgid "Name"
 msgstr "Nom"
 
-#: templates/accounts/partner.html:41
-msgid "Street"
-msgstr "Carrer"
-
-#: templates/accounts/partner.html:42
-msgid "Zip"
-msgstr "Codi postal"
-
-#: templates/accounts/partner.html:43
-msgid "City"
-msgstr "Ciutat"
-
-#: templates/accounts/partner.html:44
-msgid "Country"
-msgstr "País"
-
-#: templates/accounts/partner.html:52
-msgid "email"
+#: templates/default/contact/form.html:36
+#: templates/default/partner/register.html:85
+#: templates/default/partner/remember.html:33
+msgid "Email"
 msgstr "Correu electrònic"
 
-#: templates/accounts/partner.html:53
-msgid "phone"
-msgstr "Telèfon"
+#: templates/default/contact/form.html:37
+msgid "Message"
+msgstr "Missatge"
 
-#: templates/accounts/partner.html:54
-msgid "Save Data"
-msgstr "Guarda dades"
+#: templates/default/contact/form.html:40
+#: templates/default/search/resultSearch.html:11
+msgid "Submit"
+msgstr "Envia"
 
-#: templates/accounts/profile.html:18
+#: templates/default/partner/changepassword.html:19
+msgid "Insert your new password"
+msgstr "Introduiu la nova contrasenya"
+
+#: templates/default/partner/changepassword.html:32
+#: templates/default/partner/menu.html:8
+#: templates/default/partner/profile.html:20
+msgid "Change password"
+msgstr "Canvia contrasenya"
+
+#: templates/default/partner/login.html:17
+msgid "Log in or Create an Account"
+msgstr "Identifiqueu-vos o creeu un compte"
+
+#: templates/default/partner/login.html:23
+#: templates/default/partner/register.html:41
+msgid "New customers"
+msgstr "Nous clients"
+
+#: templates/default/partner/login.html:24
+msgid ""
+"If you create an account in our store, you could buy , gain access the "
+"orders and the invoices quickly and more facilities."
+msgstr ""
+"Si creeu un compte a la nostra botiga, podreu comprar, tenir accés a les "
+"comandes i a les factures de forma ràpida i més facilitats."
+
+#: templates/default/partner/login.html:27
+msgid "Registered customers"
+msgstr "Clients registrats"
+
+#: templates/default/partner/login.html:28
+msgid "If you have an account with us, please log in."
+msgstr "Si teniu un compte amb nosaltres, si us plau, identifiqueu-vos."
+
+#: templates/default/partner/login.html:44
+#: templates/default/partner/register.html:103
+msgid "Create new account"
+msgstr "Crea un compte"
+
+#: templates/default/partner/login.html:49
+msgid "Remember Password"
+msgstr "Recordeu contrasenya"
+
+#: templates/default/partner/login.html:50
+#: templates/default/partner/register.html:104
+msgid "Required Fields"
+msgstr "Camps requerits"
+
+#: templates/default/partner/menu.html:4
+#: templates/default/partner/profile.html:17
+#: templates/default/payment/cashondelivery.html:20
+#: templates/default/payment/check.html:20 templates/default/sale/order.html:6
+#: templates/default/sale/orders.html:6 templates/default/sale/payment.html:26
+msgid "Orders"
+msgstr "Comandes"
+
+#: templates/default/partner/menu.html:5
+#: templates/default/partner/partner.html:18
+#: templates/default/sale/order.html:24
+msgid "Invoice"
+msgstr "Factura"
+
+#: templates/default/partner/menu.html:6
+msgid "Account"
+msgstr "Compte"
+
+#: templates/default/partner/menu.html:6
+#: templates/default/partner/profile.html:19
+msgid "Your account"
+msgstr "El seu compte"
+
+#: templates/default/partner/partner.html:15
+msgid "VAT"
+msgstr "NIF"
+
+#: templates/default/partner/partner.html:17
+#: templates/default/partner/register.html:55
+msgid "Address"
+msgstr "Adreça"
+
+#: templates/default/partner/partner.html:19
+msgid "There are not invoice address available"
+msgstr "No hi ha adreça de factura disponible."
+
+#: templates/default/partner/partner.html:23
+#: templates/default/sale/checkout.html:68
+#: templates/default/sale/order.html:23
+msgid "Delivery"
+msgstr "Lliurament"
+
+#: templates/default/partner/partner.html:24
+msgid "There are not delivery address available"
+msgstr "No hi ha adreça de lliurament disponible."
+
+#: templates/default/partner/profile.html:14
 #, python-format
 msgid "Hello %(full_name)s."
 msgstr "Hola %(full_name)s."
 
-#: templates/accounts/profile.html:21
-msgid "List all instances"
-msgstr "Llista totes les instàncies"
-
-#: templates/accounts/profile.html:22
-msgid "Create an instance"
-msgstr "Crea una instància"
-
-#: templates/accounts/profile.html:23
-msgid "Your details"
+#: templates/default/partner/profile.html:19
+msgid "Your acccount"
 msgstr "El seu compte"
 
-#: templates/accounts/profile.html:24
-msgid "Your invoices"
-msgstr "Les seves factures"
+#: templates/default/partner/register.html:44
+msgid "Customer"
+msgstr "Client"
 
-#: templates/accounts/register.html:44
+#: templates/default/partner/register.html:48
+msgid "Vat"
+msgstr "NIF"
+
+#: templates/default/partner/register.html:59
+msgid "ZIP"
+msgstr "Codi postal"
+
+#: templates/default/partner/register.html:63
+msgid "City"
+msgstr "Ciutat"
+
+#: templates/default/partner/register.html:67
+msgid "Country"
+msgstr "País"
+
+#: templates/default/partner/register.html:74
 msgid "Login user"
 msgstr "Usuari registrat"
 
-#: templates/accounts/register.html:55
-#: templates/accounts/remember.html:33
-#: templates/contact/form.html:36
-msgid "Email"
-msgstr "Correu electrònic"
+#: templates/default/partner/register.html:88
+msgid "Remember?"
+msgstr "Recorda?"
 
-#: templates/accounts/register.html:62
-msgid "For create an Account insert same number"
-msgstr "Per crear un compte introdueixi el text següent"
+#: templates/default/partner/register.html:92
+msgid "To create an Account insert the same number"
+msgstr "Per crear un compte introdiu el mateix número"
 
-#: templates/accounts/remember.html:29
+#: templates/default/partner/remember.html:29
 msgid "Insert your email and username and new password are you send it"
-msgstr "Introdueixi el correu electrònic i se li enviarà una nova constrasenya."
+msgstr ""
+"Introdueixi el correu electrònic i se li enviarà una nova constrasenya."
 
-#: templates/accounts/remember.html:39
+#: templates/default/partner/remember.html:39
 msgid "Remember"
 msgstr "Recorda"
 
-#: templates/contact/form.html:30
-#: templates/contact/form.html.py:34
-msgid "Contact"
-msgstr "Contacta"
+#: templates/default/payment/cashondelivery.html:18
+#, python-format
+msgid ""
+"Your order %(order)s is created successfully. Remember do payment when "
+"receive delivery:"
+msgstr ""
+"La seva comanda %(order)s s'ha creat correctament. Recordeu de fer el "
+"pagament quan rebeu la comanda:"
 
-#: templates/contact/form.html:37
-msgid "Message"
-msgstr "Missatge"
+#: templates/default/payment/cashondelivery.html:20
+#: templates/default/payment/check.html:20
+msgid "Go Orders for more details and status order"
+msgstr "Ves a les comandes per a més detalls i a l'estat de la comanda"
 
-#: templates/contact/form.html:40
-#: templates/search/resultSearch.html:11
-msgid "Submit"
-msgstr "Envia"
+#: templates/default/payment/check.html:18
+#, python-format
+msgid "Your order %(order)s is created successfully. Remember do payment at:"
+msgstr ""
+"La seva comanda %(order)s s'ha creat correctament. Recordeu de fer el "
+"pagament:"
 
-#: templates/search/resultSearch.html:8
-#: templates/search/resultSearch.html:10
+#: templates/default/sale/checkout.html:9
+msgid ""
+"Could you confirm the order?\\nThen you will redirect payment type to finish "
+"your order"
+msgstr ""
+"Podeu confirmar la comanda?\\nA continuació, us renviarem per realitzar el "
+"pagament i finalitzar la comanda"
+
+#: templates/default/sale/checkout.html:9
+msgid "Order confirmation"
+msgstr "Confirmació de la comanda"
+
+#: templates/default/sale/checkout.html:14
+msgid "You are cancel this order! Don't you like it?"
+msgstr "Ha cancelat la comanda! Et deixes algo?"
+
+#: templates/default/sale/checkout.html:47
+msgid "Delete"
+msgstr "Elimina"
+
+#: templates/default/sale/checkout.html:51
+msgid "Your cart is empty"
+msgstr "La seva cistella està buida"
+
+#: templates/default/sale/checkout.html:64
+msgid "Untaxed Amount"
+msgstr "Base"
+
+#: templates/default/sale/checkout.html:65
+msgid "Taxes"
+msgstr "Impostos"
+
+#: templates/default/sale/checkout.html:74
+#: templates/default/sale/order.html:68 templates/default/sale/orders.html:38
+#: templates/default/sale/payment.html:26
+msgid "Payment"
+msgstr "Pagament"
+
+#: templates/default/sale/checkout.html:81
+msgid "Confirm"
+msgstr "Confirma"
+
+#: templates/default/sale/checkout.html:90
+#: templates/default/sale/order.html:35
+msgid "Address Delivery"
+msgstr "Adreça de lliurament"
+
+#: templates/default/sale/order.html:21 templates/default/sale/orders.html:24
+msgid "Date Confirm"
+msgstr "Confirmeu la data"
+
+#: templates/default/sale/order.html:21 templates/default/sale/orders.html:35
+msgid "Pending"
+msgstr "Pendent"
+
+#: templates/default/sale/order.html:68 templates/default/sale/payment.html:56
+msgid "Make Payment"
+msgstr "Fer el pagament"
+
+#: templates/default/sale/orders.html:41
+msgid "There are not orders avaible. There's nothing you like?"
+msgstr "No hi ha comandes. No hi ha res que t'agradi?"
+
+#: templates/default/sale/payment.html:39
+msgid "Number"
+msgstr "Número"
+
+#: templates/default/sale/payment.html:47
+msgid "Select payment"
+msgstr "Seleccioneu el pagament"
+
+#: templates/default/sale/payment.html:52
+msgid "Please select payment"
+msgstr "Si us plau, seleccioneu el pagament"
+
+#: templates/default/search/resultSearch.html:8
+#: templates/default/search/resultSearch.html:10
 msgid "Search"
 msgstr "Cerca"
 
-#: templates/search/resultSearch.html:16
+#: templates/default/search/resultSearch.html:16
 #, python-format
 msgid "There are %(num_results)s resultat(s)."
 msgstr "Hi ha %(num_results)s resultat(s)."
 
-#: templates/search/resultSearch.html:23
+#: templates/default/search/resultSearch.html:23
 #, python-format
 msgid "There aren't some result with %(search)s."
 msgstr "No hi han resultats disponibles amb %(search)s."
 
+#~ msgid "Address Delivey"
+#~ msgstr "Adreça de lliurament"
+
+#~ msgid "Spanish"
+#~ msgstr "Castellà"
+
+#~ msgid ""
+#~ "By creating an account with our store, you will be able to move through "
+#~ "the checkout process faster, view and track your orders and instances in "
+#~ "your account and more."
+#~ msgstr ""
+#~ "Amb la creació d'un compte al nostre SaaS, podreu realitzar el procés "
+#~ "d'alta d'instàncies d'OpenERP, el seguiment de les seves comandes i més."
+
+#~ msgid "Instance"
+#~ msgstr "Instància"
+
+#~ msgid "Instances"
+#~ msgstr "Instàncies"
+
+#~ msgid "Partner"
+#~ msgstr "Empresa"
+
+#~ msgid "Street"
+#~ msgstr "Carrer"
+
+#~ msgid "Zip"
+#~ msgstr "Codi postal"
+
+#~ msgid "phone"
+#~ msgstr "Telèfon"
+
+#~ msgid "Save Data"
+#~ msgstr "Guarda dades"
+
+#~ msgid "List all instances"
+#~ msgstr "Llista totes les instàncies"
+
+#~ msgid "Create an instance"
+#~ msgstr "Crea una instància"
+
+#~ msgid "Your details"
+#~ msgstr "El seu compte"
+
+#~ msgid "Your invoices"
+#~ msgstr "Les seves factures"
+
 #~ msgid "ZZSaaS. Your OpenERP application get it"
 #~ msgstr "ZZSaaS. El teu OpenERP llest per treballar"
+
 #~ msgid "ZZSaaS :: OpenERP online ready to work"
 #~ msgstr "ZZSaaS. El teu OpenERP llest per treballar"
+
 #~ msgid "OpenERP"
 #~ msgstr "OpenERP"
+
 #~ msgid "Online demo are avaible"
 #~ msgstr "Versió demo disponible"
+
 #~ msgid "OpenERP Demostration"
 #~ msgstr "Demostració OpenERP"
+
 #~ msgid "Demo"
 #~ msgstr "Demo"
+
 #~ msgid "More About OpenERP"
 #~ msgstr "Més sobre OpenERP"
+
 #~ msgid "See all the power and functionality OpenERP"
 #~ msgstr "Consulti totes les característiques i funcionalitat d'OpenERP"
+
 #~ msgid "About OpenERP"
 #~ msgstr "Sobre OpenERP"
+
 #~ msgid "Learn More"
 #~ msgstr "Llegir més"
+
 #~ msgid "Create Account"
 #~ msgstr "Crea un compte"
+
 #~ msgid ""
 #~ "Create Account is very easy. Only requiered one name and your OpenERP are "
 #~ "use to work"
 #~ msgstr ""
 #~ "Crear el vostre propi OpenERP és molt senzill. Només requereix un nom i "
 #~ "OpenERP ja el tindrà operatiu per treballar"
+
 #~ msgid "Download"
 #~ msgstr "Descarrega"
+
 #~ msgid "Download GTK and Koo client for Desktop"
 #~ msgstr "Descarrega el client d'escriptori GTK/Koo"
-#~ msgid "Prices"
-#~ msgstr "Tarifes"
+
 #~ msgid ""
 #~ "OpenERP SaaS: 50 euros/month<br/>Spanish localization configuration are "
 #~ "avaible"
 #~ msgstr ""
 #~ "OpenERP SaaS: 50 euros/mes<br/>Configuració de localització espanyola "
 #~ "inclosa"
+
 #~ msgid "ZZSaas is a service OpenERP Software as Service by Zikzakmedia"
 #~ msgstr "ZZSaaS és un servei de programari OpenERP de Zikzakmedia"
+
 #~ msgid "About us"
 #~ msgstr "Sobre nosaltres"
+
 #~ msgid "ZZSaas - Your OpenERP application get it"
 #~ msgstr "ZZSaaS. El teu OpenERP llest per treballar"
+
 #~ msgid "Blog"
 #~ msgstr "Blog"
-#~ msgid "My account"
-#~ msgstr "El meu compte"
+
 #~ msgid "SaaS Service"
 #~ msgstr "Serveis SaaS"
+
 #~ msgid "FAQ"
 #~ msgstr "FAQ"
+
 #~ msgid "Modules"
 #~ msgstr "Mòduls"
+
 #~ msgid "Historial"
 #~ msgstr "Historial"
+
 #~ msgid "OpenERP Clients"
 #~ msgstr "Clients OpenERP"
+
 #~ msgid "OpenERP Modules"
 #~ msgstr "Mòduls OpenERP"
+
 #~ msgid "Documentation"
 #~ msgstr "Documentació"
-#~ msgid "Suport"
-#~ msgstr "Suport"
+
 #~ msgid "News"
 #~ msgstr "Novetats"
+
 #~ msgid "See all blog"
 #~ msgstr "Veure totes les novetats"
+
 #~ msgid "Service"
 #~ msgstr "Serveis"
+
 #~ msgid "Avaible services"
 #~ msgstr "Serveis disponibles"
+
 #~ msgid "Services and conditions"
 #~ msgstr "Serveis i condicions"
-#~ msgid "previous"
-#~ msgstr "anterior"
-#~ msgid "Page"
-#~ msgstr "Pàgina"
+
 #~ msgid "of"
 #~ msgstr "de"
-#~ msgid "next"
-#~ msgstr "següent"
+
 #~ msgid "Thanks for your feedback"
 #~ msgstr "Gràcies pel seu feedback"
+
 #~ msgid "Feedback"
 #~ msgstr "Feedback"
+
 #~ msgid ""
 #~ "Questions? Not find an answer to your question? Help us to improve this "
 #~ "documentation."
 #~ msgstr ""
 #~ "Preguntes? No ha trobat la resposta? Ajudi'ns a millorar la documentació."
+
 #~ msgid "All last 100 changes history (logs) by Zikzakmedia"
 #~ msgstr ""
 #~ "A continuació es llisten els últims 100 canvis de l'historial (logs), "
 #~ "realitzats en el repositori d'OpenERP de Zikzakmedia."
+
 #~ msgid "Description legend"
 #~ msgstr "Llegenda de les descripcions"
+
 #~ msgid "[ADD] Add"
 #~ msgstr "[ADD] Afegeix"
+
 #~ msgid "[IMP] Improve"
 #~ msgstr "[IMP] Millora, noves funcionalitats"
-#~ msgid "[DEL] Delete"
-#~ msgstr "[DEL] Elimina"
+
 #~ msgid "[FIX] Fixed"
 #~ msgstr "[FIX] Correcció d'errors"
+
 #~ msgid "History"
 #~ msgstr "Historial"
+
 #~ msgid "Author"
 #~ msgstr "Autor"
+
 #~ msgid "Version"
 #~ msgstr "Versió"
+
 #~ msgid "Your Payment are successfully"
 #~ msgstr "El seu pagament s'ha realitzat correctament"
+
 #~ msgid "Redirection a Servired. One moment..."
 #~ msgstr "Redireccionant a Servired. Un moment..."
+
 #~ msgid "Password"
 #~ msgstr "Contrasenya"
+
 #~ msgid "Cancel"
 #~ msgstr "Cancel·la"
+
 #~ msgid "Create"
 #~ msgstr "Crea"
+
 #~ msgid "Enter your firstname"
 #~ msgstr "Introduzca el nom"
+
 #~ msgid "Enter your password"
 #~ msgstr "Introduiu la contrasenya"
+
 #~ msgid "Accept"
 #~ msgstr "Acceptar"
+
 #~ msgid "Create Instance"
 #~ msgstr "Crea una instància"
+
 #~ msgid ""
 #~ "The creation of the instance is not valid until payment for it by credit "
 #~ "card. Until your payment, your request will not be created."
@@ -369,53 +836,52 @@ msgstr "No hi han resultats disponibles amb %(search)s."
 #~ "La creació de la instancia no serà vàlida fins el pagament d'ella "
 #~ "mitjançant targeta de crèdit. Fins el seu pagament, la seva instància no "
 #~ "serà creada."
+
 #~ msgid "Only az09 characters"
 #~ msgstr "Només carácters az09"
+
 #~ msgid "Min. 6 characters"
 #~ msgstr "Mínim 6 caràcters"
+
 #~ msgid "Min. 8 characters"
 #~ msgstr "Mínim 8 caràcters"
+
 #~ msgid "I have read and accept the Terms of Use."
 #~ msgstr "He llegit i accepto les condicions d'ús."
+
 #~ msgid "Generate Instance"
 #~ msgstr "Genera instància"
+
 #~ msgid "Payment Credit Card"
 #~ msgstr "Pagament amb targeta de crèdit"
+
 #~ msgid "Status"
 #~ msgstr "Estat"
+
 #~ msgid "Server"
 #~ msgstr "Servidor"
+
 #~ msgid "NET-RPC"
 #~ msgstr "NET-RPC"
+
 #~ msgid "XML-RPC"
 #~ msgstr "XML-RPC"
-#~ msgid "Payment"
-#~ msgstr "Pagament"
-#~ msgid "There are not instance avaible. Create one"
-#~ msgstr "No hi han instàncies disponibles. Crea una."
+
 #~ msgid "Create New Instance"
 #~ msgstr "Crea una nova instància"
-#~ msgid "Number"
-#~ msgstr "Número"
-#~ msgid "Date"
-#~ msgstr "Data"
-#~ msgid "Description"
-#~ msgstr "Descripció"
-#~ msgid "Total"
-#~ msgstr "Total"
-#~ msgid "State"
-#~ msgstr "Estat"
-#~ msgid "There are not invoices avaible."
-#~ msgstr "No hi han factures disponibles."
+
 #~ msgid "500 Error"
 #~ msgstr "500 Error"
+
 #~ msgid "Thanks for your message. We will respond soon."
 #~ msgstr ""
 #~ "Gràcies pel seu missatge. En breu ens posarem en contacte amb vosaltres"
+
 #~ msgid "What is OpenERP"
 #~ msgstr "Que és OpenERP"
+
 #~ msgid "Trainning"
 #~ msgstr "Formació"
+
 #~ msgid "Evolution of OpenERP"
 #~ msgstr "Evolució d'OpenERP"
-

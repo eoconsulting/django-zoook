@@ -7,32 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-09 14:11+0100\n"
-"PO-Revision-Date: 2011-02-22 11:47+0100\n"
-"Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-07-12 10:55+0200\n"
+"PO-Revision-Date: 2011-07-13 23:52+0100\n"
+"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: views.py:15
+#: views.py:37
 msgid "Contact"
 msgstr "Contacta"
 
-#: views.py:24
-msgid "Error with captcha number. Copy same number."
+#: views.py:49
+msgid "Error with captcha number. Copy the same number."
 msgstr "Error amb el codi de verificació. Copia el mateix codi."
 
-#: views.py:26
+#: views.py:51
 #, python-format
 msgid "Contact - %(name)s"
 msgstr "Contacta - %(name)s"
 
-#: views.py:27
+#: views.py:52
 #, python-format
 msgid ""
-"This is email generates with Contact Module from %(site)s\n"
+"This email is generated with Contact Module from %(site)s\n"
 "\n"
 "%(name)s - %(email)s\n"
 "%(message)s"
@@ -42,11 +42,11 @@ msgstr ""
 "%(name)s - %(email)s\n"
 "%(message)s"
 
-#: views.py:33
-msgid "Thanks for your message. We will respond soon."
-msgstr "Gràcies pel seu missatge. En breu li respondrem."
+#: views.py:57
+msgid "Thanks for your message. We will answer soon."
+msgstr "Gràcies pel seu missatge. En breu respondrem."
 
-#: views.py:35
+#: views.py:59
 msgid "Sorry! This form is not valid. Try again."
 msgstr "Disculpeu! La informació enviada no és correcta. Torneu a provar."
 

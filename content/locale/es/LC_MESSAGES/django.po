@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-02 10:26+0100\n"
+"POT-Creation-Date: 2011-07-13 23:53+0200\n"
 "PO-Revision-Date: 2011-02-22 11:58+0100\n"
 "Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,67 +16,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: enums.py:10
+#: enums.py:32
 msgid "Active"
 msgstr "Activo"
 
-#: enums.py:11
+#: enums.py:33
 msgid "Inactive"
 msgstr "Inactivo"
 
-#: models.py:11
+#: models.py:34
 msgid "created by"
 msgstr "creado por"
 
-#: models.py:12
+#: models.py:35
 msgid "created on"
 msgstr "creado"
 
-#: models.py:13
+#: models.py:36
 msgid "updated on"
 msgstr "actualizado"
 
-#: models.py:14
+#: models.py:37
 msgid "updated by"
 msgstr "actualizado por"
 
-#: models.py:20
+#: models.py:45
 msgid "slug"
 msgstr "slug"
 
-#: models.py:20
-msgid "This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"
-msgstr "Este es un identificador único que permite mostrar los detalles de su contenido, por ejemplo 'como-puedo-contribuir'"
+#: models.py:45
+msgid ""
+"This is a unique identifier that allows your contents to display its detail "
+"view, ex 'how-can-i-contribute'"
+msgstr ""
+"Este es un identificador único que permite mostrar los detalles de su "
+"contenido, por ejemplo 'como-puedo-contribuir'"
 
-#: models.py:21
+#: models.py:46
 msgid "description"
 msgstr "descripción"
 
-#: models.py:24
+#: models.py:49
 msgid "status"
 msgstr "estado"
 
-#: models.py:24
+#: models.py:49
 msgid "Only contents with their status set to 'Active' will be displayed."
 msgstr "Sólo se mostrarán los contenidos con el estado 'Activo'."
 
-#: models.py:25
+#: models.py:50
 msgid "sort order"
 msgstr "ordenación"
 
-#: models.py:25
+#: models.py:50
 msgid "The order you would like the content to be displayed."
 msgstr "El orden con el que le gustaría que se mostrara el contenido"
 
-#: models.py:26
+#: models.py:51
 msgid "If don't specific template, use default.html template"
 msgstr "Si no se especifica plantilla, se utilizará la plantilla default.html"
 
-#: models.py:29
+#: models.py:54
 msgid "content"
 msgstr "contenido"
 
-#: models.py:30
+#: models.py:55
 msgid "contents"
 msgstr "contenidos"
-

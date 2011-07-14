@@ -7,88 +7,91 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-21 10:20+0100\n"
-"PO-Revision-Date: 2011-02-23 09:15+0100\n"
-"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-07-12 10:55+0200\n"
+"PO-Revision-Date: 2011-07-14 10:03+0100\n"
+"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:13
-msgid "partner"
-msgstr "empresa"
-
-#: models.py:14
-msgid "partners"
-msgstr "empresas"
-
-#: views.py:39
+#: views.py:63
 msgid "Login"
 msgstr "Entrar"
 
-#: views.py:40
-#: views.py:193
+#: views.py:64
+#: views.py:291
 #, python-format
 msgid "Account frontpage of %(site)s"
 msgstr "Página principal de la cuenta de %(site)s"
 
-#: views.py:52
+#: views.py:79
 msgid "Sorry. Your user is not active."
 msgstr "Su usuario no está activo."
 
-#: views.py:54
+#: views.py:81
 msgid "Sorry. Your username or password is not valid."
 msgstr "Su usuario o contraseña no son válidos."
 
-#: views.py:65
+#: views.py:95
 msgid "Create an Account"
 msgstr "Crear una cuenta"
 
-#: views.py:66
+#: views.py:96
 #, python-format
 msgid "Create an Account of %(site)s"
 msgstr "Crear una cuenta de %(site)s"
 
-#: views.py:83
+#: views.py:120
 #, python-format
 msgid "Username is short. Minimum %(size)s characters"
 msgstr "Nombre de usuario corto. Mínimo %(size)s caracteres"
 
-#: views.py:86
+#: views.py:123
 #, python-format
 msgid "Password is short. Minimum %(size)s characters"
 msgstr "Contraseña corta. Mínimo %(size)s caracteres"
 
-#: views.py:94
-#: views.py:176
+#: views.py:131
+#: views.py:277
 msgid "Sorry. This email is not valid. Try again"
 msgstr "Esta dirección de correo electrónico no es válida. Vuelva a intentarlo."
 
-#: views.py:99
-#: views.py:151
+#: views.py:136
 msgid "Error with captcha number. Copy same number."
 msgstr "Error en el código de verificación. Copie el mismo número."
 
-#: views.py:103
-msgid "Sorry. This user are exists. Use another username"
-msgstr "Este usuario ya existeix. Utilitze otro nombre."
+#: views.py:140
+msgid "Sorry. This user already exists. Use another username"
+msgstr "Este usuario ya existe. Utiliza otro nombre usuario"
 
-#: views.py:106
-msgid "Sorry. This email are exists. Use another email or remember password"
+#: views.py:143
+msgid "Sorry. This email already exists. Use another email or remember password"
 msgstr "Este correo electrónico ya existe. Utilice otro o recuerde la contraseña."
 
-#: views.py:115
+#: views.py:150
+#: views.py:337
+msgid "Error when connecting with our ERP. Try again or cantact us"
+msgstr "Error conectando con nuestro ERP. Vuelva a intentarlo o, contacte con nosotros."
+
+#: views.py:155
+msgid "Sorry. This VAT already exists our ERP. Contact Us for create a new user"
+msgstr "Este CIF/NIF ya existe en nuestro ERP. Contacte con nosotros para crearte un usuario a la tienda"
+
+#: views.py:164
+msgid "Vat not valid. Check if vat is correct"
+msgstr "NIF/CIF no válido. Compruebe que el NIF/CIF es correcto."
+
+#: views.py:212
 #, python-format
-msgid "New user added - %(name)s"
+msgid "New user is added - %(name)s"
 msgstr "Nuevo usuario %(name)s"
 
-#: views.py:116
-#: views.py:166
+#: views.py:213
 #, python-format
 msgid ""
-"This is email automatically from %(site)s\n"
+"This email is generated automatically from %(site)s\n"
 "\n"
 "Username: %(username)s\n"
 "Password: %(password)s\n"
@@ -99,74 +102,98 @@ msgid ""
 msgstr ""
 "Este correo electrónico se ha enviado automáticamente desde %(site)s\n"
 "\n"
-"Nombre de usuari: %(username)s\n"
+"Nombre de usuario: %(username)s\n"
 "Contraseña: %(password)s\n"
 "\n"
 "%(live_url)s\n"
 "\n"
 "Por favor, no conteste este correo"
 
-#: views.py:124
+#: views.py:221
 msgid "Sorry. Error form values. Try again"
 msgstr "Error en los valores del formulario. Vuelva a intentarlo."
 
-#: views.py:127
-#: views.py:226
-msgid "Sorry. Passwords don't match. Try again"
+#: views.py:224
+msgid "Sorry. Passwords do not match. Try again"
 msgstr "Las contraseñas no coinciden. Vuelva a intentarlo."
 
-#: views.py:140
+#: views.py:241
 msgid "Remember"
 msgstr "Recuerde"
 
-#: views.py:141
+#: views.py:242
 #, python-format
 msgid "Remember account of %(site)s"
 msgstr "Recuerdatorio de la cuenta de %(site)s"
 
-#: views.py:165
+#: views.py:252
+msgid "Error with captcha number. Copy the same number."
+msgstr "Error en el código de verificación. Copie el mismo número."
+
+#: views.py:266
 #, python-format
 msgid "Remember username - %(name)s"
 msgstr "Recuerdatorio del usuario - %(name)s"
 
-#: views.py:170
+#: views.py:267
 #, python-format
-msgid "A new password are you send it to %(email)s"
+msgid ""
+"This email is generated  automatically from %(site)s\n"
+"\n"
+"Username: %(username)s\n"
+"Password: %(password)s\n"
+"\n"
+"%(live_url)s\n"
+"\n"
+"Please, do not answer the email"
+msgstr ""
+"Este correo electrónico se ha enviado automáticamente desde %(site)s\n"
+"\n"
+"Nombre de usuario: %(username)s\n"
+"Contraseña: %(password)s\n"
+"\n"
+"%(live_url)s\n"
+"\n"
+"Por favor, no conteste este correo"
+
+#: views.py:271
+#, python-format
+msgid "A new password are sent to %(email)s"
 msgstr "Se ha enviado una nueva contraseña a su cuenta %(email)s"
 
-#: views.py:173
+#: views.py:274
 msgid "Sorry. This email not exist. Try again"
 msgstr "Esta dirección de correo electrónico no existe. Vuelva a intentarlo."
 
-#: views.py:192
+#: views.py:290
 #, python-format
 msgid "Profile %(full_name)s"
 msgstr "Perfil %(full_name)s"
 
-#: views.py:203
+#: views.py:299
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: views.py:204
+#: views.py:300
 #, python-format
 msgid "Change password of %(site)s"
 msgstr "Cambiar contraseña de %(site)s"
 
-#: views.py:218
+#: views.py:315
 #, python-format
-msgid "New password added - %(name)s"
+msgid "New password is added - %(name)s"
 msgstr "Añadida nueva contraseña - %(name)s"
 
-#: views.py:219
+#: views.py:316
 #, python-format
 msgid ""
-"This is email automatically from %(site)s\n"
+"This email is generated  automatically from %(site)s\n"
 "\n"
 "New password: %(password)s\n"
 "\n"
 "%(live_url)s\n"
 "\n"
-"Please, don't answer this email"
+"Please, do not answer the email"
 msgstr ""
 "Este correo electrónico se ha enviado automáticamente desde %(site)s\n"
 "\n"
@@ -176,37 +203,38 @@ msgstr ""
 "\n"
 "Por favor, no conteste este correo electrónico"
 
-#: views.py:222
-msgid "New password added"
-msgstr "Nueva contraseña añadida"
+#: views.py:319
+msgid "New password is added"
+msgstr "Se ha añadido una nueva contraseña"
 
-#: views.py:224
+#: views.py:321
 #, python-format
 msgid "Sorry. Passwords need %(size)s characters or more. Try again"
 msgstr "Las contraseñas deben tener %(size)s caracteres o más. Vuelva a intentarlo."
 
-#: views.py:240
-msgid "Error connecting with our ERP. Try again or cantact us"
-msgstr "Error conectando con nuestro ERP. Vuelva a intentarlo o contacte con nosotros."
+#: views.py:323
+msgid "Sorry. Passwords don't match. Try again"
+msgstr "Las contraseñas no coinciden. Vuelva a intentarlo."
 
-#: views.py:249
-msgid "Partner Profile"
-msgstr "Perfil de empresa"
+#: views.py:333
+msgid "Are you a customer? Please, contact us. We will create a new role"
+msgstr "¿Eres cliente? Contacte con nosotros. Os crearemos un cliente en nuestra tienda"
 
-#: views.py:250
+#: views.py:344
+msgid "User Profile"
+msgstr "Perfil de usuario"
+
+#: views.py:345
 #, python-format
-msgid "Partner profile of %(site)s"
-msgstr "Perfil de empresa de %(site)s"
+msgid "User profile of %(site)s"
+msgstr "Perfil de usuario de %(site)s"
 
-#: views.py:279
-msgid "Vat not valid. Check if vat is correct"
-msgstr "NIF/CIF no válido. Compruebe que el NIF/CIF es correcto."
-
-#: views.py:311
-msgid "Your details are updated successfully"
-msgstr "Sus datos se han actualizado correctamente"
-
-#: views.py:315
-msgid "Error validation form. Try again"
-msgstr "Error en la validación del formulario. Vuelva a intentarlo"
+#~ msgid "partner"
+#~ msgstr "empresa"
+#~ msgid "partners"
+#~ msgstr "empresas"
+#~ msgid "Your details are updated successfully"
+#~ msgstr "Sus datos se han actualizado correctamente"
+#~ msgid "Error validation form. Try again"
+#~ msgstr "Error en la validación del formulario. Vuelva a intentarlo"
 

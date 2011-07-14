@@ -7,50 +7,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-15 08:46+0100\n"
-"PO-Revision-Date: 2011-02-22 13:32+0100\n"
-"Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-07-12 10:55+0200\n"
+"PO-Revision-Date: 2011-07-13 14:11+0100\n"
+"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: enums.py:10
+#: enums.py:32
 msgid "Active"
 msgstr "Actiu"
 
-#: enums.py:11
+#: enums.py:33
 msgid "Inactive"
 msgstr "Inactiu"
 
-#: models.py:12
+#: models.py:34
 msgid "name"
-msgstr "nom"
+msgstr "Nom"
 
-#: models.py:13
+#: models.py:35
 msgid "position"
-msgstr "posició"
+msgstr "Posició"
 
-#: models.py:14
+#: models.py:36
 msgid "description"
-msgstr "descripció"
+msgstr "Descripció"
 
-#: models.py:15
+#: models.py:37
 msgid "status"
-msgstr "estat"
+msgstr "Estat"
 
-#: models.py:15
+#: models.py:37
 msgid "Only modules with their status set to 'Active' will be displayed."
 msgstr "Només es mostraran els mòduls amb l'estat 'Actiu'."
 
-#: models.py:18
+#: models.py:40
 msgid "module"
-msgstr "mòdul"
+msgstr "Mòdul"
 
-#: models.py:19
+#: models.py:41
 msgid "modules"
-msgstr "mòduls"
+msgstr "Mòduls"
 
 #~ msgid "spanish"
 #~ msgstr "espanyol"

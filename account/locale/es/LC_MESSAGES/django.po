@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-07-14 00:19+0200\n"
+"PO-Revision-Date: 2011-07-14 00:22+0100\n"
+"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: views.py:39
+#: views.py:63
+msgid "Are you a customer? Please, contact us. We will create a new role"
+msgstr "¿Eres cliente? Contacte con nosotros. Os crearemos como cliente en la tienda."
+
+#: views.py:44
+#: views.py:68
+msgid "Error when connecting with our ERP. Try again or cantact us"
+msgstr "Error en conectar con nuestro ERP. Intente de nuevo o, contacte con nosotros"
+
+#: views.py:53
+msgid "All Invoices"
+msgstr "Todas las facturas"
+
+#: views.py:54
+#, python-format
+msgid "List all invoices of %s"
+msgstr "Listado de todas las facturas de %s"
+
+#: views.py:73
+msgid "It is not allowed to view this section or not found. Use navigation menu."
+msgstr "No tiene permisos para ver esta sección o no se encuentra. Utilize el menú de navegación."
+
+#: views.py:77
+#, python-format
+msgid "Invoice %s"
+msgstr "Factura %s"
+
+#: views.py:78
+#, python-format
+msgid "Details invoice %s"
+msgstr "Detalles de la factura %s"
+

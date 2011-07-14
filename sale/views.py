@@ -75,7 +75,7 @@ def order(request, order):
 
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
     if len(values) == 0:
-        error = _('It is Not allowed to view this section or not found. Use navigation menu.')
+        error = _('It is not allowed to view this section or not found. Use navigation menu.')
         return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
@@ -112,7 +112,7 @@ def payment(request, order):
     payments = sale_shop.zoook_payment_types
     
     title = _('Payment Order %s') % (value.name)
-    metadescription = _('Payment order %s') % (value.name)
+    metadescription = _('Payment Order %s') % (value.name)
 
     return render_to_response("sale/payment.html", {'title': title, 'metadescription': metadescription, 'value': value, 'payments': payments}, context_instance=RequestContext(request))
 
