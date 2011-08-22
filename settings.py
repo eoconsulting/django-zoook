@@ -104,7 +104,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'localeurl.middleware.LocaleURLMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
 )
 
 ROOT_URLCONF = 'zoook.urls'
@@ -132,6 +131,7 @@ INSTALLED_APPS = (
     'sale',
     'check',
     'cashondelivery',
+    'tools.filemanager',
 )
 
 AUTH_PROFILE_MODULE = "partner.AuthProfile"

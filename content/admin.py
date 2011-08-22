@@ -25,7 +25,12 @@ from content.models import *
 from datetime import datetime
 
 class ContentAdmin(admin.ModelAdmin):
-
+    fieldsets = [
+        (None,   {'fields': ['name','slug']}),
+        ('Description', {'fields': ['description_en','description_es','description_ca']}),
+        ('SEO', {'fields': ['metadesc_en','metadesc_es','metadesc_ca','metakey_en','metakey_es','metakey_ca']}),
+        ('Page', {'fields': ['status','sort_order','template']}),
+    ]
     list_display = (
         'name',
         'slug',
@@ -39,6 +44,12 @@ class ContentAdmin(admin.ModelAdmin):
     search_fields = ["name", "description"]
     list_filter = ["status"]
     prepopulated_fields = {'slug': ('name',)}
+
+    class Media:
+        js = (
+            'js/ckeditor/ckeditor.js',
+            'js/ckeditor.js',
+        )
 
     def save_model(self, request, obj, form, change): 
         """

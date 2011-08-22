@@ -1,0 +1,55 @@
+{% extends "admin/change_form.html" %}
+
+{% block after_field_sets %}
+<script type="text/javascript">
+    var CKeditor = new CKEDITOR.replace('id_description_en', { 
+        customConfig : '', 
+        language : 'en',
+        toolbar :
+        [
+            ['Source','-','Undo','Redo'],
+            ['Find','Replace','-','SelectAll','RemoveFormat'],
+            ['Link', 'Unlink', 'Image'],
+            ['Bold', 'Italic','Underline'],
+            ['NumberedList','BulletedList','-','Blockquote'],
+            ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
+        ],
+        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+    });
+    var CKeditor = new CKEDITOR.replace('id_description_es', { 
+        customConfig : '', 
+        language : 'es', 
+        toolbar :
+        [
+            ['Source','-','Undo','Redo'],
+            ['Find','Replace','-','SelectAll','RemoveFormat'],
+            ['Link', 'Unlink', 'Image'],
+            ['Bold', 'Italic','Underline'],
+            ['NumberedList','BulletedList','-','Blockquote'],
+            ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
+        ],
+        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+
+    });
+    var CKeditor = new CKEDITOR.replace('id_description_ca', { 
+        customConfig : '', 
+        language : 'ca', 
+        toolbar :
+        [
+            ['Source','-','Undo','Redo'],
+            ['Find','Replace','-','SelectAll','RemoveFormat'],
+            ['Link', 'Unlink', 'Image'],
+            ['Bold', 'Italic','Underline'],
+            ['NumberedList','BulletedList','-','Blockquote'],
+            ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
+        ],
+        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+
+    });
+
+    CKeditor.BasePath = "/static/js/ckeditor/";
+</script>
+{% endblock %}
