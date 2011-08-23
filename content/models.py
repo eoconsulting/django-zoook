@@ -24,6 +24,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from django.utils.translation import get_language
 from transmeta import TransMeta
 
 from datetime import datetime
@@ -36,13 +37,12 @@ class ContentBase(models.Model):
     updated_on = models.DateTimeField(_('updated on'), editable=False)
     updated_by = models.ForeignKey(User, null=True, editable=False, verbose_name=_('updated by'))
 
-
 class Content(ContentBase):
     """Content"""
     __metaclass__ = TransMeta
 
-    name = models.CharField(max_length=256)
-    slug = models.SlugField(_('slug'), max_length=100, help_text=_("This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"), unique=True)
+    name = models.CharField(_('Name'), max_length=256)
+    slug = models.SlugField(_('slug'), max_length=128, help_text=_("This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"), unique=True)
     description = models.TextField( _('description'))
     metadesc = models.TextField('metadesc')
     metakey = models.TextField('metakey')
@@ -54,7 +54,13 @@ class Content(ContentBase):
         verbose_name = _('content')
         verbose_name_plural = _('contents')
         ordering = ['-created_on']
-        translate = ('description','metadesc','metakey',)
+        translate = (
+            'name',
+            'slug',
+            'description',
+            'metadesc',
+            'metakey',
+        )
 
     def __unicode__(self):
         return self.name
@@ -62,3 +68,6 @@ class Content(ContentBase):
     def save(self):
         self.updated_on = datetime.now()
         super(Content, self).save()
+
+    def get_absolute_url(self):
+        return '/%s/%s' % (get_language(), self.slug)

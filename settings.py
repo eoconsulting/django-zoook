@@ -113,6 +113,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
@@ -120,6 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'localeurl',
     'base',
     'partner',

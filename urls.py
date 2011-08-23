@@ -21,8 +21,12 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
+from django.contrib.sitemaps import GenericSitemap
+
 from views import index
 from settings import MEDIA_ROOT
+from sitemaps import sitemaps
+from transurl import *
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -30,9 +34,18 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r"^$", index),
-    (r"^catalog/", include("catalog.urlsCatalog")),
-    (r"^product/", include("catalog.urlsProduct")),
+    #~ catalog 
+    (r"^%s/" % catalog_url['en'], include("catalog.urlsCatalog")),
+    (r"^%s/"% catalog_url['en'], include("catalog.urlsCatalog")),
+    (r"^%s/"% catalog_url['en'], include("catalog.urlsCatalog")),
+    #~ product 
+    (r"^%s/" % product_url['en'], include("catalog.urlsProduct")),
+    (r"^%s/" % product_url['es'], include("catalog.urlsProduct")),
+    (r"^%s/" % product_url['es'], include("catalog.urlsProduct")),
+    #~ contact 
     (r"^contact/", include("contact.urlsContact")),
+    (r"^contacto/", include("contact.urlsContact")),
+    (r"^contacte/", include("contact.urlsContact")),
 #    (r"^search/", include("search.urlsSearch")),
     (r"^partner/", include("partner.urlsPartner")),
     (r"^sale/", include("sale.urlsSale")),
@@ -43,4 +56,5 @@ urlpatterns = patterns('',
     (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
     (r"^payment/check/", 'check.views.index'),
     (r"^payment/cashondelivery/", 'cashondelivery.views.index'),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 )

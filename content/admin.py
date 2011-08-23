@@ -26,7 +26,7 @@ from datetime import datetime
 
 class ContentAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,   {'fields': ['name','slug']}),
+        (None,   {'fields': ['name_en','name_es','name_ca','slug_en','slug_es','slug_ca']}),
         ('Description', {'fields': ['description_en','description_es','description_ca']}),
         ('SEO', {'fields': ['metadesc_en','metadesc_es','metadesc_ca','metakey_en','metakey_es','metakey_ca']}),
         ('Page', {'fields': ['status','sort_order','template']}),
@@ -43,7 +43,11 @@ class ContentAdmin(admin.ModelAdmin):
     )
     search_fields = ["name", "description"]
     list_filter = ["status"]
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {
+        'slug_en': ('name_en',),
+        'slug_es': ('name_es',),
+        'slug_ca': ('name_ca',),
+    }
 
     class Media:
         js = (

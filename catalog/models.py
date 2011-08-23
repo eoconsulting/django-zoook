@@ -21,9 +21,12 @@
 ############################################################################################
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
+from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language
 from transmeta import TransMeta
+
+from transurl import catalog_url, product_url
 
 '''OpenERP Models'''
 class ProductCategory(models.Model):
@@ -32,7 +35,7 @@ class ProductCategory(models.Model):
 
     name = models.CharField(_('Name'), max_length=128)
     description = models.TextField(_('Description'), null=True, blank=True)
-    slug = models.CharField(_('Slug'), max_length=128, null=True, blank=True)
+    slug = models.SlugField(_('slug'), max_length=128, help_text=_("This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"), unique=True)
     fslug = models.CharField(_('Full Slug'), max_length=256, null=True, blank=True)
     metatitle = models.CharField(_('Title'), max_length=128, null=True, blank=True)
     metakeyword = models.TextField(_('Keyword'), null=True, blank=True)
@@ -72,6 +75,9 @@ class ProductCategory(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return '/%s/%s/%s/' % (get_language(), catalog_url[get_language()], self.fslug)
+
 class ProductTemplate(models.Model):
     """ProductTemplate OpenERP"""
     __metaclass__ = TransMeta
@@ -110,6 +116,9 @@ class ProductTemplate(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return '/%s/%s/%s' % (get_language(), product_url[get_language()], self.slug)
 
 class ProductProduct(models.Model):
     """ProductProduct OpenERP"""
