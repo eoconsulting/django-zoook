@@ -113,7 +113,6 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'filebrowser',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
@@ -141,5 +140,6 @@ AUTH_PROFILE_MODULE = "partner.AuthProfile"
 LOCALE_INDEPENDENT_PATHS = (
     re.compile('^/static/'),
     re.compile('^/media/'),
-    re.compile('^/admin/'),
+    re.compile('^/manager/'),
+    re.compile('^/filemanager/'),
 )

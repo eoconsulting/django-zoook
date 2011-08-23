@@ -11,4 +11,4 @@ var fileRoot = '/static/upload/';
 // Show image previews in grid views?
 var showThumbs = true;
 
-var django_view = '../../../filemanager_connectors/';
+var django_view = '../../../filemanager/';

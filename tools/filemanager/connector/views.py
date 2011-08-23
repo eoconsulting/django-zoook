@@ -6,7 +6,10 @@
 #
 from django.http import HttpResponse
 from django.utils import simplejson
+from django.utils.translation import ugettext as _
 from django.core.servers.basehttp import FileWrapper
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 from settings import PATH as PROJECT_DIR
 
@@ -38,9 +41,8 @@ def dirlist(request):
             ff=os.path.join((PROJECT_DIR + d),f)
 
             if os.path.isdir(ff):
-                pass
-                #~ if f != ".svn" and f != ".DS_Store":
-                    #~ r.append('<li class="directory collapsed"><a href="#" rel="%s/">%s</a></li>' % (d+f,f))
+                if f != ".svn" and f != ".DS_Store":
+                    r.append('<li class="directory collapsed"><a href="#" rel="%s/">%s</a></li>' % (d+f,f))
             else:
                 if f != ".svn" and f != ".DS_Store": 
                     e=os.path.splitext(f)[1][1:] # get .ext and remove dot
@@ -54,7 +56,7 @@ def dirlist(request):
         r.append('Could not load directory: %s %s' % (d, traceback.format_tb(tb)))
     r.append('</ul>')
 
-    request.session["upload_path"] = ff
+    request.session["upload_path"] = d
 
     return HttpResponse(''.join(r))
 
@@ -119,7 +121,7 @@ def getInfo(request, request_path):
 
 def handle_uploaded_file(request, f):
     upload_path = request.session.get("upload_path", '/static/upload/')
-    destination = open((PROJECT_DIR + upload_path + f.name), 'wb+')
+    destination = open((PROJECT_DIR + upload_path + f.name.lower()), 'wb+')
     for chunk in f.chunks():
         destination.write(chunk)
     destination.close()
@@ -129,13 +131,14 @@ def handle_uploaded_file(request, f):
         'Code' : "0",
         'Error' : ""
     }
-
     return result
 
+@login_required
+@csrf_exempt
 def handler(request):
     if request.method == "POST":
         try:
-            result = handle_uploaded_file(request, request.FILES["newfile"])     
+            result = handle_uploaded_file(request, request.FILES["newfile"])
             return HttpResponse('<textarea>' + encode_json(result) + '</textarea>')
         except:
             type, value, tb = sys.exc_info()
@@ -173,7 +176,7 @@ def handler(request):
 
             try:
                 print "old:" + split_path(old)[0].replace(PROJECT_DIR, "")
-                print "newpath:" + split_path(newpath)[0].replace(PROJECT_DIR, "")	
+                print "newpath:" + split_path(newpath)[0].replace(PROJECT_DIR, "")
                 os.rename(old, newpath)
                 error_message = newname
                 success_code = "0"
@@ -182,7 +185,7 @@ def handler(request):
                 print >> sys.stderr,  type.__name__, ":", value
                 print >> sys.stderr, '\n'.join(traceback.format_tb(tb))
                 success_code = "500"
-                error_message = "There was an error renaming the file."
+                error_message = _('There was an error renaming the file.')
 
             if os.path.isdir(newpath+"/"):
                 newpath += '/'
@@ -202,16 +205,16 @@ def handler(request):
             fullpath = PROJECT_DIR + request.GET["path"]
             if os.path.isdir(fullpath+"/"):
                 if not fullpath[-1]=='/':
-                    fullpath += '/'                
+                    fullpath += '/'
 
             try:
                 directory = split_path(fullpath)[0]
                 name = split_path(fullpath)[-1]
                 os.remove(fullpath)
-                error_message = name + ' was deleted successfully.'
+                error_message = _('%(name)s was deleted successfully.') % {'name':name}
                 success_code = "0"
             except:
-                error_message = "There was an error deleting the file. <br/> The operation was either not permitted or it may have already been deleted."
+                error_message = _('There was an error deleting the file. <br/> The operation was either not permitted or it may have already been deleted.')
                 success_code = "500"
             
             result = {
@@ -233,13 +236,13 @@ def handler(request):
                 try:
                     os.mkdir(newPath)
                     success_code = "0"
-                    error_message = 'Successfully created folder.'
+                    error_message = _('Successfully created folder.')
                 except:
-                    error_message = 'There was an error creating the directory.'
+                    error_message = _('There was an error creating the directory.')
                     success_code = "500"
             else:
                 success_code = "500"
-                error_message = 'There is no Root Directory.'
+                error_message = _('There is no Root Directory.')
 
             result = {
                 'Path' : request.GET["path"],
