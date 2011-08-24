@@ -20,13 +20,25 @@
 #
 ############################################################################################
 
+from django.utils.translation import ugettext_lazy as _
+
 DEBUG = True
+
+"""
+Django global configuration
+"""
+SITE_TITLE = _('Zoook. OpenERP e-sale')
+SITE_DESCRIPTION = _('Zikzakmedia. Working free GNU tools')
+CONTACT_EMAIL = ['zikzak@zikzakmedia.com']
+RSS_MAX = 10
 
 """
 OpenERP Conf
 """
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
 OERP_COMPANY = 1 #Account Invoice. All invoices... use this Company ID.
+VAT_CODE = ['ES']
+COUNTRY_DEFAULT = 'ES'
 
 """
 Log's conf
@@ -54,8 +66,8 @@ DATABASES = {
         'USER': 'openerp',      # Not used with sqlite3.
         'PASSWORD': 'openerp',  # Not used with sqlite3.
         'HOST': 'localhost',    # Set to empty string for localhost. Not used with sqlite3.
-#        'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
-        'PORT': '5433',
+        'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
+#        'PORT': '5433',
     }
 }
 

@@ -24,9 +24,11 @@ from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import get_language
-from transmeta import TransMeta
 
+from transmeta import TransMeta
 from transurl import catalog_url, product_url
+
+from datetime import datetime
 
 '''OpenERP Models'''
 class ProductCategory(models.Model):
@@ -76,12 +78,13 @@ class ProductCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return '/%s/%s/%s' % (get_language(), catalog_url[get_language()], self.fslug)
+        return '/%s/%s/%s/' % (get_language(), catalog_url[get_language()], self.fslug)
 
 class ProductTemplate(models.Model):
     """ProductTemplate OpenERP"""
     __metaclass__ = TransMeta
 
+    created_on = models.DateTimeField(_('created on'), default=datetime.now, editable=False)
     name = models.CharField(_('Name'), max_length=128)
     categ = models.ManyToManyField('ProductCategory', null=True, blank=True, related_name='categ_s')
     shortdescription = models.TextField(_('Short Description'), null=True, blank=True)
@@ -116,6 +119,10 @@ class ProductTemplate(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self):
+        self.created_on = datetime.now()
+        super(ProductTemplate, self).save()
 
     def get_absolute_url(self):
         return '/%s/%s/%s' % (get_language(), product_url[get_language()], self.slug)

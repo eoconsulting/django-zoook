@@ -21,7 +21,6 @@
 ############################################################################################
 
 from config import *
-from django.utils.translation import ugettext_lazy as _
 
 import os
 import re
@@ -37,12 +36,6 @@ CATALOG_ORDERS = ['price','name']
 
 USER_LENGHT = 8
 KEY_LENGHT = 6
-
-SITE_TITLE = _('Zoook. OpenERP e-sale')
-CONTACT_EMAIL = ['zikzak@zikzakmedia.com']
-
-VAT_CODE = ['ES']
-COUNTRY_DEFAULT = 'ES'
 
 LOGIN_URL = '/partner/'
 LOGIN_REDIRECT_URL = '/'

@@ -58,8 +58,8 @@
                 <div class="product-item block border5 clearfix">
                    <div class="product-name" title="{{product.name}}"><h2>{{product.name}}</h2></div>
                     <ul class="add-to">
-                        <li><a href="/{{ LANGUAGE_CODE }}/catalog/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a></li>
-                        {% if user.is_authenticated %}<li><span class="separator">|</span><a href="/{{ LANGUAGE_CODE }}/catalog/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
+                        <li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a></li>
+                        {% if user.is_authenticated %}<li><span class="separator">|</span><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
                     </ul>
 
                     <div class="social_network">

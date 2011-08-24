@@ -4,8 +4,8 @@
 {% load modules %}
 
 {% block head %}{% endblock %}
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/catalog/">{% trans "Catalog" %}</a></li>
-{% for path in categories_path %}<li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/catalog/{{path.fslug}}">{{path.name}}</a></li>{% endfor %}</ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/">{% trans "Catalog" %}</a></li>
+{% for path in categories_path %}<li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/{{path.fslug}}">{{path.name}}</a></li>{% endfor %}</ul></div>{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
@@ -47,8 +47,8 @@
                     </div>
                     <a  href="/{{ LANGUAGE_CODE }}/product/{{value.product.slug}}" class="button-details">{% trans "Details" %}</a>
                     <ul class="add-to">
-                        {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/catalog/whistlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/whistlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
-                        <li><a href="/{{ LANGUAGE_CODE }}/catalog/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>
+                        {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/whistlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
+                        <li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>
                     </ul>
                 </li>{% endfor %}
             </ul>
@@ -65,8 +65,8 @@
                         </div>
                         <button class="border2" onclick="detailProduct('{{value.product.slug}}','{{LANGUAGE_CODE}}')">{% trans "Details" %}</button>
                         <ul class="add-to">
-                            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/catalog/whistlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/whistlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
-                            <li><a href="/{{ LANGUAGE_CODE }}/catalog/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>
+                            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/whistlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
+                            <li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>
                         </ul>
                     </li>{% endfor %}
             </ul>

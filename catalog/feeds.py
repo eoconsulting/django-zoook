@@ -20,18 +20,23 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from catalog.views import *
-from catalog.feeds import *
+from django.contrib.syndication.views import Feed
+from django.utils.translation import get_language
 
-"""Urls Catalog"""
-urlpatterns = patterns("",
-    (r'^$', 'catalog.views.index'),
-    (r"^updateprice", 'catalog.views.updateprice',''),
-    (r"^compare", 'catalog.views.compare',''),
-    (r"^whistlist", 'catalog.views.whistlist',''),
-    (r"^rss/$", ProductFeed()),
-    (r"^.+/(?P<category>[^/]+)/$", 'catalog.views.category'),
-    (r"(?P<category>[^/]+)/$", 'catalog.views.category'),
-#    (r"^(?P<category>[^/]+)/$", 'catalog.views.category'),
-)
+from catalog.models import ProductTemplate
+from transurl import *
+from config import *
+
+class ProductFeed(Feed):
+    title = SITE_TITLE
+    link = "/%s/" % (catalog_url[get_language()])
+    description = SITE_DESCRIPTION
+
+    def items(self):
+        return ProductTemplate.objects.order_by('-created_on')[:RSS_MAX]
+
+    def item_title(self, item):
+        return item.name
+
+    def item_description(self, item):
+        return item.description

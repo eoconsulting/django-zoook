@@ -8,7 +8,7 @@
     <meta name="description" content="{{ metadescription }}" />
     <meta name="generator" content="OpenERP. Django Python Framework" />
     <title>{{ title }}</title>
-
+    <link href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/rss/" rel="alternate" type="application/rss+xml" title="RSS 2.0" />
     <link href="{{ MEDIA_URL }}images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <link href="{{ MEDIA_URL }}css/style.css" rel="stylesheet" type="text/css" media="screen">
@@ -41,7 +41,7 @@
         <ul class="links">
             <li class="first">{% if not user.is_authenticated %}<a href="/{{ LANGUAGE_CODE }}/partner/">{% trans "Login" %}</a>{% else %}<a href="/{{ LANGUAGE_CODE }}/partner/logout/">{% trans "Logout" %}</a>{% endif %}</li>
             {% if user.is_authenticated %}<li class="first"><a href="/{{ LANGUAGE_CODE }}/partner/">{% trans "My Account" %}</a></li>{% endif %}
-            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/catalog/whistlist/">{% trans "My Whistlist" %}</a></li>{% endif %}
+            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist/">{% trans "My Whistlist" %}</a></li>{% endif %}
             {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/sale/checkout/">{% trans "My Cart" %}</a></li>{% endif %}
             {% for language in LANGUAGES %}<li><a href="/{{ language.0 }}/" alt="{{ language.1 }}">{{ language.1|capfirst  }}</a></li>{% endfor %}
         </ul>
