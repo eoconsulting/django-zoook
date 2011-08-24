@@ -29,6 +29,7 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 /* Containers -------------------------------------------------------------------------------------------- */
 .page	{ width:940px; margin:0 auto }
 .page-wrap	{ }
+#page-footer { margin-top:10px; border-top:1px solid #ff0404;}
 
 #sidebar	{ float:right; width:220px }
 #content	{ float:left; width:700px }
@@ -86,3 +87,7 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 
 /* Message */
 #message h1 { font-size:18px}
+
+/* Zoook Doc */
+.zoook-doc{ margin-top:10px}
+#zoook-doc-boxright{ float: right; padding-left:5px; width: 200px; border-left: 1px solid #bfbfbf}

@@ -1,0 +1,8 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Zoook site admin' %}{% endblock %}
+
+{% block branding %}<h1 id="site-name">{% trans 'Zoook administration' %}</h1>{% endblock %}
+
+{% block footer %}<p style="text-align:center;">{% trans 'Licence' %}: <strong>AGPL-3</strong>. {% trans 'Develop by' %} <a href="http://www.zikzakmedia.com" title="Zikzakmedia">Zikzakmedia</a></p>{% endblock %}

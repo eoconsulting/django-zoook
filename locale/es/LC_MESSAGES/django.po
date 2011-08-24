@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-14 09:46+0200\n"
-"PO-Revision-Date: 2011-07-14 10:00+0100\n"
+"POT-Creation-Date: 2011-08-24 13:08+0200\n"
+"PO-Revision-Date: 2011-08-24 13:10+0100\n"
 "Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,28 @@ msgstr "Error"
 #: templates/default/error.html:10
 msgid "An unexpected error has occurred and has not been able to continue. Repeat again or contact us."
 msgstr "Ha sucedido un error inesperado y no se puede continuar. Inténtelo de nuevo o contacte con nosotros."
+
+#: templates/default/layout.html:11
+#: templates/default/layout.html.py:44
+#: templates/default/catalog/category.html:7
+#: templates/default/catalog/category.html:8
+#: templates/default/catalog/category.html:50
+#: templates/default/catalog/category.html:51
+#: templates/default/catalog/category.html:68
+#: templates/default/catalog/category.html:69
+#: templates/default/catalog/index.html:5
+#: templates/default/catalog/index.html:18
+#: templates/default/catalog/product.html:61
+#: templates/default/catalog/product.html:62
+#: templates/default/catalog/whistlist.html:7
+#: templates/default/catalog/whistlist.html:42
+#: templates/default/catalog/tags/horizontal_menu.html:17
+#: templates/default/catalog/tags/horizontal_menu.html:19
+#: templates/default/catalog/tags/horizontal_menu.html:21
+#: templates/default/catalog/tags/horizontal_menu.html:22
+#: templates/default/partner/menu.html:7
+msgid "catalog"
+msgstr "catalogo"
 
 #: templates/default/layout.html:31
 msgid "Zoook - e-sale for OpenERP"
@@ -60,6 +82,16 @@ msgstr "Mi lista de deseos"
 #: templates/default/layout.html:45
 msgid "My Cart"
 msgstr "Mi carrito"
+
+#: templates/default/layout.html:57
+#: templates/default/admin/base_site.html:8
+msgid "Licence"
+msgstr "Licencia"
+
+#: templates/default/layout.html:57
+#: templates/default/admin/base_site.html:8
+msgid "Develop by"
+msgstr "Desarrollado por"
 
 #: templates/default/account/invoice.html:6
 #: templates/default/account/invoices.html:6
@@ -176,6 +208,14 @@ msgstr "Siguiente"
 #: templates/default/account/invoices.html:37
 msgid "The invoices  are not  avaible. Don't you like something?"
 msgstr "No hay facturas disponibles. No le gusta nada de nuestra tienda?"
+
+#: templates/default/admin/base_site.html:4
+msgid "Zoook site admin"
+msgstr "Zoook administración web"
+
+#: templates/default/admin/base_site.html:6
+msgid "Zoook administration"
+msgstr "Zoook administración"
 
 #: templates/default/catalog/category.html:7
 #: templates/default/catalog/index.html:5
@@ -342,6 +382,10 @@ msgstr "Añadir al carrito"
 #: templates/default/contact/form.html:34
 msgid "Contact"
 msgstr "Contacto"
+
+#: templates/default/contact/form.html:32
+msgid "contact"
+msgstr "contacto"
 
 #: templates/default/contact/form.html:35
 #: templates/default/partner/partner.html:14
