@@ -20,26 +20,55 @@
 #
 ############################################################################################
 
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.contrib import admin
 
-from transmeta import TransMeta
+from tools.cms.models import *
 
-import modules.enums as enums
+"""
+Menus Admin
+"""
+class MenuAdmin(admin.ModelAdmin):
 
-class Modules(models.Model):
-    """Category FAQ."""
-    __metaclass__ = TransMeta
+    list_display = (
+        'name',
+        'slug',
+        'base_url'
+    )
+    search_fields = ["name", "base_url"]
+    prepopulated_fields = {
+        'slug': ('name',),
+    }
 
-    name = models.CharField(_('name'), max_length=255)
-    position = models.CharField(_('position'), max_length=255)
-    description = models.TextField(verbose_name=_('description'))
-    status = models.IntegerField(_('status'), choices=enums.MODULES_STATUS_CHOICES, default=enums.STATUS_INACTIVE, help_text=_("Only modules with their status set to 'Active' will be displayed."))
+admin.site.register(Menu,MenuAdmin)
 
-    class Meta:
-        verbose_name = _('module')
-        verbose_name_plural = _('modules')
-        translate = ('description', )
+class MenuItemAdmin(admin.ModelAdmin):
 
-    def __unicode__(self):
-        return self.name
+    list_display = (
+        'title',
+        'menu',
+        'order',
+        'link_url'
+    )
+    search_fields = ["title", "menu","link_url"]
+    list_filter = ["login_required"]
+
+admin.site.register(MenuItem,MenuItemAdmin)
+
+"""
+Modules Admin
+"""
+class ModulesAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'name',
+        'position',
+        'status'
+    )
+
+    class Media:
+        js = (
+            'js/ckeditor/ckeditor.js',
+            'js/ckeditor.js',
+        )
+
+admin.site.register(Modules,ModulesAdmin)

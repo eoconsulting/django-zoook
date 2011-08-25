@@ -20,42 +20,15 @@
 #
 ############################################################################################
 
-from django import template
-from django.template import Library, Node
-from zoook.modules.models import Modules
+"""
+Home base for all application enums.
+"""
+from django.utils.translation import ugettext_lazy as _
 
-register = template.Library()
+STATUS_ACTIVE = 1
+STATUS_INACTIVE = 0
 
-class ModuleNode(Node):
-    def __init__(self, position):
-        self.position = position
- 
-    def render(self, context):
-        entry = ''
-        entries = Modules.objects.filter(position=self.position,status=True)
-        if entries:
-            entry = entries[0].description
-
-        return entry
-
-def module(parser, token):
-    """
-    Show Module data CMS:
-
-    Basic tag Syntax::
-        {% module [position]%}
-
-    *position* Key ID position Module
-
-    Demo:
-      {% module catalog.right %}
-    """
-
-    parts = token.split_contents()
-
-    if len(parts) < 1:
-        raise template.TemplateSyntaxError("'module' tag must be of the form:  {% module identification%}")
-
-    return ModuleNode(parts[1])
-
-register.tag(module)
+CMS_STATUS_CHOICES = (
+    (STATUS_ACTIVE, _('Active')),
+    (STATUS_INACTIVE, _('Inactive')),
+)

@@ -6,7 +6,7 @@
 .links a:hover	{ color:#703f45 }
 .links li.last	{ border:0 }
 
-#nav		        { font-size:16px; font-weight:normal; margin:20px 0 0 0; height:40px; position:relative; border-top:1px solid #D2D6D8; border-bottom:1px solid #D2D6D8;  z-index:999;}
+#nav		        { font-size:16px; font-weight:normal; margin:20px 0 0 0; height:40px; position:relative; border-top:1px solid #D2D6D8; border-bottom:1px solid #D2D6D8; z-index:999;}
 #nav .topmenu		{ float:left; }
 #nav .topmenu a		{ display:block; float:left; color:#e2001a; padding:4px 19px 0 4px; line-height:36px; height:36px; margin-left:10px; position:relative }
 #nav .topmenu a:hover	{ color:#e2001a }

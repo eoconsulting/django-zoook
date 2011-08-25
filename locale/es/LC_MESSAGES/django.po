@@ -7,14 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-24 13:08+0200\n"
-"PO-Revision-Date: 2011-08-24 13:10+0100\n"
-"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-08-25 17:29+0200\n"
+"PO-Revision-Date: 2011-08-25 17:33+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: settings.py:36
+msgid "Spanish"
+msgstr "Castellano"
+
+#: settings.py:37
+msgid "Catalan"
+msgstr "Catalán"
+
+#: views.py:30
+msgid "Zoook :: e-sale for OpenERP"
+msgstr "Zoook :: OpenERP e-sale"
 
 #: templates/default/404.html:9
 msgid "404 Not Found"
@@ -30,7 +42,7 @@ msgid "An unexpected error has occurred and has not been able to continue. Repea
 msgstr "Ha sucedido un error inesperado y no se puede continuar. Inténtelo de nuevo o contacte con nosotros."
 
 #: templates/default/layout.html:11
-#: templates/default/layout.html.py:44
+#: templates/default/layout.html.py:43
 #: templates/default/catalog/category.html:7
 #: templates/default/catalog/category.html:8
 #: templates/default/catalog/category.html:50
@@ -51,44 +63,44 @@ msgstr "Ha sucedido un error inesperado y no se puede continuar. Inténtelo de n
 msgid "catalog"
 msgstr "catalogo"
 
-#: templates/default/layout.html:31
-msgid "Zoook - e-sale for OpenERP"
-msgstr "Zoook :: Canal de venta online para OpenERP"
+#: templates/default/layout.html:30
+msgid "Zoook - OpenERP e-sale"
+msgstr "Zoook - OpenERP e-sale"
 
-#: templates/default/layout.html:36
+#: templates/default/layout.html:35
 msgid "search"
 msgstr "Buscar"
 
-#: templates/default/layout.html:42
+#: templates/default/layout.html:41
 #: templates/default/partner/login.html:49
 msgid "Login"
 msgstr "Identificarse"
 
-#: templates/default/layout.html:42
+#: templates/default/layout.html:41
 #: templates/default/partner/menu.html:9
 #: templates/default/partner/profile.html:21
 msgid "Logout"
 msgstr "Salir"
 
-#: templates/default/layout.html:43
+#: templates/default/layout.html:42
 msgid "My Account"
 msgstr "Mi cuenta"
 
-#: templates/default/layout.html:44
+#: templates/default/layout.html:43
 #: templates/default/partner/menu.html:7
 msgid "My Whistlist"
 msgstr "Mi lista de deseos"
 
-#: templates/default/layout.html:45
+#: templates/default/layout.html:44
 msgid "My Cart"
 msgstr "Mi carrito"
 
-#: templates/default/layout.html:57
+#: templates/default/layout.html:59
 #: templates/default/admin/base_site.html:8
 msgid "Licence"
 msgstr "Licencia"
 
-#: templates/default/layout.html:57
+#: templates/default/layout.html:59
 #: templates/default/admin/base_site.html:8
 msgid "Develop by"
 msgstr "Desarrollado por"
@@ -378,6 +390,32 @@ msgstr "EAN13"
 msgid "Add to cart"
 msgstr "Añadir al carrito"
 
+#: templates/default/cms/modules/form.html:8
+msgid "Show this module in your site, also you need edit template and add this position"
+msgstr "Este módulo estará disponible si la posición se encuentra en las plantillas"
+
+#: templates/default/cms/modules/list.html:5
+#: templates/default/cms/tags/user_add.html:5
+msgid "Add"
+msgstr "Añadir"
+
+#: templates/default/cms/modules/list.html:7
+#: templates/default/contact/form.html:35
+#: templates/default/content/blank.html:14
+#: templates/default/partner/partner.html:14
+msgid "Name"
+msgstr "Nombre"
+
+#: templates/default/cms/modules/list.html:7
+msgid "Position"
+msgstr "Posición"
+
+#: templates/default/cms/modules/list.html:7
+#: templates/default/content/blank.html:18
+#: templates/default/content/default.html:23
+msgid "Status"
+msgstr "Estado"
+
 #: templates/default/contact/form.html:30
 #: templates/default/contact/form.html:34
 msgid "Contact"
@@ -386,11 +424,6 @@ msgstr "Contacto"
 #: templates/default/contact/form.html:32
 msgid "contact"
 msgstr "contacto"
-
-#: templates/default/contact/form.html:35
-#: templates/default/partner/partner.html:14
-msgid "Name"
-msgstr "Nombre"
 
 #: templates/default/contact/form.html:36
 #: templates/default/partner/register.html:85
@@ -406,6 +439,50 @@ msgstr "Mensaje"
 #: templates/default/search/resultSearch.html:11
 msgid "Submit"
 msgstr "Enviar"
+
+#: templates/default/content/blank.html:11
+#: templates/default/content/default.html:17
+msgid "More details"
+msgstr "Más detalles"
+
+#: templates/default/content/blank.html:13
+#: templates/default/content/default.html:19
+msgid "Field"
+msgstr "Campo"
+
+#: templates/default/content/blank.html:13
+#: templates/default/content/default.html:19
+msgid "Value"
+msgstr "Valor"
+
+#: templates/default/content/blank.html:15
+#: templates/default/content/default.html:20
+msgid "Slug"
+msgstr "Slug"
+
+#: templates/default/content/blank.html:16
+#: templates/default/content/default.html:21
+msgid "MetaDesc"
+msgstr "MetaDesc"
+
+#: templates/default/content/blank.html:17
+#: templates/default/content/default.html:22
+msgid "MetaKey"
+msgstr "MetaKey"
+
+#: templates/default/content/blank.html:19
+#: templates/default/content/default.html:24
+msgid "Sort Order"
+msgstr "Ordenación"
+
+#: templates/default/content/blank.html:20
+#: templates/default/content/default.html:25
+msgid "Template"
+msgstr "Plantilla"
+
+#: templates/default/content/default.html:17
+msgid "Edit"
+msgstr "Edita"
 
 #: templates/default/partner/changepassword.html:19
 msgid "Insert your new password"
@@ -658,8 +735,6 @@ msgstr "Hay %(num_results)s resultado(s)."
 msgid "There aren't some result with %(search)s."
 msgstr "No hay ningún resultado con %(search)s."
 
-#~ msgid "Spanish"
-#~ msgstr "Castellano"
 #~ msgid ""
 #~ "By creating an account with our store, you will be able to move through "
 #~ "the checkout process faster, view and track your orders and instances in "
@@ -686,8 +761,6 @@ msgstr "No hay ningún resultado con %(search)s."
 #~ msgstr "Listar todas las instáncias"
 #~ msgid "Create an instance"
 #~ msgstr "Crear una instanica"
-#~ msgid "Your details"
-#~ msgstr "Su cuenta"
 #~ msgid "Your invoices"
 #~ msgstr "Sus facturas"
 #~ msgid "ZZSaaS. Your OpenERP application get it"
@@ -826,8 +899,6 @@ msgstr "No hay ningún resultado con %(search)s."
 #~ msgstr "Generar instáncia"
 #~ msgid "Payment Credit Card"
 #~ msgstr "Pagar con tarjeta de crédito"
-#~ msgid "Status"
-#~ msgstr "Estado"
 #~ msgid "Server"
 #~ msgstr "Servidor"
 #~ msgid "NET-RPC"

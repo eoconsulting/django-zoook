@@ -20,3 +20,42 @@
 #
 ############################################################################################
 
+from django import template
+from django.template import Library, Node
+from zoook.tools.cms.models import Modules
+
+register = template.Library()
+
+class ModuleNode(Node):
+    def __init__(self, position):
+        self.position = position
+ 
+    def render(self, context):
+        entry = ''
+        entries = Modules.objects.filter(position=self.position,status=True)
+        if entries:
+            entry = entries[0].description
+
+        return entry
+
+def module(parser, token):
+    """
+    Show Module data CMS:
+
+    Basic tag Syntax::
+        {% module [position]%}
+
+    *position* Key ID position Module
+
+    Demo:
+      {% module catalog.right %}
+    """
+
+    parts = token.split_contents()
+
+    if len(parts) < 1:
+        raise template.TemplateSyntaxError("'module' tag must be of the form:  {% module identification%}")
+
+    return ModuleNode(parts[1])
+
+register.tag(module)

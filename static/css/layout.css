@@ -29,7 +29,7 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 /* Containers -------------------------------------------------------------------------------------------- */
 .page	{ width:940px; margin:0 auto }
 .page-wrap	{ }
-#page-footer { margin-top:10px; border-top:1px solid #ff0404;}
+#page-footer { margin-top:10px; border-top:1px solid #ff0404; text-align:center}
 
 #sidebar	{ float:right; width:220px }
 #content	{ float:left; width:700px }
@@ -41,6 +41,9 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 
 /* BLOCKS STYLES BASE */
 .block 	{ border:1px solid #e7e7e7 }
+#block-left{ padding-top:10px; padding-left:5px; float:left; width:200px}
+#block-right{ padding-top:10px; padding-left:5px; float:right; width:200px}
+#block-detail { padding-top:10px; border-top: 1px solid #bfbfbf}
 
 /* Header --------------------------------------------------------------------------------------------------------------- */
 .header-container { position:relative; background-color:#fff; height:164px }
@@ -77,6 +80,12 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 .col2-set .col-1 { float:left; }
 .col2-set .col-2 { float:right; }
 
+/* Footer */
+#page-footer-menu { padding: 0; margin:5px 0 0 10px}
+#page-footer-menu li { display: inline}
+#page-footer-menu li a { padding: 5px;}
+#page-footer-menu li a:hover { }  
+
 /* User */
 .new-users h3{ color:#e2001a; font-size:18px}
 .registered-users h3{ color:#e2001a; font-size:18px}
@@ -87,6 +96,34 @@ input, select, textarea	{ font-family:sans-serif; font-size:12px }
 
 /* Message */
 #message h1 { font-size:18px}
+
+/* Edit Frontend */
+.more-details { background: transparent url("../images/icons/edit.png") no-repeat left center; }
+h2.more-details {padding:5px 0 5px 20px; font-size:14px}
+.more-details span{ display: none;}
+.more-details-info { background: #92A4AE url(../images/icons/warning.gif) center no-repeat; background-position: 15px 50%; text-align: left; color: #ffffff; font-weight: bold; font-size: 14px; margin-bottom:10px; padding: 5px 20px 5px 60px; border-top: 2px solid #091626; border-bottom: 2px solid #091626}
+
+#table-details{ width:100%}
+#table-details .header{ background-color:#DF0000; color:#ffffff; font-weight:bold !important;}
+#table-details .field{ width:150px}
+#table-details .row0{ background-color: #f9f9f9}
+#table-details .row1{ background-color: #fff}
+
+/* user toolbar */
+#user-toolbar{ background-color:#DF0000; color:#ffffff; height:24px; position:relative; z-index:999;}
+.user-toolbar-page{ width:940px; margin:0 auto}
+ul.user-add{ width: 150px; border: 1px solid #000; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; background: #1a1a1a}
+ul.user-add li{ display: none; font-size: 12px}
+ul.user-add li.active{ display: block; color: #8c8c8c; font-size: 14px; padding: 2px; color: #555; border-top: 1px solid #313131; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;}
+ul.user-add li.active span{ background: transparent url("../images/dropdown.png") no-repeat scroll right center; padding-right: 24px; color: #8c8c8c;}
+ul.user-add li a{ display: block; text-decoration: none; padding: 8px 8px 8px 10px; background: #1e1e1e; border-bottom: 1px solid #171717;}
+ul.user-add li.last a{ border:0;}
+ul.user-add li.first a{ border-top: 3px solid #131313;}
+ul.user-add li a:hover{ background: #232323; color: #fff; padding-left: 11px;}
+
+/* Forms Models */
+#form-app-user label{float: left;width: 120px;font-weight: bold;}
+#form-app-user .errorlist{ color:#FF0000}
 
 /* Zoook Doc */
 .zoook-doc{ margin-top:10px}

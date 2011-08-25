@@ -13,22 +13,21 @@
 
     <link href="{{ MEDIA_URL }}css/style.css" rel="stylesheet" type="text/css" media="screen">
     <!--[if IE]>
-	    <link href="./static/css/style_ie.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="./static/css/style_ie.css" rel="stylesheet" type="text/css" media="screen">
     <![endif]-->
     <link href="{{ MEDIA_URL }}css/print.css" rel="stylesheet" type="text/css" media="print">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/zoook.js"></script>
-
+    {% if user.is_staff %}{% load inplace_edit %}{% inplace_media %}{% endif %}
     {% block head %}{% endblock %}
 </head>
 <body>
-
+{% load cms %}{% render_useradd %}
 <div class="page">
-
     <div class="header-container">
     
-    <h1 id="logo"><a href="/{{ LANGUAGE_CODE }}/"><img src="{{ MEDIA_URL }}images/logo.png" title="{% trans "Zoook - e-sale for OpenERP" %}"/></a></h1>
+    <h1 id="logo"><a href="/{{ LANGUAGE_CODE }}/"><img src="{{ MEDIA_URL }}images/logo.png" title="{% trans "Zoook - OpenERP e-sale" %}"/></a></h1>
 
     <div class="navigation">
         <form id="search_mini_form" action="/{{ LANGUAGE_CODE }}/search" method="get">
@@ -54,7 +53,10 @@
         {% block content %}{% endblock %}
     </div>
     <div id="page-footer">
-        {% trans 'Licence' %}: <strong>AGPL-3</strong>. {% trans 'Develop by' %} <a href="http://www.zikzakmedia.com" title="Zikzakmedia">Zikzakmedia</a>
+        <ul id="page-footer-menu">{% load menubuilder %}{% menu main-menu %}{% for item in menuitems %}
+            <li class="page-footer-menu {{ item.css }}"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></li>
+        {% endfor %}</ul>
+        <p>{% trans 'Licence' %}: <strong>AGPL-3</strong>. {% trans 'Develop by' %} <a href="http://www.zikzakmedia.com" title="Zikzakmedia">Zikzakmedia</a></p>
     </div>
 </div>  
 
@@ -64,6 +66,31 @@ $(document).ready(function() {
     {% block jqueryload %}{% endblock %}
 });
 </script>
+{% if user.is_staff %}<script type="text/javascript">
+/* User Add Menu */
+//variable global para controles dropdown
+var menu = $("ul.user-add");
 
+//control de eventos
+$(this.document).ready(function(){
+	menu.mouseover(function(){
+		displayOptions($(this).find("li"));
+	});
+	menu.mouseout(function(){
+		hideOptions($(this));
+	});	
+})
+
+//funcion que MUESTRA todos los elementos del menu
+function displayOptions(e){
+	e.show();
+}
+//funcion que OCULTA los elementos del menu
+function hideOptions(e){
+	e.find("li").hide();
+	e.find("li.active").show();
+}
+/* End User Add Menu */
+</script>{% endif %}
 </body>
 </html>

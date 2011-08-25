@@ -20,3 +20,25 @@
 #
 ############################################################################################
 
+from django import template
+from django.utils.translation import get_language, ugettext as _
+
+from settings import USER_ADD_APP
+
+register = template.Library()
+
+@register.inclusion_tag('cms/tags/user_add.html', takes_context = True)
+def render_useradd(context):
+    values = []
+    
+    if 'user' in context:
+        for app_add in USER_ADD_APP:
+            app  = app_add['app'].split('.')
+            model_edit = '%s.add_%s' % (app[0],app[1])
+            if context['user'].has_perm(model_edit):
+                values.append({'url':'/'+get_language()+app_add['url'],'string':app_add['string']})
+        if context['user'].is_staff:
+            values.append({'url':'/manager/','string':_('Go to Admin')})
+    return {
+        'values': values,
+    }

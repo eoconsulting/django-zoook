@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block head %}<script type="text/javascript" src="{{ url }}/static/js/ckeditor/ckeditor.js"></script> 
+<script type="text/javascript" src="{{ url }}/static/js/ckeditor.js"></script>{% endblock %}
+
+{% block content %}
+    <div class="more-details-info">{% trans "Show this module in your site, also you need edit template and add this position" %}</div>
+    <form action="{{ url_form }}" method="post" id="form-app-user">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Submit" />
+    </form>
+    
+<script type="text/javascript">
+    var CKeditor = new CKEDITOR.replace('id_description_en', { 
+        customConfig : '', 
+        language : 'en',
+        toolbar :
+        [
+            ['Source','-','Undo','Redo'],
+            ['Find','Replace','-','SelectAll','RemoveFormat'],
+            ['Link', 'Unlink', 'Image'],
+            ['Bold', 'Italic','Underline'],
+            ['NumberedList','BulletedList','-','Blockquote'],
+            ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
+        ],
+        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+    });
+    var CKeditor = new CKEDITOR.replace('id_description_es', { 
+        customConfig : '', 
+        language : 'es', 
+        toolbar :
+        [
+            ['Source','-','Undo','Redo'],
+            ['Find','Replace','-','SelectAll','RemoveFormat'],
+            ['Link', 'Unlink', 'Image'],
+            ['Bold', 'Italic','Underline'],
+            ['NumberedList','BulletedList','-','Blockquote'],
+            ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
+        ],
+        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+
+    });
+    var CKeditor = new CKEDITOR.replace('id_description_ca', { 
+        customConfig : '', 
+        language : 'ca', 
+        toolbar :
+        [
+            ['Source','-','Undo','Redo'],
+            ['Find','Replace','-','SelectAll','RemoveFormat'],
+            ['Link', 'Unlink', 'Image'],
+            ['Bold', 'Italic','Underline'],
+            ['NumberedList','BulletedList','-','Blockquote'],
+            ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
+        ],
+        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+
+    });
+
+    CKeditor.BasePath = "/static/js/ckeditor/";
+</script>
+{% endblock %}

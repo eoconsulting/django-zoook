@@ -32,29 +32,50 @@ from transurl import *
 from django.contrib import admin
 admin.autodiscover()
 
+js_info_dict = {
+    'packages': ('django.conf',
+                 'django.contrib.admin',
+                ),
+}
+
 urlpatterns = patterns('',
     (r"^$", index),
     #~ catalog 
     (r"^%s/" % catalog_url['en'], include("catalog.urlsCatalog")),
     (r"^%s/"% catalog_url['es'], include("catalog.urlsCatalog")),
     (r"^%s/"% catalog_url['ca'], include("catalog.urlsCatalog")),
+    
     #~ product 
     (r"^%s/" % product_url['en'], include("catalog.urlsProduct")),
     (r"^%s/" % product_url['es'], include("catalog.urlsProduct")),
     (r"^%s/" % product_url['ca'], include("catalog.urlsProduct")),
+    
     #~ contact
     (r"^%s/" % contact_url['en'], include("contact.urlsContact")),
     (r"^%s/" % contact_url['es'], include("contact.urlsContact")),
     (r"^%s/" % contact_url['ca'], include("contact.urlsContact")),
+
 #    (r"^search/", include("search.urlsSearch")),
     (r"^partner/", include("partner.urlsPartner")),
     (r"^sale/", include("sale.urlsSale")),
     (r"^account/", include("account.urlsAccount")),
-    (r'^filemanager/', include('tools.filemanager.connector.urls')),
-    (r'^manager/', include(admin.site.urls)),
-    (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
-    (r"^(?P<content>[^/]+)/$", include("content.urlsContent")),
     (r"^payment/check/", 'check.views.index'),
     (r"^payment/cashondelivery/", 'cashondelivery.views.index'),
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
+
+    #~ Ajax Paths
+    (r'^filemanager/', include('tools.filemanager.connector.urls')),
+    (r'^inplaceeditform/', include('inplaceeditform.urls')),
+    (r'^jsi18n$', 'django.views.i18n.javascript_catalog', js_info_dict),
+
+    #~ Admin 
+    (r'^manager/', include(admin.site.urls)),
+    
+    #~ Cms
+    (r"^cms/", include("tools.cms.urlsCms")),
+
+    # Content
+    (r"^content/", include("content.urlsContent")),
+    (r"^(?P<content>[^/]+)", include("content.urlsContent")),
 )

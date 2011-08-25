@@ -20,16 +20,13 @@
 #
 ############################################################################################
 
-from django.contrib import admin
+from django.conf.urls.defaults import *
+from partner.views import *
+from tools.cms.views import *
 
-from modules.models import *
-
-class ModulesAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'name',
-        'position',
-        'status'
-    )
-
-admin.site.register(Modules,ModulesAdmin)
+"""Urls Cms"""
+urlpatterns = patterns("",
+    (r"^modules/edit/(?P<modules_id>[^/]+)", 'tools.cms.views.modules_edit',''),
+    (r"^modules/add/", 'tools.cms.views.modules_add',''),
+    (r"^modules/list/", 'tools.cms.views.modules_list',''),
+)

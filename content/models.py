@@ -42,7 +42,7 @@ class Content(ContentBase):
     __metaclass__ = TransMeta
 
     name = models.CharField(_('Name'), max_length=256)
-    slug = models.SlugField(_('slug'), max_length=128, help_text=_("This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"), unique=True)
+    slug = models.SlugField(_('slug'), max_length=128, help_text=_("This is a unique identifier, ex 'how-can-i-contribute'"), unique=True)
     description = models.TextField( _('description'))
     metadesc = models.TextField('metadesc')
     metakey = models.TextField('metakey')

@@ -34,6 +34,11 @@ PAGINATOR_INVOICE_TOTAL = 5
 
 CATALOG_ORDERS = ['price','name']
 
+USER_ADD_APP = [
+    {'app':'content.content','url':'/content/add/','string':'Add Content'},
+    {'app':'cms.modules','url':'/cms/modules/list/','string':'All Modules'},
+]
+
 USER_LENGHT = 8
 KEY_LENGHT = 6
 
@@ -105,6 +110,14 @@ TEMPLATE_DIRS = (
     os.path.join(PATH, "templates"+"/"+BASE_TEMPLATE),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+)
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -115,17 +128,18 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'localeurl',
+    'inplaceeditform',
     'base',
     'partner',
     'content',
     'contact',
     'catalog',
-    'modules',
 #    'search',
     'sale',
     'check',
     'cashondelivery',
     'tools.filemanager',
+    'tools.cms',
 )
 
 AUTH_PROFILE_MODULE = "partner.AuthProfile"
@@ -135,4 +149,5 @@ LOCALE_INDEPENDENT_PATHS = (
     re.compile('^/media/'),
     re.compile('^/manager/'),
     re.compile('^/filemanager/'),
+    re.compile('^/inplaceeditform/'),
 )

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-13 23:53+0200\n"
-"PO-Revision-Date: 2011-07-13 13:41+0100\n"
-"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-08-25 17:13+0200\n"
+"PO-Revision-Date: 2011-08-25 17:14+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,33 +24,33 @@ msgstr "Actiu"
 msgid "Inactive"
 msgstr "Inactiu"
 
-#: models.py:34
+#: models.py:35
 msgid "created by"
 msgstr "Creat per"
 
-#: models.py:35
+#: models.py:36
 msgid "created on"
 msgstr "Creat"
 
-#: models.py:36
+#: models.py:37
 msgid "updated on"
 msgstr "Actualitzat"
 
-#: models.py:37
+#: models.py:38
 msgid "updated by"
 msgstr "Actualitzat per"
+
+#: models.py:44
+msgid "Name"
+msgstr "Nom"
 
 #: models.py:45
 msgid "slug"
 msgstr "Slug"
 
 #: models.py:45
-msgid ""
-"This is a unique identifier that allows your contents to display its detail "
-"view, ex 'how-can-i-contribute'"
-msgstr ""
-"Aquest és un identificador únic que permet mostrar els detalls del seu "
-"contingut, per exemple 'com-puc-contribuir'"
+msgid "This is a unique identifier, ex 'how-can-i-contribute'"
+msgstr "Aquest és un identificador únic, per exemple 'com-puc-contribuir'"
 
 #: models.py:46
 msgid "description"
@@ -74,8 +74,7 @@ msgstr "L'ordre amb que li agradaria que es mostrés el contingut."
 
 #: models.py:51
 msgid "If don't specific template, use default.html template"
-msgstr ""
-"Si no s'especifica cap plantilla, s'utilitzarà la plantilla default.html"
+msgstr "Si no s'especifica cap plantilla, s'utilitzarà la plantilla default.html"
 
 #: models.py:54
 msgid "content"
@@ -84,3 +83,12 @@ msgstr "Contingut"
 #: models.py:55
 msgid "contents"
 msgstr "Continguts"
+
+#: views.py:92
+msgid "Add content"
+msgstr "Afegir article"
+
+#: views.py:102
+msgid "Edit content"
+msgstr "Editar article"
+
