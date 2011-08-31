@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-25 17:29+0200\n"
-"PO-Revision-Date: 2011-08-25 17:31+0100\n"
+"POT-Creation-Date: 2011-08-30 11:30+0200\n"
+"PO-Revision-Date: 2011-08-30 11:30+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,8 +25,12 @@ msgid "Catalan"
 msgstr "Català"
 
 #: views.py:30
-msgid "Zoook :: e-sale for OpenERP"
-msgstr "Zoook :: OpenERP e-sale"
+msgid "Zoook. OpenERP e-sale"
+msgstr "Zoook. OpenERP e-sale"
+
+#: views.py:31
+msgid "Zikzakmedia. Development opensource ERP and e-commerce APP. OpenERP SaaS services available"
+msgstr "Zikzakmedia. Aplicacions lliures ERP i comerç electrònic. Serveis SaaS disponibles"
 
 #: templates/default/404.html:9
 msgid "404 Not Found"
@@ -41,8 +45,8 @@ msgstr "Error"
 msgid "An unexpected error has occurred and has not been able to continue. Repeat again or contact us."
 msgstr "S'ha produït un error inesperat que no permet continuar. Repetiu l'operació o contacteu amb nosaltres."
 
-#: templates/default/layout.html:11
-#: templates/default/layout.html.py:43
+#: templates/default/layout.html:12
+#: templates/default/layout.html.py:44
 #: templates/default/catalog/category.html:7
 #: templates/default/catalog/category.html:8
 #: templates/default/catalog/category.html:50
@@ -63,44 +67,44 @@ msgstr "S'ha produït un error inesperat que no permet continuar. Repetiu l'oper
 msgid "catalog"
 msgstr "cataleg"
 
-#: templates/default/layout.html:30
+#: templates/default/layout.html:31
 msgid "Zoook - OpenERP e-sale"
 msgstr "Zoook - OpenERP e-sale"
 
-#: templates/default/layout.html:35
+#: templates/default/layout.html:36
 msgid "search"
 msgstr "Cerca"
 
-#: templates/default/layout.html:41
+#: templates/default/layout.html:42
 #: templates/default/partner/login.html:49
 msgid "Login"
 msgstr "Identifiqueu-vos"
 
-#: templates/default/layout.html:41
+#: templates/default/layout.html:42
 #: templates/default/partner/menu.html:9
 #: templates/default/partner/profile.html:21
 msgid "Logout"
 msgstr "Surt"
 
-#: templates/default/layout.html:42
+#: templates/default/layout.html:43
 msgid "My Account"
 msgstr "El meu compte"
 
-#: templates/default/layout.html:43
+#: templates/default/layout.html:44
 #: templates/default/partner/menu.html:7
 msgid "My Whistlist"
 msgstr "La meva llista de desitjos"
 
-#: templates/default/layout.html:44
+#: templates/default/layout.html:45
 msgid "My Cart"
 msgstr "La meva cistella"
 
-#: templates/default/layout.html:59
+#: templates/default/layout.html:60
 #: templates/default/admin/base_site.html:8
 msgid "Licence"
 msgstr "Llicència"
 
-#: templates/default/layout.html:59
+#: templates/default/layout.html:60
 #: templates/default/admin/base_site.html:8
 msgid "Develop by"
 msgstr "Desenvolupat per"
@@ -735,6 +739,8 @@ msgstr "Hi ha %(num_results)s resultat(s)."
 msgid "There aren't some result with %(search)s."
 msgstr "No hi han resultats disponibles amb %(search)s."
 
+#~ msgid "Zoook :: e-sale for OpenERP"
+#~ msgstr "Zoook :: OpenERP e-sale"
 #~ msgid "Address Delivey"
 #~ msgstr "Adreça de lliurament"
 #~ msgid ""

@@ -59,6 +59,8 @@ class ProductCategory(models.Model):
     status = models.BooleanField(_('Status'), default=False)
     parent = models.ForeignKey('ProductCategory', null=True, blank=True)
     sequence = models.IntegerField(_('Sequence'), null=True, blank=True)
+    
+    """ Custom fields model """
 
     class Meta:
         db_table = 'product_category'
@@ -111,6 +113,8 @@ class ProductTemplate(models.Model):
     weight_net = models.FloatField(_('Net weight'), null=True, blank=True)
     status = models.BooleanField(_('Status'), default=False)
 
+    """ Custom fields model """
+
     class Meta:
         db_table = 'product_template'
         verbose_name = _('template')
@@ -138,6 +142,8 @@ class ProductProduct(models.Model):
     price = models.FloatField(_('Pricelist'))
     manufacturer = models.CharField(_('Manufacturer'), max_length=128, null=True, blank=True)
 
+    """ Custom fields model """
+
     class Meta:
         db_table = 'product_product'
         verbose_name = _('product')
@@ -153,6 +159,8 @@ class ProductManufacturerAttribute(models.Model):
     name = models.CharField(_('Attribute'), max_length=128, null=True, blank=True)
     product = models.ForeignKey('ProductProduct', null=True, blank=True)
     value = models.CharField(_('Value'), max_length=128, null=True, blank=True)
+
+    """ Custom fields model """
 
     class Meta:
         db_table = 'product_manufacturer_attribute'
@@ -170,6 +178,8 @@ class ProductImages(models.Model):
     filename = models.CharField(_('File Location'), max_length=128, null=True, blank=True)
     base_image = models.BooleanField(_('Base Image'), default=False)
     exclude = models.BooleanField(_('Exclude'), default=False)
+
+    """ Custom fields model """
 
     class Meta:
         db_table = 'product_images'

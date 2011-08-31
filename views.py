@@ -28,4 +28,8 @@ def index(request):
     """HomePage Zoook e-sale for OpenERP"""
 
     title = _('Zoook. OpenERP e-sale')
+    metadescription = _('Zikzakmedia. Development opensource ERP and e-commerce APP. OpenERP SaaS services available')
+    metakeywords = 'openerp, django, erp, python, e-commerce'
     return render_to_response("index.html", locals(), context_instance=RequestContext(request))
+
+""" Custom views """
