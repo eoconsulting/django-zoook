@@ -32,13 +32,14 @@ def render_useradd(context):
     values = []
     
     if 'user' in context:
-        for app_add in USER_ADD_APP:
-            app  = app_add['app'].split('.')
-            model_edit = '%s.add_%s' % (app[0],app[1])
-            if context['user'].has_perm(model_edit):
-                values.append({'url':'/'+get_language()+app_add['url'],'string':app_add['string']})
-        if context['user'].is_staff:
-            values.append({'url':ADMIN_URI,'string':_('Go to Admin')})
+        if hasattr(context['user'], 'has_perm'):
+            for app_add in USER_ADD_APP:
+                app  = app_add['app'].split('.')
+                model_edit = '%s.add_%s' % (app[0],app[1])
+                if context['user'].has_perm(model_edit):
+                    values.append({'url':'/'+get_language()+app_add['url'],'string':app_add['string']})
+            if context['user'].is_staff:
+                values.append({'url':ADMIN_URI,'string':_('Go to Admin')})
     return {
         'values': values,
     }

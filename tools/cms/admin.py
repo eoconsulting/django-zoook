@@ -23,10 +23,14 @@
 from django.contrib import admin
 
 from tools.cms.models import *
+from . import models
 
 """
 Menus Admin
 """
+class MenuItemInline(admin.TabularInline):
+    model = models.MenuItem
+
 class MenuAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -38,21 +42,9 @@ class MenuAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ('name',),
     }
-
+    inlines = [MenuItemInline]
+    
 admin.site.register(Menu,MenuAdmin)
-
-class MenuItemAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'title',
-        'menu',
-        'order',
-        'link_url'
-    )
-    search_fields = ["title", "menu","link_url"]
-    list_filter = ["login_required"]
-
-admin.site.register(MenuItem,MenuItemAdmin)
 
 """
 Modules Admin
@@ -76,6 +68,9 @@ admin.site.register(Modules,ModulesAdmin)
 """
 Image Slider Admin
 """
+class ImageSliderInline(admin.TabularInline):
+    model = models.ImageSliderItem
+    
 class ImageSliderAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -86,17 +81,6 @@ class ImageSliderAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ('name',),
     }
+    inlines = [ImageSliderInline]
 
 admin.site.register(ImageSlider,ImageSliderAdmin)
-
-class ImageSliderItemAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'title',
-        'slider',
-        'order',
-        'link_url'
-    )
-    search_fields = ["title", "slider","link_url"]
-
-admin.site.register(ImageSliderItem,ImageSliderItemAdmin)

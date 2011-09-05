@@ -119,8 +119,12 @@ def payment(request, order):
 """Check Order"""
 def check_Order(conn, partner_id, OERP_SALE):
     orders = conn.SaleOrder.filter(partner_id=partner_id, state='draft', payment_state ='draft', shop_id=OERP_SALE)
-    
-    if not orders: # create a new order
+
+    # get a draft order
+    if len(orders)>0:
+        order = orders[0]
+    # new order
+    else:
         partner = conn.ResPartner.get(partner_id)
         partner_addresses = conn.ResPartnerAddress.filter(partner_id=partner_id)
         address = {}
@@ -132,31 +136,33 @@ def check_Order(conn, partner_id, OERP_SALE):
             if partner_address.type == 'contact':
                 address['contact'] = partner_address
        
-        if len(address) == 0:
-            return HttpResponseRedirect("/partner/partner/")
-
-        if not 'delivery' in address:
-            address['delivery'] = partner_addresses[0]
-        if not 'invoice' in address:
-            address['invoice'] = partner_addresses[0]
-        if not 'contact' in address:
-            address['contact'] = partner_addresses[0]
-        
-        #create new order
-        shop = conn.SaleOrder.get(OERP_SALE)
-        order = conn.SaleOrder.new()
-        order.shop_id = shop
-        order.date_order = datetime.date.today() # not time.strftime('%Y-%m-%d')
-        order.partner_id = partner
-        order.partner_invoice_id = address['invoice']
-        order.partner_order_id = address['contact']
-        order.partner_shipping_id = address['delivery']
-        order.picking_policy = 'one'
-        order.pricelist_id = partner.property_product_pricelist
-        order.save()
-
-    else:
-        order = orders[0]
+        if len(address) > 0:
+            if not 'delivery' in address:
+                address['delivery'] = partner_addresses[0]
+            if not 'invoice' in address:
+                address['invoice'] = partner_addresses[0]
+            if not 'contact' in address:
+                address['contact'] = partner_addresses[0]
+            
+            #create new order
+            print "AQUI"
+            shop = conn.SaleShop.get(OERP_SALE)
+            print "TEST"
+            order = conn.SaleOrder.new()
+            print "TEST2"
+            order.shop_id = shop
+            order.date_order = datetime.date.today() # not time.strftime('%Y-%m-%d')
+            order.partner_id = partner
+            order.partner_invoice_id = address['invoice']
+            order.partner_order_id = address['contact']
+            order.partner_shipping_id = address['delivery']
+            order.picking_policy = 'one'
+            order.pricelist_id = partner.property_product_pricelist
+            print "===="
+            print order
+            order.save()
+        else:
+            order = 'error'
 
     return order
 
@@ -188,13 +194,18 @@ def checkout(request):
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     order = check_Order(conn, partner_id, OERP_SALE)
+    
+    if order == 'error':
+        return HttpResponseRedirect("/partner/partner/")
 
+    print "==========="
+    print order
     if request.method == 'POST':
         qty = int(request.POST['qty'])
         code = request.POST['code']
         #check product is available to add to cart
         product = check_product(conn, code)
-
+        print "ESTIC AQUI"
         if product:
             #check if this product exist
             product_line = conn.SaleOrderLine.filter(order_id=order.id, product_id=product.id)
@@ -220,10 +231,12 @@ def checkout(request):
                 product_id_change = conn_webservice('sale.order.line','product_id_change', values)
 
                 if not product_id_change['warning']:
+                    product_value = product_id_change['value']
                     order_line = conn.SaleOrderLine.new()
                     order_line.order_id = order
                     order_line.name = product_id_change['value']['name']
-                    order_line.notes = product_id_change['value']['notes']
+                    if 'notes' in product_value:
+                        order_line.notes = product_id_change['value']['notes']
                     order_line.product_id = product
                     order_line.product_uom_qty = qty
                     order_line.product_uom = product.product_tmpl_id.uom_id
