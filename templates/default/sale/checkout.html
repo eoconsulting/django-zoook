@@ -84,13 +84,13 @@
                 <h2>{% trans "Address Invoice" %}</h2>
                 <select name="address_invoice" class="address">
                 {% for address_invoice in address_invoices %}
-                    <option value="{{ address_invoice.id }}" {% if order.partner_invoice_id.id == address_invoice.id %} selected="selected"{% endif %}}>{{ address_invoice.street }} {{ address_invoice.zip }} {{ address_invoice.city }}</option>
+                    <option value="{{ address_invoice.id }}" {% if order.partner_invoice_id.id == address_invoice.id %} selected="selected"{% endif %}>{{ address_invoice.street }} {{ address_invoice.zip }} {{ address_invoice.city }}</option>
                 {% endfor %}
                 </select>
                 <h2>{% trans "Address Delivery" %}</h2>
                 <select name="address_delivery" class="address">
                 {% for address_delivery in address_deliveries %}
-                    <option value="{{ address_delivery.id }}" {% if order.partner_shipping_id.id == address_delivery.id %} selected="selected"{% endif %}}>{{ address_delivery.street }} {{ address_delivery.zip }} {{ address_delivery.city }}</option>
+                    <option value="{{ address_delivery.id }}" {% if order.partner_shipping_id.id == address_delivery.id %} selected="selected"{% endif %}>{{ address_delivery.street }} {{ address_delivery.zip }} {{ address_delivery.city }}</option>
                 {% endfor %}
                 </select>
             </div>

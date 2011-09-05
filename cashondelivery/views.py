@@ -47,9 +47,17 @@ def index(request):
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     payment_type = conn.ZoookSaleShopPaymentType.filter(app_payment='cashondelivery')
-    if len(payment_type) > 0:
+    orders = conn.SaleOrder.filter(name=request.session['sale_order'])
+        
+    if (len(payment_type) > 0) and len(orders) > 0:
+        #change payment_type = done
+        order = orders[0]
+        order.payment_state = 'done'
+        order.save()
 
-        values = {'order':request.session['order'],'payment_type':payment_type[0]}
+        values = {'order':request.session['sale_order'],'payment_type':payment_type[0]}
         del request.session['sale_order']
         
         return render_to_response("payment/cashondelivery.html", values, context_instance=RequestContext(request))
+    else:
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))

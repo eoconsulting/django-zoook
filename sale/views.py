@@ -145,11 +145,8 @@ def check_Order(conn, partner_id, OERP_SALE):
                 address['contact'] = partner_addresses[0]
             
             #create new order
-            print "AQUI"
             shop = conn.SaleShop.get(OERP_SALE)
-            print "TEST"
             order = conn.SaleOrder.new()
-            print "TEST2"
             order.shop_id = shop
             order.date_order = datetime.date.today() # not time.strftime('%Y-%m-%d')
             order.partner_id = partner
@@ -158,8 +155,6 @@ def check_Order(conn, partner_id, OERP_SALE):
             order.partner_shipping_id = address['delivery']
             order.picking_policy = 'one'
             order.pricelist_id = partner.property_product_pricelist
-            print "===="
-            print order
             order.save()
         else:
             order = 'error'
@@ -198,14 +193,11 @@ def checkout(request):
     if order == 'error':
         return HttpResponseRedirect("/partner/partner/")
 
-    print "==========="
-    print order
     if request.method == 'POST':
         qty = int(request.POST['qty'])
         code = request.POST['code']
         #check product is available to add to cart
         product = check_product(conn, code)
-        print "ESTIC AQUI"
         if product:
             #check if this product exist
             product_line = conn.SaleOrderLine.filter(order_id=order.id, product_id=product.id)
@@ -389,4 +381,7 @@ def checkout_confirm(request):
 
         request.session['sale_order'] = order.name
 
-    return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)
+        return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)
+    else:
+        return HttpResponseRedirect("/sale/checkout/")
+

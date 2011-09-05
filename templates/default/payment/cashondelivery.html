@@ -16,7 +16,7 @@
     </div>
     <div id="content">
         <p>{% blocktrans %}Your order {{order}} is created successfully. Remember do payment when receive delivery:{% endblocktrans %}<br/>
-        <strong>{{ payment_type.payment_type_id.note }}</strong><br/>
+        <strong>{% if payment_type.payment_type_id.note %}{{ payment_type.payment_type_id.note }}{% else %}{{ payment_type.payment_type_id.name }}{% endif %}</strong><br/>
         <a href="/{{ LANGUAGE_CODE }}/sale/" title="{% trans "Orders" %}">{% blocktrans %}Go Orders for more details and status order{% endblocktrans %}</a></p>
     </div>
     
