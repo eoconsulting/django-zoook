@@ -39,7 +39,6 @@ class ResCountry(models.Model):
         verbose_name = _('country')
         verbose_name_plural = _('countries')
         translate = (
-            'code',
             'name',
             )
 

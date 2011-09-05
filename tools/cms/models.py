@@ -27,6 +27,9 @@ from transmeta import TransMeta
 
 import tools.cms.enums as enums
 
+"""
+Menu Models
+"""
 class Menu(models.Model):
     """Menus"""
     __metaclass__ = TransMeta
@@ -64,7 +67,7 @@ class MenuItem(models.Model):
 
     menu = models.ForeignKey(Menu)
     title = models.CharField(_('title'),max_length=100)
-    link_url = models.CharField(_('link url'),max_length=100, help_text='URL or URI, eg /about/ or http://foo.com/')
+    link_url = models.CharField(_('link url'),max_length=100, help_text=_('URL or URI, eg /about/ or http://foo.com/'))
     order = models.IntegerField(_('order'),)
     css = models.CharField(_('css class'),max_length=100, blank=True)
     login_required = models.BooleanField(_('login required'),)
@@ -78,6 +81,9 @@ class MenuItem(models.Model):
     def __unicode__(self):
         return "%s %s. %s" % (self.menu.slug, self.order, self.title)
 
+"""
+Modules Models
+"""
 class Modules(models.Model):
     """Category FAQ."""
     __metaclass__ = TransMeta
@@ -94,3 +100,52 @@ class Modules(models.Model):
 
     def __unicode__(self):
         return self.name
+
+"""
+ImageSlider Models
+"""
+class ImageSlider(models.Model):
+    """ImageSlider"""
+    __metaclass__ = TransMeta
+    
+    name = models.CharField(_('name'),max_length=100)
+    slug = models.SlugField(_('slug'),)
+    description = models.TextField(_('description'),blank=True, null=True)
+
+    class Meta:
+        verbose_name = _('Slider Box')
+        verbose_name_plural = _('Sliders Boxes')
+
+    def __unicode__(self):
+        return "%s" % self.name
+
+    def save(self):
+        """
+        Re-order all items at from 10 upwards, at intervals of 10.
+        """
+        super(ImageSlider, self).save()
+
+        current = 10
+        for item in ImageSliderItem.objects.filter(slider=self).order_by('order'):
+            item.order = current
+            item.save()
+            current += 10
+ 
+class ImageSliderItem(models.Model):
+    """ImageSlider Items"""
+    __metaclass__ = TransMeta
+
+    slider = models.ForeignKey(ImageSlider)
+    slimg = models.ImageField(_('image'), upload_to='sliders', help_text=_("Check Documentation about size image"))
+    title = models.CharField(_('title'),max_length=100)
+    link_url = models.CharField(_('link url'),max_length=100, help_text=_('URL or URI, eg /about/ or http://foo.com/'))
+    order = models.IntegerField(_('order'),)
+    status = models.IntegerField(_('status'), choices=enums.CMS_STATUS_CHOICES, default=enums.STATUS_INACTIVE, help_text=_("Only items with their status set to 'Active' will be displayed."))
+
+    class Meta:
+        verbose_name = _('Sliders Image')
+        verbose_name_plural = _('Sliders Images')
+        translate = ('title', 'link_url', 'slimg')
+
+    def __unicode__(self):
+        return "%s %s. %s" % (self.slider.slug, self.order, self.title)

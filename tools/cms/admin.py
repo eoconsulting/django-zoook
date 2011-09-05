@@ -72,3 +72,31 @@ class ModulesAdmin(admin.ModelAdmin):
         )
 
 admin.site.register(Modules,ModulesAdmin)
+
+"""
+Image Slider Admin
+"""
+class ImageSliderAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'name',
+        'slug',
+    )
+    search_fields = ["name"]
+    prepopulated_fields = {
+        'slug': ('name',),
+    }
+
+admin.site.register(ImageSlider,ImageSliderAdmin)
+
+class ImageSliderItemAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'title',
+        'slider',
+        'order',
+        'link_url'
+    )
+    search_fields = ["title", "slider","link_url"]
+
+admin.site.register(ImageSliderItem,ImageSliderItemAdmin)

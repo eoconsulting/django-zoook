@@ -1,0 +1,13 @@
+/*--Main Container--*/
+.imageslider-box { float: left; position: relative}
+
+/*--Window/Masking Styles--*/
+.image-box { height:286px; width: 790px; overflow: hidden; position: relative}
+.image_reel { position: absolute; top: 0; left: 0}
+.image_reel img {float: left;}
+
+/*--Paging Styles--*/
+.paging { position: absolute; bottom: 40px; right: -7px; width: 178px; height:47px; z-index: 100; text-align: center; line-height: 40px; background: url(../images/paging_bg2.png) no-repeat; display: none}
+.paging a { padding: 5px; text-decoration: none; color: #fff }
+.paging a.active { font-weight: bold; background: #920000; border: 1px solid #610000; -moz-border-radius: 3px; -khtml-border-radius: 3px; -webkit-border-radius: 3px}
+.paging a:hover {font-weight: bold}

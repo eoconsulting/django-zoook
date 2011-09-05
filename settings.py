@@ -34,6 +34,7 @@ PAGINATOR_INVOICE_TOTAL = 5
 
 CATALOG_ORDERS = ['price','name']
 
+ADMIN_URI = '/manager/'
 USER_ADD_APP = [
     {'app':'content.content','url':'/content/add/','string':'Add Content'},
     {'app':'cms.modules','url':'/cms/modules/list/','string':'All Modules'},

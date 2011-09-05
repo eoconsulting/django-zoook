@@ -23,7 +23,7 @@
 from django import template
 from django.utils.translation import get_language, ugettext as _
 
-from settings import USER_ADD_APP
+from settings import USER_ADD_APP, ADMIN_URI
 
 register = template.Library()
 
@@ -38,7 +38,7 @@ def render_useradd(context):
             if context['user'].has_perm(model_edit):
                 values.append({'url':'/'+get_language()+app_add['url'],'string':app_add['string']})
         if context['user'].is_staff:
-            values.append({'url':'/manager/','string':_('Go to Admin')})
+            values.append({'url':ADMIN_URI,'string':_('Go to Admin')})
     return {
         'values': values,
     }
