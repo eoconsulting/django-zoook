@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-25 17:13+0200\n"
-"PO-Revision-Date: 2011-08-25 17:14+0100\n"
+"POT-Creation-Date: 2011-09-07 12:28+0200\n"
+"PO-Revision-Date: 2011-09-07 12:29+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,7 @@ msgid "updated by"
 msgstr "Actualitzat per"
 
 #: models.py:44
+#: templates/content/blank.html:16
 msgid "Name"
 msgstr "Nom"
 
@@ -91,4 +92,53 @@ msgstr "Afegir article"
 #: views.py:102
 msgid "Edit content"
 msgstr "Editar article"
+
+#: templates/content/blank.html:13
+#: templates/content/default.html:18
+msgid "More details"
+msgstr "Més detalls"
+
+#: templates/content/blank.html:15
+#: templates/content/default.html:20
+msgid "Field"
+msgstr "Camp"
+
+#: templates/content/blank.html:15
+#: templates/content/default.html:20
+msgid "Value"
+msgstr "Valor"
+
+#: templates/content/blank.html:17
+#: templates/content/default.html:21
+msgid "Slug"
+msgstr "Slug"
+
+#: templates/content/blank.html:18
+#: templates/content/default.html:22
+msgid "MetaDesc"
+msgstr "MetaDesc"
+
+#: templates/content/blank.html:19
+#: templates/content/default.html:23
+msgid "MetaKey"
+msgstr "Metakey"
+
+#: templates/content/blank.html:20
+#: templates/content/default.html:24
+msgid "Status"
+msgstr "Estat"
+
+#: templates/content/blank.html:21
+#: templates/content/default.html:25
+msgid "Sort Order"
+msgstr "Ordenació"
+
+#: templates/content/blank.html:22
+#: templates/content/default.html:26
+msgid "Template"
+msgstr "Plantilla"
+
+#: templates/content/default.html:18
+msgid "Edit"
+msgstr "Edita"
 

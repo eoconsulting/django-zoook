@@ -23,6 +23,7 @@
 from django.contrib import admin
 from catalog.models import *
 from datetime import datetime
+from . import models
 
 class ProductCategoryAdmin(admin.ModelAdmin):
 
@@ -35,6 +36,9 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 
+class ProductProductInline(admin.StackedInline):
+    model = models.ProductProduct
+
 class ProductTemplateAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -43,20 +47,9 @@ class ProductTemplateAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     extra = 0
 #    list_filter = ["status"]
+    inlines = [ProductProductInline]
 
 admin.site.register(ProductTemplate, ProductTemplateAdmin)
-
-class ProductProductAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'code',
-        'product_tmpl',
-    )
-    search_fields = ["product_tmpl"]
-    extra = 0
-#    list_filter = ["status"]
-
-admin.site.register(ProductProduct, ProductProductAdmin)
 
 class ProductManufacturerAttributeAdmin(admin.ModelAdmin):
 

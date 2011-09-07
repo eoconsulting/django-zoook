@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-12 10:54+0200\n"
-"PO-Revision-Date: 2011-07-13 12:48+0100\n"
-"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-09-07 12:18+0200\n"
+"PO-Revision-Date: 2011-09-07 12:19+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,4 +23,17 @@ msgstr "Número de comanda no està disponible. Utilitzeu el menú de navegació
 #: views.py:46
 msgid "Error when connecting with our ERP. Try again or cantact us"
 msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
+
+#: templates/cashondelivery/cashondelivery.html:18
+#, python-format
+msgid "Your order %(order)s is created successfully. Remember do payment when receive delivery:"
+msgstr "La seva comanda %(order)s s'ha creat correctament. Recordeu de fer el pagament quan rebeu la comanda:"
+
+#: templates/cashondelivery/cashondelivery.html:20
+msgid "Orders"
+msgstr "Comandes"
+
+#: templates/cashondelivery/cashondelivery.html:20
+msgid "Go Orders for more details and status order"
+msgstr "Ves a les comandes per a més detalls i a l'estat de la comanda"
 

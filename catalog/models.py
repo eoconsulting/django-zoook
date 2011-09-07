@@ -137,7 +137,7 @@ class ProductProduct(models.Model):
 
     product_tmpl = models.ForeignKey('ProductTemplate')
     active = models.BooleanField(_('Active'), default=False)
-    code = models.CharField(_('Code'), max_length=128, null=True, blank=True) #Reference
+    code = models.CharField(_('Code'), max_length=128, null=True) #Reference
     ean13 = models.CharField(_('EAN13'), max_length=128, null=True, blank=True)
     price = models.FloatField(_('Pricelist'))
     manufacturer = models.CharField(_('Manufacturer'), max_length=128, null=True, blank=True)

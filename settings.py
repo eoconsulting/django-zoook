@@ -75,6 +75,7 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+PROJECT_PATH = os.path.dirname(__file__)
 PATH = os.path.abspath(os.path.dirname(__file__).decode("utf-8"))
 
 # Absolute path to the directory that holds media.
@@ -107,8 +108,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'zoook.urls'
 
-TEMPLATE_DIRS = (  
+TEMPLATE_DIRS = (
     os.path.join(PATH, "templates"+"/"+BASE_TEMPLATE),
+    os.path.join(PROJECT_PATH,'templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

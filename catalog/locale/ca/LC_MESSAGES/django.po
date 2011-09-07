@@ -1,0 +1,425 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-07 12:21+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:38 models.py:90
+msgid "Name"
+msgstr ""
+
+#: models.py:39 models.py:44 templates/catalog/product.html:91
+#: templates/catalog/whistlist.html:25
+msgid "Description"
+msgstr ""
+
+#: models.py:40
+msgid "slug"
+msgstr ""
+
+#: models.py:40
+msgid ""
+"This is a unique identifier that allows your contents to display its detail "
+"view, ex 'how-can-i-contribute'"
+msgstr ""
+
+#: models.py:41
+msgid "Full Slug"
+msgstr ""
+
+#: models.py:42
+msgid "Title"
+msgstr ""
+
+#: models.py:43
+msgid "Keyword"
+msgstr ""
+
+#: models.py:51
+msgid "Available Product Listing (Sort By)"
+msgstr ""
+
+#: models.py:58
+msgid "Default Product Listing Sort (Sort By)"
+msgstr ""
+
+#: models.py:59 models.py:114
+msgid "Status"
+msgstr ""
+
+#: models.py:61
+msgid "Sequence"
+msgstr ""
+
+#: models.py:67
+msgid "category"
+msgstr ""
+
+#: models.py:68
+msgid "categories"
+msgstr ""
+
+#: models.py:89
+msgid "created on"
+msgstr ""
+
+#: models.py:92
+msgid "Short Description"
+msgstr ""
+
+#: models.py:93
+msgid "Sale Description"
+msgstr ""
+
+#: models.py:94
+msgid "Slug"
+msgstr ""
+
+#: models.py:101
+msgid "Visibility"
+msgstr ""
+
+#: models.py:102
+msgid "Meta Title"
+msgstr ""
+
+#: models.py:103
+msgid "Meta Description"
+msgstr ""
+
+#: models.py:104
+msgid "Meta Keyword"
+msgstr ""
+
+#: models.py:108
+msgid "Unit Of Measure"
+msgstr ""
+
+#: models.py:109
+msgid "Unit of Sale"
+msgstr ""
+
+#: models.py:110
+msgid "Volume"
+msgstr ""
+
+#: models.py:111
+msgid "Warranty (months)"
+msgstr ""
+
+#: models.py:112
+msgid "Gross weight"
+msgstr ""
+
+#: models.py:113
+msgid "Net weight"
+msgstr ""
+
+#: models.py:120
+msgid "template"
+msgstr ""
+
+#: models.py:121
+msgid "templates"
+msgstr ""
+
+#: models.py:139
+msgid "Active"
+msgstr ""
+
+#: models.py:140 templates/catalog/type/simple.html:3
+#: templates/catalog/type/variants.html:3
+msgid "Code"
+msgstr ""
+
+#: models.py:141 templates/catalog/type/simple.html:4
+#: templates/catalog/type/variants.html:4
+msgid "EAN13"
+msgstr ""
+
+#: models.py:142
+msgid "Pricelist"
+msgstr ""
+
+#: models.py:143
+msgid "Manufacturer"
+msgstr ""
+
+#: models.py:149
+msgid "product"
+msgstr ""
+
+#: models.py:150
+msgid "products"
+msgstr ""
+
+#: models.py:159
+msgid "Attribute"
+msgstr ""
+
+#: models.py:161
+msgid "Value"
+msgstr ""
+
+#: models.py:167
+msgid "attribute"
+msgstr ""
+
+#: models.py:168
+msgid "attributes"
+msgstr ""
+
+#: models.py:176
+msgid "Image Title"
+msgstr ""
+
+#: models.py:178
+msgid "File Location"
+msgstr ""
+
+#: models.py:179
+msgid "Base Image"
+msgstr ""
+
+#: models.py:180
+msgid "Exclude"
+msgstr ""
+
+#: models.py:186
+msgid "image"
+msgstr ""
+
+#: models.py:187
+msgid "images"
+msgstr ""
+
+#: views.py:103
+msgid "Categories"
+msgstr ""
+
+#: views.py:104
+#, python-format
+msgid "List all categories of %s"
+msgstr ""
+
+#: views.py:178
+#, python-format
+msgid "%(category)s - Page %(page)s of %(total)s"
+msgstr ""
+
+#: views.py:179
+#, python-format
+msgid "%(category)s. Page %(page)s of %(total)s"
+msgstr ""
+
+#: views.py:197 views.py:199
+msgid ""
+"This category is not available because you navigate with bookmarks or search "
+"engine. Use navigation menu"
+msgstr ""
+
+#: views.py:227
+#, python-format
+msgid "%(product)s"
+msgstr ""
+
+#: views.py:228
+#, python-format
+msgid "%(metadescription)s"
+msgstr ""
+
+#: views.py:266
+msgid "Are you a customer? Please, contact us. We will create a new role"
+msgstr ""
+
+#: views.py:272
+msgid "Error when connecting with our ERP. Try again or cantact us"
+msgstr ""
+
+#: views.py:307
+msgid "Whislist"
+msgstr ""
+
+#: views.py:308
+#, python-format
+msgid "Whislist of %s"
+msgstr ""
+
+#: templates/catalog/category.html:7 templates/catalog/index.html:5
+#: templates/catalog/product.html:9 templates/catalog/whistlist.html:7
+msgid "Home"
+msgstr ""
+
+#: templates/catalog/category.html:7 templates/catalog/category.html.py:8
+#: templates/catalog/category.html:50 templates/catalog/category.html.py:51
+#: templates/catalog/category.html:68 templates/catalog/category.html.py:69
+#: templates/catalog/index.html:5 templates/catalog/index.html.py:18
+#: templates/catalog/product.html:61 templates/catalog/product.html.py:62
+#: templates/catalog/whistlist.html:7 templates/catalog/whistlist.html:42
+#: templates/catalog/tags/horizontal_menu.html:17
+#: templates/catalog/tags/horizontal_menu.html:19
+#: templates/catalog/tags/horizontal_menu.html:21
+#: templates/catalog/tags/horizontal_menu.html:22
+msgid "catalog"
+msgstr ""
+
+#: templates/catalog/category.html:7 templates/catalog/index.html:5
+msgid "Catalog"
+msgstr ""
+
+#: templates/catalog/category.html:24
+msgid "Show"
+msgstr ""
+
+#: templates/catalog/category.html:24
+msgid "items"
+msgstr ""
+
+#: templates/catalog/category.html:25
+msgid "item"
+msgstr ""
+
+#: templates/catalog/category.html:28
+msgid "Sort by"
+msgstr ""
+
+#: templates/catalog/category.html:30
+msgid "ASC"
+msgstr ""
+
+#: templates/catalog/category.html:30
+msgid "DESC"
+msgstr ""
+
+#: templates/catalog/category.html:31
+msgid "View as"
+msgstr ""
+
+#: templates/catalog/category.html:32
+msgid "Grid"
+msgstr ""
+
+#: templates/catalog/category.html:33
+msgid "List"
+msgstr ""
+
+#: templates/catalog/category.html:37
+msgid "There are any products matching the selection."
+msgstr ""
+
+#: templates/catalog/category.html:48 templates/catalog/category.html.py:66
+msgid "Details"
+msgstr ""
+
+#: templates/catalog/category.html:50 templates/catalog/category.html.py:68
+#: templates/catalog/product.html:62
+msgid "Add to Wishlist"
+msgstr ""
+
+#: templates/catalog/category.html:51 templates/catalog/category.html.py:69
+#: templates/catalog/product.html:61
+msgid "Add to Compare"
+msgstr ""
+
+#: templates/catalog/category.html:77
+msgid "Previous"
+msgstr ""
+
+#: templates/catalog/category.html:79
+msgid "Page"
+msgstr ""
+
+#: templates/catalog/category.html:81
+msgid "Next"
+msgstr ""
+
+#: templates/catalog/category.html:91 templates/catalog/product.html:152
+#: templates/catalog/whistlist.html:53
+msgid "Price updating..."
+msgstr ""
+
+#: templates/catalog/product.html:9
+msgid "Products"
+msgstr ""
+
+#: templates/catalog/product.html:19
+msgid "Product Related"
+msgstr ""
+
+#: templates/catalog/product.html:26
+msgid "Your shopping cart"
+msgstr ""
+
+#: templates/catalog/product.html:28
+msgid "You don't have any items inside your cart."
+msgstr ""
+
+#: templates/catalog/product.html:29
+msgid "View shopping cart"
+msgstr ""
+
+#: templates/catalog/product.html:34
+msgid "Newsletter"
+msgstr ""
+
+#: templates/catalog/product.html:37
+msgid "Subscribe our newsletter."
+msgstr ""
+
+#: templates/catalog/product.html:39
+msgid "Subscribe"
+msgstr ""
+
+#: templates/catalog/product.html:82
+msgid "This product is out of service"
+msgstr ""
+
+#: templates/catalog/product.html:92
+msgid "Related Products"
+msgstr ""
+
+#: templates/catalog/product.html:93
+msgid "Up-sells"
+msgstr ""
+
+#: templates/catalog/product.html:94
+msgid "Keywords"
+msgstr ""
+
+#: templates/catalog/whistlist.html:7
+msgid "Whistlist"
+msgstr ""
+
+#: templates/catalog/whistlist.html:24
+msgid "Product Name"
+msgstr ""
+
+#: templates/catalog/whistlist.html:26
+msgid "Price"
+msgstr ""
+
+#: templates/catalog/whistlist.html:42
+msgid "Remove Item"
+msgstr ""
+
+#: templates/catalog/tags/product_related.html:5
+msgid "There are not related products"
+msgstr ""
+
+#: templates/catalog/type/simple.html:8
+#: templates/catalog/type/variants.html:11
+msgid "Add to cart"
+msgstr ""

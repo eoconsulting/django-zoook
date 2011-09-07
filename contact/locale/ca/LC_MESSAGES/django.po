@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-12 10:55+0200\n"
-"PO-Revision-Date: 2011-07-13 23:52+0100\n"
-"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-09-07 12:27+0200\n"
+"PO-Revision-Date: 2011-09-07 12:28+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,6 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: views.py:37
+#: templates/contact/form.html:30
+#: templates/contact/form.html.py:34
 msgid "Contact"
 msgstr "Contacta"
 
@@ -49,4 +51,24 @@ msgstr "Gràcies pel seu missatge. En breu respondrem."
 #: views.py:59
 msgid "Sorry! This form is not valid. Try again."
 msgstr "Disculpeu! La informació enviada no és correcta. Torneu a provar."
+
+#: templates/contact/form.html:32
+msgid "contact"
+msgstr "Contacta"
+
+#: templates/contact/form.html:35
+msgid "Name"
+msgstr "Nom"
+
+#: templates/contact/form.html:36
+msgid "Email"
+msgstr "Correu electrònic"
+
+#: templates/contact/form.html:37
+msgid "Message"
+msgstr "Missatge"
+
+#: templates/contact/form.html:40
+msgid "Submit"
+msgstr "Enviar"
 

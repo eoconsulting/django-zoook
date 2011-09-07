@@ -58,6 +58,6 @@ def index(request):
         values = {'order':request.session['sale_order'],'payment_type':payment_type[0]}
         del request.session['sale_order']
         
-        return render_to_response("payment/check.html", values, context_instance=RequestContext(request))
+        return render_to_response("check/check.html", values, context_instance=RequestContext(request))
     else:
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))

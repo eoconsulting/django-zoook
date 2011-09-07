@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-25 17:15+0200\n"
-"PO-Revision-Date: 2011-08-25 17:21+0100\n"
+"POT-Creation-Date: 2011-09-07 12:31+0200\n"
+"PO-Revision-Date: 2011-09-07 12:33+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,88 +24,125 @@ msgstr "Actiu"
 msgid "Inactive"
 msgstr "Inactiu"
 
-#: models.py:34
-#: models.py:85
+#: models.py:37
+#: models.py:91
+#: models.py:111
 msgid "name"
 msgstr "nom"
 
-#: models.py:35
+#: models.py:38
+#: models.py:112
 msgid "slug"
 msgstr "slug"
 
-#: models.py:36
+#: models.py:39
 msgid "base url"
 msgstr "base url"
 
-#: models.py:37
-#: models.py:87
+#: models.py:40
+#: models.py:93
+#: models.py:113
 msgid "description"
 msgstr "descripció"
 
-#: models.py:40
+#: models.py:43
 msgid "menu"
 msgstr "menu"
 
-#: models.py:41
+#: models.py:44
 msgid "menus"
 msgstr "menus"
 
-#: models.py:66
+#: models.py:69
+#: models.py:140
 msgid "title"
 msgstr "títol"
 
-#: models.py:67
+#: models.py:70
+#: models.py:141
 msgid "link url"
 msgstr "link url"
 
-#: models.py:68
+#: models.py:70
+#: models.py:141
+msgid "URL or URI, eg /about/ or http://foo.com/"
+msgstr "URL o URI, eg /about/ or http://foo.com/"
+
+#: models.py:71
+#: models.py:142
 msgid "order"
 msgstr "ordenació"
 
-#: models.py:69
+#: models.py:72
 msgid "css class"
 msgstr "css class"
 
-#: models.py:70
+#: models.py:73
 msgid "login required"
 msgstr "usuari registrat"
 
-#: models.py:71
-#: models.py:88
+#: models.py:74
+#: models.py:94
+#: models.py:143
 msgid "status"
 msgstr "estat"
 
-#: models.py:71
+#: models.py:74
+#: models.py:143
 msgid "Only items with their status set to 'Active' will be displayed."
 msgstr "Només els elements amb l'estat 'Actiu' es mostraran."
 
-#: models.py:74
+#: models.py:77
 msgid "menus item"
 msgstr "menús element"
 
-#: models.py:75
+#: models.py:78
 msgid "menus items"
 msgstr "menú elements"
 
-#: models.py:86
+#: models.py:92
 msgid "position"
 msgstr "possició"
 
-#: models.py:86
+#: models.py:92
 msgid "This is a unique identifier, ex 'position1'"
 msgstr "Un so identificador, ex 'posicio1'"
 
-#: models.py:88
+#: models.py:94
 msgid "Only modules with their status set to 'Active' will be displayed."
 msgstr "Només els mòduls amb l'estat 'Actiu' es mostraran."
 
-#: models.py:91
+#: models.py:97
 msgid "module"
 msgstr "mòdul"
 
-#: models.py:92
+#: models.py:98
 msgid "modules"
 msgstr "mòduls"
+
+#: models.py:116
+msgid "Slider Box"
+msgstr "Slider Box"
+
+#: models.py:117
+msgid "Sliders Boxes"
+msgstr "Slider Boxes"
+
+#: models.py:139
+msgid "image"
+msgstr "imatge"
+
+#: models.py:139
+msgid "Check Documentation about size image"
+msgstr "Revisa la documentació sobre les mides"
+
+#: models.py:146
+msgid "Sliders Image"
+msgstr "Sliders Imatge"
+
+#: models.py:147
+msgid "Sliders Images"
+msgstr "Sliders Imatges"
 
 #: views.py:39
 msgid "Modules"
@@ -119,7 +156,28 @@ msgstr "Afegir mòduls"
 msgid "Edit modules"
 msgstr "Editar mòduls"
 
-#: templatetags/cms.py:41
+#: templates/cms/modules/form.html:8
+msgid "Show this module in your site, also you need edit template and add this position"
+msgstr "Mostrar aquest mòdul en el web, necessita editar la plantilla i afegir la possició"
+
+#: templates/cms/modules/list.html:5
+#: templates/cms/tags/user_add.html:5
+msgid "Add"
+msgstr "Afegir"
+
+#: templates/cms/modules/list.html:7
+msgid "Name"
+msgstr "Nom"
+
+#: templates/cms/modules/list.html:7
+msgid "Position"
+msgstr "Possició"
+
+#: templates/cms/modules/list.html:7
+msgid "Status"
+msgstr "Estat"
+
+#: templatetags/cms.py:42
 msgid "Go to Admin"
 msgstr "Anar a l'Administrador"
 
