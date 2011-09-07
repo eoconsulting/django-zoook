@@ -6,7 +6,7 @@
 {% block head %}<link href="{{ MEDIA_URL }}css/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
 <link rel="canonical" href="{{product.get_absolute_url}}" />{% endblock %}
 
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/product/{{product.slug}}">{{product.name}}</a></li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="{{product.get_absolute_url}}">{{product.name}}</a></li></ul></div>{% endblock %}
 
 {% block content %}
     <div id="page-wrap" class="clearfix">
@@ -103,8 +103,8 @@
                 <table id="product-related-table" class="cart-table">
                 <tbody>
                     {% for product in related_products %}<tr>
-                        <td><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
-                        <td><h2 class="product-name"><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}">{{ product.product.name }}</a></h2></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><h2 class="product-name"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
                         <td class="a-right">
                             <div id="product-price-{{product.product.id}}" class="price-box">
@@ -122,8 +122,8 @@
                 <table id="product-related-table" class="cart-table">
                 <tbody>
                     {% for product in upsells_products %}<tr>
-                        <td><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
-                        <td><h2 class="product-name"><a href="/{{ LANGUAGE_CODE }}/product/{{product.product.slug}}">{{ product.product.name }}</a></h2></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><h2 class="product-name"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
                         <td class="a-right">
                             <div id="product-price-{{product.product.id}}" class="price-box">

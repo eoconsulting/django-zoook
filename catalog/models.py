@@ -141,6 +141,7 @@ class ProductProduct(models.Model):
     ean13 = models.CharField(_('EAN13'), max_length=128, null=True, blank=True)
     price = models.FloatField(_('Pricelist'))
     manufacturer = models.CharField(_('Manufacturer'), max_length=128, null=True, blank=True)
+    attribute_group = models.CharField(_('Attribute Group'), max_length=128, null=True, blank=True)
 
     """ Custom fields model """
 
