@@ -80,7 +80,7 @@ class ProductCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return '/%s/%s/%s/' % (get_language(), catalog_url[get_language()], self.fslug)
+        return '/%s/%s/%s' % (get_language(), catalog_url[get_language()], self.fslug)
 
 class ProductTemplate(models.Model):
     """ProductTemplate OpenERP"""
