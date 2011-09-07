@@ -8,24 +8,31 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-07 12:30+0200\n"
-"PO-Revision-Date: 2011-07-14 00:18+0100\n"
-"Last-Translator: Raimon Esteve Cusiné <resteve@zikzakmedia.com>\n"
+"PO-Revision-Date: 2011-09-07 14:55+0100\n"
+"Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: views.py:44 views.py:68 views.py:92 views.py:183 views.py:280 views.py:304
+#: views.py:44
+#: views.py:68
+#: views.py:92
+#: views.py:183
+#: views.py:280
+#: views.py:304
 msgid "Are you a customer? Please, contact us. We will create a new role"
-msgstr ""
-"És client? Si us plau, contacteu amb nosaltres. Us crearem com a client."
+msgstr "És client? Si us plau, contacteu amb nosaltres. Us crearem com a client."
 
-#: views.py:49 views.py:73 views.py:97 views.py:188 views.py:285 views.py:309
+#: views.py:49
+#: views.py:73
+#: views.py:97
+#: views.py:188
+#: views.py:285
+#: views.py:309
 msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr ""
-"Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb "
-"nosaltres"
+msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
 
 #: views.py:58
 msgid "All Orders"
@@ -36,12 +43,10 @@ msgstr "Totes les comandes"
 msgid "List all orders of %s"
 msgstr "Llistat de totes les comandes de %s"
 
-#: views.py:78 views.py:102
-msgid ""
-"It is not allowed to view this section or not found. Use navigation menu."
-msgstr ""
-"No teniu permís per veure aquesta secció o no es troba. Utilitzeu el menú de "
-"navegació."
+#: views.py:78
+#: views.py:102
+msgid "It is not allowed to view this section or not found. Use navigation menu."
+msgstr "No teniu permís per veure aquesta secció o no es troba. Utilitzeu el menú de navegació."
 
 #: views.py:82
 #, python-format
@@ -57,7 +62,8 @@ msgstr "Detalls de la comanda %s"
 msgid "Your order is in progress. Contact with us"
 msgstr "La seva comanda està en procés. Contacteu amb nosaltres"
 
-#: views.py:114 views.py:115
+#: views.py:114
+#: views.py:115
 #, python-format
 msgid "Payment Order %s"
 msgstr "Pagament de la comanda %s"
@@ -73,163 +79,183 @@ msgstr "La seva comanda %s"
 
 #: templates/sale/checkout.html:9
 msgid ""
-"Could you confirm the order?\\nThen you will redirect payment type to finish "
-"your order"
+"Could you confirm the order?\\n"
+"Then you will redirect payment type to finish your order"
 msgstr ""
+"Podeu confirmar la comanda?\\n"
+"A continuació, us renviarem per realitzar el pagament i finalitzar la comanda"
 
 #: templates/sale/checkout.html:9
 msgid "Order confirmation"
-msgstr ""
+msgstr "Confirmació de la comanda"
 
 #: templates/sale/checkout.html:14
 msgid "You are cancel this order! Don't you like it?"
-msgstr ""
+msgstr "Ha cancelat la comanda! Et deixes algo?"
 
 #: templates/sale/checkout.html:14
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
-#: templates/sale/checkout.html:21 templates/sale/order.html:6
-#: templates/sale/orders.html:6 templates/sale/payment.html:26
+#: templates/sale/checkout.html:21
+#: templates/sale/order.html:6
+#: templates/sale/orders.html:6
+#: templates/sale/payment.html:26
 msgid "Home"
-msgstr ""
+msgstr "Inici"
 
-#: templates/sale/checkout.html:42 templates/sale/order.html:46
+#: templates/sale/checkout.html:42
+#: templates/sale/order.html:46
 #: templates/sale/orders.html:22
 msgid "Reference"
-msgstr ""
+msgstr "Referència"
 
-#: templates/sale/checkout.html:43 templates/sale/order.html:47
+#: templates/sale/checkout.html:43
+#: templates/sale/order.html:47
 msgid "Qty"
-msgstr ""
+msgstr "Qty"
 
-#: templates/sale/checkout.html:44 templates/sale/order.html:48
+#: templates/sale/checkout.html:44
+#: templates/sale/order.html:48
 msgid "Discount"
-msgstr ""
+msgstr "Descompte"
 
-#: templates/sale/checkout.html:45 templates/sale/order.html:49
+#: templates/sale/checkout.html:45
+#: templates/sale/order.html:49
 msgid "Unit Price"
-msgstr ""
+msgstr "Descompte"
 
-#: templates/sale/checkout.html:46 templates/sale/order.html:50
+#: templates/sale/checkout.html:46
+#: templates/sale/order.html:50
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotal"
 
 #: templates/sale/checkout.html:47
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
 #: templates/sale/checkout.html:51
 msgid "Your cart is empty"
-msgstr ""
+msgstr "La seva cistella està buida"
 
 #: templates/sale/checkout.html:58
 msgid "Remove Item"
-msgstr ""
+msgstr "Treu el producte"
 
 #: templates/sale/checkout.html:64
 msgid "Untaxed Amount"
-msgstr ""
+msgstr "Base"
 
 #: templates/sale/checkout.html:65
 msgid "Taxes"
-msgstr ""
+msgstr "Impostos"
 
-#: templates/sale/checkout.html:66 templates/sale/order.html:66
-#: templates/sale/orders.html:25 templates/sale/payment.html:41
+#: templates/sale/checkout.html:66
+#: templates/sale/order.html:66
+#: templates/sale/orders.html:25
+#: templates/sale/payment.html:41
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
-#: templates/sale/checkout.html:68 templates/sale/order.html:23
+#: templates/sale/checkout.html:68
+#: templates/sale/order.html:23
 msgid "Delivery"
-msgstr ""
+msgstr "Lliurament"
 
-#: templates/sale/checkout.html:74 templates/sale/order.html:68
-#: templates/sale/orders.html:38 templates/sale/payment.html:26
-#, fuzzy
+#: templates/sale/checkout.html:74
+#: templates/sale/order.html:68
+#: templates/sale/orders.html:38
+#: templates/sale/payment.html:26
 msgid "Payment"
-msgstr "Pagament de la comanda %s"
+msgstr "Pagament"
 
 #: templates/sale/checkout.html:81
 msgid "Confirm"
-msgstr ""
+msgstr "Confirma"
 
-#: templates/sale/checkout.html:84 templates/sale/order.html:27
+#: templates/sale/checkout.html:84
+#: templates/sale/order.html:27
 msgid "Address Invoice"
-msgstr ""
+msgstr "Adreça de la factura"
 
-#: templates/sale/checkout.html:90 templates/sale/order.html:35
+#: templates/sale/checkout.html:90
+#: templates/sale/order.html:35
 msgid "Address Delivery"
-msgstr ""
+msgstr "Adreça de lliurament"
 
-#: templates/sale/order.html:6 templates/sale/orders.html:6
+#: templates/sale/order.html:6
+#: templates/sale/orders.html:6
 #: templates/sale/payment.html:26
-#, fuzzy
 msgid "Orders"
-msgstr "Comanda %s"
+msgstr "Comandes"
 
-#: templates/sale/order.html:20 templates/sale/orders.html:23
+#: templates/sale/order.html:20
+#: templates/sale/orders.html:23
 #: templates/sale/payment.html:40
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
-#: templates/sale/order.html:21 templates/sale/orders.html:24
+#: templates/sale/order.html:21
+#: templates/sale/orders.html:24
 msgid "Date Confirm"
-msgstr ""
+msgstr "Confirmeu la data"
 
-#: templates/sale/order.html:21 templates/sale/orders.html:35
+#: templates/sale/order.html:21
+#: templates/sale/orders.html:35
 msgid "Pending"
-msgstr ""
+msgstr "Pendent"
 
-#: templates/sale/order.html:22 templates/sale/orders.html:26
+#: templates/sale/order.html:22
+#: templates/sale/orders.html:26
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #: templates/sale/order.html:24
 msgid "Invoice"
-msgstr ""
+msgstr "Factures"
 
 #: templates/sale/order.html:64
 msgid "Untaxed"
-msgstr ""
+msgstr "Base"
 
 #: templates/sale/order.html:65
 msgid "Tax"
-msgstr ""
+msgstr "Impost"
 
-#: templates/sale/order.html:68 templates/sale/payment.html:56
+#: templates/sale/order.html:68
+#: templates/sale/payment.html:56
 msgid "Make Payment"
-msgstr ""
+msgstr "Fer el pagament"
 
 #: templates/sale/orders.html:30
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: templates/sale/orders.html:30
 msgid "Next"
-msgstr ""
+msgstr "Següent"
 
 #: templates/sale/orders.html:41
 msgid "There are not orders avaible. There's nothing you like?"
-msgstr ""
+msgstr "No hi ha comandes. No hi ha res que t'agradi?"
 
 #: templates/sale/payment.html:39
 msgid "Number"
-msgstr ""
+msgstr "Número"
 
 #: templates/sale/payment.html:47
 msgid "Select payment"
-msgstr ""
+msgstr "Seleccioneu el pagament"
 
 #: templates/sale/payment.html:52
 msgid "Please select payment"
-msgstr ""
+msgstr "Si us plau, seleccioneu el pagament"
 
 #~ msgid ""
 #~ "It is Not allowed to view this section or not found. Use navigation menu."
 #~ msgstr ""
 #~ "No teniu permís per veure aquesta secció o no es troba. Utilitzeu el menú "
 #~ "de navegació."
-
 #~ msgid "Payment order %s"
 #~ msgstr "Pagament de la comanda %s"
+
