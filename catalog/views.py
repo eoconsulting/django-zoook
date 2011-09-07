@@ -41,21 +41,22 @@ from catalog.models import *
 @login_required
 def updateprice(request):
     data = ''
-    product_ids = request.GET.get('ides').split(',') #get values ides
+    if 'ides' in request.GET:
+        product_ids = request.GET.get('ides').split(',') #get values ides
 
-    if len(product_ids):
-        try:
-            partner_id = request.user.get_profile().partner_id
-        except:
-            partner_id = False
+        if len(product_ids):
+            try:
+                partner_id = request.user.get_profile().partner_id
+            except:
+                partner_id = False
 
-        if partner_id:
-            products = []
-            for product in product_ids:
-                products.append({'product_id':int(product),'quantity':1})
-            # values => {"1":{"regularPrice":"50"},"2":{"regularPrice":"100"}}
-            values = conn_webservice('product.product','zoook_compute_price', [OERP_SALE, products, partner_id])
-            data = simplejson.dumps(values)
+            if partner_id:
+                products = []
+                for product in product_ids:
+                    products.append({'product_id':int(product),'quantity':1})
+                # values => {"1":{"regularPrice":"50"},"2":{"regularPrice":"100"}}
+                values = conn_webservice('product.product','zoook_compute_price', [OERP_SALE, products, partner_id])
+                data = simplejson.dumps(values)
         
     return HttpResponse(data, mimetype='application/javascript')
 

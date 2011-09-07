@@ -45,6 +45,7 @@ label {display:block;float:left;clear:left;width:90px}
 
 /* BLOCKS STYLES BASE */
 .block 	{ border:1px solid #e7e7e7 }
+.block p { padding:10px}
 #block-left{ padding-top:10px; padding-left:5px; float:left; width:200px}
 #block-right{ padding-top:10px; padding-left:5px; float:right; width:200px}
 #block-detail { padding-top:10px; border-top: 1px solid #bfbfbf}
