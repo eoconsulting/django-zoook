@@ -89,8 +89,8 @@
     <div class="product-info">
         <ul class="tabs">
             <li><a href="#tab1">{% trans "Description" %}</a></li>
-            <li><a href="#tab2">{% trans "Related Products" %}</a></li>
-            <li><a href="#tab3">{% trans "Up-sells" %}</a></li>
+            {% if related_products|length > 1 %}<li><a href="#tab2">{% trans "Related Products" %}</a></li>{% endif %}
+            {% if related_products|length > 1 %}<li><a href="#tab3">{% trans "Up-sells" %}</a></li>{% endif %}
             <li><a href="#tab4">{% trans "Keywords" %}</a></li>
         </ul>
         
@@ -99,7 +99,7 @@
                 {{product.description}}
             </div>
 
-            <div id="tab2" class="tab-content">
+            {% if related_products|length > 1 %}<div id="tab2" class="tab-content">
                 <table id="product-related-table" class="cart-table">
                 <tbody>
                     {% for product in related_products %}<tr>
@@ -116,9 +116,9 @@
                     </tr>{% endfor %}
                 </tbody>
                 </table>
-            </div>
+            </div>{% endif %}
 
-            <div id="tab3" class="tab-content">
+            {% if upsells_products|length > 1 %}<div id="tab3" class="tab-content">
                 <table id="product-related-table" class="cart-table">
                 <tbody>
                     {% for product in upsells_products %}<tr>
@@ -135,7 +135,7 @@
                     </tr>{% endfor %}
                 </tbody>
                 </table>
-            </div>
+            </div>{% endif %}
             
             <div id="tab4" class="tab-content">
                 {% for search_keyword in search_keywords %}<a href="/{{ LANGUAGE_CODE }}/search/{{ search_keyword }}" alt="{{ search_keyword }}" title="{{ search_keyword }}">{{ search_keyword }}</a> {% endfor %}
