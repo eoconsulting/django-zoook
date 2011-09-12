@@ -23,6 +23,9 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from tools.zoook import siteConfiguration
+
+from settings import *
 
 def index(request):
     """HomePage Zoook e-sale for OpenERP"""

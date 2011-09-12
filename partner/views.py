@@ -45,7 +45,7 @@ from base.models import *
 
 from settings import *
 from tools.conn import conn_webservice
-from tools.zoook import checkPartnerID, checkFullName, connOOOP
+from tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
 
 import base64
 
@@ -60,8 +60,10 @@ def login(request):
     if request.user.is_authenticated(): #redirect profile
         return HttpResponseRedirect("/partner/profile/")
 
+    site_configuration = siteConfiguration(SITE_ID)
+
     title = _('Login')
-    metadescription = _('Account frontpage of %(site)s') % {'site':SITE_TITLE}
+    metadescription = _('Account frontpage of %(site)s') % {'site':site_configuration.site_title}
 
     if 'username' in request.POST and 'password1' in request.POST:
         username = request.POST['username']
@@ -92,8 +94,10 @@ def register(request):
     if request.user.is_authenticated(): #redirect profile
         return HttpResponseRedirect("/partner/profile/")
 
+    site_configuration = siteConfiguration(SITE_ID)
+
     title = _('Create an Account')
-    metadescription = _('Create an Account of %(site)s') % {'site':SITE_TITLE}
+    metadescription = _('Create an Account of %(site)s') % {'site':site_configuration.site_title}
 
     if request.method == "POST":
         message = []
@@ -209,8 +213,8 @@ def register(request):
                     authProfile.save()
 
                     # send email
-                    subject = _('New user is added - %(name)s') % {'name':SITE_TITLE}
-                    body = _("This email is generated automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':SITE_TITLE,'username':username,'password':password,'live_url':LIVE_URL}
+                    subject = _('New user is added - %(name)s') % {'name':site_configuration.site_title}
+                    body = _("This email is generated automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':site_configuration.site_title,'username':username,'password':password,'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[email])
                     email.send()
                     # authentification / login user
@@ -237,9 +241,10 @@ def remember(request):
     """Remember password"""
 
     message = []
+    site_configuration = siteConfiguration(SITE_ID)
 
     title = _('Remember')
-    metadescription = _('Remember account of %(site)s') % {'site':SITE_TITLE}
+    metadescription = _('Remember account of %(site)s') % {'site':site_configuration.site_title}
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -263,8 +268,8 @@ def remember(request):
                     user.set_password(key)
                     user.save()
                     # send email
-                    subject = _('Remember username - %(name)s') % {'name':SITE_TITLE}
-                    body = _("This email is generated  automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':SITE_TITLE,'username':user.username,'password':key,'live_url':LIVE_URL}
+                    subject = _('Remember username - %(name)s') % {'name':site_configuration.site_title}
+                    body = _("This email is generated  automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'username':user.username,'password':key,'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[user.email])
                     email.send()
                     email = ''
@@ -285,10 +290,13 @@ def remember(request):
 @login_required
 def profile(request):
     """Profile page"""
+    
+    site_configuration = siteConfiguration(SITE_ID)
+
     full_name = checkFullName(request)
 
     title = _('Profile %(full_name)s') % {'full_name':full_name}
-    metadescription = _('Account frontpage of %(site)s') % {'site':SITE_TITLE}
+    metadescription = _('Account frontpage of %(site)s') % {'site':site_configuration.site_title}
 
     return render_to_response("partner/profile.html", locals(), context_instance=RequestContext(request))
 
@@ -296,8 +304,10 @@ def profile(request):
 def changepassword(request):
     """Change Password page"""
 
+    site_configuration = siteConfiguration(SITE_ID)
+
     title = _('Change password')
-    metadescription = _('Change password of %(site)s') % {'site':SITE_TITLE}
+    metadescription = _('Change password of %(site)s') % {'site':site_configuration.site_title}
 
     if request.method == "POST":
         error = ''
@@ -312,8 +322,8 @@ def changepassword(request):
                 request.user.save()
                 if request.user.email:
                     # send email
-                    subject = _('New password is added - %(name)s') % {'name':SITE_TITLE}
-                    body = _("This email is generated  automatically from %(site)s\n\nNew password: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':SITE_TITLE,'password':data['password1'],'live_url':LIVE_URL}
+                    subject = _('New password is added - %(name)s') % {'name':site_configuration.site_title}
+                    body = _("This email is generated  automatically from %(site)s\n\nNew password: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'password':data['password1'],'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[request.user.email])
                     email.send()
                 error = _("New password is added")
@@ -328,6 +338,7 @@ def changepassword(request):
 @login_required
 def partner(request):
     """Partner page"""
+
     partner_id = checkPartnerID(request)
     if not partner_id:
         error = _('Are you a customer? Please, contact us. We will create a new role')
@@ -336,12 +347,14 @@ def partner(request):
     if not conn:
         error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
+        
+    site_configuration = siteConfiguration(SITE_ID)
 
     partner = conn.ResPartner.get(partner_id)
     address_invoice = conn.ResPartnerAddress.filter(type='invoice',partner_id=partner_id)
     address_delivery = conn.ResPartnerAddress.filter(type='delivery',partner_id=partner_id)
 
     title = _('User Profile')
-    metadescription = _('User profile of %(site)s') % {'site':SITE_TITLE}
+    metadescription = _('User profile of %(site)s') % {'site':site_configuration.site_title}
     
     return render_to_response("partner/partner.html", locals(), context_instance=RequestContext(request))

@@ -25,12 +25,25 @@ from django.utils.translation import ugettext_lazy as _
 DEBUG = True
 
 """
-Django global configuration
+Site Django
 """
-SITE_TITLE = _('Zoook. OpenERP e-sale')
-SITE_DESCRIPTION = _('Zikzakmedia. Working free GNU tools')
-CONTACT_EMAIL = ['zikzak@zikzakmedia.com']
-RSS_MAX = 10
+SITE_ID = 1
+
+"""
+Localization and locale
+"""
+TIME_ZONE = 'Europe/Madrid'
+
+ugettext = lambda s: s
+
+#Edit your languages
+LANGUAGE_CODE = 'es'
+LANGUAGES = (
+    ('en', ugettext('English')),
+    ('es', ugettext('Spanish')),
+    ('ca', ugettext('Catalan')),
+)
+DEFAUL_LANGUAGE = 1
 
 """
 OpenERP Conf

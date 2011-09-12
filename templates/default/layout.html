@@ -8,7 +8,7 @@
     <meta name="description" content="{{ metadescription }}" />
     <meta name="generator" content="OpenERP. Django Python Framework" />
     <meta http-equiv="content-language" content="{{ LANGUAGE_CODE }}">
-    <title>{{ title }}</title>
+    <title>{{ title }}{% block title %}{% endblock %}</title>
     <link href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/rss/" rel="alternate" type="application/rss+xml" title="RSS 2.0" />
     <link href="{{ MEDIA_URL }}images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 

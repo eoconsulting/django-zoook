@@ -25,31 +25,57 @@ from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 
 from tools.conn import conn_ooop
+from tools.cms.models import SiteConfiguration
 
-""" Check Partner ID"""
+def siteConfiguration(site):
+    """
+    Site Configuration
+    Return object all site configuration
+    """
+
+    try:
+        site_configuration = SiteConfiguration.objects.get(id=site)
+    except:
+        site_configuration = ''
+
+    return site_configuration
+
 @login_required
 def checkPartnerID(request):
+    """
+    Check Partner ID
+    """
+
     try:
         partner_id = request.user.get_profile().partner_id
     except:
         partner_id = False
     return partner_id
 
-""" Check Full Name"""
 @login_required
 def checkFullName(request):
+    """
+    Check Full Name
+    """
+
     full_name = request.user.get_full_name()
     if not full_name:
         full_name = request.user
     return full_name
 
-""" OOOP Connection"""
 def connOOOP():
+    """
+    OOOP Connection
+    """
+
     conn = conn_ooop()
     return conn
 
-""" OOOP Pagination"""
 def paginationOOOP(request, total=0, limit=10):
+    """
+    OOOP Pagination
+    """
+
     offset = 0
     page_previous = False
     page_next = False

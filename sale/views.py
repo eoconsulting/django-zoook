@@ -29,16 +29,20 @@ from django.contrib.auth.decorators import login_required
 
 from settings import *
 from tools.conn import conn_webservice
-from tools.zoook import checkPartnerID, checkFullName, connOOOP, paginationOOOP
+from tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP, paginationOOOP
+
 from catalog.models import ProductProduct, ProductTemplate
 
 import datetime
 import time
 import re
 
-"""Orders. All Orders Partner Available"""
 @login_required
 def orders(request):
+    """
+    Orders. All Orders Partner Available
+    """
+
     partner_id = checkPartnerID(request)
     if not partner_id:
         error = _('Are you a customer? Please, contact us. We will create a new role')
@@ -60,9 +64,12 @@ def orders(request):
 
     return render_to_response("sale/orders.html", {'title':title, 'metadescription':metadescription, 'values':values, 'page_previous':page_previous, 'page_next':page_next}, context_instance=RequestContext(request))
 
-"""Order. Order Detail Partner"""
 @login_required
 def order(request, order):
+    """
+    Order. Order Detail Partner
+    """
+
     partner_id = checkPartnerID(request)
     if not partner_id:
         error = _('Are you a customer? Please, contact us. We will create a new role')
@@ -84,9 +91,12 @@ def order(request, order):
 
     return render_to_response("sale/order.html", {'title': title, 'metadescription': metadescription, 'value': value}, context_instance=RequestContext(request))
 
-"""Payment. Payment Order"""
 @login_required
 def payment(request, order):
+    """
+    Payment. Payment Order
+    """
+
     partner_id = checkPartnerID(request)
     if not partner_id:
         error = _('Are you a customer? Please, contact us. We will create a new role')
@@ -116,8 +126,11 @@ def payment(request, order):
 
     return render_to_response("sale/payment.html", {'title': title, 'metadescription': metadescription, 'value': value, 'payments': payments}, context_instance=RequestContext(request))
 
-"""Check Order"""
 def check_Order(conn, partner_id, OERP_SALE):
+    """
+    Check Order
+    """
+
     orders = conn.SaleOrder.filter(partner_id=partner_id, state='draft', payment_state ='draft', shop_id=OERP_SALE)
 
     # get a draft order
@@ -161,8 +174,11 @@ def check_Order(conn, partner_id, OERP_SALE):
 
     return order
 
-"""Check Product"""
 def check_product(conn, code):
+    """
+    Check Product
+    """
+
     #check if this product exist
     product = False
     products = ProductProduct.objects.filter(code=code)
@@ -171,11 +187,15 @@ def check_product(conn, code):
 
     return product
 
-"""Checkout. Order cart"""
 @login_required
 def checkout(request):
+    """
+    Checkout. Order Cart
+    """
     if 'sale_order' in request.session:
         return HttpResponseRedirect("/sale/order/%s" % request.session['sale_order'])
+
+    site_configuration = siteConfiguration(SITE_ID)
 
     message = False
     partner_id = checkPartnerID(request)
@@ -249,7 +269,7 @@ def checkout(request):
     lines = conn.SaleOrderLine.filter(order_id=order.id)
 
     title = _('Checkout')
-    metadescription = _('Checkout order %s') % (SITE_TITLE)
+    metadescription = _('Checkout order %s') % (site_configuration.site_title)
     
     values = {
         'title': title,
@@ -270,9 +290,12 @@ def checkout(request):
 
     return render_to_response("sale/checkout.html", values, context_instance=RequestContext(request))
 
-"""Checkout. Order cart"""
 @login_required
 def checkout_remove(request, code):
+    """
+    Checkout. Order cart
+    """
+
     products = ProductProduct.objects.filter(code=code)
     if len(products) > 0:
         partner_id = checkPartnerID(request)
@@ -292,9 +315,12 @@ def checkout_remove(request, code):
 
     return HttpResponseRedirect("/sale/checkout/")
 
-"""Checkout. Confirm"""
 @login_required
 def checkout_confirm(request):
+    """
+    Checkout. Confirm
+    """
+
     if 'sale_order' in request.session:
         return HttpResponseRedirect("/sale/order/%s" % request.session['sale_order'])
 
@@ -384,4 +410,3 @@ def checkout_confirm(request):
         return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)
     else:
         return HttpResponseRedirect("/sale/checkout/")
-

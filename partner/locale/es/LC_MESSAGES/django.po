@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-07 12:30+0200\n"
+"POT-Creation-Date: 2011-09-12 12:33+0200\n"
 "PO-Revision-Date: 2011-09-07 14:49+0100\n"
 "Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,80 +16,84 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: views.py:63
-#: templates/partner/login.html:49
+#: views.py:65 templates/partner/login.html:49
 msgid "Login"
 msgstr "Entrar"
 
-#: views.py:64
-#: views.py:291
+#: views.py:66 views.py:299
 #, python-format
 msgid "Account frontpage of %(site)s"
 msgstr "Página principal de la cuenta de %(site)s"
 
-#: views.py:79
+#: views.py:81
 msgid "Sorry. Your user is not active."
 msgstr "Su usuario no está activo."
 
-#: views.py:81
+#: views.py:83
 msgid "Sorry. Your username or password is not valid."
 msgstr "Su usuario o contraseña no son válidos."
 
-#: views.py:95
+#: views.py:99
 msgid "Create an Account"
 msgstr "Crear una cuenta"
 
-#: views.py:96
+#: views.py:100
 #, python-format
 msgid "Create an Account of %(site)s"
 msgstr "Crear una cuenta de %(site)s"
 
-#: views.py:120
+#: views.py:124
 #, python-format
 msgid "Username is short. Minimum %(size)s characters"
 msgstr "Nombre de usuario corto. Mínimo %(size)s caracteres"
 
-#: views.py:123
+#: views.py:127
 #, python-format
 msgid "Password is short. Minimum %(size)s characters"
 msgstr "Contraseña corta. Mínimo %(size)s caracteres"
 
-#: views.py:131
-#: views.py:277
+#: views.py:135 views.py:282
 msgid "Sorry. This email is not valid. Try again"
-msgstr "Esta dirección de correo electrónico no es válida. Vuelva a intentarlo."
+msgstr ""
+"Esta dirección de correo electrónico no es válida. Vuelva a intentarlo."
 
-#: views.py:136
+#: views.py:140
 msgid "Error with captcha number. Copy same number."
 msgstr "Error en el código de verificación. Copie el mismo número."
 
-#: views.py:140
+#: views.py:144
 msgid "Sorry. This user already exists. Use another username"
 msgstr "Este usuario ya existe. Utiliza otro nombre usuario"
 
-#: views.py:143
-msgid "Sorry. This email already exists. Use another email or remember password"
-msgstr "Este correo electrónico ya existe. Utilice otro o recuerde la contraseña."
+#: views.py:147
+msgid ""
+"Sorry. This email already exists. Use another email or remember password"
+msgstr ""
+"Este correo electrónico ya existe. Utilice otro o recuerde la contraseña."
 
-#: views.py:150
-#: views.py:337
+#: views.py:154 views.py:348
 msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr "Error conectando con nuestro ERP. Vuelva a intentarlo o, contacte con nosotros."
+msgstr ""
+"Error conectando con nuestro ERP. Vuelva a intentarlo o, contacte con "
+"nosotros."
 
-#: views.py:155
-msgid "Sorry. This VAT already exists our ERP. Contact Us for create a new user"
-msgstr "Este CIF/NIF ya existe en nuestro ERP. Contacte con nosotros para crearte un usuario a la tienda"
+#: views.py:159
+msgid ""
+"Sorry. This VAT already exists our ERP. Contact Us for create a new user"
+msgstr ""
+"Este CIF/NIF ya existe en nuestro ERP. Contacte con nosotros para crearte un "
+"usuario a la tienda"
 
-#: views.py:164
+#: views.py:168
 msgid "Vat not valid. Check if vat is correct"
 msgstr "NIF/CIF no válido. Compruebe que el NIF/CIF es correcto."
 
-#: views.py:212
+#: views.py:216
 #, python-format
 msgid "New user is added - %(name)s"
 msgstr "Nuevo usuario %(name)s"
 
-#: views.py:213
+#: views.py:217
 #, python-format
 msgid ""
 "This email is generated automatically from %(site)s\n"
@@ -110,34 +114,33 @@ msgstr ""
 "\n"
 "Por favor, no conteste este correo"
 
-#: views.py:221
+#: views.py:225
 msgid "Sorry. Error form values. Try again"
 msgstr "Error en los valores del formulario. Vuelva a intentarlo."
 
-#: views.py:224
+#: views.py:228
 msgid "Sorry. Passwords do not match. Try again"
 msgstr "Las contraseñas no coinciden. Vuelva a intentarlo."
 
-#: views.py:241
-#: templates/partner/remember.html:39
+#: views.py:246 templates/partner/remember.html:39
 msgid "Remember"
 msgstr "Recuerde"
 
-#: views.py:242
+#: views.py:247
 #, python-format
 msgid "Remember account of %(site)s"
 msgstr "Recuerdatorio de la cuenta de %(site)s"
 
-#: views.py:252
+#: views.py:257
 msgid "Error with captcha number. Copy the same number."
 msgstr "Error en el código de verificación. Copie el mismo número."
 
-#: views.py:266
+#: views.py:271
 #, python-format
 msgid "Remember username - %(name)s"
 msgstr "Recuerdatorio del usuario - %(name)s"
 
-#: views.py:267
+#: views.py:272
 #, python-format
 msgid ""
 "This email is generated  automatically from %(site)s\n"
@@ -158,38 +161,36 @@ msgstr ""
 "\n"
 "Por favor, no conteste este correo"
 
-#: views.py:271
+#: views.py:276
 #, python-format
 msgid "A new password are sent to %(email)s"
 msgstr "Se ha enviado una nueva contraseña a su cuenta %(email)s"
 
-#: views.py:274
+#: views.py:279
 msgid "Sorry. This email not exist. Try again"
 msgstr "Esta dirección de correo electrónico no existe. Vuelva a intentarlo."
 
-#: views.py:290
+#: views.py:298
 #, python-format
 msgid "Profile %(full_name)s"
 msgstr "Perfil %(full_name)s"
 
-#: views.py:299
-#: templates/partner/changepassword.html:32
-#: templates/partner/menu.html:8
-#: templates/partner/profile.html:20
+#: views.py:309 templates/partner/changepassword.html:32
+#: templates/partner/menu.html:8 templates/partner/profile.html:20
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: views.py:300
+#: views.py:310
 #, python-format
 msgid "Change password of %(site)s"
 msgstr "Cambiar contraseña de %(site)s"
 
-#: views.py:315
+#: views.py:325
 #, python-format
 msgid "New password is added - %(name)s"
 msgstr "Añadida nueva contraseña - %(name)s"
 
-#: views.py:316
+#: views.py:326
 #, python-format
 msgid ""
 "This email is generated  automatically from %(site)s\n"
@@ -208,28 +209,31 @@ msgstr ""
 "\n"
 "Por favor, no conteste este correo electrónico"
 
-#: views.py:319
+#: views.py:329
 msgid "New password is added"
 msgstr "Se ha añadido una nueva contraseña"
 
-#: views.py:321
+#: views.py:331
 #, python-format
 msgid "Sorry. Passwords need %(size)s characters or more. Try again"
-msgstr "Las contraseñas deben tener %(size)s caracteres o más. Vuelva a intentarlo."
+msgstr ""
+"Las contraseñas deben tener %(size)s caracteres o más. Vuelva a intentarlo."
 
-#: views.py:323
+#: views.py:333
 msgid "Sorry. Passwords don't match. Try again"
 msgstr "Las contraseñas no coinciden. Vuelva a intentarlo."
 
-#: views.py:333
-msgid "Are you a customer? Please, contact us. We will create a new role"
-msgstr "¿Eres cliente? Contacte con nosotros. Os crearemos un cliente en nuestra tienda"
-
 #: views.py:344
+msgid "Are you a customer? Please, contact us. We will create a new role"
+msgstr ""
+"¿Eres cliente? Contacte con nosotros. Os crearemos un cliente en nuestra "
+"tienda"
+
+#: views.py:357
 msgid "User Profile"
 msgstr "Perfil de usuario"
 
-#: views.py:345
+#: views.py:358
 #, python-format
 msgid "User profile of %(site)s"
 msgstr "Perfil de usuario de %(site)s"
@@ -242,14 +246,17 @@ msgstr "Introduzca su nueva contraseña"
 msgid "Log in or Create an Account"
 msgstr "Identifíquese o cree una cuenta"
 
-#: templates/partner/login.html:23
-#: templates/partner/register.html:41
+#: templates/partner/login.html:23 templates/partner/register.html:41
 msgid "New customers"
 msgstr "Nuevo cliente"
 
 #: templates/partner/login.html:24
-msgid "If you create an account in our store, you could buy , gain access the orders and the invoices quickly and more facilities."
-msgstr "Si crea una cuenta en nuestra tienda, podreis comprar, tener acceso a los pedidos y facturas de forma rápida y más facilidades."
+msgid ""
+"If you create an account in our store, you could buy , gain access the "
+"orders and the invoices quickly and more facilities."
+msgstr ""
+"Si crea una cuenta en nuestra tienda, podreis comprar, tener acceso a los "
+"pedidos y facturas de forma rápida y más facilidades."
 
 #: templates/partner/login.html:27
 msgid "Registered customers"
@@ -259,8 +266,7 @@ msgstr "Clientes registrados"
 msgid "If you have an account with us, please log in."
 msgstr "Si tiene una cuenta con nosotros, identifíquese por favor."
 
-#: templates/partner/login.html:44
-#: templates/partner/register.html:103
+#: templates/partner/login.html:44 templates/partner/register.html:103
 msgid "Create new account"
 msgstr "Crear una cuenta"
 
@@ -268,23 +274,19 @@ msgstr "Crear una cuenta"
 msgid "Remember Password"
 msgstr "Recuerdar contraseña"
 
-#: templates/partner/login.html:50
-#: templates/partner/register.html:104
+#: templates/partner/login.html:50 templates/partner/register.html:104
 msgid "Required Fields"
 msgstr "Campos requeridos"
 
-#: templates/partner/menu.html:4
-#: templates/partner/profile.html:17
+#: templates/partner/menu.html:4 templates/partner/profile.html:17
 msgid "Orders"
 msgstr "Pedidos"
 
-#: templates/partner/menu.html:5
-#: templates/partner/partner.html:18
+#: templates/partner/menu.html:5 templates/partner/partner.html:18
 msgid "Invoice"
 msgstr "Factura"
 
-#: templates/partner/menu.html:5
-#: templates/partner/profile.html:18
+#: templates/partner/menu.html:5 templates/partner/profile.html:18
 msgid "Invoices"
 msgstr "Facturas"
 
@@ -292,8 +294,7 @@ msgstr "Facturas"
 msgid "Account"
 msgstr "Mi cuenta"
 
-#: templates/partner/menu.html:6
-#: templates/partner/profile.html:19
+#: templates/partner/menu.html:6 templates/partner/profile.html:19
 msgid "Your account"
 msgstr "Su cuenta"
 
@@ -305,8 +306,7 @@ msgstr "catálogo"
 msgid "My Whistlist"
 msgstr "Mi lista de deseos"
 
-#: templates/partner/menu.html:9
-#: templates/partner/profile.html:21
+#: templates/partner/menu.html:9 templates/partner/profile.html:21
 msgid "Logout"
 msgstr "Salir"
 
@@ -318,8 +318,7 @@ msgstr "Nombre"
 msgid "VAT"
 msgstr "NIF"
 
-#: templates/partner/partner.html:17
-#: templates/partner/register.html:55
+#: templates/partner/partner.html:17 templates/partner/register.html:55
 msgid "Address"
 msgstr "Dirección"
 
@@ -368,8 +367,7 @@ msgstr "País"
 msgid "Login user"
 msgstr "Usuario registrado"
 
-#: templates/partner/register.html:85
-#: templates/partner/remember.html:33
+#: templates/partner/register.html:85 templates/partner/remember.html:33
 msgid "Email"
 msgstr "Correo electrónico"
 
@@ -387,10 +385,12 @@ msgstr "Introduzca el correo electrónico y se le enviará una nueva contraseña
 
 #~ msgid "partner"
 #~ msgstr "empresa"
+
 #~ msgid "partners"
 #~ msgstr "empresas"
+
 #~ msgid "Your details are updated successfully"
 #~ msgstr "Sus datos se han actualizado correctamente"
+
 #~ msgid "Error validation form. Try again"
 #~ msgstr "Error en la validación del formulario. Vuelva a intentarlo"
-

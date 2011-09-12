@@ -30,16 +30,22 @@ from django.db.models import Q
 from django.utils import simplejson
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.models import Site
 
 from settings import *
 from tools.conn import conn_webservice
-from tools.zoook import checkPartnerID, checkFullName, connOOOP
+from tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
 
 from catalog.models import *
 
-"""Update Price. Check Json"""
 @login_required
 def updateprice(request):
+    """
+    B2B features. Update Price catalog/product if partner are price rules different price rule sale shop.
+    http://domain.com/catalog/updateprice/
+    Return dicc elements ID product-price
+    """
+
     data = ''
     if 'ides' in request.GET:
         product_ids = request.GET.get('ides').split(',') #get values ides
@@ -60,8 +66,9 @@ def updateprice(request):
         
     return HttpResponse(data, mimetype='application/javascript')
 
-"""Category Children"""
 def collect_children(category, level=0, children=None):
+    """Category Children"""
+    
     if children is None:
         children = []
 
@@ -73,8 +80,9 @@ def collect_children(category, level=0, children=None):
 
     return children
 
-"""Category Path"""
 def pathcategory(category):
+    """Category Path"""
+
     categories = ProductCategory.objects.filter(id=category)
 
     path = []
@@ -88,8 +96,12 @@ def pathcategory(category):
 
     return path
 
-"""Index Catalog. All Categories list"""
 def index(request):
+    """
+    Catalog Index
+    All Categories list
+    """
+
     root_category = ProductCategory.objects.filter(parent=None)
 
     values = []
@@ -101,12 +113,15 @@ def index(request):
             values.append((ProductCategory.objects.get(id=category), level, oldlevel))
             oldlevel = level
 
+    site_configuration = siteConfiguration(SITE_ID)
+
     title = _('Categories')
-    metadescription = _('List all categories of %s') % SITE_TITLE
+    metadescription = _('List all categories of %s') % site_configuration.site_title
     return render_to_response("catalog/index.html", {'title': title, 'metadescription': metadescription, 'values': values}, context_instance=RequestContext(request))
 
-"""All Questions filtered by category"""
 def category(request,category):
+    """All Products filtered by category"""
+
     values = []
 
     if category:
@@ -199,8 +214,9 @@ def category(request,category):
     else:
         raise Http404(_('This category is not available because you navigate with bookmarks or search engine. Use navigation menu'))
 
-"""Product View"""
 def product(request,product):
+    """Product View"""
+
     kwargs = {
         'slug_'+get_language(): product, #slug is unique
     }
@@ -259,9 +275,13 @@ def product(request,product):
     }
     return render_to_response("catalog/product.html", values, context_instance=RequestContext(request))
 
-""" Whistlist """
 @login_required
 def whistlist(request):
+    """
+    Whistlist
+    Favourites products customer
+    """
+
     partner_id = checkPartnerID(request)
     if not partner_id:
         error = _('Are you a customer? Please, contact us. We will create a new role')
@@ -326,7 +346,9 @@ def whistlist(request):
 
     return render_to_response("catalog/whistlist.html", {'title': title, 'metadescription': metadescription, 'products': products}, context_instance=RequestContext(request))
 
-""" Compare """
 def compare(request):
+    """
+    Comparisation products
+    """
 
     return render_to_response("catalog/compare.html", {'title': title, 'metadescription': metadescription, 'products': products}, context_instance=RequestContext(request))

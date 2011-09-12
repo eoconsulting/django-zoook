@@ -22,16 +22,34 @@
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.sites.models import Site 
 
 from transmeta import TransMeta
 
 import tools.cms.enums as enums
 
-"""
-Menu Models
-"""
+class SiteConfiguration(Site):
+    """Site Configuration Management"""
+    __metaclass__ = TransMeta
+
+    site_title = models.CharField(_('site title'),max_length=150)
+    site_metadescription = models.CharField(_('site metadescription'),max_length=150)
+    site_metakeywords = models.CharField(_('site metakeywords'),max_length=150)
+    contact_email = models.TextField(_('Contact emails'), help_text=_('Separated by comma (,)') )
+    rss_max = models.FloatField(_('rss max'))
+
+    class Meta:
+        db_table = 'site_configuration'
+        verbose_name = _('configuration')
+        verbose_name_plural = _('configurations')
+        translate = (
+            'site_title',
+            'site_metadescription',
+            'site_metakeywords',
+        )
+
 class Menu(models.Model):
-    """Menus"""
+    """Menu Management"""
     __metaclass__ = TransMeta
     
     name = models.CharField(_('name'),max_length=100)
@@ -81,11 +99,10 @@ class MenuItem(models.Model):
     def __unicode__(self):
         return "%s %s. %s" % (self.menu.slug, self.order, self.title)
 
-"""
-Modules Models
-"""
 class Modules(models.Model):
-    """Category FAQ."""
+    """
+    Modules Management
+    """
     __metaclass__ = TransMeta
 
     name = models.CharField(_('name'), max_length=255)
@@ -101,11 +118,10 @@ class Modules(models.Model):
     def __unicode__(self):
         return self.name
 
-"""
-ImageSlider Models
-"""
 class ImageSlider(models.Model):
-    """ImageSlider"""
+    """
+    Images Sliders Management
+    """
     __metaclass__ = TransMeta
     
     name = models.CharField(_('name'),max_length=100)
@@ -132,7 +148,9 @@ class ImageSlider(models.Model):
             current += 10
  
 class ImageSliderItem(models.Model):
-    """ImageSlider Items"""
+    """
+    Images Sliders Items
+    """
     __metaclass__ = TransMeta
 
     slider = models.ForeignKey(ImageSlider)

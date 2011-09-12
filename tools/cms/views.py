@@ -31,7 +31,10 @@ from settings import *
 from tools.cms.models import *
 
 def modules_list(request):
-    """Modules List"""
+    """
+    Modules List
+    """
+
     if not request.user.has_perm('cms.change_modules'):
         raise Http404
 
@@ -40,10 +43,11 @@ def modules_list(request):
 
     return render_to_response('cms/modules/list.html', {'title':title,'modules':modules}, context_instance=RequestContext(request))
 
-"""
-Modules Form. Add/Edit
-"""
 class ModulesForm(ModelForm):
+    """
+    Modules Form. Add/Edit
+    """
+
     class Meta:
         model = Modules
         

@@ -52,21 +52,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-TIME_ZONE = 'Europe/Madrid'
-
-ugettext = lambda s: s
-
-#Edit your languages
-LANGUAGE_CODE = 'es'
-LANGUAGES = (
-    ('en', ugettext('English')),
-    ('es', ugettext('Spanish')),
-    ('ca', ugettext('Catalan')),
-)
-DEFAUL_LANGUAGE = 1
-
-SITE_ID = 1
-
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True

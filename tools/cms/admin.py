@@ -25,13 +25,30 @@ from django.contrib import admin
 from tools.cms.models import *
 from . import models
 
-"""
-Menus Admin
-"""
+class SiteConfigurationAdmin(admin.ModelAdmin):
+    """
+    Site Configuration Management Admin
+    """
+
+    list_display = (
+        'name',
+        'domain',
+    )
+    search_fields = ["name","domain"]
+    
+admin.site.register(SiteConfiguration,SiteConfigurationAdmin)
+
 class MenuItemInline(admin.TabularInline):
+    """
+    Menu Items Management Admin
+    """
+
     model = models.MenuItem
 
 class MenuAdmin(admin.ModelAdmin):
+    """
+    Menu Management Admin
+    """
 
     list_display = (
         'name',
@@ -46,10 +63,10 @@ class MenuAdmin(admin.ModelAdmin):
     
 admin.site.register(Menu,MenuAdmin)
 
-"""
-Modules Admin
-"""
 class ModulesAdmin(admin.ModelAdmin):
+    """
+    Modules Management Admin
+    """
 
     list_display = (
         'name',
@@ -65,13 +82,17 @@ class ModulesAdmin(admin.ModelAdmin):
 
 admin.site.register(Modules,ModulesAdmin)
 
-"""
-Image Slider Admin
-"""
 class ImageSliderInline(admin.TabularInline):
+    """
+    Image Slider Items Management Admin
+    """
+
     model = models.ImageSliderItem
     
 class ImageSliderAdmin(admin.ModelAdmin):
+    """
+    Image Slider Management Admin
+    """
 
     list_display = (
         'name',

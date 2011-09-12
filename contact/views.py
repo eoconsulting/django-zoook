@@ -26,6 +26,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from settings import *
+from tools.zoook import siteConfiguration
 
 from contact.models import *
 from django.core.mail import EmailMessage
@@ -40,6 +41,8 @@ def contactForm(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            site_configuration = siteConfiguration(SITE_ID)
+
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             contact_text = form.cleaned_data['contact_text']
@@ -48,13 +51,20 @@ def contactForm(request):
                 # Captcha is wrong show a error ...
                 message = _('Error with captcha number. Copy the same number.')
             else:
-                subject = _('Contact - %(name)s') % {'name':SITE_TITLE}
-                body = _('This email is generated with Contact Module from %(site)s\n\n%(name)s - %(email)s\n%(message)s') % {'site':SITE_TITLE,'name':name,'email':email,'message':contact_text}
+                subject = _('Contact - %(name)s') % {'name':site_configuration.site_title}
+                body = _('This email is generated with Contact Module from %(site)s\n\n%(name)s - %(email)s\n%(message)s') % {'site':site_configuration.site_title,'name':name,'email':email,'message':contact_text}
 
-                email = EmailMessage(subject, body, to=CONTACT_EMAIL)
-                email.send()
+                if site_configuration.contact_email:
+                    contact_email = site_configuration.contact_email.split(',')
+                    if len(contact_email)==0:
+                        contact_email = [contact_email]
 
-                message = _('Thanks for your message. We will answer soon.')
+                    email = EmailMessage(subject, body, to=contact_email)
+                    email.send()
+
+                    message = _('Thanks for your message. We will answer soon.')
+                else:
+                    message = _('Error. Configure yours emails contacts.')
         else:
             message = _('Sorry! This form is not valid. Try again.')
 

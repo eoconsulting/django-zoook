@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-07 12:27+0200\n"
-"PO-Revision-Date: 2011-09-07 12:28+0100\n"
+"POT-Creation-Date: 2011-09-12 12:33+0200\n"
+"PO-Revision-Date: 2011-09-12 12:34+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,22 +16,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: views.py:37
+#: views.py:38
 #: templates/contact/form.html:30
 #: templates/contact/form.html.py:34
 msgid "Contact"
 msgstr "Contacto"
 
-#: views.py:49
+#: views.py:52
 msgid "Error with captcha number. Copy the same number."
 msgstr "Error en el codigo de verificación. Copie el mismo código."
 
-#: views.py:51
+#: views.py:54
 #, python-format
 msgid "Contact - %(name)s"
 msgstr "Contacto - %(name)s"
 
-#: views.py:52
+#: views.py:55
 #, python-format
 msgid ""
 "This email is generated with Contact Module from %(site)s\n"
@@ -44,11 +44,15 @@ msgstr ""
 "%(name)s - %(email)s\n"
 "%(message)s"
 
-#: views.py:57
+#: views.py:65
 msgid "Thanks for your message. We will answer soon."
 msgstr "Gracias por su mensaje. En breve le responderemos."
 
-#: views.py:59
+#: views.py:67
+msgid "Error. Configure yours emails contacts."
+msgstr "Error. Configure sus correos de contacto."
+
+#: views.py:69
 msgid "Sorry! This form is not valid. Try again."
 msgstr "Disculpe! La información enviada no es correcta. Vuelva a intentarlo."
 

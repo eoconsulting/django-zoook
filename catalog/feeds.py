@@ -23,17 +23,25 @@
 from django.contrib.syndication.views import Feed
 from django.utils.translation import get_language
 
+from tools.zoook import siteConfiguration
 from catalog.models import ProductTemplate
 from transurl import *
-from config import *
+from settings import *
 
 class ProductFeed(Feed):
-    title = SITE_TITLE
+    """
+    Product Feed
+    """
+
+    site_configuration = siteConfiguration(SITE_ID)
+
+    title = site_configuration.site_title
     link = "/%s/" % (catalog_url[get_language()])
-    description = SITE_DESCRIPTION
+    description = site_configuration.site_metadescription
 
     def items(self):
-        return ProductTemplate.objects.order_by('-created_on')[:RSS_MAX]
+        site_configuration = siteConfiguration(SITE_ID)
+        return ProductTemplate.objects.order_by('-created_on')[:site_configuration.rss_max]
 
     def item_title(self, item):
         return item.name
