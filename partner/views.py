@@ -85,6 +85,8 @@ def login(request):
     form = UserCreationForm()
     if request.GET.get('next'):
         redirect = base64.b64encode(request.GET.get('next'))
+    
+    print request
 
     return render_to_response("partner/login.html", locals(), context_instance=RequestContext(request))
 

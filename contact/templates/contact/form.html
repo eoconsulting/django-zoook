@@ -37,7 +37,7 @@
         <p><label for="contact_text">{% trans "Message" %}:</label><textarea name="contact_text" id="contact_text" class="required" cols="50" rows="5">{{ contact_text }}</textarea></p>
         {% csrf_token %}
         {{ html_captcha|safe }}
-        <input type="submit" value="{% trans "Submit" %}" />
+        <input type="submit" value="{% trans "Submit" %}" class="send-contact" />
         </fieldset>
         </form>
     </div>

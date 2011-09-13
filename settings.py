@@ -104,6 +104,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'tools.cms.context_processors.theme',
 )
 
 INSTALLED_APPS = (

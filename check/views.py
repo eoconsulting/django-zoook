@@ -29,7 +29,9 @@ from django.contrib.auth.decorators import login_required
 
 from settings import *
 from tools.conn import conn_webservice
-from tools.zoook import checkPartnerID, checkFullName, connOOOP, paginationOOOP
+from tools.zoook import connOOOP
+
+from sale.email import SaleOrderEmail
 
 """
 Cashondelivery
@@ -57,7 +59,10 @@ def index(request):
 
         values = {'order':request.session['sale_order'],'payment_type':payment_type[0]}
         del request.session['sale_order']
-        
+
+        #send email sale order
+        SaleOrderEmail(order.id)
+
         return render_to_response("check/check.html", values, context_instance=RequestContext(request))
     else:
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
