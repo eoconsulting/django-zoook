@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 12:33+0200\n"
+"POT-Creation-Date: 2011-09-13 16:03+0200\n"
 "PO-Revision-Date: 2011-09-07 14:43+0100\n"
 "Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Login"
 msgstr "Entra"
 
-#: views.py:66 views.py:299
+#: views.py:66 views.py:301
 #, python-format
 msgid "Account frontpage of %(site)s"
 msgstr "Pàgina principal de compte de %(site)s"
@@ -33,65 +33,65 @@ msgstr "El seu usuari no està actiu."
 msgid "Sorry. Your username or password is not valid."
 msgstr "El seu usuari o contrasenya no són vàlids."
 
-#: views.py:99
+#: views.py:101
 msgid "Create an Account"
 msgstr "Crea un compte"
 
-#: views.py:100
+#: views.py:102
 #, python-format
 msgid "Create an Account of %(site)s"
 msgstr "Crea un compte de %(site)s"
 
-#: views.py:124
+#: views.py:126
 #, python-format
 msgid "Username is short. Minimum %(size)s characters"
 msgstr "Nom d'usuari curt. Mínim %(size)s caràcters"
 
-#: views.py:127
+#: views.py:129
 #, python-format
 msgid "Password is short. Minimum %(size)s characters"
 msgstr "Contrasenya curta. Mínim %(size)s caràcters"
 
-#: views.py:135 views.py:282
+#: views.py:137 views.py:284
 msgid "Sorry. This email is not valid. Try again"
 msgstr "Aquesta adreça de correu electrònic no és vàlida. Torneu a provar."
 
-#: views.py:140
+#: views.py:142
 msgid "Error with captcha number. Copy same number."
 msgstr "Error amb el codi de verificació. Copieu el mateix nombre."
 
-#: views.py:144
+#: views.py:146
 msgid "Sorry. This user already exists. Use another username"
 msgstr "Aquest usuari ja existeix. Utilitzeu un altre nom."
 
-#: views.py:147
+#: views.py:149
 msgid ""
 "Sorry. This email already exists. Use another email or remember password"
 msgstr ""
 "Aquest correu electrònic ja existeix. Utilitzeu un altre o recordeu la "
 "contrasenya."
 
-#: views.py:154 views.py:348
+#: views.py:156 views.py:350
 msgid "Error when connecting with our ERP. Try again or cantact us"
 msgstr ""
 "Error connectant amb el nostre ERP. Torneu a provar o contacteu amb "
 "nosaltres."
 
-#: views.py:159
+#: views.py:161
 msgid ""
 "Sorry. This VAT already exists our ERP. Contact Us for create a new user"
 msgstr "Aquest NIF ja existeix en el nostre ERP. Utilitzeu un altre nom."
 
-#: views.py:168
+#: views.py:170
 msgid "Vat not valid. Check if vat is correct"
 msgstr "NIF/CIF no vàlid. Comproveu que el NIF/CIF sigui correcte."
 
-#: views.py:216
+#: views.py:218
 #, python-format
 msgid "New user is added - %(name)s"
 msgstr "Nou usuari %(name)s"
 
-#: views.py:217
+#: views.py:219
 #, python-format
 msgid ""
 "This email is generated automatically from %(site)s\n"
@@ -112,33 +112,33 @@ msgstr ""
 "\n"
 "Si us plau, no contesteu aquest correu"
 
-#: views.py:225
+#: views.py:227
 msgid "Sorry. Error form values. Try again"
 msgstr "Error en els valors del formulari. Torneu a provar."
 
-#: views.py:228
+#: views.py:230
 msgid "Sorry. Passwords do not match. Try again"
 msgstr "La contrasenya no coincideix. Torneu a prova."
 
-#: views.py:246 templates/partner/remember.html:39
+#: views.py:248 templates/partner/remember.html:39
 msgid "Remember"
 msgstr "Recordatori"
 
-#: views.py:247
+#: views.py:249
 #, python-format
 msgid "Remember account of %(site)s"
 msgstr "Recordatori del compte de %(site)s"
 
-#: views.py:257
+#: views.py:259
 msgid "Error with captcha number. Copy the same number."
 msgstr "Error amb el codi de verificació. Copieu el mateix número."
 
-#: views.py:271
+#: views.py:273
 #, python-format
 msgid "Remember username - %(name)s"
 msgstr "Recordatori usuari - %(name)s"
 
-#: views.py:272
+#: views.py:274
 #, python-format
 msgid ""
 "This email is generated  automatically from %(site)s\n"
@@ -159,37 +159,37 @@ msgstr ""
 "\n"
 "Si us plau, no contesteu aquest correu"
 
-#: views.py:276
+#: views.py:278
 #, python-format
 msgid "A new password are sent to %(email)s"
 msgstr "S'ha enviat una nova contrasenya al seu correu %(email)s"
 
-#: views.py:279
+#: views.py:281
 msgid "Sorry. This email not exist. Try again"
 msgstr ""
 "Disculpeu. Aquesta adreça de correu electrònic no existeix. Torneu a provar."
 
-#: views.py:298
+#: views.py:300
 #, python-format
 msgid "Profile %(full_name)s"
 msgstr "Perfil %(full_name)s"
 
-#: views.py:309 templates/partner/changepassword.html:32
+#: views.py:311 templates/partner/changepassword.html:32
 #: templates/partner/menu.html:8 templates/partner/profile.html:20
 msgid "Change password"
 msgstr "Canvia contrasenya"
 
-#: views.py:310
+#: views.py:312
 #, python-format
 msgid "Change password of %(site)s"
 msgstr "Canvia contrasenya de %(site)s"
 
-#: views.py:325
+#: views.py:327
 #, python-format
 msgid "New password is added - %(name)s"
 msgstr "Nova contrasenya - %(name)s"
 
-#: views.py:326
+#: views.py:328
 #, python-format
 msgid ""
 "This email is generated  automatically from %(site)s\n"
@@ -208,31 +208,31 @@ msgstr ""
 "\n"
 "Si us plau, no contesteu aquest correu electrònic"
 
-#: views.py:329
+#: views.py:331
 msgid "New password is added"
 msgstr "Nova contrasenya afegida"
 
-#: views.py:331
+#: views.py:333
 #, python-format
 msgid "Sorry. Passwords need %(size)s characters or more. Try again"
 msgstr ""
 "Disculpleu. Les contrasenyes han de tenir %(size)s caràcters o més. Torneu a "
 "provar."
 
-#: views.py:333
+#: views.py:335
 msgid "Sorry. Passwords don't match. Try again"
 msgstr "Les contrasenyes no coincideixen. Torneu a provar."
 
-#: views.py:344
+#: views.py:346
 msgid "Are you a customer? Please, contact us. We will create a new role"
 msgstr ""
 "És client? Si us plau, contacteu amb nosaltres. Us crearem com a client."
 
-#: views.py:357
+#: views.py:359
 msgid "User Profile"
 msgstr "Perfil d'usuari"
 
-#: views.py:358
+#: views.py:360
 #, python-format
 msgid "User profile of %(site)s"
 msgstr "Perfil d'usuari de %(site)s"

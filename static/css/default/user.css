@@ -16,7 +16,9 @@
 .row0{background-color:#f6f6f6}
 .row1{background-color:#fff}
 
-.add{ background-color:#e2001a; color:#fff; padding:5px}
+.btn-create-account{ background-color:#e2001a; color:#fff; padding:5px}
+.btn-login { background-color:#e2001a; color:#fff; padding:3px; border:none}
 
 /* Register Users form */
 ul.register li{ padding:2px}
+#login-form label{ width: 160px}
