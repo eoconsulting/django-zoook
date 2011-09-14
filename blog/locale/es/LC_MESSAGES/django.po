@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-14 09:18+0200\n"
+"PO-Revision-Date: 2011-09-14 09:19+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: enums.py:29
+msgid "Active"
+msgstr "Activo"
+
+#: enums.py:30
+msgid "Inactive"
+msgstr "Inactivo"
+
+#: models.py:37
+msgid "created by"
+msgstr "creado por"
+
+#: models.py:38
+msgid "created on"
+msgstr "creado"
+
+#: models.py:39
+msgid "updated on"
+msgstr "actualizado"
+
+#: models.py:40
+msgid "updated by"
+msgstr "actualizado por"
+
+#: models.py:48
+msgid "slug"
+msgstr "slug"
+
+#: models.py:48
+msgid "This is a unique identifier that allows your blogs to display its detail view, ex 'how-can-i-contribute'"
+msgstr "Este es un identificador único que permite mostrar los detalles de sus blogs, por ejemplo 'como-puedo-contribuir'"
+
+#: models.py:49
+msgid "description"
+msgstr "descripción"
+
+#: models.py:52
+msgid "status"
+msgstr "estado"
+
+#: models.py:52
+msgid "Only blogs with their status set to 'Active' will be displayed."
+msgstr "Sólo se mostraran los blogs con el estado 'Activo'."
+
+#: models.py:53
+msgid "sort order"
+msgstr "ordenación"
+
+#: models.py:53
+msgid "The order you would like the content to be displayed."
+msgstr "El orden con el que le gustaría que se mostrase el contenido."
+
+#: models.py:54
+msgid "If don't specific template, use default.html template"
+msgstr "Si no especifica plantilla, se utilizará la plantilla default.html"
+
+#: models.py:57
+msgid "blog"
+msgstr "blog"
+
+#: models.py:58
+msgid "blogs"
+msgstr "blogs"
+
+#: views.py:58
+#, python-format
+msgid "Blog :: All Posts. Page %(page)s of %(total)s"
+msgstr "Blog :: Todas las entradas. Página %(page)s de %(total)s"
+
+#: views.py:59
+#, python-format
+msgid "List all post blog of %(site)s. Page %(page)s of %(total)s"
+msgstr "Lista todos los post del blog de %(site)s. Página %(page)s de %(total)s"
+
+#: templates/blog/default.html:9
+#: templates/blog/list.html:5
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/blog/list.html:24
+msgid "previous"
+msgstr "Anterior"
+
+#: templates/blog/list.html:28
+msgid "Page"
+msgstr "Página"
+
+#: templates/blog/list.html:28
+msgid "of"
+msgstr "de"
+
+#: templates/blog/list.html:32
+msgid "next"
+msgstr "Siguiente"
+

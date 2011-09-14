@@ -41,7 +41,6 @@ LANGUAGE_CODE = 'es'
 LANGUAGES = (
     ('en', ugettext('English')),
     ('es', ugettext('Spanish')),
-    ('ca', ugettext('Catalan')),
 )
 DEFAUL_LANGUAGE = 1
 

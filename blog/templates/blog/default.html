@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% load modules i18n %}
+{% if not user.is_authenticated %}{% load inplace_edit %}{% inplace_media %}{% endif %}
+
+{% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/blog.css" rel="stylesheet" type="text/css" media="screen">
+<link rel="canonical" href="{{blog.get_absolute_url}}" />
+{% if user.is_staff %}{% load inplace_edit %}{% inplace_media %}{% endif %}{% endblock %}
+
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li> <li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/blog/">Blog</a></li><li><span>&gt;</span> {{blog.name}}</li></ul></div>{% endblock %}
+
+{% block content %}
+<div class="primary-content span-9 last">
+    <div id="block-right">
+        {% module blog.right %}
+    </div>
+
+    <div id="blog-detail">
+        <h1>{% inplace_edit "blog.name" %}</h1>
+        <div class="blog-date">{{ blog.created_on|date:"d/M/Y" }}</div>
+        <div class="blog-content">{% inplace_edit "blog.description|safe" auto_height=1 %}</div>
+    </div>
+
+</div>
+{% endblock %}

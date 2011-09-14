@@ -21,16 +21,11 @@
 ############################################################################################
 
 from django.contrib import admin
-from content.models import *
+from blog.models import *
 from datetime import datetime
 
-class ContentAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None,   {'fields': ['name_en','name_es','slug_en','slug_es']}),
-        ('Description', {'fields': ['description_en','description_es']}),
-        ('SEO', {'fields': ['metadesc_en','metadesc_es','metakey_en','metakey_es']}),
-        ('Page', {'fields': ['status','sort_order','template']}),
-    ]
+class BlogAdmin(admin.ModelAdmin):
+
     list_display = (
         'name',
         'slug',
@@ -66,4 +61,4 @@ class ContentAdmin(admin.ModelAdmin):
         instance.save()
         return instance
 
-admin.site.register(Content, ContentAdmin)
+admin.site.register(Blog, BlogAdmin)
