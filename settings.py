@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'contact',
     'catalog',
 #    'search',
+    'account',
     'sale',
     'check',
     'cashondelivery',

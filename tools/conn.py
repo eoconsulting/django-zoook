@@ -35,13 +35,13 @@ from settings import OERP_CONF
 
 def conn_ooop():
     """Connection OpenERP with OOOP"""
-    try:
+    #~ try:
         #o = OOOP(user='admin',pwd='admin',dbname='oerp6_zoook',uri='http://localhost',port=8069,protocol='xmlrpc')
         #o = OOOP(user='admin',pwd='admin',dbname='oerp6_zoook',uri='localhost',port=8071,protocol='pyro')
-        conn = OOOP(user=OERP_CONF['username'],pwd=OERP_CONF['password'],dbname=OERP_CONF['dbname'],uri=OERP_CONF['uri'],port=OERP_CONF['port'],protocol=OERP_CONF['protocol'], debug=DEBUG)
-        return conn
-    except:
-        return False
+    conn = OOOP(user=OERP_CONF['username'],pwd=OERP_CONF['password'],dbname=OERP_CONF['dbname'],uri=OERP_CONF['uri'],port=OERP_CONF['port'],protocol=OERP_CONF['protocol'], debug=DEBUG)
+    return conn
+    #~ except:
+        #~ return False
 
 def xmlrpc():
     """Connection OpenERP with XMLRPC"""
