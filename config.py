@@ -49,7 +49,6 @@ OpenERP Conf
 """
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
 OERP_COMPANY = 1 #Account Invoice. All invoices... use this Company ID.
-VAT_CODE = ['ES']
 COUNTRY_DEFAULT = 'ES'
 
 """

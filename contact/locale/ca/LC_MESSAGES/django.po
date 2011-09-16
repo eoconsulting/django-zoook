@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-12 12:33+0200\n"
-"PO-Revision-Date: 2011-09-12 12:35+0100\n"
+"PO-Revision-Date: 2011-09-16 14:56+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Disculpeu! La informació enviada no és correcta. Torneu a provar."
 
 #: templates/contact/form.html:32
 msgid "contact"
-msgstr "Contacta"
+msgstr "contacta"
 
 #: templates/contact/form.html:35
 msgid "Name"

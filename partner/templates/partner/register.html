@@ -23,7 +23,7 @@
 <div class="primary-content span-12 last">
 
 {% if message %}
-    <div id="message">
+    <div id="message" class="msg-error">
         <h1>
         {% for msg in message %}
            {{ msg }}<br/>
@@ -46,8 +46,8 @@
                 </li>
                 <li>
                     <label for="partner">{% trans "Vat" %} <span class="required">*</span></label>
-                    <select name="vat_code" id="vat_code">
-                    {% for code in vat_code %}<option value="{{ code }}">{{ code }}</option>{% endfor %}
+                    <select name="vat_code" id="vat_code" class="vat_code">
+                    {% for country in countries %}<option value="{{ country.code }}" {% if country.code == country_default %} selected="selected"{% endif %}>{{ country.code }} ({{ country.name }})</option>{% endfor %}
                     </select>
                     <input type="text" name="vat" id="id_vat" maxlength="128" value="{{ vat }}" class="required" minlength="6"/>
                 </li>
@@ -61,17 +61,11 @@
                 </li>
                 <li>
                     <label for="city">{% trans "City" %} <span class="required">*</span></label>
-                    <input type="text" name="city" id="id_city" maxlength="128" value="{{ city }}" class="required" minlength="6"/>
-                </li>
-                <li>
-                    <label for="country">{% trans "Country" %} <span class="required">*</span></label>
-                    <select name="country" id="country">
-                    {% for country in countries %}<option value="{{ country.id }}"{% if country.code == country_default %} selected="selected"{% endif %}>{{ country.name }}</option>{% endfor %}
-                    </select>
+                    <input type="text" name="city" id="id_city" maxlength="128" value="{{ city }}" class="required" minlength="2"/>
                 </li>
                 <li>
                     <label for="username">{{ form.username.label_tag }} <span class="required">*</span></label>
-                    <input type="text" name="username" id="id_username" maxlength="30" value="{{ username }}" class="required" minlength="6"/> ({% trans "Login user" %}: az09)
+                    <input type="text" name="username" id="id_username" maxlength="30" value="{{ username }}" class="required" minlength="6"/> (az09)
                 </li>
                 <li class="register-field">
                     <label for="pass1">{{ form.password1.label_tag }} <span class="required">*</span></label>

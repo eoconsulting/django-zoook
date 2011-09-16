@@ -179,7 +179,7 @@ def category(request,category):
             for tplproduct in products.object_list:
                 prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id).order_by('price')
 
-                prod_images = ProductImages.objects.filter(product=prods[0].id,exclude=False)
+                prod_images = ProductImages.objects.filter(product=prods[0].id,base_image=True)
 
                 base_image = False
                 if len(prod_images) > 0:

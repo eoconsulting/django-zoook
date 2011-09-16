@@ -59,10 +59,12 @@ def contactForm(request):
                     if len(contact_email)==0:
                         contact_email = [contact_email]
 
-                    email = EmailMessage(subject, body, to=contact_email)
-                    email.send()
-
-                    message = _('Thanks for your message. We will answer soon.')
+                    try:
+                        emailobj = EmailMessage(subject, body, to=contact_email)
+                        emailobj.send()
+                        message = _('Thanks for your message. We will answer soon.')
+                    except:
+                        message = _('Error SMTP server send email. Sorry. Can you try later?')
                 else:
                     message = _('Error. Configure yours emails contacts.')
         else:

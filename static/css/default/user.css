@@ -22,3 +22,5 @@
 /* Register Users form */
 ul.register li{ padding:2px}
 #login-form label{ width: 160px}
+#registerForm label{width:130px}
+#registerForm .vat_code{width:50px}

@@ -103,6 +103,8 @@ def register(request):
         message = []
         users = ''
         emails = ''
+        error = []
+        country = False
 
         form = UserCreationForm(request.POST)
         data = request.POST.copy()
@@ -116,9 +118,12 @@ def register(request):
         street = data['street']
         zip = data['zip']
         city = data['city']
-        country = data['country']
         
-        if data['password1'] == data['password2']:
+        countries = ResCountry.objects.filter(code=vat_code)
+        if len(countries)>0:
+            country = countries[0].id
+            
+        if (data['password1'] == data['password2']) and country:
             if form.is_valid():
                 if len(username) < USER_LENGHT:
                     msg = _('Username is short. Minimum %(size)s characters') % {'size': USER_LENGHT}
@@ -188,7 +193,7 @@ def register(request):
                         address.street = data['street']
                         address.zip = data['zip']
                         address.city = data['city']
-                        address.country_id = conn.ResCountry.get(data['country'])
+                        address.country_id = conn.ResCountry.get(country)
                         address.email = data['email']
                         address_id = address.save()
                     
@@ -212,15 +217,17 @@ def register(request):
                     authProfile = AuthProfile(user=user,partner_id=partner_id)
                     authProfile.save()
 
-                    # send email
-                    subject = _('New user is added - %(name)s') % {'name':site_configuration.site_title}
-                    body = _("This email is generated automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':site_configuration.site_title,'username':username,'password':password,'live_url':LIVE_URL}
-                    email = EmailMessage(subject, body, to=[email])
-                    email.send()
-                    # authentification / login user
-                    user = authenticate(username=username, password=password)
-                    auth_login(request, user)
-                    return HttpResponseRedirect("/partner/profile/")
+                    try:
+                        # send email
+                        subject = _('New user is added - %(name)s') % {'name':site_configuration.site_title}
+                        body = _("This email is generated automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':site_configuration.site_title,'username':username,'password':password,'live_url':LIVE_URL}
+                        emailobj = EmailMessage(subject, body, to=[email])
+                        emailobj.send()
+                    finally:
+                        # authentification / login user
+                        user = authenticate(username=username, password=password)
+                        auth_login(request, user)
+                        return HttpResponseRedirect("/partner/profile/")
             else:
                 msg = _("Sorry. Error form values. Try again")
                 message.append(msg)
@@ -230,7 +237,6 @@ def register(request):
 
     form = UserCreationForm()
     html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
-    vat_code = VAT_CODE
 
     countries = ResCountry.objects.all()
     country_default = COUNTRY_DEFAULT
