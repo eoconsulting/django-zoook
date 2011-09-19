@@ -162,23 +162,23 @@ def register(request):
                     partner = conn.ResPartner.filter(vat__ilike=data['vat_code']+data['vat'])
                     if len(partner) > 0:
                         msg = _('Sorry. This VAT already exists our ERP. Contact Us for create a new user')
-                        error.append(msg)
+                        message.append(msg)
 
                 #check if this vat valid
                 if not message:
-                    vat = data['vat_code']+data['vat']
-                    check_vat = conn_webservice('res.partner', 'dj_check_vat', [vat, OERP_SALE])
+                    checkvat = data['vat_code']+data['vat']
+                    check_vat = conn_webservice('res.partner', 'dj_check_vat', [checkvat, OERP_SALE])
 
                     if not check_vat:
                         msg = _('Vat not valid. Check if vat is correct')
-                        error.append(msg)
+                        message.append(msg)
                 
                 #create new partner and user
-                if not message:
+                if len(message) == 0:
                     # create partner
                     partner = conn.ResPartner.new()
                     partner.name = data['name']
-                    partner.vat = vat
+                    partner.vat = checkvat
                     partner.dj_username = data['username']
                     partner.dj_email = data['email']
                     partner_id = partner.save()

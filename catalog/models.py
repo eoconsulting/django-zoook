@@ -142,6 +142,7 @@ class ProductProduct(models.Model):
     price = models.FloatField(_('Pricelist'))
     manufacturer = models.CharField(_('Manufacturer'), max_length=128, null=True, blank=True)
     attribute_group = models.CharField(_('Attribute Group'), max_length=128, null=True, blank=True)
+    cartdescription = models.CharField(_('Cart Description'), max_length=256)
 
     """ Custom fields model """
 
@@ -149,7 +150,9 @@ class ProductProduct(models.Model):
         db_table = 'product_product'
         verbose_name = _('product')
         verbose_name_plural = _('products')
-#        translate = ( )
+        translate = (
+            'cartdescription',
+        )
 
     def __unicode__(self):
         return self.code

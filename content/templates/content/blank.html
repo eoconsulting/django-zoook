@@ -6,7 +6,8 @@
     {% if user.is_staff %}{% load inplace_edit %}{% inplace_media %}{% endif %}
 {% endblock %}
 
-{% block content %}	
+{% block content %}
+<div id="content-box">
     {% inplace_edit "content.description|safe" auto_height=1 %}
 
     {% if change_content %}<div id="block-detail">
@@ -22,4 +23,5 @@
             <tr class="row1"><td><strong>{% trans "Template" %}:</strong></td><td>{% inplace_edit "content.template" %}</tr>
         </table>
     </div>{% endif %}
+</div>
 {% endblock %}

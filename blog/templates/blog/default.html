@@ -9,7 +9,7 @@
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li> <li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/blog/">Blog</a></li><li><span>&gt;</span> {{blog.name}}</li></ul></div>{% endblock %}
 
 {% block content %}
-<div class="primary-content span-9 last">
+<div id="content-box" class="primary-content span-9 last">
     <div id="block-right">
         {% module blog.right %}
     </div>

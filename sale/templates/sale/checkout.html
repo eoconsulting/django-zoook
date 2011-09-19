@@ -50,7 +50,7 @@
             <tbody>
                 {% if lines|length == 0 %}<tr><td colspan="6">{% trans "Your cart is empty" %}</td></tr>{%endif%}
                 {% for line in lines %}<tr class="{% cycle 'row1' 'row2' %}">
-                    <td>{{ line.name }}</a></td>
+                    <td><a href="/{{ LANGUAGE_CODE }}/{% trans "product" %}/{{ line.product_id.product_tmpl_id.slug }}" title="{{ line.name }}">{{ line.name }}</a>{% if line.product_id.cartdescription %}<br/>{{ line.product_id.cartdescription }}{%endif%}</td>
                     <td>{{ line.product_uom_qty }}</td>
                     <td>{{ line.discount }}</td>
                     <td>{{ line.price_unit }}</td>
