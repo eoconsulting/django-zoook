@@ -261,7 +261,10 @@ def checkout(request):
                     order_line.save()
                 else:
                     message = product_id_change['warning']
-                    
+
+                if 'title' in message:
+                    message = message['title']
+
             #recalcule order (refresh amount)
             order = check_Order(conn, partner_id, OERP_SALE)
 
