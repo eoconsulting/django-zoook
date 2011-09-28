@@ -167,6 +167,7 @@ def register(request):
                 #check if this vat valid
                 if not message:
                     checkvat = data['vat_code']+data['vat']
+                    checkvat = checkvat.upper()
                     check_vat = conn_webservice('res.partner', 'dj_check_vat', [checkvat, OERP_SALE])
 
                     if not check_vat:
