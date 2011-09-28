@@ -33,6 +33,9 @@ from tools.zoook import connOOOP
 
 from sale.email import SaleOrderEmail
 
+import logging
+logger = logging.getLogger(__name__)
+
 @login_required
 def index(request):
     """
@@ -75,17 +78,26 @@ def confirm(request):
 
         #add bank number res_partner_bank
         if not len(partner_banks)>0:
-            banks = conn.ResBank.all()
+            country_id = order.partner_invoice_id.country_id.id
+            bank_code = bank_number[:4]
+            banks = conn.ResBank.filter(country=country_id,code=bank_code)
 
-            res_partner_bank = conn.ResPartnerBank.new()
-            res_partner_bank.acc_number = str(bank_number)
-            res_partner_bank.partner_id = order.partner_id
-            res_partner_bank.bank = banks[0] #TODO. This field is required. Need Search Bank. Now get first bank
-            res_partner_bank.state = 'bank'
-            res_partner_bank.default_bank = 0
-            res_partner_bank.country_id = ''
-            res_partner_bank.state_id = ''
-            res_partner_bank.save()
+            # not bank available
+            if not len(banks)>0:
+                banks = conn.ResBank.all() #get first bank available. TODO: get on_change/country
+
+            try:
+                res_partner_bank = conn.ResPartnerBank.new()
+                res_partner_bank.acc_number = str(bank_number)
+                res_partner_bank.partner_id = order.partner_id
+                res_partner_bank.bank = banks[0]
+                res_partner_bank.state = 'bank'
+                res_partner_bank.default_bank = 0
+                res_partner_bank.country_id = ''
+                res_partner_bank.state_id = ''
+                res_partner_bank.save()
+            except:
+                logger.error("Bank Partner error: %s" %s (bank_number))
 
         #change payment_type = done
         order.payment_state = 'done'

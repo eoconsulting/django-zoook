@@ -44,5 +44,5 @@ urlpatterns = patterns("",
 
     #~ Debit
     #~ (r"^debit/confirm", 'payment.debit.views.confirm'),
-    #~ (r"^pdebit/", 'payment.debit.views.index'),
+    #~ (r"^debit/", 'payment.debit.views.index'),
 )
