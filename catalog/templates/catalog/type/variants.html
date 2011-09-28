@@ -12,7 +12,7 @@
                             <input name="qty" type="text" value="1" class="qty border2" />
                             {% csrf_token %}
                         </form>
-                        <div id="product-price-{{product.product.id}}" class="price-box">
+                        <div id="product-price-{{product.id}}" class="price-box">
                             <span class="regular-price">
                                 <span class="price">{{price}} €</span>
                             </span>

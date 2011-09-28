@@ -10,7 +10,7 @@
                             <input name="code" type="hidden" value="{{ product.code }}"/>
                             {% csrf_token %}
                         </form>{%endif %}{% endfor %}
-                        <div id="product-price-{{product.product.id}}" class="price-box">
+                        <div id="product-price-{{product.id}}" class="price-box">
                             <span class="regular-price">
                                 <span class="price">{{price}} {{ currency }}</span>
                             </span>
