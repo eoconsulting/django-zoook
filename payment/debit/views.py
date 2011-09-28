@@ -34,7 +34,6 @@ from tools.zoook import connOOOP
 from sale.email import SaleOrderEmail
 
 import logging
-logger = logging.getLogger(__name__)
 
 @login_required
 def index(request):
@@ -97,7 +96,8 @@ def confirm(request):
                 res_partner_bank.state_id = ''
                 res_partner_bank.save()
             except:
-                logger.error("Bank Partner error: %s" %s (bank_number))
+                logging.basicConfig(filename=LOGFILE,level=logging.INFO)
+                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Bank Partner error: %s') %s (bank_number)))
 
         #change payment_type = done
         order.payment_state = 'done'

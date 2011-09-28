@@ -36,6 +36,7 @@ from catalog.models import ProductProduct, ProductTemplate
 import datetime
 import time
 import re
+import logging
 
 @login_required
 def orders(request):
@@ -289,7 +290,14 @@ def checkout(request):
     
     #delivery
     if len(lines)>0:
-        values['deliveries'] = conn_webservice('sale.order','delivery_cost', [order.id])
+        try:
+            values['deliveries'] = conn_webservice('sale.order','delivery_cost', [order.id])
+            delivery = True
+        except:
+            logging.basicConfig(filename=LOGFILE,level=logging.INFO)
+            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Need configure grid delivery in this shop or delivery grid not available')))
+            values['deliveries'] = []
+            
         #Address invoice/delivery
         values['address_invoices'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type='invoice')
         values['address_deliveries'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type='delivery')
@@ -297,8 +305,13 @@ def checkout(request):
 
         #order payment by sequence
         payments = []
-        for payment_type in sale_shop.zoook_payment_types:
-            payments.append({'sequence':payment_type.sequence,'app_payment':payment_type.app_payment,'name':payment_type.payment_type_id.name})
+        if sale_shop.zoook_payment_types:
+            for payment_type in sale_shop.zoook_payment_types:
+                payments.append({'sequence':payment_type.sequence,'app_payment':payment_type.app_payment,'name':payment_type.payment_type_id.name})
+        else:
+            logging.basicConfig(filename=LOGFILE,level=logging.INFO)
+            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Need configure payment available in this shop')))
+
         values['payments'] = sorted(payments, key=lambda k: k['sequence']) 
 
     return render_to_response("sale/checkout.html", values, context_instance=RequestContext(request))
