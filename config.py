@@ -42,7 +42,9 @@ LANGUAGES = (
     ('en', ugettext('English')),
     ('es', ugettext('Spanish')),
 )
-DEFAUL_LANGUAGE = 1
+DEFAULT_LANGUAGE = 1
+
+DEFAULT_CURRENCY = '€'
 
 """
 OpenERP Conf

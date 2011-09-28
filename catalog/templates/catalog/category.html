@@ -42,7 +42,7 @@
                     <a href="{{value.product.get_absolute_url}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
                     <div id="product-price-{{value.product.id}}" class="price-box">
                         <span class="regular-price">
-                            <span class="price">{{value.price}} €</span>
+                            <span class="price">{{value.price}} {{ currency }}</span>
                         </span>
                     </div>
                     <a  href="{{value.product.get_absolute_url}}" class="button-details">{% trans "Details" %}</a>
@@ -60,7 +60,7 @@
                         <p class="product-description">{{value.product.shortdescription}}</p>
                         <div id="product-price-{{value.product.id}}" class="price-box">
                             <span class="regular-price">
-                                <span class="price">{{value.price}} €</span>
+                                <span class="price">{{value.price}} {{ currency }}</span>
                             </span>
                         </div>
                         <a  href="{{value.product.get_absolute_url}}" class="button-details">{% trans "Details" %}</a>

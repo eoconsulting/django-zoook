@@ -61,9 +61,9 @@
             </table>
             {% if order.state == 'draft' and order.amount_total != 0.0 %}
             <div id="checkout-total">
-                <p class="amount"><strong>{% trans "Untaxed Amount" %}:</strong> {{ order.amount_untaxed }}<br/>
-                <strong>{% trans "Taxes" %}:</strong>  {{ order.amount_tax }}<br/>
-                <strong>{% trans "Total" %}:</strong> <span class="total">{{ order.amount_total }}</span></p>
+                <p class="amount"><strong>{% trans "Untaxed Amount" %}:</strong> {{ order.amount_untaxed }} {{ order.pricelist_id.currency_id.symbol }}<br/>
+                <strong>{% trans "Taxes" %}:</strong> {{ order.amount_tax }} {{ order.pricelist_id.currency_id.symbol }}<br/>
+                <strong>{% trans "Total" %}:</strong> <span class="total">{{ order.amount_total }} {{ order.pricelist_id.currency_id.symbol }}</span></p>
                 <div class="checkout-options">
                     <p>{% trans "Delivery" %}:
                     <select name="delivery" class="delivery">

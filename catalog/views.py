@@ -208,6 +208,7 @@ def category(request,category):
                 'catalog_orders': CATALOG_ORDERS,
                 'total': total,
                 'categories_path': categories_path,
+                'currency': DEFAULT_CURRENCY,
             }
             return render_to_response("catalog/category.html", category_values, context_instance=RequestContext(request))
         else:
@@ -273,6 +274,7 @@ def product(request,product):
         'thumb_images': thumb_images,
         'search_keywords': search_keywords,
         'url': LIVE_URL,
+        'currency': DEFAULT_CURRENCY,
     }
     return render_to_response("catalog/product.html", values, context_instance=RequestContext(request))
 
