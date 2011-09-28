@@ -242,7 +242,12 @@ def checkout(request):
                 ]
                 product_id_change = conn_webservice('sale.order.line','product_id_change', values)
 
-                if not product_id_change['warning']:
+                sale_order_add_product = True
+                if product_id_change['warning'] and SALE_ORDER_PRODUCT_CHECK:
+                    not_enought_stock = _('Not enough stock !')
+                    sale_order_add_product = False
+
+                if sale_order_add_product:
                     product_value = product_id_change['value']
                     order_line = conn.SaleOrderLine.new()
                     order_line.order_id = order

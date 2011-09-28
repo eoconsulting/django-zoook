@@ -44,7 +44,17 @@ LANGUAGES = (
 )
 DEFAULT_LANGUAGE = 1
 
+"""
+Default Currency Sale Shop
+"""
 DEFAULT_CURRENCY = '€'
+
+"""
+Sale Order, when add product, continue if get warning
+True: If get warning, not add product
+False: If get warning, add product
+"""
+SALE_ORDER_PRODUCT_CHECK = True
 
 """
 OpenERP Conf
