@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-28 12:29+0200\n"
+"PO-Revision-Date: 2011-09-28 12:36+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: views.py:47
+msgid "Order number is not available. Use navigation menu."
+msgstr "Número de pedido no está disponible. Utilize el menú de navegación."
+
+#: views.py:52
+msgid "Error when connecting with our ERP. Try again or cantact us"
+msgstr "Error en conectar con nuestro ERP. Intente de nuevo, o contacte con nosotros."
+
+#: views.py:90
+msgid "Error return Paypal Payment. Go to sale orders and repeat payment"
+msgstr "Ha habido un error por parte de Paypal. Accede a los pedidos de venta y repita el pago"
+
+#: views.py:124
+msgid "Error return Paypal Payment. Contact us to check payment"
+msgstr "Ha habido un error de Paypal. Contacte con  nosotros para validar el pago se haya realizado correctamente"
+
+#: templates/paypal/confirm.html:18
+#, python-format
+msgid "Your order %(order)s is created successfully"
+msgstr "Su pedido %(order)s se ha creado correctamente"
+
+#: templates/paypal/confirm.html:19
+msgid "Orders"
+msgstr "Pedidos"
+
+#: templates/paypal/confirm.html:19
+msgid "Go Orders for more details and status order"
+msgstr "Ir a pedidors para más detalles i estado del pedido"
+
+#: templates/paypal/end.html:10
+msgid "Your Payment are successfully"
+msgstr "Su  pago se ha realizado correctamente"
+
+#: templates/paypal/form.html:10
+msgid "Redirection a Paypal. One moment..."
+msgstr "Se redireccionará la página de Paypal para finalizar el pago. Un momento..."
+

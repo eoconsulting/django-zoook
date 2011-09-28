@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-28 12:27+0200\n"
+"PO-Revision-Date: 2011-09-28 12:29+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: views.py:42
+#: views.py:56
+msgid "Order number is not available. Use navigation menu."
+msgstr "Número de pedido no está disponible. Utilize el menú de navegación."
+
+#: views.py:61
+msgid "Error when connecting with our ERP. Try again or cantact us"
+msgstr "Error en conectar con nuestro ERP. Intente de nuevo, o contacte con nosotros."
+
+#: templates/debit/bank.html:35
+#, python-format
+msgid "You select <strong>Debit Payment</strong>. Insert Account Bank to pay <strong>%(order)s</strong> order"
+msgstr "Ha seleccionado el pago <strong>Domiciliación bancária</strong>. Inserte su cuenta bancaria para el pago del pedido <strong>%(order)s</strong>"
+
+#: templates/debit/bank.html:38
+msgid "Confirm Order and Payment"
+msgstr "Confirmar perdido y pago"
+
+#: templates/debit/confirm.html:18
+#, python-format
+msgid "Your order %(order)s is created successfully."
+msgstr "Su pedido %(order)s se ha creado correctamente."
+
+#: templates/debit/confirm.html:19
+msgid "Orders"
+msgstr "Pedidos"
+
+#: templates/debit/confirm.html:19
+msgid "Go Orders for more details and status order"
+msgstr "Ir a pedidors para más detalles i estado del pedido"
+

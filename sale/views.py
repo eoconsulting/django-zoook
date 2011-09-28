@@ -126,7 +126,7 @@ def payment(request, order):
 
     return render_to_response("sale/payment.html", {'title': title, 'metadescription': metadescription, 'value': value, 'payments': payments}, context_instance=RequestContext(request))
 
-def check_Order(conn, partner_id, OERP_SALE):
+def check_order(conn, partner_id, OERP_SALE):
     """
     Check Order
     """
@@ -208,7 +208,7 @@ def checkout(request):
         error = _('Error when connecting with our ERP. Try again or cantact us')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
-    order = check_Order(conn, partner_id, OERP_SALE)
+    order = check_order(conn, partner_id, OERP_SALE)
     
     if order == 'error':
         return HttpResponseRedirect("/partner/partner/")
@@ -262,11 +262,11 @@ def checkout(request):
                 else:
                     message = product_id_change['warning']
 
-                if 'title' in message:
+                if message and 'title' in message:
                     message = message['title']
 
             #recalcule order (refresh amount)
-            order = check_Order(conn, partner_id, OERP_SALE)
+            order = check_order(conn, partner_id, OERP_SALE)
 
     #list order lines
     lines = conn.SaleOrderLine.filter(order_id=order.id)
@@ -289,7 +289,12 @@ def checkout(request):
         values['address_invoices'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type='invoice')
         values['address_deliveries'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type='delivery')
         sale_shop = conn.SaleShop.filter(id=OERP_SALE)[0]
-        values['payments'] = sale_shop.zoook_payment_types
+
+        #order payment by sequence
+        payments = []
+        for payment_type in sale_shop.zoook_payment_types:
+            payments.append({'sequence':payment_type.sequence,'app_payment':payment_type.app_payment,'name':payment_type.payment_type_id.name})
+        values['payments'] = sorted(payments, key=lambda k: k['sequence']) 
 
     return render_to_response("sale/checkout.html", values, context_instance=RequestContext(request))
 
@@ -310,7 +315,7 @@ def checkout_remove(request, code):
         if not conn:
             error = _('Error when connecting with our ERP. Try again or cantact us')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
-        order = check_Order(conn, partner_id, OERP_SALE)
+        order = check_order(conn, partner_id, OERP_SALE)
         order_lines = conn.SaleOrderLine.filter(order.id, product_id=products[0].id)
         if len(order_lines) > 0:
             order_line = conn.SaleOrderLine.get(order_lines[0].id)
@@ -332,14 +337,16 @@ def checkout_confirm(request):
         if not partner_id:
             error = _('Are you a customer? Please, contact us. We will create a new role')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
+
         full_name = checkFullName(request)
+
         conn = connOOOP()
         if not conn:
             error = _('Error when connecting with our ERP. Try again or cantact us')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
             
         partner = conn.ResPartner.get(partner_id)
-        order = check_Order(conn, partner_id, OERP_SALE)
+        order = check_order(conn, partner_id, OERP_SALE)
 
         if order.state != 'draft':
             return HttpResponseRedirect("/sale/")
@@ -413,3 +420,22 @@ def checkout_confirm(request):
         return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)
     else:
         return HttpResponseRedirect("/sale/checkout/")
+
+def checkout_payment(request):
+    """
+    Redirect Payment App from Sale Order (My Account)
+    """
+    payment = request.POST.get('payment', '')
+    order = request.POST.get('order', '')
+
+    conn = connOOOP()
+    payment_type = conn.ZoookSaleShopPaymentType.filter(app_payment=payment)
+
+    order = conn.SaleOrder.filter(name=order,state='draft',payment_state='done')
+
+    if (len(payment_type) > 0) and (len(order) > 0):
+        request.session['sale_order'] = order[0].name
+        return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)
+    else:
+        error = _('This payment is not available. Use navigation menus')
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))

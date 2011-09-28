@@ -133,6 +133,8 @@ ul.user-add li a:hover{ background: #232323; color: #fff; padding-left: 11px;}
 /* Zoook Doc */
 .zoook-doc{ margin-top:10px}
 #zoook-doc-boxright{ float: right; padding-left:5px; width: 200px; border-left: 1px solid #bfbfbf}
+#zoook-doc-content p{margin-left:10px; font-size:11px}
+#zoook-doc-content ul{margin-left:10px; font-size:11px}
 
 /* Alerts */
 .msg-info {padding:10px; color: #00529B;background-color: #BDE5F8; background-image: url('../images/icons/info.png') no-repeat}

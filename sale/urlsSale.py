@@ -30,5 +30,6 @@ urlpatterns = patterns("",
     (r"^order/(?P<order>[^/]+)$", 'sale.views.order'),
     (r"^checkout/remove/(?P<code>[^/]+)$", 'sale.views.checkout_remove'),
     (r"^checkout/confirm/", 'sale.views.checkout_confirm'),
+    (r"^checkout/payment/", 'sale.views.checkout_payment'),
     (r"^checkout/", 'sale.views.checkout'),
 )

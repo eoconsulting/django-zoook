@@ -41,7 +41,8 @@ from catalog.models import *
 @login_required
 def updateprice(request):
     """
-    B2B features. Update Price catalog/product if partner are price rules different price rule sale shop.
+    B2B features
+    Update Price catalog/product if partner are price rules different price rule sale shop.
     http://domain.com/catalog/updateprice/
     Return dicc elements ID product-price
     """

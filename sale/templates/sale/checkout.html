@@ -11,7 +11,7 @@
                 document.forms["checkoutForm"].submit();
                 return true
             }else{
-                jAlert('error', '{% trans "You are cancel this order! Don't you like it?" %}', '{% trans "Error" %}');
+                jAlert('error', '{% trans "You are cancel this order! Do not you like it?" %}', '{% trans "Error" %}');
                 return false;
             }
             });
@@ -74,7 +74,7 @@
                     <p>{% trans "Payment" %}:
                     <select name="payment" class="payment">
                     {% for payment in payments %}
-                        <option value="{{ payment.app_payment }}">{{ payment.payment_type_id.name }}</option> 
+                        <option value="{{ payment.app_payment }}">{{ payment.name }}</option> 
                     {% endfor %}
                     </select></p>
                 </div>

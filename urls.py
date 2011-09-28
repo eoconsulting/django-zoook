@@ -59,8 +59,8 @@ urlpatterns = patterns('',
     (r"^partner/", include("partner.urlsPartner")),
     (r"^sale/", include("sale.urlsSale")),
     (r"^account/", include("account.urlsAccount")),
-    (r"^payment/check/", 'check.views.index'),
-    (r"^payment/cashondelivery/", 'cashondelivery.views.index'),
+    (r"^payment/", include("payment.urlsPayment")),
+
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
 

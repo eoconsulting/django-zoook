@@ -126,10 +126,16 @@ INSTALLED_APPS = (
 #    'search',
     'account',
     'sale',
-    'check',
-    'cashondelivery',
     'tools.filemanager',
     'tools.cms',
+    #~ 'sermepa.sermepa',
+    #~ 'sermepa.sermepa_test',
+    #~ 'paypal.standard.ipn',
+    #~ 'payment.check',
+    #~ 'payment.cashondelivery',
+    #~ 'payment.sermepa',
+    #~ 'payment.paypal',
+    #~ 'payment.debit',
 )
 
 AUTH_PROFILE_MODULE = "partner.AuthProfile"

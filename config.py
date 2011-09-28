@@ -111,3 +111,23 @@ Captcha conf
 """
 RECAPTCHA_PUB_KEY = ""
 RECAPTCHA_PRIVATE_KEY = ""
+
+"""
+Paypal Configuration
+"""
+PAYPAL_RECEIVER_EMAIL = ""
+PAYPAL_CURRENCY = 'EUR'
+
+"""
+Sermepa/Servired Configuration
+"""
+SERMEPA_URL_PRO = 'https://sis.sermepa.es/sis/realizarPago'
+SERMEPA_URL_TEST = 'https://sis-t.sermepa.es:25443/sis/realizarPago'
+SERMEPA_MERCHANT_URL = "http://127.0.0.1:8000/payment/sermepa/ipn"
+SERMEPA_MERCHANT_NAME = "Zikzakmedia SL"
+SERMEPA_MERCHANT_CODE = ''
+SERMEPA_SECRET_KEY = ''
+SERMEPA_BUTTON_IMG = '/static/images/icons/sermepa.png'
+SERMEPA_TERMINAL = 1
+SERMEPA_CURRENCY = 978
+SERMEPA_TRANS_TYPE = 0 # 0 - Autorizacion / 1 - Preautorizacion / 2 - Confirmacion / 3 - Devolución Automatica / 4 - Pago Referencia / 5 - Transacción Recurrente / 6 - Transacción Sucesiva / 7 - Autenticación / 8 - Confirmación de Autenticación / 9 - Anulacion de Preautorizacion

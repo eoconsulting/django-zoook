@@ -41,7 +41,7 @@
             <strong>{% trans "Total" %}:</strong> {{ value.amount_total }}
             </p>
             {% if value.amount_total != 0.0 %}<p id="order-confirm">
-            <form action="/{{ LANGUAGE_CODE }}/checkout/payment/" class="cmxform" id="paymentForm" method="post">
+            <form action="/{{ LANGUAGE_CODE }}/sale/checkout/payment/" class="cmxform" id="paymentForm" method="post">
             <fieldset>
                 <fieldset>
                 <legend>{% trans "Select payment" %}</legend>
@@ -54,6 +54,7 @@
             {% csrf_token %}
             </fieldset>
             <input type="submit" value="{% trans "Make Payment" %}" />
+            <input type="hidden" id="order" name="order" value="{{ value.name }}" />
             </form>
             </p>{% endif %}
         </div>

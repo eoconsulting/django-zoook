@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load modules %}
+
+{% block head %}
+    <link href="{{ MEDIA_URL }}css/{{ THEME }}/form.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">
+    <script src="{{ MEDIA_URL }}js/jquery.validate.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#debitForm").validate();
+    });
+    </script>
+
+    <script type="text/javascript">
+     var RecaptchaOptions = {
+        theme : 'clean'
+     };
+     </script>
+{% endblock %}
+
+{% block pathway %}{% endblock %}
+
+{% block content %}
+<div id="page-wrap" class="clearfix">
+    {% include 'partner/menu.html' %}
+
+    <div id="sidebar">
+        <div class="block border5">
+            {% module catalog.right_sale %}
+        </div>
+    </div>
+    <div id="content">
+        <p>{% blocktrans %}You select <strong>Debit Payment</strong>. Insert Account Bank to pay <strong>{{order}}</strong> order{% endblocktrans %}<br/>
+        <form id="debitForm" class="checkout" method="post" action="/{{ LANGUAGE_CODE }}/payment/debit/confirm">
+            <input type="text" name="number" id="id_number" maxlength="128" value="" class="required" minlength="10"/>
+            <input type="submit" value="{% trans "Confirm Order and Payment" %}" />
+            {% csrf_token %}
+        </form>
+    </div>
+    
+</div>
+{% endblock %}
