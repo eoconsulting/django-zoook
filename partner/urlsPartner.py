@@ -25,13 +25,13 @@ from partner.views import *
 
 """Urls Partner"""
 urlpatterns = patterns("",
-    (r'^$', 'partner.views.login'),
-    (r'^login', 'partner.views.login'),
+    (r'^$', 'partner.views.login','', 'partner_index'),
+    (r'^login', 'partner.views.login', '', 'auth_login'),
     (r'^profile', 'partner.views.profile'),
     #~ (r'^profile', 'sale.views.orders'),
-    (r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/partner/"}),
-    (r'^register', 'partner.views.register'),
-    (r'^remember', 'partner.views.remember'),
-    (r'^changepassword', 'partner.views.changepassword'),
-    (r'^partner', 'partner.views.partner'),
+    (r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/"}, 'auth_logout'),
+    (r'^register', 'partner.views.register', '', 'auth_register'),
+    (r'^remember', 'partner.views.remember', '' , 'auth_remember'),
+    (r'^changepassword', 'partner.views.changepassword', '', 'auth_changepassword'),
+    (r'^partner', 'partner.views.partner','','partner_partner'),
 )

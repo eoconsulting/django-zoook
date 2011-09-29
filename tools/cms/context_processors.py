@@ -21,8 +21,18 @@
 ############################################################################################
 
 from settings import BASE_TEMPLATE
+from config import LOCALE_URI
+from django.utils.translation import get_language
 
 def theme(request):
     return {
         'THEME': BASE_TEMPLATE,
+    }
+
+def locale_uri(request):
+    sufix = ''
+    if LOCALE_URI:
+        sufix = "/%s" % get_language()
+    return {
+        'LOCALE_URI': sufix,
     }

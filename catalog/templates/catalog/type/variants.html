@@ -7,7 +7,7 @@
                         <select id="code">
                         {% for product in products %}{% if product.active %}<option value="{{ product.code}}">{{ product.code}} ({{product.price}} €)</option>{%endif %}{% endfor %}
                         </select>
-                        <form class="cart-add-form" method="post" action="/{{ LANGUAGE_CODE }}/sale/checkout/">
+                        <form class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
                             <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
                             <input name="qty" type="text" value="1" class="qty border2" />
                             {% csrf_token %}

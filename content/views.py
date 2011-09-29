@@ -60,8 +60,13 @@ class ContentForm(ModelForm):
         
 @login_required
 def content_form(request, content_id):
+    """
+    Content Form
+    """
     form = ''
     redirect = ''
+    context_instance=RequestContext(request)
+
     if request.method == 'POST':
         if content_id:
             content= Content.objects.get(id=content_id)
@@ -70,7 +75,7 @@ def content_form(request, content_id):
             form = ContentForm(request.POST)
         if form.is_valid():
             content = form.save()
-            redirect = "/%s/%s" % (get_language(), content.slug)
+            redirect = "%s/%s" % (context_instance['LOCALE_URI'], content.slug)
             #~ return HttpResponseRedirect(redirect)
     else:
         if content_id:
@@ -82,21 +87,31 @@ def content_form(request, content_id):
 
 @login_required
 def content_add(request):
+    """
+    Content Add
+    """
     content = False
+    context_instance=RequestContext(request)
+    
     if not request.user.has_perm('content.add_content'):
         raise Http404
     form, redirect = content_form(request, content)
     if redirect:
         return HttpResponseRedirect(redirect)
-    url_form = '/%s/content/add/' % get_language()
+    url_form = '%s/content/add/' % (context_instance['LOCALE_URI'])
     return render_to_response('content/form.html', {'form':form,'url_form':url_form,'title':_('Add content')}, context_instance=RequestContext(request))
 
 @login_required
 def content_edit(request, content_id):
+    """
+    Content Edit
+    """
+    context_instance=RequestContext(request)
+
     if not request.user.has_perm('content.change_content'):
         raise Http404
     form, redirect = content_form(request, content_id)
     if redirect:
         return HttpResponseRedirect(redirect)
-    url_form = '/%s/content/edit/%s' % (get_language(), content_id)
+    url_form = '%s/content/edit/%s' % (context_instance['LOCALE_URI'], content_id)
     return render_to_response('content/form.html', {'form':form,'url_form':url_form,'title':_('Edit content')}, context_instance=RequestContext(request))

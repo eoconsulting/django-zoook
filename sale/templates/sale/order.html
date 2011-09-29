@@ -3,7 +3,7 @@
 {% load modules %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/sale/">{% trans "Orders" %}</a></li><li><span>&gt;</span> {{ title }}</li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/sale/">{% trans "Orders" %}</a></li><li><span>&gt;</span> {{ title }}</li></ul></div>{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
@@ -21,7 +21,7 @@
                 <li><strong>{% trans "Date Confirm" %}</strong>: {% if value.date_confirm %}{{ value.date_confirm }}{% else %}{% trans "Pending" %}{% endif %}</li>
                 <li><strong>{% trans "State" %}</strong>: {% trans value.state|capfirst %}</li>
                 <li><strong>{% trans "Delivery" %}</strong>: {% trans value.carrier_id.name %}</li>
-                {% if value.invoice_ids %}<li><strong>{% trans "Invoice" %}</strong>: {% for invoice in value.invoice_ids %}{% if invoice.number %}<a href="/{{ LANGUAGE_CODE }}/account/invoice/{{ invoice.number }}" alt="{{ invoice.number }}" title="{{ invoice.number }}">{{ invoice.number }}</a>{% endif %}{% endfor %}</li>{% endif %}
+                {% if value.invoice_ids %}<li><strong>{% trans "Invoice" %}</strong>: {% for invoice in value.invoice_ids %}{% if invoice.number %}<a href="{{ LOCALE_URI }}/account/invoice/{{ invoice.number }}" alt="{{ invoice.number }}" title="{{ invoice.number }}">{{ invoice.number }}</a>{% endif %}{% endfor %}</li>{% endif %}
             </ul>
             
             <h2>{% trans "Address Invoice" %}</h2>
@@ -65,7 +65,7 @@
                 <li><strong>{% trans "Tax" %}:</strong> {{ value.amount_tax }}</li>
                 <li><strong>{% trans "Total" %}:</strong> {{ value.amount_total }}</li>
             </ul>
-            {% if value.state == 'draft' and value.amount_total != 0.0 %}<div id="payment-sale"><a href="/{{ LANGUAGE_CODE }}/sale/payment/{{ value.name }}" alt="{% trans "Payment" %}" title="{% trans "Payment" %}" class="payment-buttom">{% trans "Make Payment" %}</a></div>{% endif %}
+            {% if value.state == 'draft' and value.amount_total != 0.0 %}<div id="payment-sale"><a href="{{ LOCALE_URI }}/sale/payment/{{ value.name }}" alt="{% trans "Payment" %}" title="{% trans "Payment" %}" class="payment-buttom">{% trans "Make Payment" %}</a></div>{% endif %}
         </div>
     </div>
     

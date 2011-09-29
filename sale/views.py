@@ -193,8 +193,11 @@ def checkout(request):
     """
     Checkout. Order Cart
     """
+
+    context_instance=RequestContext(request)
+
     if 'sale_order' in request.session:
-        return HttpResponseRedirect("/sale/order/%s" % request.session['sale_order'])
+        return HttpResponseRedirect("%s/sale/order/%s" % (context_instance['LOCALE_URI'],request.session['sale_order']))
 
     site_configuration = siteConfiguration(SITE_ID)
 
@@ -212,7 +215,7 @@ def checkout(request):
     order = check_order(conn, partner_id, OERP_SALE)
     
     if order == 'error':
-        return HttpResponseRedirect("/partner/partner/")
+        return HttpResponseRedirect("%s/partner/partner/" % (context_instance['LOCALE_URI']))
 
     if request.method == 'POST':
         qty = int(request.POST['qty'])
@@ -321,6 +324,8 @@ def checkout_remove(request, code):
     """
     Checkout. Order cart
     """
+    
+    context_instance=RequestContext(request)
 
     products = ProductProduct.objects.filter(code=code)
     if len(products) > 0:
@@ -339,7 +344,7 @@ def checkout_remove(request, code):
             order_line = conn.SaleOrderLine.get(order_lines[0].id)
             order_line.delete()
 
-    return HttpResponseRedirect("/sale/checkout/")
+    return HttpResponseRedirect("%s/sale/checkout/" % (context_instance['LOCALE_URI']))
 
 @login_required
 def checkout_confirm(request):
@@ -347,8 +352,10 @@ def checkout_confirm(request):
     Checkout. Confirm
     """
 
+    context_instance=RequestContext(request)
+
     if 'sale_order' in request.session:
-        return HttpResponseRedirect("/sale/order/%s" % request.session['sale_order'])
+        return HttpResponseRedirect("%s/sale/order/%s" % (context_instance['LOCALE_URI'],request.session['sale_order']))
 
     if request.method == 'POST':
         partner_id = checkPartnerID(request)
@@ -367,7 +374,7 @@ def checkout_confirm(request):
         order = check_order(conn, partner_id, OERP_SALE)
 
         if order.state != 'draft':
-            return HttpResponseRedirect("/sale/")
+            return HttpResponseRedirect("%s/sale/" % (context_instance['LOCALE_URI']))
 
         delivery = request.POST['delivery']
         payment = request.POST['payment']
@@ -378,7 +385,7 @@ def checkout_confirm(request):
         delivery = delivery.split('|')
         carrier = conn.DeliveryCarrier.filter(code=delivery[0])
         if len(carrier) == 0:
-            return HttpResponseRedirect("/sale/checkout/")
+            return HttpResponseRedirect("%s/sale/checkout/" % (context_instance['LOCALE_URI']))
         carrier = carrier[0]
 
         values = [
@@ -435,14 +442,16 @@ def checkout_confirm(request):
 
         request.session['sale_order'] = order.name
 
-        return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)
+        return HttpResponseRedirect("%s/payment/%s/" % (context_instance['LOCALE_URI'], payment_type[0].app_payment))
     else:
-        return HttpResponseRedirect("/sale/checkout/")
+        return HttpResponseRedirect("%s/sale/checkout/" % (context_instance['LOCALE_URI']))
 
 def checkout_payment(request):
     """
     Redirect Payment App from Sale Order (My Account)
     """
+
+    context_instance=RequestContext(request)
     payment = request.POST.get('payment', '')
     order = request.POST.get('order', '')
 
@@ -453,7 +462,7 @@ def checkout_payment(request):
 
     if (len(payment_type) > 0) and (len(order) > 0):
         request.session['sale_order'] = order[0].name
-        return HttpResponseRedirect("/payment/%s/" % payment_type[0].app_payment)
+        return HttpResponseRedirect("%s/payment/%s/" % (context_instance['LOCALE_URI'], payment_type[0].app_payment))
     else:
         error = _('This payment is not available. Use navigation menus')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))

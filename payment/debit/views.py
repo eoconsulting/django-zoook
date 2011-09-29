@@ -54,6 +54,9 @@ def confirm(request):
     Debit
     OpenERP Payment Type App is: debit
     """
+
+    context_instance=RequestContext(request)
+
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
@@ -69,7 +72,7 @@ def confirm(request):
     bank_number = request.POST.get('number', '')
 
     if not bank_number:
-        return HttpResponseRedirect("/sale/checkout/")
+        return HttpResponseRedirect("%s/sale/checkout/" % (context_instance['LOCALE_URI']))
 
     if (len(payment_type) > 0) and len(orders) > 0:
         order = orders[0]

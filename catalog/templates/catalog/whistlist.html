@@ -4,7 +4,7 @@
 {% load modules %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist">{% trans "Whistlist" %}</a></li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist">{% trans "Whistlist" %}</a></li></ul></div>{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
@@ -39,7 +39,7 @@
                         </span>
                         </div>
                     </td>
-                    <td class="a-center"><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist/remove/{{product.product.slug}}" title="{% trans "Remove Item" %}" class="btn-trash">{% trans "Remove Item" %}</a></td>
+                    <td class="a-center"><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/remove/{{product.product.slug}}" title="{% trans "Remove Item" %}" class="btn-trash">{% trans "Remove Item" %}</a></td>
                 </tr>{% endfor %}
             </tbody>
             </table>

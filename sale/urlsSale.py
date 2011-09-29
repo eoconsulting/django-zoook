@@ -25,7 +25,7 @@ from django.conf.urls.defaults import *
 """Urls Sale"""
 
 urlpatterns = patterns("",
-    (r'^$', 'sale.views.orders'),
+    (r'^$', 'sale.views.orders','', 'sale_index'),
     (r'^payment/(?P<order>[^/]+)$', 'sale.views.payment'),
     (r"^order/(?P<order>[^/]+)$", 'sale.views.order'),
     (r"^checkout/remove/(?P<code>[^/]+)$", 'sale.views.checkout_remove'),

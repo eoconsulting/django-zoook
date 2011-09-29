@@ -2,7 +2,7 @@
 {% load modules i18n %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/blog.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li> <li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/blog/">Blog</a></li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li> <li><span>&gt;</span> <a href="{{ LOCALE_URI }}/blog/">Blog</a></li></ul></div>{% endblock %}
 
 {% block content %}
 <div class="primary-content span-9 last">

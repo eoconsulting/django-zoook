@@ -43,6 +43,7 @@ LANGUAGES = (
     ('es', ugettext('Spanish')),
 )
 DEFAULT_LANGUAGE = 1
+LOCALE_URI = True
 
 """
 Default Currency Sale Shop

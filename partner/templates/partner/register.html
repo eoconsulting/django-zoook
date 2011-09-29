@@ -34,7 +34,7 @@
 
 <div id="top-header">{{ title }}</div>
 
-<form action="/{{ LANGUAGE_CODE }}/partner/register/" method="post" id="registerForm">
+<form action="{% url auth_register %}" method="post" id="registerForm">
 <fieldset>
     <div class="col2-set">
         <div class="col-1 new-users">
@@ -79,7 +79,7 @@
                     <label for="email">{% trans "Email" %} <span class="required">*</span></label>
                     <input type="text" name="email" id="id_email" value="{{ email }}" class="required email"/>
                 </li>
-                <li><a href="/{{ LANGUAGE_CODE }}/partner/remember/">{% trans "Remember?" %}</a></li>
+                <li><a href="{{ LOCALE_URI }}/partner/remember/">{% trans "Remember?" %}</a></li>
             </ul>
         </div>
         <div class="col-2 register-users">

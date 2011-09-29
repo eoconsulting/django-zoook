@@ -105,6 +105,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'tools.cms.context_processors.theme',
+    'tools.cms.context_processors.locale_uri',
 )
 
 INSTALLED_APPS = (

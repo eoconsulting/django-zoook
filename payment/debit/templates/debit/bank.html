@@ -33,7 +33,7 @@
     </div>
     <div id="content">
         <p>{% blocktrans %}You select <strong>Debit Payment</strong>. Insert Account Bank to pay <strong>{{order}}</strong> order{% endblocktrans %}<br/>
-        <form id="debitForm" class="checkout" method="post" action="/{{ LANGUAGE_CODE }}/payment/debit/confirm">
+        <form id="debitForm" class="checkout" method="post" action="{{ LOCALE_URI }}/payment/debit/confirm">
             <input type="text" name="number" id="id_number" maxlength="128" value="" class="required" minlength="20" maxlength="20"/>
             <input type="submit" value="{% trans "Confirm Order and Payment" %}" />
             {% csrf_token %}

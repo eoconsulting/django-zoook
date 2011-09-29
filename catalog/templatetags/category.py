@@ -24,11 +24,13 @@ from django import template
 
 from catalog.models import ProductCategory
 from catalog.views import collect_children
+from django.utils.translation import get_language
+from config import LOCALE_URI
 
 register = template.Library()
 
-@register.inclusion_tag('catalog/tags/horizontal_menu.html')
-def render_horizontal_menu():
+@register.inclusion_tag('catalog/tags/horizontal_menu.html', takes_context = True)
+def render_horizontal_menu(context):
     root_category = ProductCategory.objects.filter(parent=None)
 
     oldlevel = 0
@@ -43,4 +45,5 @@ def render_horizontal_menu():
     return {
         'values': values,
         'lastlevel': oldlevel,
+        'LOCALE_URI': context['LOCALE_URI'],
     }

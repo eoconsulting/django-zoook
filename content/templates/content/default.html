@@ -2,7 +2,7 @@
 {% load modules %}{% load i18n %}
 {% if not user.is_authenticated %}{% load inplace_edit %}{% inplace_media %}{% endif %}
 
-{% block head %}<link rel="canonical" href="{{ url }}{{ LANGUAGE_CODE }}/{{content.slug}}" />
+{% block head %}<link rel="canonical" href="{{ url }}{{ LOCALE_URI }}/{{content.slug}}" />
     {% if user.is_staff %}{% load inplace_edit %}{% inplace_media %}{% endif %}{% endblock %}
 
 {% block content %}	
@@ -15,7 +15,7 @@
     {% inplace_edit "content.description|safe" auto_height=1 %}
 
     {% if change_content %}<div id="block-detail">
-        <h2 class="more-details"><a href="/{{ LANGUAGE_CODE }}/content/edit/{{ content.id}}">{% trans "More details" %}</a> <span>{% trans "Edit" %}</span></h2>
+        <h2 class="more-details"><a href="{{ LOCALE_URI }}/content/edit/{{ content.id}}">{% trans "More details" %}</a> <span>{% trans "Edit" %}</span></h2>
         <table id="table-details">
             <tr class="header"><td class="field"><strong>{% trans "Field" %}</strong></td><td class="value"> {% trans "Value" %}</td></tr>
             <tr class="row0"><td><strong>{% trans "Slug" %}:</strong></td><td>{% inplace_edit "content.slug" %}</td></tr>

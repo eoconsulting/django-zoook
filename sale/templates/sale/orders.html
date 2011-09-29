@@ -3,7 +3,7 @@
 {% load modules %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="/{{ LANGUAGE_CODE }}/sale/">{% trans "Orders" %}</a></li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/sale/">{% trans "Orders" %}</a></li></ul></div>{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
@@ -30,12 +30,12 @@
             <tfoot><tr><td>{% if page_previous != -1 %}<a href="?page={{ page_previous }}" alt="{% trans "Previous" %}" title="{% trans "Previous" %}" class="page-previous">{% trans "Previous" %}</a></a>{% endif %} {% if page_next %}<a href="?page={{ page_next }}" alt="{% trans "Next" %}" title="{% trans "Next" %}" class="page-next">{% trans "Next" %}</a></a>{% endif %} </td></tr></tfoot>
             <tbody>
                 {% for value in values %}<tr class="{% cycle 'row1' 'row2' %}">
-                    <td><a href="/{{ LANGUAGE_CODE }}/sale/order/{{ value.name }}" alt="{{ value.name }}">{{ value.name }}</a></td>
+                    <td><a href="{{ LOCALE_URI }}/sale/order/{{ value.name }}" alt="{{ value.name }}">{{ value.name }}</a></td>
                     <td>{{ value.date_order }}</td>
                     <td>{% if value.date_confirm %}{{ value.date_confirm }}{% else %}{% trans "Pending" %}{% endif %}</td>
                     <td>{{ value.amount_total }}</td>
                     <td>{% trans value.state|capfirst %}</td>
-                    <td>{% if value.state == 'draft' and value.amount_total != 0.0 %}<a href="/{{ LANGUAGE_CODE }}/sale/payment/{{ value.name }}" alt="{% trans "Payment" %}" title="{% trans "Payment" %}"><img src="{{ MEDIA_URL }}images/icons/shop-cart.gif" alt="{% trans "Payment" %}" /></a>{% else %}&nbsp;{% endif %}</td>
+                    <td>{% if value.state == 'draft' and value.amount_total != 0.0 %}<a href="{{ LOCALE_URI }}/sale/payment/{{ value.name }}" alt="{% trans "Payment" %}" title="{% trans "Payment" %}"><img src="{{ MEDIA_URL }}images/icons/shop-cart.gif" alt="{% trans "Payment" %}" /></a>{% else %}&nbsp;{% endif %}</td>
                 </tr>{% endfor %}
                 {% if not values %}
                     <tr><td colspan="5"><strong>{% trans "There are not orders avaible. There's nothing you like?" %}</strong></td></tr>

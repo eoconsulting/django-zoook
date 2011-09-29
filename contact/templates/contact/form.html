@@ -29,7 +29,7 @@
     <div id="contact">
         <h1>{% trans "Contact" %}</h1>
 
-        <form action="/{{ LANGUAGE_CODE }}/{% trans 'contact' %}/" class="cmxform" id="contactForm" method="post">
+        <form action="{{ LOCALE_URI }}/{% trans 'contact' %}/" class="cmxform" id="contactForm" method="post">
         <fieldset>
         <legend>{% trans "Contact" %}</legend>
         <p><label for="name">{% trans "Name" %}:</label><input id="name" type="text" name="name" class="required" maxlength="100" value="{{ name }}"/></p>

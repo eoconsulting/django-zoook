@@ -23,6 +23,8 @@
 from django import template
 
 from catalog.models import ProductTemplate, ProductProduct
+from django.utils.translation import get_language
+from config import LOCALE_URI
 
 register = template.Library()
 
@@ -33,6 +35,11 @@ def render_product_related(context):
     if 'related_products' in context:
         values = context['related_products']
 
+    sufix = ''
+    if LOCALE_URI:
+        sufix = "/%s" % get_language()
+
     return {
         'values': values,
+        'LOCALE_URI': context['LOCALE_URI'],
     }

@@ -58,8 +58,8 @@
                 <div class="product-item block border5 clearfix">
                    <div class="product-name" title="{{product.name}}"><h2>{{product.name}}</h2></div>
                     <ul class="add-to">
-                        <li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a></li>
-                        {% if user.is_authenticated %}<li><span class="separator">|</span><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
+                        <li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a></li>
+                        {% if user.is_authenticated %}<li><span class="separator">|</span><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
                     </ul>
 
                     <div class="social_network">
@@ -138,7 +138,7 @@
             </div>{% endif %}
             
             <div id="tab4" class="tab-content">
-                {% for search_keyword in search_keywords %}<a href="/{{ LANGUAGE_CODE }}/search/{{ search_keyword }}" alt="{{ search_keyword }}" title="{{ search_keyword }}">{{ search_keyword }}</a> {% endfor %}
+                {% for search_keyword in search_keywords %}<a href="{{ LOCALE_URI }}/search/{{ search_keyword }}" alt="{{ search_keyword }}" title="{{ search_keyword }}">{{ search_keyword }}</a> {% endfor %}
             </div>
         </div>
     </div>

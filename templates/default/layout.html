@@ -9,7 +9,7 @@
     <meta name="generator" content="OpenERP. Django Python Framework" />
     <meta http-equiv="content-language" content="{{ LANGUAGE_CODE }}">
     <title>{{ title }}{% block title %}{% endblock %}</title>
-    <link href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/rss/" rel="alternate" type="application/rss+xml" title="RSS 2.0" />
+    <link href="{{ LOCALE_URI }}/{% trans 'catalog' %}/rss/" rel="alternate" type="application/rss+xml" title="RSS 2.0" />
     <link href="{{ MEDIA_URL }}images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <link href="{{ MEDIA_URL }}css/style.css" rel="stylesheet" type="text/css" media="screen">
@@ -27,10 +27,10 @@
 <div class="page">
     <div class="header-container">
     
-    <h1 id="logo"><a href="/{{ LANGUAGE_CODE }}/"><img src="{{ MEDIA_URL }}images/logo.png" title="{% trans "Zoook - OpenERP e-sale" %}"/></a></h1>
+    <h1 id="logo"><a href="{{ LOCALE_URI }}/"><img src="{{ MEDIA_URL }}images/logo.png" title="{% trans "Zoook - OpenERP e-sale" %}"/></a></h1>
 
     <div class="navigation">
-        <form id="search_mini_form" action="/{{ LANGUAGE_CODE }}/search" method="get">
+        <form id="search_mini_form" action="{{ LOCALE_URI }}/search" method="get">
             <fieldset class="form-search">
                 <input id="search" type="text" class="input-text-search" name="q" value="{% trans "search" %}" onfocus="if (this.value=='{% trans "search" %}') this.value = ''"/>
                 <button type="submit" class="button-search-mini"></button>
@@ -38,10 +38,10 @@
         </form>
 
         <ul class="links">
-            <li class="first">{% if not user.is_authenticated %}<a href="/{{ LANGUAGE_CODE }}/partner/">{% trans "Login" %}</a>{% else %}<a href="/{{ LANGUAGE_CODE }}/partner/logout/">{% trans "Logout" %}</a>{% endif %}</li>
-            {% if user.is_authenticated %}<li class="first"><a href="/{{ LANGUAGE_CODE }}/partner/">{% trans "My Account" %}</a></li>{% endif %}
-            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/whistlist/">{% trans "My Whistlist" %}</a></li>{% endif %}
-            {% if user.is_authenticated %}<li><a href="/{{ LANGUAGE_CODE }}/sale/checkout/">{% trans "My Cart" %}</a></li>{% endif %}
+            <li class="first">{% if not user.is_authenticated %}<a href="{% url auth_login %}">{% trans "Login" %}</a>{% else %}<a href="{% url auth_logout %}">{% trans "Logout" %}</a>{% endif %}</li>
+            {% if user.is_authenticated %}<li class="first"><a href="{{ LOCALE_URI }}/partner/">{% trans "My Account" %}</a></li>{% endif %}
+            {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/">{% trans "My Whistlist" %}</a></li>{% endif %}
+            {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/sale/checkout/">{% trans "My Cart" %}</a></li>{% endif %}
             {% for language in LANGUAGES %}<li><a href="/{{ language.0 }}/" alt="{{ language.1 }}">{{ language.1|capfirst  }}</a></li>{% endfor %}
         </ul>
 

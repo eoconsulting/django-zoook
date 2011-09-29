@@ -1,4 +1,4 @@
-{% load i18n %}{% get_current_language as LANGUAGE_CODE %}
+{% load i18n %}
 
 <ul id="nav">
 {% spaceless %}{% for value, level, oldlevel in values %}
@@ -12,14 +12,14 @@
     {%if level < 2 and oldlevel >= 2 %}</li></ul>{%endif%}
     {%if level == 1 and oldlevel >= 1 %}</li>{%endif%}
 
-    {%if level == 1%}<li class="item-1 topmenu"><a href="/{{ LANGUAGE_CODE }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
+    {%if level == 1%}<li class="item-1 topmenu"><a href="{{ LOCALE_URI }}/catalog/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
     {%if level == 2 and oldlevel == 1 %}<ul class="sub">{%endif%}
-    {%if level == 2%}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
+    {%if level == 2%}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
     {%if level == 3 and oldlevel == 2 %}<ul>{%endif%}
-    {%if level == 3%}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
+    {%if level == 3%}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
     {%if level == 4 and oldlevel == 3 %}<ul>{%endif%}
-    {%if level == 4%}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}{%if level == 5 and oldlevel == 4 %}<ul>{%endif%}
-    {%if level == 5%}<li><a href="/{{ LANGUAGE_CODE }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
+    {%if level == 4%}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}{%if level == 5 and oldlevel == 4 %}<ul>{%endif%}
+    {%if level == 5%}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/{%if value.fslug%}{{value.fslug}}{%else%}{{value.slug}}/{%endif%}">{{value.name}}</a>{%endif%}
     {% endfor %}
     {%if lastlevel >= 5 %}</li></ul>{%endif%}
     {%if lastlevel >= 4 %}</li></ul>{%endif%}

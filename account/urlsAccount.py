@@ -25,6 +25,6 @@ from django.conf.urls.defaults import *
 """Urls Account"""
 
 urlpatterns = patterns("",
-    (r'^$', 'account.views.invoices'),
+    (r'^$', 'account.views.invoices','','account_index'),
     (r"^invoice/(?P<invoice>[^/]+)$", 'account.views.invoice'),
 )

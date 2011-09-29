@@ -55,6 +55,8 @@ class ModulesForm(ModelForm):
 def modules_form(request, modules_id):
     form = ''
     redirect = ''
+    context_instance=RequestContext(request)
+
     if request.method == 'POST':
         if modules_id:
             modules = Modules.objects.get(id=modules_id)
@@ -63,7 +65,7 @@ def modules_form(request, modules_id):
             form = ModulesForm(request.POST)
         if form.is_valid():
             modules = form.save()
-            redirect = "/%s/" % (get_language())
+            redirect = "%s" % (context_instance['LOCALE_URI'])
             #~ return HttpResponseRedirect(redirect)
     else:
         if modules_id:
@@ -76,20 +78,24 @@ def modules_form(request, modules_id):
 @login_required
 def modules_add(request):
     modules = False
+    context_instance=RequestContext(request)
+
     if not request.user.has_perm('cms.add_modules'):
         raise Http404
     form, redirect = modules_form(request, modules)
     if redirect:
         return HttpResponseRedirect(redirect)
-    url_form = '/%s/cms/modules/add/' % get_language()
+    url_form = '%s/cms/modules/add/' % (context_instance['LOCALE_URI'])
     return render_to_response('cms/modules/form.html', {'form':form,'url_form':url_form,'title':_('Add modules')}, context_instance=RequestContext(request))
 
 @login_required
 def modules_edit(request, modules_id):
+    context_instance=RequestContext(request)
+
     if not request.user.has_perm('cms.change_modules'):
         raise Http404
     form, redirect = modules_form(request, modules_id)
     if redirect:
         return HttpResponseRedirect(redirect)
-    url_form = '/%s/cms/modules/edit/%s' % (get_language(), modules_id)
+    url_form = '%s/cms/modules/edit/%s' % (context_instance['LOCALE_URI'], modules_id)
     return render_to_response('cms/modules/form.html', {'form':form,'url_form':url_form,'title':_('Edit modules')}, context_instance=RequestContext(request))

@@ -57,8 +57,10 @@ def is_valid_email(email):
 def login(request):
     """Login Page and authenticate. If exists session, redirect profile"""
 
+    context_instance=RequestContext(request)
+
     if request.user.is_authenticated(): #redirect profile
-        return HttpResponseRedirect("/partner/profile/")
+        return HttpResponseRedirect("%s/partner/profile/" % context_instance['LOCALE_URI'])
 
     site_configuration = siteConfiguration(SITE_ID)
 
@@ -73,7 +75,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
-                redirect = '/partner/profile/'
+                redirect = '%s/partner/profile/' % (context_instance['LOCALE_URI'])
                 if 'redirect' in request.POST:
                     redirect = base64.b64decode(request.POST['redirect'])
                 return HttpResponseRedirect(redirect)
@@ -91,8 +93,10 @@ def login(request):
 def register(request):
     """Registration page. If exists session, redirect profile"""
 
+    context_instance=RequestContext(request)
+
     if request.user.is_authenticated(): #redirect profile
-        return HttpResponseRedirect("/partner/profile/")
+        return HttpResponseRedirect("%s/partner/profile/" % context_instance['LOCALE_URI'])
 
     site_configuration = siteConfiguration(SITE_ID)
 
@@ -228,7 +232,7 @@ def register(request):
                         # authentification / login user
                         user = authenticate(username=username, password=password)
                         auth_login(request, user)
-                        return HttpResponseRedirect("/partner/profile/")
+                        return HttpResponseRedirect("%s/partner/profile/" % context_instance['LOCALE_URI'])
             else:
                 msg = _("Sorry. Error form values. Try again")
                 message.append(msg)
