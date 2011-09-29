@@ -150,3 +150,6 @@ ul.user-add li a:hover{ background: #232323; color: #fff; padding-left: 11px;}
 #content-box h6 { border-bottom: 1px solid #F2F2F2; margin:10px 0 5px 0}
 #content-box ul { margin-left:20px; list-style-type:square}
 #content-box li { padding-bottom:2px}
+
+/* Maintenance Mode */
+#site-maintenancemode { margin-top: 60px; padding:20px; text-align:center; width: 700px; margin-left: auto; margin-right:auto; border:1px solid #D4D4D4;}

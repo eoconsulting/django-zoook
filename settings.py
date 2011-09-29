@@ -89,6 +89,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'localeurl.middleware.LocaleURLMiddleware',
+    'maintenancemode.middleware.MaintenanceModeMiddleware',
 )
 
 ROOT_URLCONF = 'zoook.urls'
@@ -147,4 +148,8 @@ LOCALE_INDEPENDENT_PATHS = (
     re.compile('^/manager/'),
     re.compile('^/filemanager/'),
     re.compile('^/inplaceeditform/'),
+)
+
+MAINTENANCE_IGNORE_URLS = (
+    r'^/static/*',
 )

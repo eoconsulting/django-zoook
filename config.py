@@ -23,6 +23,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 DEBUG = True
+MAINTENANCE_MODE = True
 
 """
 Site Django

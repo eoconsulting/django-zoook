@@ -20,19 +20,39 @@
 #
 ############################################################################################
 
-from settings import BASE_TEMPLATE
-from config import LOCALE_URI
 from django.utils.translation import get_language
 
+from tools.zoook import siteConfiguration
+
+from settings import BASE_TEMPLATE
+from config import LOCALE_URI, SITE_ID
+
 def theme(request):
+    """
+    Params context template:
+     - SITE_TITLE: Site name (title html pages)
+     - THEME: name template teme
+    Return dicc
+    """
+
+    site_configuration = siteConfiguration(SITE_ID)
+
     return {
+        'SITE_TITLE': site_configuration.site_title,
         'THEME': BASE_TEMPLATE,
     }
 
 def locale_uri(request):
+    """
+    Site insert sufix locale uri (en, es, ca, ...)
+    LOCALE_URI true/false in config.py
+    Return dicc
+    """
+
     sufix = ''
     if LOCALE_URI:
         sufix = "/%s" % get_language()
+
     return {
         'LOCALE_URI': sufix,
     }
