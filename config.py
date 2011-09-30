@@ -23,7 +23,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 DEBUG = True
-MAINTENANCE_MODE = True
+MAINTENANCE_MODE = False
 
 """
 Site Django
@@ -68,7 +68,8 @@ COUNTRY_DEFAULT = 'ES'
 """
 Log's conf
 """
-LOGFILE = '/home/resteve/django/zoook/log/zoook.log' #path zoook log
+LOGFILE = '/home/resteve/django/zoook/log/sync.log' #path sync log
+LOGSALE = '/home/resteve/django/zoook/log/sale.log' #path sale log
 
 """
 Base template

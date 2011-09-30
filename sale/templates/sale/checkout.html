@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load modules %}
 
-{% block head %}<link href="{{ MEDIA_URL }}css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />    
+{% block head %}<link href="{{ MEDIA_URL }}css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript">
     $(document).ready(function() {
         $("#confirm").click(function() {
@@ -18,6 +18,7 @@
         });
     });
 </script>{% endblock %}
+
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {{ title }}</li></ul></div>{% endblock %}
 
 {% block content %}
@@ -28,7 +29,7 @@
         </div>
     </div>
     <div id="content">
-        <form id="checkoutForm" class="checkout" method="post" action="{{ LOCALE_URI }}/sale/checkout/confirm/">
+        <form id="checkoutForm" class="checkout" method="post" action="{% url sale_checkout_confirm %}">
         <div id="catalog-order" class="block border5 clearfix">
             {% if message %}
                 <div id="message">
@@ -77,6 +78,9 @@
                         <option value="{{ payment.app_payment }}">{{ payment.name }}</option> 
                     {% endfor %}
                     </select></p>
+                    <p>{% trans "Code Promotion" %}:
+                        <input type="text" name="promotion" id="id_promotion" minlength="6"/>
+                    </p>
                 </div>
                 <input id="confirm" type="button" value="{% trans "Confirm" %}" class="border2 button-confirm"/>    
             </div>

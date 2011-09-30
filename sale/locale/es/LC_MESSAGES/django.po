@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-28 12:03+0200\n"
-"PO-Revision-Date: 2011-09-28 12:06+0100\n"
+"POT-Creation-Date: 2011-09-30 13:58+0200\n"
+"PO-Revision-Date: 2011-09-30 13:59+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,68 +20,72 @@ msgstr ""
 msgid "Your order is in process but we don't send email. Check in your order customer section."
 msgstr "Su pedido está en proceso pero no se ha podido enviar el correo electrónico. Puede hacer el seguimiento de sus pedidos en la área de clientes"
 
-#: views.py:48
-#: views.py:75
-#: views.py:102
-#: views.py:203
-#: views.py:311
-#: views.py:338
+#: views.py:49
+#: views.py:76
+#: views.py:103
+#: views.py:207
+#: views.py:334
+#: views.py:364
 msgid "Are you a customer? Please, contact us. We will create a new role"
 msgstr "¿Eres un cliente? Contacte con nosotros. Os crearemos como cliente en nuestra tienda."
 
-#: views.py:53
-#: views.py:80
-#: views.py:107
-#: views.py:208
-#: views.py:316
-#: views.py:345
+#: views.py:54
+#: views.py:81
+#: views.py:108
+#: views.py:212
+#: views.py:339
+#: views.py:371
 msgid "Error when connecting with our ERP. Try again or cantact us"
 msgstr "Error conectando con nuestro ERP. Vuelva a intentarlo o, contacte con nosotros."
 
-#: views.py:62
+#: views.py:63
 msgid "All Orders"
 msgstr "Todos los pedidos"
 
-#: views.py:63
+#: views.py:64
 #, python-format
 msgid "List all orders of %s"
 msgstr "Listado todos los pedidos de %s"
 
-#: views.py:85
-#: views.py:112
+#: views.py:86
+#: views.py:113
 msgid "It is not allowed to view this section or not found. Use navigation menu."
 msgstr "No tiene permisos para acceder esta sección o no se encuentra. Utiliza el menú de navegación."
 
-#: views.py:89
+#: views.py:90
 #, python-format
 msgid "Order %s"
 msgstr "Pedido %s"
 
-#: views.py:90
+#: views.py:91
 #, python-format
 msgid "Details order %s"
 msgstr "Detalle del pedido %s"
 
-#: views.py:118
+#: views.py:119
 msgid "Your order is in progress. Contact with us"
 msgstr "Su pedido está en curso. Contacte con nosotros"
 
-#: views.py:124
 #: views.py:125
+#: views.py:126
 #, python-format
 msgid "Payment Order %s"
 msgstr "Pago del pedido %s"
 
-#: views.py:274
+#: views.py:251
+msgid "Not enough stock !"
+msgstr "No hay estoc disponible!"
+
+#: views.py:283
 msgid "Checkout"
 msgstr "Crea el pedido"
 
-#: views.py:275
+#: views.py:284
 #, python-format
 msgid "Checkout order %s"
 msgstr "Su pedido %s"
 
-#: views.py:440
+#: views.py:480
 msgid "This payment is not available. Use navigation menus"
 msgstr "Este tipo de pago no se encuentra disponible. Utilize los menús de navegación"
 
@@ -105,76 +109,76 @@ msgstr "Ha cancelado este pedido! ¿No le gusta?"
 msgid "Error"
 msgstr "Error"
 
-#: templates/sale/checkout.html:21
+#: templates/sale/checkout.html:22
 #: templates/sale/order.html:6
 #: templates/sale/orders.html:6
 #: templates/sale/payment.html:26
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/sale/checkout.html:42
+#: templates/sale/checkout.html:43
 #: templates/sale/order.html:46
 #: templates/sale/orders.html:22
 msgid "Reference"
 msgstr "Referencia"
 
-#: templates/sale/checkout.html:43
+#: templates/sale/checkout.html:44
 #: templates/sale/order.html:47
 msgid "Qty"
 msgstr "Qty"
 
-#: templates/sale/checkout.html:44
+#: templates/sale/checkout.html:45
 #: templates/sale/order.html:48
 msgid "Discount"
 msgstr "Descuento"
 
-#: templates/sale/checkout.html:45
+#: templates/sale/checkout.html:46
 #: templates/sale/order.html:49
 msgid "Unit Price"
 msgstr "Precio unidad"
 
-#: templates/sale/checkout.html:46
+#: templates/sale/checkout.html:47
 #: templates/sale/order.html:50
 msgid "Subtotal"
 msgstr "Total"
 
-#: templates/sale/checkout.html:47
+#: templates/sale/checkout.html:48
 msgid "Delete"
 msgstr "Eliminar"
 
-#: templates/sale/checkout.html:51
+#: templates/sale/checkout.html:52
 msgid "Your cart is empty"
 msgstr "Su carrito está vacio"
 
-#: templates/sale/checkout.html:53
+#: templates/sale/checkout.html:54
 msgid "product"
 msgstr "producto"
 
-#: templates/sale/checkout.html:58
+#: templates/sale/checkout.html:59
 msgid "Remove Item"
 msgstr "Eliminar"
 
-#: templates/sale/checkout.html:64
+#: templates/sale/checkout.html:65
 msgid "Untaxed Amount"
 msgstr "Base"
 
-#: templates/sale/checkout.html:65
+#: templates/sale/checkout.html:66
 msgid "Taxes"
 msgstr "IVA"
 
-#: templates/sale/checkout.html:66
+#: templates/sale/checkout.html:67
 #: templates/sale/order.html:66
 #: templates/sale/orders.html:25
 #: templates/sale/payment.html:41
 msgid "Total"
 msgstr "Total"
 
-#: templates/sale/checkout.html:68
+#: templates/sale/checkout.html:69
 #: templates/sale/order.html:23
 msgid "Delivery"
 msgstr "Envío"
 
-#: templates/sale/checkout.html:74
+#: templates/sale/checkout.html:75
 #: templates/sale/order.html:68
 #: templates/sale/orders.html:38
 #: templates/sale/payment.html:26
@@ -182,15 +186,19 @@ msgid "Payment"
 msgstr "Pago"
 
 #: templates/sale/checkout.html:81
+msgid "Code Promotion"
+msgstr "Código de promoción"
+
+#: templates/sale/checkout.html:85
 msgid "Confirm"
 msgstr "Confirmación"
 
-#: templates/sale/checkout.html:84
+#: templates/sale/checkout.html:88
 #: templates/sale/order.html:27
 msgid "Address Invoice"
 msgstr "Dirección de factura"
 
-#: templates/sale/checkout.html:90
+#: templates/sale/checkout.html:94
 #: templates/sale/order.html:35
 msgid "Address Delivery"
 msgstr "Dirección de envío"

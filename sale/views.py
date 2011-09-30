@@ -298,7 +298,7 @@ def checkout(request):
             delivery = True
         except:
             logging.basicConfig(filename=LOGFILE,level=logging.INFO)
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Need configure grid delivery in this shop or delivery grid not available')))
+            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Need configure grid delivery in this shop or delivery grid not available'))
             values['deliveries'] = []
             
         #Address invoice/delivery
@@ -313,7 +313,7 @@ def checkout(request):
                 payments.append({'sequence':payment_type.sequence,'app_payment':payment_type.app_payment,'name':payment_type.payment_type_id.name})
         else:
             logging.basicConfig(filename=LOGFILE,level=logging.INFO)
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Need configure payment available in this shop')))
+            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Need configure payment available in this shop'))
 
         values['payments'] = sorted(payments, key=lambda k: k['sequence']) 
 
@@ -352,6 +352,7 @@ def checkout_confirm(request):
     Checkout. Confirm
     """
 
+    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
     context_instance=RequestContext(request)
 
     if 'sale_order' in request.session:
@@ -436,9 +437,21 @@ def checkout_confirm(request):
             if address_delivery:
                 order.partner_shipping_id = address_delivery
 
+        #cupon code / promotion
+        code_promotion = request.POST['promotion']
+        if code_promotion:
+            order.coupon_code = code_promotion
+
         #payment state
         order.payment_state = 'checking'
         order.save()
+
+        #apply cupon code / promotion
+        if code_promotion:
+            promotion = conn_webservice('promos.rules','apply_promotions', [order.id])
+            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Apply promotion %s Order %s' % (code_promotion, order.name) ))
+
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Payment %s Order %s' % (payment_type[0].app_payment, order.name) ))
 
         request.session['sale_order'] = order.name
 

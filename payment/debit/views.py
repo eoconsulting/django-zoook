@@ -33,6 +33,7 @@ from tools.zoook import connOOOP
 
 from sale.email import SaleOrderEmail
 
+import time
 import logging
 
 @login_required
@@ -55,6 +56,7 @@ def confirm(request):
     OpenERP Payment Type App is: debit
     """
 
+    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
     context_instance=RequestContext(request)
 
     if not 'sale_order' in request.session:
@@ -99,8 +101,7 @@ def confirm(request):
                 res_partner_bank.state_id = ''
                 res_partner_bank.save()
             except:
-                logging.basicConfig(filename=LOGFILE,level=logging.INFO)
-                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Bank Partner error: %s') %s (bank_number)))
+                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Bank Partner error: %s' %s (bank_number)))
 
         #change payment_type = done
         order.payment_state = 'done'
@@ -114,6 +115,8 @@ def confirm(request):
         #send email sale order
         SaleOrderEmail(order.id)
 
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: debit payment finish' % (order.name) ))
         return render_to_response("debit/confirm.html", values, context_instance=RequestContext(request))
     else:
+        error = _('Error payment this order or is null. Contact Us or use navigation menu')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))

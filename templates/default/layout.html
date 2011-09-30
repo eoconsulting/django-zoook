@@ -39,7 +39,7 @@
 
         <ul class="links">
             <li class="first">{% if not user.is_authenticated %}<a href="{% url auth_login %}">{% trans "Login" %}</a>{% else %}<a href="{% url auth_logout %}">{% trans "Logout" %}</a>{% endif %}</li>
-            {% if user.is_authenticated %}<li class="first"><a href="{{ LOCALE_URI }}/partner/">{% trans "My Account" %}</a></li>{% endif %}
+            {% if user.is_authenticated %}<li class="first"><a href="{% url partner_index %}">{% trans "My Account" %}</a></li>{% endif %}
             {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/">{% trans "My Whistlist" %}</a></li>{% endif %}
             {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/sale/checkout/">{% trans "My Cart" %}</a></li>{% endif %}
             {% for language in LANGUAGES %}<li><a href="/{{ language.0 }}/" alt="{{ language.1 }}">{{ language.1|capfirst  }}</a></li>{% endfor %}

@@ -26,10 +26,10 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns("",
     (r'^$', 'sale.views.orders','', 'sale_index'),
-    (r'^payment/(?P<order>[^/]+)$', 'sale.views.payment'),
-    (r"^order/(?P<order>[^/]+)$", 'sale.views.order'),
+    (r'^payment/(?P<order>[^/]+)$', 'sale.views.payment', '', 'sale_payment'),
+    (r"^order/(?P<order>[^/]+)$", 'sale.views.order', '', 'sale_order'),
     (r"^checkout/remove/(?P<code>[^/]+)$", 'sale.views.checkout_remove'),
-    (r"^checkout/confirm/", 'sale.views.checkout_confirm'),
-    (r"^checkout/payment/", 'sale.views.checkout_payment'),
-    (r"^checkout/", 'sale.views.checkout'),
+    (r"^checkout/confirm/", 'sale.views.checkout_confirm', '', 'sale_checkout_confirm'),
+    (r"^checkout/payment/", 'sale.views.checkout_payment', '', 'sale_checkout_payment'),
+    (r"^checkout/", 'sale.views.checkout', '', 'sale_checkout'),
 )

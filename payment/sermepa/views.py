@@ -37,6 +37,9 @@ from sermepa.sermepa.models import SermepaResponse
 
 from sale.email import SaleOrderEmail
 
+import time
+import logging
+
 @login_required
 def index(request):
     """
@@ -46,6 +49,9 @@ def index(request):
         - Only numbers, not SO0001
         - Minimium 4, Maximun 12
     """
+
+    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
+
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
@@ -84,7 +90,7 @@ def index(request):
         }
 
         form = SermepaPaymentForm(initial=sermepa_dict)
-
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: sermepa form and redirect' % (order.name) ))
         return HttpResponse(render_to_response('sermepa/form.html', locals(), context_instance=RequestContext(request)))
 
     else:
@@ -104,6 +110,8 @@ def sermepa_confirm(request):
     """
     Confirmation Sermepa view
     """
+
+    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     conn = connOOOP()
     order = request.session['sale_order']
@@ -127,6 +135,8 @@ def sermepa_confirm(request):
 
         #send email sale order
         SaleOrderEmail(order.id)
+
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Order %s: paypal payment finish') % (order.name) ))
 
         return HttpResponse(render_to_response('sermepa/confirm.html', values, context_instance=RequestContext(request)))
     else:

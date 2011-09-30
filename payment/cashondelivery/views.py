@@ -33,14 +33,18 @@ from tools.zoook import connOOOP
 
 from sale.email import SaleOrderEmail
 
+import time
+import logging
+
 @login_required
 def index(request):
     """
     Cashondelivery
     OpenERP Payment Type App is: cashondelivery
     """
-    print "=====AQUI============"
-    print "cashon delivery"
+    
+    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
+
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
@@ -66,7 +70,9 @@ def index(request):
         
         #send email sale order
         SaleOrderEmail(order.id)
-
+        
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: cashondelivery payment finish' % (order.name) ))
         return render_to_response("cashondelivery/cashondelivery.html", values, context_instance=RequestContext(request))
     else:
+        error = _('Error payment this order or is null. Contact Us or use navigation menu')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))

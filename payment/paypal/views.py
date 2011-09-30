@@ -37,12 +37,18 @@ from paypal.standard.ipn.models import PayPalIPN
 
 from sale.email import SaleOrderEmail
 
+import time
+import logging
+
 @login_required
 def index(request):
     """
     Paypal
     OpenERP Payment Type App is: paypal
     """
+    
+    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
+
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
@@ -76,6 +82,7 @@ def index(request):
         }
 
         form = PayPalPaymentsForm(initial=paypal_dict)
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: paypal form and redirect' % (order.name) ))
         return render_to_response("paypal/form.html", {'form':form, 'debug':DEBUG}, context_instance=RequestContext(request))
 
     else:
@@ -95,6 +102,8 @@ def paypal_confirm(request):
     """
     Confirmation Paypal view
     """
+
+    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     conn = connOOOP()
     order = request.session['sale_order']
@@ -118,6 +127,8 @@ def paypal_confirm(request):
 
         #send email sale order
         SaleOrderEmail(order.id)
+
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: paypal payment finish' % (order.name) ))
 
         return HttpResponse(render_to_response('paypal/confirm.html', values, context_instance=RequestContext(request)))
     else:
