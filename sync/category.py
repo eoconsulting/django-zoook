@@ -47,7 +47,7 @@ cat2 = []
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.product.category',[result]])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.category',[result]])
 
     if DEBUG:
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))

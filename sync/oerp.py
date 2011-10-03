@@ -45,7 +45,7 @@ results = conn_webservice('sale.shop', 'dj_export_countries', [[OERP_SALE]])
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.res.country',[result]])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.res.country',[result]])
 
     if DEBUG:
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
@@ -60,7 +60,7 @@ for result in results:
             states = conn_webservice('sale.shop', 'dj_export_states', [count['id']])
 
             for state in states:
-                stats = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.res.country.state', [state]])
+                stats = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.res.country.state', [state]])
                 if len(stats) > 0:
                     stat = stats[0]
                     state_country = ResCountryState(**stat)

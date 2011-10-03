@@ -48,7 +48,7 @@ if len(results) == 0:
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.product.template',[result]])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result]])
 
     if DEBUG:
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
@@ -98,7 +98,7 @@ if len(results) == 0:
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
     context = {'shop':OERP_SALE, 'product_id': result}
-    values = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.product.product',[result], context])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.product',[result], context])
 
     if DEBUG:
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
@@ -113,7 +113,7 @@ for result in results:
             #product attribute
             attributes = conn_webservice('sale.shop', 'dj_export_products_attribute', [product['id'], OERP_SALE])
             if len(attributes) > 0:
-                values = conn_webservice('django.external.mapping', 'get_oerp_to_dj', ['zoook.product.manufacturer.attribute', attributes])
+                values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.manufacturer.attribute', attributes])
                 for attributes in values:
                     prod_attributes = ProductManufacturerAttribute(**attributes)
                     try:
