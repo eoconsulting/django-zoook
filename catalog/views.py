@@ -266,7 +266,7 @@ def product(request,product):
         'metadescription': metadescription,
         'metakeywords': metakeywords,
         'product': tplproduct,
-        'products': products,
+        'products': prods,
         'related_products': related_products,
         'upsells_products': upsells_products,
         'price': prods[0].price,
