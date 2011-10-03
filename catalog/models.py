@@ -142,7 +142,7 @@ class ProductProduct(models.Model):
     price = models.FloatField(_('Pricelist'))
     manufacturer = models.CharField(_('Manufacturer'), max_length=128, null=True, blank=True)
     attribute_group = models.CharField(_('Attribute Group'), max_length=128, null=True, blank=True)
-    cartdescription = models.CharField(_('Cart Description'), max_length=256)
+    cartdescription = models.CharField(_('Cart Description'), max_length=256, blank=True)
 
     """ Custom fields model """
 

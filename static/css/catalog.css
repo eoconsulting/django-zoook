@@ -97,13 +97,26 @@ button:hover			{ background-color:#000 }
 .product-page .add-to-cart 			{ float:right }
 .product-page .qty					{ width:2em; padding:5px; text-align:center; font-size:12px; float:right; margin:2px 5px 2px 2px; border:1px solid #ccc }
 
+.product-info { width:700px }
+
+/* Product Related */
+h2.product-name-related { font-size:12px; line-height:18px; font-weight:bold}
+#product-related-table .price { font-size:12px !important}
+#product-related-table .product-related-description { width:300px}
+#product-related-table .product-related-price { width:100px !important}
+
+/* Product Upsells */
+h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
+#product-upsells-table .price { font-size:12px !important}
+#product-upsells-table .product-upsells-description { width:300px}
+#product-upsells-table .product-upsells-price { width:100px !important}
+
 .out-service	h3		{ padding-left:30px; background-position:9px center; background-repeat:no-repeat; background-image:url(../images/icons/icon_bell.gif); color:#da5406 }
 
 .tweet {}
 .facebook { margin-top:5px}
-/* Tabs for description and others*/
-.product-info { width:700px }
 
+/* Tabs for description and others*/
 .tabs		{ margin:10px 0 0 0; padding:0; float:left; height:36px; width:100% }
 .tabs li			{ float:left; margin:0 5px 0 0; height:35px; line-height:35px; margin-bottom:-1px; overflow:hidden; position:relative }
 .tabs  a		{ font-size:11px; font-weight:bold; color:#fff; display:block; padding:0 20px; outline:none; background:#2d2d2d; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:5px; border-top-left-radius:5px; border-top-right-radius:5px; }
