@@ -139,7 +139,7 @@ class ProductProduct(models.Model):
     active = models.BooleanField(_('Active'), default=False)
     code = models.CharField(_('Code'), max_length=128, null=True) #Reference
     ean13 = models.CharField(_('EAN13'), max_length=128, null=True, blank=True)
-    price = models.CharField(_('Price'))
+    price = models.CharField(_('Price'), max_length=64, null=True, blank=True)
     manufacturer = models.CharField(_('Manufacturer'), max_length=128, null=True, blank=True)
     attribute_group = models.CharField(_('Attribute Group'), max_length=128, null=True, blank=True)
     cartdescription = models.CharField(_('Cart Description'), max_length=256, blank=True)
