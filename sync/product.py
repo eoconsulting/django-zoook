@@ -39,16 +39,19 @@ logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Running')))
 
 """
-Product Template
+for product.template
+    for product.product
+        if product.attributes
 """
-results = conn_webservice('sale.shop', 'dj_export_products_template', [[OERP_SALE]])
+
+results = conn_webservice('sale.shop', 'dj_export_products', [[OERP_SALE]])
 
 if len(results) == 0:
     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Not products template news or modified')))
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result]])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result['product_template']]])
 
     if DEBUG:
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
@@ -77,54 +80,54 @@ for result in results:
         try:
             prod_template.save()
             for k,v in m2m_template.iteritems():
+                for prod_id in v:
+                    #check if this product.template exists
+                    prodtmp = ProductTemplate.objects.filter(id=prod_id)
+                    if not prodtmp:
+                        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template NOT exist ID %s') % prod_id))
+                        v.remove(prod_id)
+
                 getattr(prod_template, k).clear()
                 getattr(prod_template, k).add(*v) #TODO: m2m fields deleted (not create all fields)
-            prod_template.save_m2m()
+                prod_template.save()
+                #~ prod_template.save_m2m()
 
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template save ID %s') % product_template['id']))
         except:
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Error save ID %s') % product_template['id']))
+    
+        for prod in result['product_product']:
+            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Product. Get ID %s') % prod))
 
-logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Done')))
+            # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
+            context = {'shop':OERP_SALE, 'product_id': prod}
+            values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.product',[prod], context])
 
-"""
-Product Product
-"""
-results = conn_webservice('sale.shop', 'dj_export_products', [[OERP_SALE]])
+            if DEBUG:
+                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
 
-if len(results) == 0:
-    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Not products news or modified')))
+            if len(values) > 0:
+                product = values[0]
+                prod = ProductProduct(**product)
+                try:
+                    prod.save()
+                    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Product save ID %s') % product['id']))
 
-for result in results:
-    # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    context = {'shop':OERP_SALE, 'product_id': result}
-    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.product',[result], context])
+                    #product attribute
+                    attributes = conn_webservice('sale.shop', 'dj_export_products_attribute', [product['id'], OERP_SALE])
+                    if len(attributes) > 0:
+                        values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.manufacturer.attribute', attributes])
+                        for attributes in values:
+                            prod_attributes = ProductManufacturerAttribute(**attributes)
+                            try:
+                                prod_attributes.save()
+                            except:
+                                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Attribute. Error save ID %s') % product['id']))
 
-    if DEBUG:
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
-
-    if len(values) > 0:
-        product = values[0]
-        prod = ProductProduct(**product)
-        try:
-            prod.save()
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Product save ID %s') % product['id']))
-
-            #product attribute
-            attributes = conn_webservice('sale.shop', 'dj_export_products_attribute', [product['id'], OERP_SALE])
-            if len(attributes) > 0:
-                values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.manufacturer.attribute', attributes])
-                for attributes in values:
-                    prod_attributes = ProductManufacturerAttribute(**attributes)
-                    try:
-                        prod_attributes.save()
-                    except:
-                        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Attribute. Error save ID %s') % product['id']))
-
-                if DEBUG:
-                    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
-        except:
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Error save ID %s') % product['id']))
+                        if DEBUG:
+                            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+                except:
+                    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Error save ID %s') % product['id']))
 
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Done')))
 
