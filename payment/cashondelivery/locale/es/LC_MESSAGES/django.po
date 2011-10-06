@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-28 12:06+0200\n"
-"PO-Revision-Date: 2011-09-07 12:20+0100\n"
+"POT-Creation-Date: 2011-10-06 17:28+0200\n"
+"PO-Revision-Date: 2011-10-06 17:30+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,23 +16,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: views.py:45
+#: views.py:46
+msgid "Payment Cash On Delivery"
+msgstr "Pago contrareembolso"
+
+#: views.py:50
 msgid "Order number is not available. Use navigation menu."
 msgstr "Número de pedido no disponible. Utilize el menú de navegación."
 
-#: views.py:50
+#: views.py:55
 msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr ""
-"Error en conectar con nuestro ERP. Intente de nuevo, o contacte con nosotros"
+msgstr "Error en conectar con nuestro ERP. Intente de nuevo, o contacte con nosotros"
+
+#: views.py:78
+msgid "Error payment this order or is null. Contact Us or use navigation menu"
+msgstr "Error de pago de este pedido o pedido no existente. Contacte con nosotros o utilize el menú de navegación"
 
 #: templates/cashondelivery/cashondelivery.html:18
 #, python-format
-msgid ""
-"Your order %(order)s is created successfully. Remember do payment when "
-"receive delivery:"
-msgstr ""
-"Su pedido %(order)s se ha creado correctamente. Recuerde de realizar el pago "
-"cuando reciba el envío:"
+msgid "Your order %(order)s is created successfully. Remember do payment when receive delivery:"
+msgstr "Su pedido %(order)s se ha creado correctamente. Recuerde de realizar el pago cuando reciba el envío:"
 
 #: templates/cashondelivery/cashondelivery.html:20
 msgid "Orders"
@@ -41,3 +44,4 @@ msgstr "Pedidos"
 #: templates/cashondelivery/cashondelivery.html:20
 msgid "Go Orders for more details and status order"
 msgstr "Ir a pedidors para más detalles i estado del pedido"
+

@@ -46,7 +46,8 @@ def index(request):
     Paypal
     OpenERP Payment Type App is: paypal
     """
-    
+
+    title = _('Payment Paypal')
     logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:
@@ -94,6 +95,7 @@ def paypal_error(request):
     Error Paypal view
     """
 
+    title = _('Error Payment Paypal')
     error = _('Error return Paypal Payment. Go to sale orders and repeat payment')
     return HttpResponse(render_to_response('paypal/error.html', {'error':error}, context_instance=RequestContext(request)))
 
@@ -103,6 +105,7 @@ def paypal_confirm(request):
     Confirmation Paypal view
     """
 
+    title = _('Confirm Payment Paypal')
     logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     conn = connOOOP()

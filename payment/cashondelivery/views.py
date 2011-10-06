@@ -42,7 +42,8 @@ def index(request):
     Cashondelivery
     OpenERP Payment Type App is: cashondelivery
     """
-    
+
+    title = _('Payment Cash On Delivery')
     logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:

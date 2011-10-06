@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-28 12:06+0200\n"
-"PO-Revision-Date: 2011-09-07 12:19+0100\n"
+"POT-Creation-Date: 2011-10-06 17:28+0200\n"
+"PO-Revision-Date: 2011-10-06 17:29+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,24 +16,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: views.py:45
+#: views.py:46
+msgid "Payment Cash On Delivery"
+msgstr "Pagament rembolsament"
+
+#: views.py:50
 msgid "Order number is not available. Use navigation menu."
 msgstr "Número de comanda no està disponible. Utilitzeu el menú de navegació."
 
-#: views.py:50
+#: views.py:55
 msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr ""
-"Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb "
-"nosaltres"
+msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
+
+#: views.py:78
+msgid "Error payment this order or is null. Contact Us or use navigation menu"
+msgstr "Pagament errorni o comanda no existeix. Contacti amb nosaltres o utilitzi el menú de navegació"
 
 #: templates/cashondelivery/cashondelivery.html:18
 #, python-format
-msgid ""
-"Your order %(order)s is created successfully. Remember do payment when "
-"receive delivery:"
-msgstr ""
-"La seva comanda %(order)s s'ha creat correctament. Recordeu de fer el "
-"pagament quan rebeu la comanda:"
+msgid "Your order %(order)s is created successfully. Remember do payment when receive delivery:"
+msgstr "La seva comanda %(order)s s'ha creat correctament. Recordeu de fer el pagament quan rebeu la comanda:"
 
 #: templates/cashondelivery/cashondelivery.html:20
 msgid "Orders"
@@ -42,3 +44,4 @@ msgstr "Comandes"
 #: templates/cashondelivery/cashondelivery.html:20
 msgid "Go Orders for more details and status order"
 msgstr "Ves a les comandes per a més detalls i a l'estat de la comanda"
+

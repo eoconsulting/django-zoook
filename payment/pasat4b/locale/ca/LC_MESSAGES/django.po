@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-06 17:24+0200\n"
+"PO-Revision-Date: 2011-10-06 17:26+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: views.py:52
+msgid "Payment Credit Card Pasat 4b"
+msgstr "Pagament amb targeta Pasat 4b"
+
+#: views.py:56
+#: views.py:106
+msgid "Order number is not available. Use navigation menu."
+msgstr "Número de comanda no està disponible. Utilitzeu el menú de navegació."
+
+#: views.py:61
+#: views.py:156
+msgid "Error when connecting with our ERP. Try again or cantact us"
+msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
+
+#: views.py:92
+msgid "Error Payment Credit Card Pasat 4b"
+msgstr "Error en el pagament targeta Pasat 4b"
+
+#: views.py:93
+msgid "Error return 4b (Pasat Internet 4b) Payment. Go to sale orders and repeat payment"
+msgstr "Ha hagut un error de Pasat 4b. Accedeix a les comandes de venda i repeteix el pagament"
+
+#: views.py:102
+msgid "Confirmation Payment Credit Card Pasat 4b"
+msgstr "Confirmació pagament targeta Pasat 4b"
+
+#: views.py:131
+#, python-format
+msgid "Order %s: Pasat 4b payment finish"
+msgstr "Comanda %s: Pasat 4b pagament finalitzat"
+
+#: views.py:135
+msgid "Error return 4b (Pasat Internet 4b) Payment. Contact us to check payment"
+msgstr "Ha hagut un error de Pasat 4b. Contacti amb nosaltres per validar el pagament"
+
+#: views.py:171
+#, python-format
+msgid "Order %s prossesing Pasat 4b"
+msgstr "Comanda %s processant a 4b"
+
+#: views.py:172
+#, python-format
+msgid "Pasat Values %s"
+msgstr "Pasat dades %s"
+
+#: views.py:176
+#, python-format
+msgid "Error Order %s Pasat 4b"
+msgstr "Error comanda %s Pasat 4b"
+
+#: views.py:179
+#, python-format
+msgid "Error Order %s Pasat 4b. Not exist"
+msgstr "Error comanda %s Pasat 4b. No existeix"
+
+#: templates/pasat4b/confirm.html:18
+#, python-format
+msgid "Your order %(order)s is created successfully"
+msgstr "La seva comanda %(order)s s'ha creat correctament"
+
+#: templates/pasat4b/confirm.html:19
+msgid "Orders"
+msgstr "Comandes"
+
+#: templates/pasat4b/confirm.html:19
+msgid "Go Orders for more details and status order"
+msgstr "Ves a les comandes per a més detalls i a l'estat de la comanda"
+
+#: templates/pasat4b/end.html:10
+msgid "Your Payment are successfully"
+msgstr "El seu pagament s'ha realitzat correctament"
+
+#: templates/pasat4b/form.html:18
+msgid "In few moment we redirecting to Pasat 4b. One moment..."
+msgstr "Es redireccionarà a Pasat 4b per realitzar el pagament amb targeta de crèdit. Un moment..."
+

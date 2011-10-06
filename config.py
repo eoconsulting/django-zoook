@@ -146,3 +146,10 @@ SERMEPA_BUTTON_IMG = '/static/images/icons/sermepa.png'
 SERMEPA_TERMINAL = 1
 SERMEPA_CURRENCY = 978
 SERMEPA_TRANS_TYPE = 0 # 0 - Autorizacion / 1 - Preautorizacion / 2 - Confirmacion / 3 - Devolución Automatica / 4 - Pago Referencia / 5 - Transacción Recurrente / 6 - Transacción Sucesiva / 7 - Autenticación / 8 - Confirmación de Autenticación / 9 - Anulacion de Preautorizacion
+
+"""
+Passat 4b Configuration
+"""
+PASAT4B_MERCHANT_CODE = 'PI00000000'
+PASAT4B_BUTTON_IMG = '/static/images/icons/passat4b.png'
+PASAT4B_BUTTON_TEXT = 'Comprar ahora'

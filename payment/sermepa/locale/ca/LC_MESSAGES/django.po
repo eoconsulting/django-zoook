@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-28 12:34+0200\n"
-"PO-Revision-Date: 2011-09-28 12:35+0100\n"
+"POT-Creation-Date: 2011-10-06 17:36+0200\n"
+"PO-Revision-Date: 2011-10-06 17:39+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,19 +16,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: views.py:50
+#: views.py:53
+msgid "Payment Credit Card Servired"
+msgstr "Pagament targeta de crèdit Servired"
+
+#: views.py:57
 msgid "Order number is not available. Use navigation menu."
 msgstr "Número de comanda no està disponible. Utilitzeu el menú de navegació."
 
-#: views.py:55
+#: views.py:62
 msgid "Error when connecting with our ERP. Try again or cantact us"
 msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
 
-#: views.py:99
+#: views.py:107
+msgid "Error Payment Credit Card Servired"
+msgstr "Error pagament targeta de crèdit Servired"
+
+#: views.py:108
 msgid "Error return Servired Payment. Go to sale orders and repeat payment"
 msgstr "Ha hagut un error de Servired. Accedeix a les comandes de venda i repeteix el pagament"
 
-#: views.py:133
+#: views.py:117
+msgid "Confirmation Credit Card Servired"
+msgstr "Confirmació pagament targeta de crèdit Servired"
+
+#: views.py:143
+#, python-format
+msgid "Order %s: servired payment finish"
+msgstr "Comanda %s: Pagament Servired finalitzat"
+
+#: views.py:147
 msgid "Error return Servired Payment. Contact us to check payment"
 msgstr "Ha hagut un error de Servired. Contacti amb nosaltres per validar el pagament"
 

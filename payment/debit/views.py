@@ -41,6 +41,9 @@ def index(request):
     """
     Debit Bank View
     """
+
+    title = _('Payment Debit Bank. Add Bank Number')
+
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
@@ -56,6 +59,7 @@ def confirm(request):
     OpenERP Payment Type App is: debit
     """
 
+    title = _('Payment Debit Bank')
     logging.basicConfig(filename=LOGSALE,level=logging.INFO)
     context_instance=RequestContext(request)
 

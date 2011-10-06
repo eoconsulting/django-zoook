@@ -132,11 +132,13 @@ INSTALLED_APPS = (
     'tools.cms',
     #~ 'sermepa.sermepa',
     #~ 'sermepa.sermepa_test',
+    #~ 'payment.sermepa',
     #~ 'paypal.standard.ipn',
+    #~ 'payment.paypal',
+    #~ 'pasat4b.pasat4b',
+    #~ 'payment.pasat4b',
     #~ 'payment.check',
     #~ 'payment.cashondelivery',
-    #~ 'payment.sermepa',
-    #~ 'payment.paypal',
     #~ 'payment.debit',
 )
 

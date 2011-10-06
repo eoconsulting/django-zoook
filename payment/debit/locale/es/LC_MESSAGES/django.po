@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-28 12:27+0200\n"
-"PO-Revision-Date: 2011-09-28 12:29+0100\n"
+"POT-Creation-Date: 2011-10-06 17:33+0200\n"
+"PO-Revision-Date: 2011-10-06 17:34+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: views.py:42
-#: views.py:56
+#: views.py:45
+msgid "Payment Debit Bank. Add Bank Number"
+msgstr "Pago recibo. Añade el número de banco"
+
+#: views.py:48
+#: views.py:67
 msgid "Order number is not available. Use navigation menu."
 msgstr "Número de pedido no está disponible. Utilize el menú de navegación."
 
-#: views.py:61
+#: views.py:62
+msgid "Payment Debit Bank"
+msgstr "Pago recibo"
+
+#: views.py:72
 msgid "Error when connecting with our ERP. Try again or cantact us"
 msgstr "Error en conectar con nuestro ERP. Intente de nuevo, o contacte con nosotros."
+
+#: views.py:125
+msgid "Error payment this order or is null. Contact Us or use navigation menu"
+msgstr "Error de pago de este pedido o pedido no existente. Contacte con nosotros o utilize el menú de navegación"
 
 #: templates/debit/bank.html:35
 #, python-format

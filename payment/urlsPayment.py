@@ -45,4 +45,10 @@ urlpatterns = patterns("",
     #~ Debit
     #~ (r"^debit/confirm", 'payment.debit.views.confirm'),
     #~ (r"^debit/", 'payment.debit.views.index'),
-)
+    
+    #~ 4b
+    #~ (r'^pasat4b/error', 'payment.pasat4b.views.pasat4b_error'),
+    #~ (r'^pasat4b/confirm', 'payment.pasat4b.views.pasat4b_confirm'),
+    #~ (r'^pasat4b/getorder', 'payment.pasat4b.views.pasat4b_getorder'),
+    #~ (r'^pasat4b/ipn', include('pasat4b.pasat4b.urls')),
+    #~ (r'^pasat4b/', 'payment.pasat4b.views.index'),)

@@ -15,7 +15,14 @@
         </div>
     </div>
     <div id="content">
-        <div class="msg-warning">{{ error }}</div>
+        <p>{% trans "In few moment we redirecting to Pasat 4b. One moment..." %}</p>
+        {% if debug %}
+            {{ form.sandbox }}
+        {% else %}
+            {{ form.render }}
+        {% endif %}
     </div>
+
+<script type="text/javascript">document.getElementById("pasat4b_standard_checkout").submit();</script>
 </div>
 {% endblock %}

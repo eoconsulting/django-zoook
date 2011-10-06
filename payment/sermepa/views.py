@@ -50,6 +50,7 @@ def index(request):
         - Minimium 4, Maximun 12
     """
 
+    title = _('Payment Credit Card Servired')
     logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:
@@ -90,6 +91,7 @@ def index(request):
         }
 
         form = SermepaPaymentForm(initial=sermepa_dict)
+        debug = DEBUG
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: sermepa form and redirect' % (order.name) ))
         return HttpResponse(render_to_response('sermepa/form.html', locals(), context_instance=RequestContext(request)))
 
@@ -102,6 +104,7 @@ def sermepa_error(request):
     Error Sermepa view
     """
 
+    title = _('Error Payment Credit Card Servired')
     error = _('Error return Servired Payment. Go to sale orders and repeat payment')
     return HttpResponse(render_to_response('sermepa/error.html', {'error':error}, context_instance=RequestContext(request)))
 
@@ -111,6 +114,7 @@ def sermepa_confirm(request):
     Confirmation Sermepa view
     """
 
+    title = _('Confirmation Credit Card Servired')
     logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     conn = connOOOP()
@@ -121,7 +125,7 @@ def sermepa_confirm(request):
     payment = False
 
     if len(payment_sermepa)>0:
-        if (payment_paypal[0].Ds_Signature):
+        if (payment_sermepa[0].Ds_Signature):
             payment = True
 
     orders = conn.SaleOrder.filter(name=request.session['sale_order'])
@@ -136,7 +140,7 @@ def sermepa_confirm(request):
         #send email sale order
         SaleOrderEmail(order.id)
 
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Order %s: paypal payment finish') % (order.name) ))
+        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Order %s: servired payment finish') % (order.name) ))
 
         return HttpResponse(render_to_response('sermepa/confirm.html', values, context_instance=RequestContext(request)))
     else:

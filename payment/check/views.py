@@ -43,6 +43,7 @@ def index(request):
     OpenERP Payment Type App is: check
     """
 
+    title = _('Payment Check')
     logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:
