@@ -51,4 +51,5 @@ urlpatterns = patterns("",
     #~ (r'^pasat4b/confirm', 'payment.pasat4b.views.pasat4b_confirm'),
     #~ (r'^pasat4b/getorder', 'payment.pasat4b.views.pasat4b_getorder'),
     #~ (r'^pasat4b/ipn', include('pasat4b.pasat4b.urls')),
-    #~ (r'^pasat4b/', 'payment.pasat4b.views.index'),)
+    #~ (r'^pasat4b/', 'payment.pasat4b.views.index'),
+    )

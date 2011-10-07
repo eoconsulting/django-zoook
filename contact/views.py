@@ -60,7 +60,7 @@ def contactForm(request):
                         contact_email = [contact_email]
 
                     try:
-                        emailobj = EmailMessage(subject, body, to=contact_email)
+                        emailobj = EmailMessage(subject, body, EMAIL_FROM, to=contact_email, headers = {'Reply-To': EMAIL_REPPLY})
                         emailobj.send()
                         message = _('Thanks for your message. We will answer soon.')
                     except:

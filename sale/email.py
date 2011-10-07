@@ -52,7 +52,8 @@ def SaleOrderEmail(order):
     if customer_email != 'False':
         subject = body_template['value']['subject']
         body = body_template['value']['body_text']
-        email = EmailMessage(subject, body, to=[customer_email])
+        email = EmailMessage(subject, body, EMAIL_FROM, to=[customer_email], headers = {'Reply-To': EMAIL_REPPLY})
+
         try:
             email.send()
             return True

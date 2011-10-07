@@ -84,7 +84,7 @@ def order(request, order):
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
     if len(values) == 0:
         error = _('It is not allowed to view this section or not found. Use navigation menu.')
-        return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
     title = _('Order %s') % (value.name)
@@ -111,13 +111,13 @@ def payment(request, order):
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
     if len(values) == 0:
         error = _('It is not allowed to view this section or not found. Use navigation menu.')
-        return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
 
     if value.state != 'draft':
         error = _('Your order is in progress. Contact with us')
-        return render_to_response("user/error.html", locals(), context_instance=RequestContext(request))
+        return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     sale_shop = conn.SaleShop.filter(id=OERP_SALE)[0]
     payments = sale_shop.zoook_payment_types
@@ -471,7 +471,7 @@ def checkout_payment(request):
     conn = connOOOP()
     payment_type = conn.ZoookSaleShopPaymentType.filter(app_payment=payment)
 
-    order = conn.SaleOrder.filter(name=order,state='draft',payment_state='done')
+    order = conn.SaleOrder.filter(name=order,state='draft')
 
     if (len(payment_type) > 0) and (len(order) > 0):
         request.session['sale_order'] = order[0].name
