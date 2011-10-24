@@ -166,7 +166,8 @@ def pasat4b_getorder(request):
         order = orders[0]
         
         if (order.state == 'draft'):
-            amount_total = str(order.amount_total).replace('.','') # Replace 123,45 to 12345
+            amount_total = '%.*f' % (PASAT4B_DECIMAL, order.amount_total)
+            amount_total = str(amount_total).replace('.','') # Replace 123,45 to 12345
             value = "M978%s\n1\n1\n%s\n1\n%s\n\n" % ( amount_total, order.name, amount_total)
 
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Order %s prossesing Pasat 4b') % (order_code) ))

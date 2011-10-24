@@ -45,13 +45,16 @@ for product.template
 """
 
 results = conn_webservice('sale.shop', 'dj_export_products', [[OERP_SALE]])
+langs = conn_webservice('sale.shop', 'zoook_sale_shop_langs', [[OERP_SALE]])
+langs = langs[str(OERP_SALE)]
+context = {}
 
 if len(results) == 0:
     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Not products template news or modified')))
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result['product_template']]])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result['product_template']],context,langs])
 
     if DEBUG:
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
@@ -101,7 +104,7 @@ for result in results:
 
             # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
             context = {'shop':OERP_SALE, 'product_id': prod}
-            values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.product',[prod], context])
+            values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.product',[prod],context,langs])
 
             if DEBUG:
                 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
