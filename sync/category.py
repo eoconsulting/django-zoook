@@ -39,6 +39,9 @@ logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Running')))
 
 results = conn_webservice('sale.shop', 'dj_export_categories', [[OERP_SALE]])
+langs = conn_webservice('sale.shop', 'zoook_sale_shop_langs', [[OERP_SALE]])
+langs = langs[str(OERP_SALE)]
+context = {}
 
 if len(results) == 0:
     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Not categories news or modified')))
@@ -47,7 +50,7 @@ cat2 = []
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.category',[result]])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.category',[result],context,langs])
 
     if DEBUG:
         logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
