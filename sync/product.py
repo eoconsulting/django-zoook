@@ -32,7 +32,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 from settings import *
 from django.utils.translation import ugettext as _
-from catalog.models import ProductProduct, ProductTemplate, ProductManufacturerAttribute
+from catalog.models import ProductProduct, ProductTemplate
 from tools.conn import conn_webservice
 
 logging.basicConfig(filename=LOGFILE,level=logging.INFO)
@@ -115,20 +115,6 @@ for result in results:
                 try:
                     prod.save()
                     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Product save ID %s') % product['id']))
-
-                    #product attribute
-                    attributes = conn_webservice('sale.shop', 'dj_export_products_attribute', [product['id'], OERP_SALE])
-                    if len(attributes) > 0:
-                        values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.manufacturer.attribute', attributes])
-                        for attributes in values:
-                            prod_attributes = ProductManufacturerAttribute(**attributes)
-                            try:
-                                prod_attributes.save()
-                            except:
-                                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Attribute. Error save ID %s') % product['id']))
-
-                        if DEBUG:
-                            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
                 except:
                     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Error save ID %s') % product['id']))
 

@@ -157,23 +157,6 @@ class ProductProduct(models.Model):
     def __unicode__(self):
         return self.code
 
-class ProductManufacturerAttribute(models.Model):
-    """ProductManufacturerAttribute OpenERP"""
-
-    name = models.CharField(_('Attribute'), max_length=128, null=True, blank=True)
-    product = models.ForeignKey('ProductProduct', null=True, blank=True)
-    value = models.CharField(_('Value'), max_length=128, null=True, blank=True)
-
-    """ Custom fields model """
-
-    class Meta:
-        db_table = 'product_manufacturer_attribute'
-        verbose_name = _('attribute')
-        verbose_name_plural = _('attributes')
-
-    def __unicode__(self):
-        return self.name
-
 class ProductImages(models.Model):
     """ProductImages OpenERP"""
 

@@ -51,18 +51,6 @@ class ProductTemplateAdmin(admin.ModelAdmin):
 
 admin.site.register(ProductTemplate, ProductTemplateAdmin)
 
-class ProductManufacturerAttributeAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'name',
-        'product',
-    )
-    search_fields = ["product"]
-    extra = 0
-#    list_filter = ["status"]
-
-admin.site.register(ProductManufacturerAttribute, ProductManufacturerAttributeAdmin)
-
 class ProductImagesAdmin(admin.ModelAdmin):
 
     list_display = (
