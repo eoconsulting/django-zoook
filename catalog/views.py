@@ -226,7 +226,6 @@ def product(request,product):
     tplproduct = get_object_or_404(ProductTemplate, **kwargs) #ProductTemplate
     
     products = ProductProduct.objects.filter(product_tmpl=tplproduct.id) #ProductProduct
-    product_attributes = ProductManufacturerAttribute.objects.filter(product=products[0].id) #ProductAttributes
 
     # get price and base_image product
     prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id).order_by('price')
