@@ -1,0 +1,14 @@
+
+* Zoook
+
+This is a fork of the Django part of Zoook. This is what the
+developers have to say about Zoook:
+#+BEGIN_QUOTE
+Zoook is e-commerce OpenERP App without connector. Forget connectors
+and errors. Your ERP is the same app at web; same process, same
+information.
+#+END_QUOTE
+
+I forked this package to provide better packaging facilities to this
+module.
+
