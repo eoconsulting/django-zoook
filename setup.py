@@ -12,7 +12,7 @@ setup(
         'paramiko',
         'recaptcha-client',
         'Pyro'
-        ]
+        ],
     requires = [
         'ooop',
         'django-inplaceedit',
