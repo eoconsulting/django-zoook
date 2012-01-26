@@ -7,6 +7,7 @@ setup(
     description = '',
     download_url = 'https://www.github.com/fuzzy-id/django-zoook',
     install_requires = [
+        'django',
         'django_localeurl',
         'django_transmeta',
         'paramiko',
