@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ############################################################################################
 #
 #    Zoook e-sale for OpenERP, Open Source Management Solution	
