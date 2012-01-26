@@ -21,4 +21,6 @@
 #
 ############################################################################################
 
-djpath = '/home/resteve/django/zoook'
+from django_zoook.config import zoook_root
+
+djpath = zoook_root
