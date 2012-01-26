@@ -22,7 +22,7 @@
 
 from django import template
 from django.template import Library, Node
-from zoook.tools.cms.models import ImageSlider, ImageSliderItem
+from django_zoook.tools.cms.models import ImageSlider, ImageSliderItem
 
 register = template.Library()
 
