@@ -9,7 +9,7 @@ setup(
     install_requires = [
         'django',
         'psycopg2',
-        'PIL',
+        'Pillow',
         'django_localeurl',
         'django_transmeta',
         'paramiko',
