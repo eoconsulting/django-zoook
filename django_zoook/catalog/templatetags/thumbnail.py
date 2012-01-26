@@ -27,7 +27,7 @@ from settings import *
 import os
 import cStringIO # *much* faster than StringIO
 import urllib
-import Image
+from PIL import Image
 
 register = template.Library()
 
