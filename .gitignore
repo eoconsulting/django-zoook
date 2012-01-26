@@ -1,3 +1,7 @@
+# Ignore configuration files
+django_zoook/settings.py
+django_zoook/config.py
+
 *.egg-info/
 
 # Ignore byte compiled files
