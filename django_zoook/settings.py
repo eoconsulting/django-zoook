@@ -73,7 +73,7 @@ MEDIA_ROOT = os.path.join(PATH, "static")
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'c=ylnmu)78-olf-96npet^tdrds-e+3jm=_hm(w*85e6yd^z@a'
+SECRET_KEY = 'YOUR_SECRET_KEY'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
