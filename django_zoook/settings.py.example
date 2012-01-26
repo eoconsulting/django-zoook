@@ -92,7 +92,7 @@ MIDDLEWARE_CLASSES = (
     'maintenancemode.middleware.MaintenanceModeMiddleware',
 )
 
-ROOT_URLCONF = 'zoook.urls'
+ROOT_URLCONF = 'django_zoook.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(PATH, "templates"+"/"+BASE_TEMPLATE),
