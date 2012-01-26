@@ -21,7 +21,7 @@
 ############################################################################################
 
 from django import template
-from zoook.tools.cms.models import Menu, MenuItem
+from django_zoook.tools.cms.models import Menu, MenuItem
 
 register = template.Library()
 
