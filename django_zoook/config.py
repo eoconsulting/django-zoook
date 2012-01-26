@@ -20,7 +20,11 @@
 #
 ############################################################################################
 
+import os.path
 from django.utils.translation import ugettext_lazy as _
+
+__here__ = os.path.abspath(os.path.dirname(__file__))
+zoook_root = os.path.dirname(__here__)
 
 DEBUG = True
 MAINTENANCE_MODE = False
@@ -68,8 +72,8 @@ COUNTRY_DEFAULT = 'ES'
 """
 Log's conf
 """
-LOGFILE = '/home/resteve/django/zoook/log/sync.log' #path sync log
-LOGSALE = '/home/resteve/django/zoook/log/sale.log' #path sale log
+LOGFILE = os.path.join(zoook_root, 'log', 'sync.log') #path sync log
+LOGSALE = os.path.join(zoook_root, 'log', 'sale.log') #path sale log
 
 """
 Base template
@@ -92,8 +96,7 @@ DATABASES = {
         'USER': 'openerp',      # Not used with sqlite3.
         'PASSWORD': 'openerp',  # Not used with sqlite3.
         'HOST': 'localhost',    # Set to empty string for localhost. Not used with sqlite3.
-#        'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
-        'PORT': '5433',
+        'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
     }
 }
 
