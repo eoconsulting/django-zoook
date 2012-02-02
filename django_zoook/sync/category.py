@@ -30,10 +30,10 @@ from config_path import djpath
 sys.path.append(djpath)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
-from settings import *
+from django_zoook.settings import *
 from django.utils.translation import ugettext as _
-from catalog.models import ProductCategory
-from tools.conn import conn_webservice
+from django_zoook.catalog.models import ProductCategory
+from django_zoook.tools.conn import conn_webservice
 
 logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Running')))
