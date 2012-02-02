@@ -21,6 +21,8 @@
 #
 ############################################################################################
 
-from django_zoook.config import zoook_root
+import os.path
+path_to_activate_this_py = os.path.expanduser('~/.virtualenvs/zoook/bin/activate_this.py')
 
-djpath = zoook_root
+execfile(path_to_activate_this_py,
+         dict(__file__ = path_to_activate_this_py))
