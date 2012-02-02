@@ -26,8 +26,12 @@ import sys
 import logging
 import time
 
-from config_path import djpath
-sys.path.append(djpath)
+try:
+    import .config_path
+except ImportError:
+    # User does not want a special configuration
+    pass
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 from django_zoook.settings import *
