@@ -27,7 +27,7 @@ import logging
 import time
 
 try:
-    import .config_path
+    import config_path
 except ImportError:
     # User does not want a special configuration
     pass
