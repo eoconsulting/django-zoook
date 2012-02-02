@@ -108,7 +108,7 @@ OERP_CONF = {
     'dbname':'oerp_zoook',
     'protocol':'xmlrpc', #xmlrpc
     'uri':'http://localhost', #xmlrpc
-    'port':8071, #xmlrpc
+    'port':8069, #xmlrpc
 #    'protocol':'pyro', #pyro
 #    'uri':'localhost', #pyro
 #    'port':8071, #pyro
