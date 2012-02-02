@@ -23,8 +23,7 @@
 import os.path
 from django.utils.translation import ugettext_lazy as _
 
-__here__ = os.path.abspath(os.path.dirname(__file__))
-zoook_root = os.path.dirname(__here__)
+zoook_root = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 MAINTENANCE_MODE = False
