@@ -25,7 +25,7 @@ import os
 import sys
 
 sys.path.append('.')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 from settings import *
 from django.utils.translation import ugettext as _
