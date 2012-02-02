@@ -20,8 +20,6 @@
 #
 ############################################################################################
 
-from settings import *
-
 from ooop import OOOP
 import xmlrpclib
 
@@ -31,7 +29,7 @@ try:
 except:
     pyro = False
 
-from settings import OERP_CONF
+from django_zoook.settings import OERP_CONF
 
 def conn_ooop():
     """Connection OpenERP with OOOP"""
