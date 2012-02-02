@@ -32,7 +32,7 @@ except ImportError:
     # User does not want a special configuration
     pass
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 from django_zoook.settings import *
 from django.utils.translation import ugettext as _
