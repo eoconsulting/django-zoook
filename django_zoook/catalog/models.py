@@ -26,7 +26,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import get_language
 
 from transmeta import TransMeta
-from transurl import catalog_url, product_url
+from django_zoook.transurl import catalog_url, product_url
 
 from datetime import datetime
 
