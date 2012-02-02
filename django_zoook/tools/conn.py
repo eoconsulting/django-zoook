@@ -43,30 +43,24 @@ def conn_ooop():
 
 def xmlrpc():
     """Connection OpenERP with XMLRPC"""
-    try:
-        # Get the uid
-        server_common = '%s:%s/xmlrpc/common' % (OERP_CONF['uri'],OERP_CONF['port'])
-        server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
+    # Get the uid
+    server_common = '%s:%s/xmlrpc/common' % (OERP_CONF['uri'],OERP_CONF['port'])
+    server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
 
-        sock_common = xmlrpclib.ServerProxy(server_common)
-        uid = sock_common.login(OERP_CONF['dbname'], OERP_CONF['username'], OERP_CONF['password'])
-        server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
-        sock = xmlrpclib.ServerProxy(server_object)
-        return uid, sock
-    except:
-        return False
+    sock_common = xmlrpclib.ServerProxy(server_common)
+    uid = sock_common.login(OERP_CONF['dbname'], OERP_CONF['username'], OERP_CONF['password'])
+    server_object = '%s:%s/xmlrpc/object' % (OERP_CONF['uri'],OERP_CONF['port'])
+    sock = xmlrpclib.ServerProxy(server_object)
+    return uid, sock
 
 def pyro():
     """Connection OpenERP with PYRO"""
-    try:
-        # Get the uid
-        url = 'PYROLOC://%s:%s/rpc' % (OERP_CONF['uri'],OERP_CONF['port'])
+    # Get the uid
+    url = 'PYROLOC://%s:%s/rpc' % (OERP_CONF['uri'],OERP_CONF['port'])
 
-        proxy = Pyro.core.getProxyForURI(url)
-        uid = proxy.dispatch( 'common', 'login', OERP_CONF['dbname'], OERP_CONF['username'], OERP_CONF['password'])
-        return uid, proxy
-    except:
-        return False
+    proxy = Pyro.core.getProxyForURI(url)
+    uid = proxy.dispatch( 'common', 'login', OERP_CONF['dbname'], OERP_CONF['username'], OERP_CONF['password'])
+    return uid, proxy
 
 def conn_webservice(model, call, values=[]):
     """Connection OpenERP with webservice
