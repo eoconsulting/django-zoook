@@ -6,6 +6,3 @@ django_zoook/config.py
 
 # Ignore byte compiled files
 *.pyc
-
-# Ignore log files
-django_zoook/log/sync.log
