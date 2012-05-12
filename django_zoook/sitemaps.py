@@ -22,8 +22,8 @@
 
 from django.contrib.sitemaps import Sitemap
 
-from content.models import Content
-from catalog.models import ProductCategory, ProductTemplate
+from django_zoook.content.models import Content
+from django_zoook.catalog.models import ProductCategory, ProductTemplate
 
 """ Content Sitemap """
 class ContentSitemap(Sitemap):

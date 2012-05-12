@@ -28,14 +28,14 @@ from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import connOOOP, siteConfiguration
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import connOOOP, siteConfiguration
 
 from pasat4b.pasat4b.forms import pasat4bPaymentForm
 from pasat4b.pasat4b.models import pasat4bResponse
 
-from sale.email import SaleOrderEmail
+from django_zoook.sale.email import SaleOrderEmail
 
 import time
 import logging
@@ -50,7 +50,6 @@ def index(request):
     """
 
     title = _('Payment Credit Card Pasat 4b')
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
@@ -98,8 +97,6 @@ def pasat4b_confirm(request):
     """
     Confirmation Pasat 4b view
     """
-
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
@@ -149,8 +146,6 @@ def pasat4b_getorder(request):
         "{{importe}}\n"
         "\n"
     """
-
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     conn = connOOOP()
     if not conn:

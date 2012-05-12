@@ -27,18 +27,20 @@ import logging
 import time
 import optparse
 
-from config_path import djpath
-sys.path.append(djpath)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from config_path import zoook_root
+sys.path.append(zoook_root)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
-from settings import *
+import django_zoook.logconfig
+
+from django_zoook.settings import *
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
-from partner.models import *
+from django_zoook.partner.models import *
 
-logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 
 if __name__=="__main__":
+    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. User. Running')))
     parser = optparse.OptionParser("usage: %prog [options]")
     parser.add_option("-u", "--username", dest="username", type="string", help="User Name")
     parser.add_option("-p", "--password", dest="password", type="string", help="Password")
@@ -95,6 +97,7 @@ if __name__=="__main__":
             # create authProfile
             authProfile = AuthProfile(user=user,partner_id=options.uid)
             authProfile.save()
-            
+
+            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Done')))
             print True
 

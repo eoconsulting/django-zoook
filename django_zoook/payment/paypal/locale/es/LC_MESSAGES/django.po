@@ -55,7 +55,7 @@ msgstr "Pedidos"
 
 #: templates/paypal/confirm.html:19
 msgid "Go Orders for more details and status order"
-msgstr "Ir a pedidors para más detalles i estado del pedido"
+msgstr "Ir a pedidos para más detalles y estado del mismo"
 
 #: templates/paypal/end.html:10
 msgid "Your Payment are successfully"

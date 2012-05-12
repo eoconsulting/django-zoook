@@ -32,11 +32,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
 
-from catalog.models import *
+from django_zoook.catalog.models import *
+
+from django_zoook.config import NEWSLATTER_ON, COMPARE_ON
 
 @login_required
 def updateprice(request):
@@ -230,11 +232,11 @@ def product(request,product):
     # get price and base_image product
     prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id).order_by('price')
 
-    prod_images = ProductImages.objects.filter(product=prods[0].id,exclude=False)
+    #prod_images = ProductImages.objects.filter(product=prods[0].id,exclude=False)
  
-    base_image = False
-    if len(prod_images) > 0:
-        base_image = prod_images[0]
+    #base_image = False
+    #if len(prod_images) > 0:
+    #    base_image = prod_images[0]
     
     base_image = ProductImages.objects.filter(product__in=products, exclude=False, base_image=True) #Product Image Base
     thumb_images = ProductImages.objects.filter(product__in=products, exclude=False, base_image=False) #Product Image Thumbs
@@ -274,6 +276,8 @@ def product(request,product):
         'search_keywords': search_keywords,
         'url': LIVE_URL,
         'currency': DEFAULT_CURRENCY,
+        'NEWSLATTER_ON': NEWSLATTER_ON,
+        'COMPARE_ON': COMPARE_ON
     }
     return render_to_response("catalog/product.html", values, context_instance=RequestContext(request))
 

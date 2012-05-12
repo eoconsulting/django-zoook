@@ -22,9 +22,9 @@
 
 from django import template
 
-from catalog.models import ProductTemplate, ProductProduct
+from django_zoook.catalog.models import ProductTemplate, ProductProduct
 from django.utils.translation import get_language
-from config import LOCALE_URI
+from django_zoook.config import LOCALE_URI
 
 register = template.Library()
 

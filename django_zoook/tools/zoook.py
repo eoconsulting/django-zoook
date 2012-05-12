@@ -24,8 +24,10 @@ from django.shortcuts import render_to_response
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 
-from tools.conn import conn_ooop
-from tools.cms.models import SiteConfiguration
+from django_zoook.tools.conn import conn_ooop
+from django_zoook.tools.cms.models import SiteConfiguration
+
+import logging
 
 def siteConfiguration(site):
     """
@@ -35,7 +37,8 @@ def siteConfiguration(site):
 
     try:
         site_configuration = SiteConfiguration.objects.get(id=site)
-    except:
+    except Exception, e:
+        logging.error("Error getting site_configuration with id=%d: %s" % (site, str(e)))
         site_configuration = ''
 
     return site_configuration

@@ -21,7 +21,7 @@
 ############################################################################################
 
 from django.contrib import admin
-from catalog.models import *
+from django_zoook.catalog.models import *
 from datetime import datetime
 from . import models
 

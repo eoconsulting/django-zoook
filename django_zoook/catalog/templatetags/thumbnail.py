@@ -22,7 +22,7 @@
 
 from django import template
 from django.template import Library, Node
-from settings import *
+from django_zoook.settings import *
 
 import os
 import cStringIO # *much* faster than StringIO

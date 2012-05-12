@@ -27,11 +27,11 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import connOOOP
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import connOOOP
 
-from sale.email import SaleOrderEmail
+from django_zoook.sale.email import SaleOrderEmail
 
 import time
 import logging
@@ -44,7 +44,6 @@ def index(request):
     """
 
     title = _('Payment Cash On Delivery')
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')

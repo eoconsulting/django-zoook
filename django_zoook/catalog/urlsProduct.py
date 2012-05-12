@@ -21,10 +21,12 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from catalog.views import *
+from django_zoook.catalog.views import *
 
 """Urls Product"""
 
 urlpatterns = patterns("",
-    (r"^(?P<product>[^/]+)$", 'catalog.views.product'),
+    (r"^(?P<product>[^/]+)$", 'django_zoook.catalog.views.product'),
+    (r"^.+/(?P<product>[^/]+)/$", 'django_zoook.catalog.views.product'),
+    (r"(?P<product>[^/]+)/$", 'django_zoook.catalog.views.product'),
 )

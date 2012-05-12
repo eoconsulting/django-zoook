@@ -40,7 +40,7 @@ msgstr "Error de pago de este pedido o pedido no existente. Contacte con nosotro
 #: templates/debit/bank.html:35
 #, python-format
 msgid "You select <strong>Debit Payment</strong>. Insert Account Bank to pay <strong>%(order)s</strong> order"
-msgstr "Ha seleccionado el pago <strong>Domiciliación bancária</strong>. Inserte su cuenta bancaria para el pago del pedido <strong>%(order)s</strong>"
+msgstr "Ha seleccionado el pago <strong>Débito bancario</strong>. Inserte su cuenta bancaria para el pago del pedido <strong>%(order)s</strong>"
 
 #: templates/debit/bank.html:38
 msgid "Confirm Order and Payment"
@@ -57,5 +57,5 @@ msgstr "Pedidos"
 
 #: templates/debit/confirm.html:19
 msgid "Go Orders for more details and status order"
-msgstr "Ir a pedidors para más detalles i estado del pedido"
+msgstr "Ir a pedidos para más detalles y estado del mismo"
 

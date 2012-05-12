@@ -22,10 +22,10 @@
 
 from django.utils.translation import get_language
 
-from tools.zoook import siteConfiguration
+from django_zoook.tools.zoook import siteConfiguration
 
-from settings import BASE_TEMPLATE
-from config import LOCALE_URI, SITE_ID
+from django_zoook.settings import BASE_TEMPLATE
+from django_zoook.config import LOCALE_URI, SITE_ID
 
 def theme(request):
     """

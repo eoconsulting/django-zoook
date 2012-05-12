@@ -26,16 +26,17 @@ import sys
 import logging
 import time
 
-from config_path import djpath
-sys.path.append(djpath)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from config_path import zoook_root
+sys.path.append(zoook_root)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
-from settings import *
+import django_zoook.logconfig
+
+from django_zoook.settings import *
 from django.utils.translation import ugettext as _
-from base.models import ResCountry, ResCountryState
-from tools.conn import conn_webservice
+from django_zoook.base.models import ResCountry, ResCountryState
+from django_zoook.tools.conn import conn_webservice
 
-logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Configuration. Running')))
 
 """
@@ -47,8 +48,7 @@ for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
     values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.res.country',[result]])
 
-    if DEBUG:
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+    logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
 
     if len(values) > 0:
         count = values[0]

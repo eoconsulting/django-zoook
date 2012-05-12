@@ -302,7 +302,7 @@ msgid "catalog"
 msgstr "cataleg"
 
 #: templates/partner/menu.html:7
-msgid "My Whistlist"
+msgid "My Whishlist"
 msgstr "La meva llista de desitjos"
 
 #: templates/partner/menu.html:9 templates/partner/profile.html:21

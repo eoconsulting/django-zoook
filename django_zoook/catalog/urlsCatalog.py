@@ -27,11 +27,11 @@ from catalog.feeds import *
 """Urls Catalog"""
 urlpatterns = patterns("",
     (r'^$', 'catalog.views.index'),
-    (r"^updateprice", 'catalog.views.updateprice',''),
-    (r"^compare", 'catalog.views.compare',''),
-    (r"^whistlist", 'catalog.views.whistlist',''),
+    (r"^updateprice", 'django_zoook.catalog.views.updateprice',''),
+    (r"^compare", 'django_zoook.catalog.views.compare',''),
+    (r"^whistlist", 'django_zoook.catalog.views.whistlist',''),
     (r"^rss/$", ProductFeed()),
-    (r"^.+/(?P<category>[^/]+)/$", 'catalog.views.category'),
-    (r"(?P<category>[^/]+)/$", 'catalog.views.category'),
-#    (r"^(?P<category>[^/]+)/$", 'catalog.views.category'),
+    (r"^.+/(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category'),
+    (r"(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category'),
+#    (r"^(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category'),
 )

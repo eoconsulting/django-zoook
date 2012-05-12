@@ -84,7 +84,7 @@ msgstr "Dirección factura"
 #: templates/account/invoice.html:38
 #: templates/account/invoices.html:22
 msgid "Reference"
-msgstr "Referéncia"
+msgstr "Referencia"
 
 #: templates/account/invoice.html:39
 msgid "Qty"

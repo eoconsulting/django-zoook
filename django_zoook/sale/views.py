@@ -27,11 +27,11 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP, paginationOOOP
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP, paginationOOOP
 
-from catalog.models import ProductProduct, ProductTemplate
+from django_zoook.catalog.models import ProductProduct, ProductTemplate
 
 import datetime
 import time
@@ -247,6 +247,7 @@ def checkout(request):
                 product_id_change = conn_webservice('sale.order.line','product_id_change', values)
 
                 sale_order_add_product = True
+                not_enought_stock = None
                 if product_id_change['warning'] and SALE_ORDER_PRODUCT_CHECK:
                     not_enought_stock = _('Not enough stock !')
                     sale_order_add_product = False
@@ -272,7 +273,10 @@ def checkout(request):
                     message = product_id_change['warning']
 
                 if message and 'title' in message:
-                    message = message['title']
+                    if not_enought_stock != None:
+                        message = not_enought_stock
+                    else:
+                        message = message['title']
 
             #recalcule order (refresh amount)
             order = check_order(conn, partner_id, OERP_SALE)
@@ -297,8 +301,7 @@ def checkout(request):
             values['deliveries'] = conn_webservice('sale.order','delivery_cost', [order.id])
             delivery = True
         except:
-            logging.basicConfig(filename=LOGFILE,level=logging.INFO)
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Need configure grid delivery in this shop or delivery grid not available'))
+            logging.warn('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Need configure grid delivery in this shop or delivery grid not available'))
             values['deliveries'] = []
             
         #Address invoice/delivery
@@ -312,8 +315,7 @@ def checkout(request):
             for payment_type in sale_shop.zoook_payment_types:
                 payments.append({'sequence':payment_type.sequence,'app_payment':payment_type.app_payment,'name':payment_type.payment_type_id.name})
         else:
-            logging.basicConfig(filename=LOGFILE,level=logging.INFO)
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Need configure payment available in this shop'))
+            logging.warn('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Need configure payment available in this shop'))
 
         values['payments'] = sorted(payments, key=lambda k: k['sequence']) 
 
@@ -352,7 +354,6 @@ def checkout_confirm(request):
     Checkout. Confirm
     """
 
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
     context_instance=RequestContext(request)
 
     if 'sale_order' in request.session:

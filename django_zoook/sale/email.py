@@ -24,9 +24,9 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.core.mail import EmailMessage
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import connOOOP
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import connOOOP
 
 def SaleOrderEmail(order):
     """

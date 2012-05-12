@@ -4,7 +4,7 @@
 {% load modules %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist">{% trans "Whistlist" %}</a></li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist">{% trans "Whishlist" %}</a></li></ul></div>{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
@@ -12,7 +12,7 @@
 
     <div id="sidebar">
         <div class="block border5">
-            {% module catalog.right %}
+            {% module whistlist.right %}
         </div>
     </div>
     <div id="content">
@@ -50,4 +50,4 @@
 </div>
 {% endblock %}
 
-{% block jqueryload %}$.zUpdatePrice( {url: 'http://127.0.0.1:8000/es/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endblock %}
+{% block jqueryload %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endblock %}

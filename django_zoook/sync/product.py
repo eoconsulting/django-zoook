@@ -26,16 +26,17 @@ import sys
 import logging
 import time
 
-from config_path import djpath
-sys.path.append(djpath)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from config_path import zoook_root
+sys.path.append(zoook_root)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
-from settings import *
+import django_zoook.logconfig
+
+from django_zoook.settings import *
 from django.utils.translation import ugettext as _
-from catalog.models import ProductProduct, ProductTemplate
-from tools.conn import conn_webservice
+from django_zoook.catalog.models import ProductProduct, ProductTemplate
+from django_zoook.tools.conn import conn_webservice
 
-logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Running')))
 
 """
@@ -49,6 +50,9 @@ langs = conn_webservice('sale.shop', 'zoook_sale_shop_langs', [[OERP_SALE]])
 langs = langs[str(OERP_SALE)]
 context = {}
 
+django_product_template_fields = [field.name for field in ProductTemplate._meta.fields]
+django_product_product_fields = [field.name for field in ProductProduct._meta.fields]
+
 if len(results) == 0:
     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Not products template news or modified')))
 
@@ -56,8 +60,7 @@ for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
     values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result['product_template']],context,langs])
 
-    if DEBUG:
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+    logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
 
     if len(values) > 0:
         product_template = values[0]
@@ -69,7 +72,8 @@ for result in results:
             if type(v).__name__=='list':
                 m2m_template[k] = v
             else:
-                prod_template[k] = v
+                if k in django_product_template_fields:
+                    prod_template[k] = v
 
         prod_template = ProductTemplate(**prod_template)
 
@@ -83,12 +87,12 @@ for result in results:
         try:
             prod_template.save()
             for k,v in m2m_template.iteritems():
-                for prod_id in v:
-                    #check if this product.template exists
-                    prodtmp = ProductTemplate.objects.filter(id=prod_id)
-                    if not prodtmp:
-                        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template NOT exist ID %s') % prod_id))
-                        v.remove(prod_id)
+                #for prod_id in v:
+                #check if this product.template exists
+                #    prodtmp = ProductTemplate.objects.filter(id=prod_id)
+                #    if not prodtmp:
+                #        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template NOT exist ID %s') % prod_id))
+                #        v.remove(prod_id)
 
                 getattr(prod_template, k).clear()
                 getattr(prod_template, k).add(*v) #TODO: m2m fields deleted (not create all fields)
@@ -96,27 +100,34 @@ for result in results:
                 #~ prod_template.save_m2m()
 
             logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template save ID %s') % product_template['id']))
-        except:
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Error save ID %s') % product_template['id']))
+        except Exception, e:
+            logging.error('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Error save ID %s') % product_template['id']))
+            logging.error('Exception: %s' % e)
     
         for prod in result['product_product']:
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Product. Get ID %s') % prod))
+            logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Product. Get ID %s') % prod))
 
             # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
             context = {'shop':OERP_SALE, 'product_id': prod}
             values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.product',[prod],context,langs])
 
-            if DEBUG:
-                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+            logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
 
             if len(values) > 0:
                 product = values[0]
-                prod = ProductProduct(**product)
+                product_copy = {}
+                for k,v in product.iteritems():
+                    if k in django_product_product_fields or k == 'product_tmpl_id':
+                        product_copy[k] = v
+
+                prod = ProductProduct(**product_copy)
                 try:
                     prod.save()
                     logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Product save ID %s') % product['id']))
-                except:
-                    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Error save ID %s') % product['id']))
+                except Exception, e:
+                    logging.error('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Error save ID %s') % product['id']))
+                    logging.error('Exception: %s' % e)
+                    sys.exit(-1)
 
 logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Done')))
 

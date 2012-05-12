@@ -28,14 +28,14 @@ from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import connOOOP, siteConfiguration
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import connOOOP, siteConfiguration
 
 from sermepa.sermepa.forms import SermepaPaymentForm
 from sermepa.sermepa.models import SermepaResponse
 
-from sale.email import SaleOrderEmail
+from django_zoook.sale.email import SaleOrderEmail
 
 import time
 import logging
@@ -51,7 +51,6 @@ def index(request):
     """
 
     title = _('Payment Credit Card Servired')
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
@@ -115,7 +114,6 @@ def sermepa_confirm(request):
     """
 
     title = _('Confirmation Credit Card Servired')
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
 
     conn = connOOOP()
     order = request.session['sale_order']

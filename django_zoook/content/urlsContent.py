@@ -21,12 +21,12 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from content.views import *
+from django_zoook.content.views import *
 
 """Urls Content"""
 
 urlpatterns = patterns("",
-    (r"^edit/(?P<content_id>[^/]+)", 'content.views.content_edit',''),
-    (r"^add/", 'content.views.content_add',''),
-    (r'^$', 'content.views.content_detail'),
+    (r"^edit/(?P<content_id>[^/]+)", 'django_zoook.content.views.content_edit',''),
+    (r"^add/", 'django_zoook.content.views.content_add',''),
+    (r'^$', 'django_zoook.content.views.content_detail'),
 )

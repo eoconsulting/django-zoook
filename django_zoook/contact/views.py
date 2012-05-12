@@ -25,10 +25,10 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
-from settings import *
-from tools.zoook import siteConfiguration
+from django_zoook.settings import *
+from django_zoook.tools.zoook import siteConfiguration
 
-from contact.models import *
+from django_zoook.contact.models import *
 from django.core.mail import EmailMessage
 
 from recaptcha.client import captcha

@@ -28,14 +28,14 @@ from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import connOOOP, siteConfiguration
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import connOOOP, siteConfiguration
 
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.ipn.models import PayPalIPN
 
-from sale.email import SaleOrderEmail
+from django_zoook.sale.email import SaleOrderEmail
 
 import time
 import logging

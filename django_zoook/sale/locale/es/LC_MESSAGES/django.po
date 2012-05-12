@@ -74,7 +74,7 @@ msgstr "Pago del pedido %s"
 
 #: views.py:251
 msgid "Not enough stock !"
-msgstr "No hay estoc disponible!"
+msgstr "No hay stock disponible!"
 
 #: views.py:283
 msgid "Checkout"

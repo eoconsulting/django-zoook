@@ -134,6 +134,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 
 .tab-content h2, .tab-content h3, .tab-content p, .tab-content ul { margin-bottom:10px }
 .tab-content h2, .tab-content h3 { font-weight:bold }
+.tab-content a.tag { padding-right: 6px; }
 
 .border2		{ border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px }
 .border5		{ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }

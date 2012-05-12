@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     name = 'django_zoook',
     description = '',
-    download_url = 'https://www.github.com/fuzzy-id/django-zoook',
+    download_url = 'https://github.com/mrsarm/django-zoook',
     install_requires = [
         'django',
         'psycopg2',

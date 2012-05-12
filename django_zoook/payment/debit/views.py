@@ -27,11 +27,11 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.contrib.auth.decorators import login_required
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import connOOOP
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import connOOOP
 
-from sale.email import SaleOrderEmail
+from django_zoook.sale.email import SaleOrderEmail
 
 import time
 import logging
@@ -60,7 +60,6 @@ def confirm(request):
     """
 
     title = _('Payment Debit Bank')
-    logging.basicConfig(filename=LOGSALE,level=logging.INFO)
     context_instance=RequestContext(request)
 
     if not 'sale_order' in request.session:
@@ -105,7 +104,7 @@ def confirm(request):
                 res_partner_bank.state_id = ''
                 res_partner_bank.save()
             except:
-                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Bank Partner error: %s' %s (bank_number)))
+                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Bank Partner error: %s' % (bank_number)))
 
         #change payment_type = done
         order.payment_state = 'done'

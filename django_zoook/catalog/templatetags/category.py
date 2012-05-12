@@ -22,10 +22,10 @@
 
 from django import template
 
-from catalog.models import ProductCategory
-from catalog.views import collect_children
+from django_zoook.catalog.models import ProductCategory
+from django_zoook.catalog.views import collect_children
 from django.utils.translation import get_language
-from config import LOCALE_URI
+from django_zoook.config import LOCALE_URI
 
 register = template.Library()
 

@@ -82,10 +82,12 @@
                 <li><a href="{{ LOCALE_URI }}/partner/remember/">{% trans "Remember?" %}</a></li>
             </ul>
         </div>
+        {% if html_captcha %}
         <div class="col-2 register-users">
             <h3>{% trans "To create an Account insert the same number" %}</h3>
             {{ html_captcha|safe }}
         </div>
+        {% endif %}
     </div>
     <div class="col2-set">
         <div class="col-1">

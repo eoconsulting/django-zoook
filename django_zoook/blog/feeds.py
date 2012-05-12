@@ -23,9 +23,9 @@
 from django.contrib.syndication.views import Feed
 from django.utils.translation import get_language
 
-from tools.zoook import siteConfiguration
-from blog.models import Blog
-from settings import *
+from django_zoook.tools.zoook import siteConfiguration
+from django_zoook.blog.models import Blog
+from django_zoook.settings import *
 
 class BlogFeed(Feed):
     site_configuration = siteConfiguration(SITE_ID)

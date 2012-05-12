@@ -300,10 +300,10 @@ msgstr "Su cuenta"
 
 #: templates/partner/menu.html:7
 msgid "catalog"
-msgstr "catálogo"
+msgstr "catalogo"
 
 #: templates/partner/menu.html:7
-msgid "My Whistlist"
+msgid "My Whishlist"
 msgstr "Mi lista de deseos"
 
 #: templates/partner/menu.html:9 templates/partner/profile.html:21

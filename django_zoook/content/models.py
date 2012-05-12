@@ -28,7 +28,7 @@ from django.utils.translation import get_language
 from transmeta import TransMeta
 
 from datetime import datetime
-import content.enums as enums
+import django_zoook.content.enums as enums
 
 class ContentBase(models.Model):
     """Base class for models."""

@@ -26,10 +26,10 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
-from tools.zoook import siteConfiguration
+from django_zoook.tools.zoook import siteConfiguration
 from blog.models import *
 
-from settings import *
+from django_zoook.settings import *
 
 import os
 

@@ -43,5 +43,5 @@ msgstr "Pedidos"
 
 #: templates/check/check.html:20
 msgid "Go Orders for more details and status order"
-msgstr "Ir a pedidors para más detalles i estado del pedido"
+msgstr "Ir a pedidos para más detalles y estado del mismo"
 

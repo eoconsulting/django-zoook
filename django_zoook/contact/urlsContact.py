@@ -21,10 +21,10 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from contact.views import *
+from django_zoook.contact.views import *
 
 """Urls Contact"""
 
 urlpatterns = patterns("",
-    (r'^$', 'contact.views.contactForm'),
+    (r'^$', 'django_zoook.contact.views.contactForm'),
 )

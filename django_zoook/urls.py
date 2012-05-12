@@ -23,10 +23,12 @@
 from django.conf.urls.defaults import *
 from django.contrib.sitemaps import GenericSitemap
 
-from views import index
-from settings import MEDIA_ROOT
-from sitemaps import sitemaps
-from transurl import *
+from django_zoook.views import index
+from django_zoook.search.views import search
+from django_zoook.tag.views import keyword
+from django_zoook.settings import MEDIA_ROOT
+from django_zoook.sitemaps import sitemaps
+from django_zoook.transurl import *
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -41,25 +43,27 @@ js_info_dict = {
 urlpatterns = patterns('',
     (r"^$", index),
     #~ catalog 
-    (r"^%s/" % catalog_url['en'], include("catalog.urlsCatalog")),
-    (r"^%s/"% catalog_url['es'], include("catalog.urlsCatalog")),
-    (r"^%s/"% catalog_url['ca'], include("catalog.urlsCatalog")),
+    (r"^%s/" % catalog_url['en'], include("django_zoook.catalog.urlsCatalog")),
+    (r"^%s/"% catalog_url['es'], include("django_zoook.catalog.urlsCatalog")),
+    (r"^%s/"% catalog_url['ca'], include("django_zoook.catalog.urlsCatalog")),
     
     #~ product 
-    (r"^%s/" % product_url['en'], include("catalog.urlsProduct")),
-    (r"^%s/" % product_url['es'], include("catalog.urlsProduct")),
-    (r"^%s/" % product_url['ca'], include("catalog.urlsProduct")),
+    (r"^%s/" % product_url['en'], include("django_zoook.catalog.urlsProduct")),
+    (r"^%s/" % product_url['es'], include("django_zoook.catalog.urlsProduct")),
+    (r"^%s/" % product_url['ca'], include("django_zoook.catalog.urlsProduct")),
     
     #~ contact
-    (r"^%s/" % contact_url['en'], include("contact.urlsContact")),
-    (r"^%s/" % contact_url['es'], include("contact.urlsContact")),
-    (r"^%s/" % contact_url['ca'], include("contact.urlsContact")),
+    (r"^%s/" % contact_url['en'], include("django_zoook.contact.urlsContact")),
+    (r"^%s/" % contact_url['es'], include("django_zoook.contact.urlsContact")),
+    (r"^%s/" % contact_url['ca'], include("django_zoook.contact.urlsContact")),
 
-#    (r"^search/", include("search.urlsSearch")),
-    (r"^partner/", include("partner.urlsPartner")),
-    (r"^sale/", include("sale.urlsSale")),
-    (r"^account/", include("account.urlsAccount")),
-    (r"^payment/", include("payment.urlsPayment")),
+    #~ Search
+    (r"^search", search),
+
+    (r"^partner/", include("django_zoook.partner.urlsPartner")),
+    (r"^sale/", include("django_zoook.sale.urlsSale")),
+    (r"^account/", include("django_zoook.account.urlsAccount")),
+    (r"^payment/", include("django_zoook.payment.urlsPayment")),
 
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
@@ -73,9 +77,12 @@ urlpatterns = patterns('',
     (r'^manager/', include(admin.site.urls)),
     
     #~ Cms
-    (r"^cms/", include("tools.cms.urlsCms")),
+    (r"^cms/", include("django_zoook.tools.cms.urlsCms")),
 
     # Content
-    (r"^content/", include("content.urlsContent")),
-    (r"^(?P<content>[^/]+)", include("content.urlsContent")),
+    (r"^content/", include("django_zoook.content.urlsContent")),
+    (r"^(?P<content>[^/]+)", include("django_zoook.content.urlsContent")),
+
+    # Tag
+    (r"(?P<tag>[^/]+)/$", keyword),
 )

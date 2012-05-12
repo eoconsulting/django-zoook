@@ -21,17 +21,17 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from partner.views import *
+from django_zoook.partner.views import *
 
 """Urls Partner"""
 urlpatterns = patterns("",
-    (r'^$', 'partner.views.login','', 'partner_index'),
-    (r'^login', 'partner.views.login', '', 'auth_login'),
-    (r'^profile', 'partner.views.profile'),
-    #~ (r'^profile', 'sale.views.orders'),
+    (r'^$', 'django_zoook.partner.views.login','', 'partner_index'),
+    (r'^login', 'django_zoook.partner.views.login', '', 'auth_login'),
+    (r'^profile', 'django_zoook.partner.views.profile'),
+    #~ (r'^profile', 'django_zoook.sale.views.orders'),
     (r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/"}, 'auth_logout'),
-    (r'^register', 'partner.views.register', '', 'auth_register'),
-    (r'^remember', 'partner.views.remember', '' , 'auth_remember'),
-    (r'^changepassword', 'partner.views.changepassword', '', 'auth_changepassword'),
-    (r'^partner', 'partner.views.partner','','partner_partner'),
+    (r'^register', 'django_zoook.partner.views.register', '', 'auth_register'),
+    (r'^remember', 'django_zoook.partner.views.remember', '' , 'auth_remember'),
+    (r'^changepassword', 'django_zoook.partner.views.changepassword', '', 'auth_changepassword'),
+    (r'^partner', 'django_zoook.partner.views.partner','','partner_partner'),
 )

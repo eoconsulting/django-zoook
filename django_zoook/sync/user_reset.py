@@ -27,15 +27,16 @@ import logging
 import time
 import optparse
 
-from config_path import djpath
-sys.path.append(djpath)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from config_path import zoook_root
+sys.path.append(zoook_root)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
-from settings import *
+import django_zoook.logconfig
+
+from django_zoook.settings import *
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 
-logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 
 if __name__=="__main__":
     parser = optparse.OptionParser("usage: %prog [options]")

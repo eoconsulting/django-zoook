@@ -23,10 +23,10 @@
 from django.contrib.syndication.views import Feed
 from django.utils.translation import get_language
 
-from tools.zoook import siteConfiguration
-from catalog.models import ProductTemplate
+from django_zoook.tools.zoook import siteConfiguration
+from django_zoook.catalog.models import ProductTemplate
 from transurl import *
-from settings import *
+from django_zoook.settings import *
 
 class ProductFeed(Feed):
     """

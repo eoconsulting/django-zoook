@@ -21,13 +21,13 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from blog.views import *
-from blog.feeds import *
+from django_zoook.blog.views import *
+from django_zoook.blog.feeds import *
 
 """Urls Blog"""
 
 urlpatterns = patterns("",
-    (r'^$', 'blog.views.blog_list'),
+    (r'^$', 'django_zoook.blog.views.blog_list'),
     (r"^rss/$", BlogFeed()),
-    (r"^(?P<blog>[^/]+)", 'blog.views.blog_detail'),
+    (r"^(?P<blog>[^/]+)", 'django_zoook.blog.views.blog_detail'),
 )

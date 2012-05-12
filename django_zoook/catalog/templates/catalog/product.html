@@ -29,7 +29,8 @@
                     <button class="border2 cart-checkout">{% trans "View shopping cart" %}</button>
                 </div>
             </div>
-            
+
+            {% if NEWSLATTER_ON %}
             <div class="block block-newsletter ico border5">
                 <h3>{% trans "Newsletter" %}</h3>
                 <div class="block-content">
@@ -40,6 +41,7 @@
                     </form>
                 </div>
             </div>
+            {% endif %}
         </div>
         
         <div id="content">
@@ -58,8 +60,8 @@
                 <div class="product-item block border5 clearfix">
                    <div class="product-name" title="{{product.name}}"><h2>{{product.name}}</h2></div>
                     <ul class="add-to">
-                        <li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a></li>
-                        {% if user.is_authenticated %}<li><span class="separator">|</span><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
+                        {% if COMPARE_ON %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a><span class="separator">|</span></li>{% endif %}
+                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
                     </ul>
 
                     <div class="social_network">
@@ -138,7 +140,7 @@
             </div>{% endif %}
             
             <div id="tab4" class="tab-content">
-                {% for search_keyword in search_keywords %}<a href="{{ LOCALE_URI }}/search/{{ search_keyword }}" alt="{{ search_keyword }}" title="{{ search_keyword }}">{{ search_keyword }}</a> {% endfor %}
+                {% for search_keyword in search_keywords %}<a class="tag" href="{{ LOCALE_URI }}/tag/{{ search_keyword }}" alt="{{ search_keyword }}" title="{{ search_keyword }}">{{ search_keyword }}</a> {% endfor %}
             </div>
         </div>
     </div>
@@ -149,5 +151,5 @@
 {% if user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 {% endblock %}
 
-{% block jqueryload %}{% if values|length > 0 %}$.zUpdatePrice( {url: 'http://127.0.0.1:8000/es/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );
+{% block jqueryload %}{% if user.is_authenticated and values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );
     $("a.zoom").fancybox({overlayColor:'#333'});{% endif %}{% endblock %}

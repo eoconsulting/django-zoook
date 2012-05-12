@@ -24,14 +24,14 @@
 import os
 import sys
 
-sys.path.append('.')
+sys.path.append('..')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
-from settings import *
+from django_zoook.settings import *
 from django.utils.translation import ugettext as _
 
 from django.contrib.sites.models import Site 
-from tools.cms.models import SiteConfiguration
+from django_zoook.tools.cms.models import SiteConfiguration
 
 site = Site.objects.get(id=SITE_ID)
 if site:
@@ -46,7 +46,12 @@ if site:
     
     for field in SiteConfiguration._meta.fields:
         if field.name not in exclude_fields:
-            values[field.name] = raw_input('%s: ' % field.name)
+            if field.name == 'rss_max':
+                values[field.name] = raw_input('%s (Leave blank to use 10): ' % field.name)
+                if values[field.name] == '':
+                    values[field.name] = '10'
+            else:
+                values[field.name] = raw_input('%s: ' % field.name)
 
     site_configuration = SiteConfiguration(**values)
 
@@ -55,8 +60,9 @@ if site:
         print "Add new site configuration: %s" % site_configuration.domain
         print "Start your Django APP: python manage runserver"
         print "Remember to clone Products and Categories OpenERP -> Django"
-    except:
-        print "Ups! Not save values? Try insert sql command..."
-        print values
+    except Exception, e:
+        sys.stderr.write("Ups! Not save values? Try insert sql command...\n")
+        sys.stderr.write("%s\n" % str(values))
+        sys.stderr.write("Exception:\n%s\n" % e)
 else:
     print "SITE ID Object not found"

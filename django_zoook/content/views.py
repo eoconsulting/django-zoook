@@ -27,8 +27,8 @@ from django.utils.translation import get_language, ugettext as _
 from django.forms import ModelForm
 from django.contrib.auth.decorators import login_required
 
-from settings import *
-from content.models import *
+from django_zoook.settings import *
+from django_zoook.content.models import *
 
 import os
 

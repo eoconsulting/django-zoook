@@ -88,4 +88,4 @@
 </div>
 {% endblock %}
 
-{% block jqueryload %}{% if values|length > 0 %}$.zUpdatePrice( {url: 'http://127.0.0.1:8000/es/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endif %}{% endblock %}
+{% block jqueryload %}{% if values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endif %}{% endblock %}

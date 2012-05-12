@@ -26,7 +26,7 @@ from django.contrib.sites.models import Site
 
 from transmeta import TransMeta
 
-import tools.cms.enums as enums
+import django_zoook.tools.cms.enums as enums
 
 class SiteConfiguration(Site):
     """Site Configuration Management"""

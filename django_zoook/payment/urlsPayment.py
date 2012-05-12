@@ -40,11 +40,11 @@ urlpatterns = patterns("",
     #~ (r"^check/", 'payment.check.views.index'),
 
     #~ CashOnDelivery
-    #~ (r"^cashondelivery/", 'payment.cashondelivery.views.index'),
+    (r"^cashondelivery/", 'django_zoook.payment.cashondelivery.views.index'),
 
     #~ Debit
-    #~ (r"^debit/confirm", 'payment.debit.views.confirm'),
-    #~ (r"^debit/", 'payment.debit.views.index'),
+    (r"^debit/confirm", 'django_zoook.payment.debit.views.confirm'),
+    (r"^debit/", 'django_zoook.payment.debit.views.index'),
     
     #~ 4b
     #~ (r'^pasat4b/error', 'payment.pasat4b.views.pasat4b_error'),

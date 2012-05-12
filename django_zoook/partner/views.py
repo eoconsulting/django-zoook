@@ -43,9 +43,9 @@ from recaptcha.client import captcha
 from partner.models import *
 from base.models import *
 
-from settings import *
-from tools.conn import conn_webservice
-from tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
+from django_zoook.settings import *
+from django_zoook.tools.conn import conn_webservice
+from django_zoook.tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
 
 import base64
 
@@ -144,10 +144,11 @@ def register(request):
                     msg = _('Sorry. This email is not valid. Try again')
                     message.append(msg)
 
-                check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
-                if check_captcha.is_valid is False: # captcha not valid
-                    msg = _('Error with captcha number. Copy same number.')
-                    message.append(msg)
+                if RECAPTCHA_PUB_KEY != '':
+                    check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
+                    if check_captcha.is_valid is False: # captcha not valid
+                        msg = _('Error with captcha number. Copy same number.')
+                        message.append(msg)
 
                 if users:
                     msg = _('Sorry. This user already exists. Use another username')
@@ -241,7 +242,8 @@ def register(request):
             message.append(msg)
 
     form = UserCreationForm()
-    html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
+    if RECAPTCHA_PUB_KEY != '':
+        html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
 
     countries = ResCountry.objects.all()
     country_default = COUNTRY_DEFAULT
@@ -263,11 +265,12 @@ def remember(request):
 
         email = data['email']
 
-        check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
-        if check_captcha.is_valid is False: # captcha not valid
-            msg = _('Error with captcha number. Copy the same number.')
-            message.append(msg)
-        else:
+        if RECAPTCHA_PUB_KEY != '':
+            check_captcha = captcha.submit(request.POST['recaptcha_challenge_field'], request.POST['recaptcha_response_field'], RECAPTCHA_PRIVATE_KEY, request.META['REMOTE_ADDR'])
+            if check_captcha.is_valid is False: # captcha not valid
+                msg = _('Error with captcha number. Copy the same number.')
+                message.append(msg)
+        if RECAPTCHA_PUB_KEY == '' or len(message)==0:
             if is_valid_email(email):
                 # check if user  exist
                 users = User.objects.filter(email__exact=email)
@@ -294,7 +297,8 @@ def remember(request):
                 message.append(msg)
 
     form = UserCreationForm()
-    html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
+    if RECAPTCHA_PUB_KEY != '':
+        html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
 
     return render_to_response("partner/remember.html", locals(), context_instance=RequestContext(request))
 

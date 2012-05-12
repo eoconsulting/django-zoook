@@ -26,29 +26,29 @@ import sys
 import logging
 import time
 
-try:
-    import config_path
-except ImportError:
-    # User does not want a special configuration
-    pass
-
+from config_path import zoook_root
+sys.path.append(zoook_root)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
+
+import django_zoook.logconfig
 
 from django_zoook.settings import *
 from django.utils.translation import ugettext as _
 from django_zoook.catalog.models import ProductCategory
 from django_zoook.tools.conn import conn_webservice
+from django.core.exceptions import ObjectDoesNotExist
 
-logging.basicConfig(filename=LOGFILE,level=logging.INFO)
-logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Running')))
+logging.info(_('Sync. Categories. Running'))
 
 results = conn_webservice('sale.shop', 'dj_export_categories', [[OERP_SALE]])
 langs = conn_webservice('sale.shop', 'zoook_sale_shop_langs', [[OERP_SALE]])
 langs = langs[str(OERP_SALE)]
 context = {}
 
+django_product_category_fields = [field.name for field in ProductCategory._meta.fields]
+
 if len(results) == 0:
-    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Not categories news or modified')))
+    logging.info(_('Sync. Categories. Not categories news or modified'))
 
 cat2 = []
 
@@ -56,33 +56,52 @@ for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
     values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.category',[result],context,langs])
 
-    if DEBUG:
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+    logging.debug(str(values))
 
     if len(values) > 0:
         cat = values[0]
 
-        # create category without parent_id. After, we will create same category with parent_id
-        if 'parent_id' in cat:
-            cat2.append(cat.copy())
-            del cat['parent_id']
+        cat_copy = {}
+        for k,v in cat.iteritems():
+            if k in django_product_category_fields or k == 'parent_id':
+                cat_copy[k] = v
 
-        category = ProductCategory(**cat)
+        # create category without parent_id. After, we will create same category with parent_id
+        if 'parent_id' in cat_copy:
+            if cat_copy['parent_id'] != False:
+                cat2.append(cat_copy.copy())
+            del cat_copy['parent_id']
+
+        category = ProductCategory(**cat_copy)
 
         try:
             category.save()
 
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Category save ID %s') % cat['id']))
-        except:
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Error save ID %s') % cat['id']))
+            logging.info(_('Sync. Categories. Category save ID %s') % cat['id'])
+        except Exception, e:
+            logging.error(_('Sync. Categories. Error save ID %s') % cat['id'])
+            logging.error('Exception: %s' % e)
+            logging.error(_('Sync. Categories. Fail'))
+            sys.exit(-1)
 
 #save category with parent_id value
 for cat in cat2:
-    if cat['parent_id']:
-        category = ProductCategory(**cat)
-        category.save()
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Category update ID %s') % cat['id']))
+    try:
+        ProductCategory.objects.get(id=cat['parent_id'])  # Check if the parent exist
+    except ObjectDoesNotExist:
+        logging.warn(_('Sync. Categories. Parent ID %s does not exist. None value assigned') % cat['parent_id'])
+    else:
+        try:
+            category = ProductCategory(**cat)
+            category.save()
+            logging.info(_('Sync. Categories. Category update ID %s') % cat['id'])
+        except Exception, e:
+            logging.error(_('Sync. Categories. Error parent_id update ID %s') % cat['id'])
+            logging.error('Exception: %s' % e)
+            logging.error(_('Sync. Categories. Fail'))
+            sys.exit(-1)
+        
 
-logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Categories. Done')))
+logging.info(_('Sync. Categories. Done'))
 
 print True

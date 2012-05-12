@@ -7,23 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 12:33+0200\n"
+"POT-Creation-Date: 2012-04-17 12:52-0300\n"
 "PO-Revision-Date: 2011-09-12 18:12+0100\n"
 "Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:38
-#: models.py:90
+#: models.py:38 models.py:90
 msgid "Name"
 msgstr "Nom"
 
-#: models.py:39
-#: models.py:44
-#: templates/catalog/product.html:91
+#: models.py:39 models.py:44 templates/catalog/product.html:91
 #: templates/catalog/whistlist.html:25
 msgid "Description"
 msgstr "Descripció"
@@ -33,8 +31,12 @@ msgid "slug"
 msgstr "slug"
 
 #: models.py:40
-msgid "This is a unique identifier that allows your contents to display its detail view, ex 'how-can-i-contribute'"
-msgstr "Identificador únic que permet als vostres continguts mostrar la seva vista de detall, ex. 'com-puc-ajudar'"
+msgid ""
+"This is a unique identifier that allows your contents to display its detail "
+"view, ex 'how-can-i-contribute'"
+msgstr ""
+"Identificador únic que permet als vostres continguts mostrar la seva vista "
+"de detall, ex. 'com-puc-ajudar'"
 
 #: models.py:41
 msgid "Full Slug"
@@ -56,8 +58,7 @@ msgstr "Llista de productes disponibles (ordenada per)"
 msgid "Default Product Listing Sort (Sort By)"
 msgstr "Llista ordenada de productes per defecte (ordenar per)"
 
-#: models.py:59
-#: models.py:114
+#: models.py:59 models.py:114
 msgid "Status"
 msgstr "Estat"
 
@@ -141,21 +142,19 @@ msgstr "plantilles"
 msgid "Active"
 msgstr "Actiu"
 
-#: models.py:140
-#: templates/catalog/type/simple.html:3
+#: models.py:140 templates/catalog/type/simple.html:3
 #: templates/catalog/type/variants.html:3
 msgid "Code"
 msgstr "Codi"
 
-#: models.py:141
-#: templates/catalog/type/simple.html:4
+#: models.py:141 templates/catalog/type/simple.html:4
 #: templates/catalog/type/variants.html:4
 msgid "EAN13"
 msgstr "EAN13"
 
-#: models.py:142
-msgid "Pricelist"
-msgstr "Tarifa"
+#: models.py:142 templates/catalog/whistlist.html:26
+msgid "Price"
+msgstr "Preu unitari"
 
 #: models.py:143
 msgid "Manufacturer"
@@ -165,124 +164,110 @@ msgstr "Fabricant"
 msgid "Attribute Group"
 msgstr "Atribut"
 
-#: models.py:150
+#: models.py:145
+#, fuzzy
+msgid "Cart Description"
+msgstr "Descripció curta"
+
+#: models.py:151
 msgid "product"
 msgstr "producte"
 
-#: models.py:151
+#: models.py:152
 msgid "products"
 msgstr "productes"
 
-#: models.py:160
-msgid "Attribute"
-msgstr "Atribut"
-
-#: models.py:162
-msgid "Value"
-msgstr "Valor"
-
-#: models.py:168
-msgid "attribute"
-msgstr "atribut"
-
-#: models.py:169
-msgid "attributes"
-msgstr "atributs"
-
-#: models.py:177
+#: models.py:163
 msgid "Image Title"
 msgstr "Títol de la imatge"
 
-#: models.py:179
+#: models.py:165
 msgid "File Location"
 msgstr "Ubicació dels arxius"
 
-#: models.py:180
+#: models.py:166
 msgid "Base Image"
 msgstr "Imatge base"
 
-#: models.py:181
+#: models.py:167
 msgid "Exclude"
 msgstr "Exclou"
 
-#: models.py:187
+#: models.py:173
 msgid "image"
 msgstr "imatge"
 
-#: models.py:188
+#: models.py:174
 msgid "images"
 msgstr "imatges"
 
-#: views.py:118
+#: views.py:119
 msgid "Categories"
 msgstr "Categories"
 
-#: views.py:119
+#: views.py:120
 #, python-format
 msgid "List all categories of %s"
 msgstr "Llista totes les categories de %s"
 
-#: views.py:194
+#: views.py:195
 #, python-format
 msgid "%(category)s - Page %(page)s of %(total)s"
 msgstr "%(category)s - Pàgina %(page)s de %(total)s"
 
-#: views.py:195
+#: views.py:196
 #, python-format
 msgid "%(category)s. Page %(page)s of %(total)s"
 msgstr "%(category)s. Pàgina %(page)s de %(total)s"
 
-#: views.py:213
-#: views.py:215
-msgid "This category is not available because you navigate with bookmarks or search engine. Use navigation menu"
-msgstr "Aquesta categoria no està disponible perquè navegueu amb marcadors o motor de cerca. Utilitzeu el menú del navegador"
+#: views.py:215 views.py:217
+msgid ""
+"This category is not available because you navigate with bookmarks or search "
+"engine. Use navigation menu"
+msgstr ""
+"Aquesta categoria no està disponible perquè navegueu amb marcadors o motor "
+"de cerca. Utilitzeu el menú del navegador"
 
-#: views.py:244
+#: views.py:245
 #, python-format
 msgid "%(product)s"
 msgstr "%(product)s"
 
-#: views.py:245
+#: views.py:246
 #, python-format
 msgid "%(metadescription)s"
 msgstr "%(metadescription)s"
 
-#: views.py:287
+#: views.py:289
 msgid "Are you a customer? Please, contact us. We will create a new role"
 msgstr "Sou un client? Si us plau, contacteu-nos. Crearem un nou rol"
 
-#: views.py:293
+#: views.py:295
 msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr "S'ha produït un error connectant amb el nostre ERP. Torneu a provar o contacteu-nos"
+msgstr ""
+"S'ha produït un error connectant amb el nostre ERP. Torneu a provar o "
+"contacteu-nos"
 
-#: views.py:328
+#: views.py:330
 msgid "Whislist"
 msgstr "Llista de desitjos"
 
-#: views.py:329
+#: views.py:331
 #, python-format
 msgid "Whislist of %s"
 msgstr "Llista de desitjos de %s"
 
-#: templates/catalog/category.html:7
-#: templates/catalog/index.html:5
-#: templates/catalog/product.html:9
-#: templates/catalog/whistlist.html:7
+#: templates/catalog/category.html:7 templates/catalog/index.html:5
+#: templates/catalog/product.html:9 templates/catalog/whistlist.html:7
 msgid "Home"
 msgstr "Inici"
 
-#: templates/catalog/category.html:7
-#: templates/catalog/category.html.py:8
-#: templates/catalog/category.html:50
-#: templates/catalog/category.html.py:51
-#: templates/catalog/category.html:68
-#: templates/catalog/category.html.py:69
-#: templates/catalog/index.html:5
-#: templates/catalog/index.html.py:18
-#: templates/catalog/product.html:61
-#: templates/catalog/product.html.py:62
-#: templates/catalog/whistlist.html:7
-#: templates/catalog/whistlist.html:42
+#: templates/catalog/category.html:7 templates/catalog/category.html.py:8
+#: templates/catalog/category.html:50 templates/catalog/category.html.py:51
+#: templates/catalog/category.html:68 templates/catalog/category.html.py:69
+#: templates/catalog/index.html:5 templates/catalog/index.html.py:18
+#: templates/catalog/product.html:61 templates/catalog/product.html.py:62
+#: templates/catalog/whistlist.html:7 templates/catalog/whistlist.html:42
 #: templates/catalog/tags/horizontal_menu.html:17
 #: templates/catalog/tags/horizontal_menu.html:19
 #: templates/catalog/tags/horizontal_menu.html:21
@@ -290,8 +275,7 @@ msgstr "Inici"
 msgid "catalog"
 msgstr "cataleg"
 
-#: templates/catalog/category.html:7
-#: templates/catalog/index.html:5
+#: templates/catalog/category.html:7 templates/catalog/index.html:5
 msgid "Catalog"
 msgstr "Catàleg"
 
@@ -335,19 +319,16 @@ msgstr "Llista"
 msgid "There are any products matching the selection."
 msgstr "No hi ha cap producte que concordi amb la selecció."
 
-#: templates/catalog/category.html:48
-#: templates/catalog/category.html.py:66
+#: templates/catalog/category.html:48 templates/catalog/category.html.py:66
 msgid "Details"
 msgstr "Detalls"
 
-#: templates/catalog/category.html:50
-#: templates/catalog/category.html.py:68
+#: templates/catalog/category.html:50 templates/catalog/category.html.py:68
 #: templates/catalog/product.html:62
 msgid "Add to Wishlist"
 msgstr "Afegeix a la llista de desitjos"
 
-#: templates/catalog/category.html:51
-#: templates/catalog/category.html.py:69
+#: templates/catalog/category.html:51 templates/catalog/category.html.py:69
 #: templates/catalog/product.html:61
 msgid "Add to Compare"
 msgstr "Compara"
@@ -364,8 +345,7 @@ msgstr "Pàgina"
 msgid "Next"
 msgstr "Següent"
 
-#: templates/catalog/category.html:91
-#: templates/catalog/product.html:152
+#: templates/catalog/category.html:91 templates/catalog/product.html:152
 #: templates/catalog/whistlist.html:53
 msgid "Price updating..."
 msgstr "Actualització dels preus..."
@@ -419,16 +399,12 @@ msgid "Keywords"
 msgstr "Paraules clau"
 
 #: templates/catalog/whistlist.html:7
-msgid "Whistlist"
+msgid "Whishlist"
 msgstr "Llista de desitjos"
 
 #: templates/catalog/whistlist.html:24
 msgid "Product Name"
 msgstr "Nom del producte"
-
-#: templates/catalog/whistlist.html:26
-msgid "Price"
-msgstr "Preu unitari"
 
 #: templates/catalog/whistlist.html:42
 msgid "Remove Item"
@@ -443,3 +419,17 @@ msgstr "No hi ha productes relacionats"
 msgid "Add to cart"
 msgstr "Afegeix a la cistella"
 
+#~ msgid "Pricelist"
+#~ msgstr "Tarifa"
+
+#~ msgid "Attribute"
+#~ msgstr "Atribut"
+
+#~ msgid "Value"
+#~ msgstr "Valor"
+
+#~ msgid "attribute"
+#~ msgstr "atribut"
+
+#~ msgid "attributes"
+#~ msgstr "atributs"

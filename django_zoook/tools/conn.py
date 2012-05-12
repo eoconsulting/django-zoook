@@ -22,6 +22,7 @@
 
 from ooop import OOOP
 import xmlrpclib
+import logging
 
 # check if pyro is installed
 try:
@@ -29,7 +30,8 @@ try:
 except:
     pyro = False
 
-from django_zoook.settings import OERP_CONF
+from django_zoook.settings import *
+
 
 def conn_ooop():
     """Connection OpenERP with OOOP"""
@@ -38,7 +40,8 @@ def conn_ooop():
         #o = OOOP(user='admin',pwd='admin',dbname='oerp6_zoook',uri='localhost',port=8071,protocol='pyro')
         conn = OOOP(user=OERP_CONF['username'],pwd=OERP_CONF['password'],dbname=OERP_CONF['dbname'],uri=OERP_CONF['uri'],port=OERP_CONF['port'],protocol=OERP_CONF['protocol'], debug=DEBUG)
         return conn
-    except:
+    except Exception, e:
+        logging.error("Error connecting with OpenERP.\nException: %s" % e)
         return False
 
 def xmlrpc():
