@@ -142,8 +142,8 @@ INSTALLED_APPS = (
     #~ 'pasat4b.pasat4b',
     #~ 'payment.pasat4b',
     #~ 'payment.check',
-    #~ 'payment.cashondelivery',
-    #~ 'payment.debit',
+    'django_zoook.payment.cashondelivery',
+    #'django_zoook.payment.debit',
 )
 
 AUTH_PROFILE_MODULE = "partner.AuthProfile"
@@ -164,10 +164,10 @@ MAINTENANCE_IGNORE_URLS = (
 Email Django configuration
 """
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'YOUR_EMAIL@gmail.com'
-EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD'
+EMAIL_HOST_USER = 'anonbetatest@gmail.com'
+EMAIL_HOST_PASSWORD = 'checkpass'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'YOUR_EMAIL@gmail.com'
-SERVER_EMAIL = 'YOUR_EMAIL@gmail.com'
+DEFAULT_FROM_EMAIL = 'anonbetatest@gmail.com'
+SERVER_EMAIL = 'anonbetatest@gmail.com'
 

@@ -55,7 +55,7 @@ LOCALE_URI = True
 """
 Default Currency Sale Shop
 """
-DEFAULT_CURRENCY = '€'
+DEFAULT_CURRENCY = 'ARS'
 
 """
 Sale Order, when add product, continue if get warning
@@ -69,7 +69,7 @@ OpenERP Conf
 """
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
 OERP_COMPANY = 1 #Account Invoice. All invoices... use this Company ID.
-COUNTRY_DEFAULT = 'ES'
+COUNTRY_DEFAULT = 'AR'
 
 """
 Base template
@@ -88,9 +88,10 @@ Database conf
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dj_zoook',     # Or path to database file if using sqlite3.
-        'USER': 'openerp',      # Not used with sqlite3.
-        'PASSWORD': 'openerp',  # Not used with sqlite3.
+        'NAME': 'zoook_kikai',     # Or path to database file if using sqlite3.
+        #'NAME': 'dj_zoook',     # Or path to database file if using sqlite3.
+        'USER': 'zoook',      # Not used with sqlite3.
+        'PASSWORD': 'postgres', # Not used with sqlite3.
         'HOST': 'localhost',    # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
     }
@@ -102,7 +103,8 @@ OpenERP Webservice Connection
 OERP_CONF = {
     'username':'admin',
     'password':'admin',
-    'dbname':'oerp_zoook',
+    'dbname':'openerp6kikai',
+    #'dbname':'openerp6dev',
     'protocol':'xmlrpc', #xmlrpc
     'uri':'http://localhost', #xmlrpc
     'port':8069, #xmlrpc
