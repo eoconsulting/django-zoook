@@ -14,3 +14,7 @@ build
 .pydevproject
 *.egg-info
 .directory
+
+# Ignore linked resources
+paypal
+django_zoook/static/inplaceeditform
