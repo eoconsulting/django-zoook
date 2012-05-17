@@ -53,7 +53,7 @@ label {display:block;float:left;clear:left;width:90px}
 /* Header --------------------------------------------------------------------------------------------------------------- */
 .header-container { position:relative; background-color:#fff; height:164px }
 
-#logo { display:block; width:698px; padding:20px 0 0 20px }
+#logo { display:block; width:698px; padding:0px }
 
 /* Search form */
 #search_mini_form 					    { position:absolute; right:20px; top:45px; width:200px; height:50px;  padding-left:20px }
