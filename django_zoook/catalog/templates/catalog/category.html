@@ -48,7 +48,7 @@
                     <a  href="{{value.product.get_absolute_url}}" class="button-details">{% trans "Details" %}</a>
                     <ul class="add-to">
                         {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/whistlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
-                        <li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>
+                        {% if COMPARE_ON %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
                     </ul>
                 </li>{% endfor %}
             </ul>

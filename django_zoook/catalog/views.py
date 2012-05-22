@@ -211,6 +211,7 @@ def category(request,category):
                 'total': total,
                 'categories_path': categories_path,
                 'currency': DEFAULT_CURRENCY,
+                'COMPARE_ON': COMPARE_ON
             }
             return render_to_response("catalog/category.html", category_values, context_instance=RequestContext(request))
         else:

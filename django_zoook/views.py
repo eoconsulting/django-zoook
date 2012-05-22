@@ -79,6 +79,7 @@ def index(request):
             'values': values,
             'products': products,
             'currency': DEFAULT_CURRENCY,
+            'COMPARE_ON': COMPARE_ON
         }
         return render_to_response("index.html", category_values, context_instance=RequestContext(request))
     else:
