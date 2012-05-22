@@ -1,65 +1,41 @@
 {% extends "layout.html" %}
 {% load i18n %}
+{% load thumbnail %}
+{% load modules %}
 
 {% block content %}
-<div id="zoook-doc-boxright">
-    <ul>
-        <li><a href="/manager/">Go to Admin</a></li>
-        <li><a href="https://github.com/eoconsulting/django-zoook">Go to documentation and code</a></li>
-    </ul>
-</div>
+<div id="page-wrap" class="clearfix">
+    <div id="sidebar">
+        <div class="block border5">
+            {% module catalog.featured %}
+        </div>
+    </div>
 
-<div id="zoook-doc-content">
-    <h2 class="zoook-doc">Welcome Zoook - OpenERP e-sale</h2>
-    <p>You are at home of Zoook</p>
+    <div id="content">
+        <div id="catalog-category" class="block border5 clearfix">
+            <h1 class="featured">{% trans "Featured Products" %}</h1>
 
-    <h2 class="zoook-doc">OpenERP Configuration</h2>
-    <p>Edit config.py. Configure OpenERP connections (XML-RPC or PyRO)
+            <ul id="catalog-grid">{% for value in values %}
+                <li id="product-{{value.product.id}}" class="product-item block border5{% cycle '' '' ' last' %}">
+                    <a href="{{value.product.get_absolute_url}}" class="product-img"><img src="{% thumbnail value.base_image.filename 150x150 /static/images/product_zoook.png %}" width="150" height="150" title="{{value.product.name}}" class="product-image-grid" /></a>
+                    <a href="{{value.product.get_absolute_url}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
+                    <div id="product-price-{{value.product.id}}" class="price-box">
+                        <span class="regular-price">
+                            <span class="price">{{value.price}} {{ currency }}</span>
+                        </span>
+                    </div>
+                    <a  href="{{value.product.get_absolute_url}}" class="button-details">{% trans "Details" %}</a>
+                    <ul class="add-to">
+                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/whistlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
+                        <li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>
+                    </ul>
+                </li>{% endfor %}
+            </ul>
+        </div>
+    </div>
 
-    <h2 class="zoook-doc">Home Page</h2>
-    <p>Edit tpl index for customization frontend and custom your template.</p>
-
-    <h2 class="zoook-doc">Django configuration</h2>
-    <ul>
-    <li>1. In static dir, create symbolic link at inplaceeditform library:
-    static$ ln -s /usr/local/lib/python2.6/dist-packages/django_inplaceedit-0.69-py2.6.egg/inplaceeditform/media/ inplaceeditform</li>
-    <li>2. Add in config.py your configuration (database, OpenERP connection, sale, ....)</li>
-    <li>3. py files in sync dir: change execute permisions</li>
-    <li>4. Edit config_path.py. Add you Django path</li>
-    <li>5. Add same languages OpenERP in settings.py (LANGUAGES)</li>
-    <li>6. Create tables: python manage.py syncdb</li>
-    <li>7. Important! Run configuration.py. Add new values site django (extra fields)</li>
-    <li>8. Run Server: python manage.py runserver</li>
-    </ul>
-
-    <h2 class="zoook-doc">OpenERP configuration</h2>
-    <ul>
-    <li>1. Sale/Administration/Sales. Configure your Sale Shop and paramiko connection (ssh)</li>
-    <li>2. Add Countries to Check Vat. This option is requiered because is same countries avalaible shop.</li>
-    <li>3. Sale Order or Invoices sequence not use / (for example, SO/001). URL navigator get order number and / it's a path url and broken.</li>
-    </ul>
-
-    <h2 class="zoook-doc">Catalog and Product Sync</h2>
-    <p>Sales, partners, ... are creating in real time e-sale to OpenERP. Only nedd sync categories and products.
-    Go to sale shop OpenERP for sync. Remember Django Sync dir need execute permisions.
-    Also, remember see OpenERP logs and Django logs</p>
-    <p><strong>Atention! Manager catalog section is only check values sync (product, categories,..) Not change this values with manager tool. Use Sync Tools</strong></p>
-
-    <h2 class="zoook-doc">Django Template</h2>
-    <p>See more documentation about Django template at <a href="https://docs.djangoproject.com/en/dev/ref/templates/">Django Templates Doc</a></p>
-    <p>Add new modules in your template: &#123;% module [position]%&#125;</p>
-
-    <h2 class="zoook-doc">Active Payments</h2>
-    <p>Default configuration not available payments active. How to active payments?</p>
-    <ul style="margin: 10px;">
-    <li>1. Go to OpenERP Sale->Shop. In Payment tab, add payments active in this shop</li>
-    <li>2. Edit settings.py. Add payment APP available (see comment app example)</li>
-    <li>3. Edit payment/urlsPayment.py. Add urls payment type available (see comment urls example)</li>
-    <li>4. Edit config.py if you payment type need configuration. There are some examples configuration params Sermepa and Paypal</li>
-    </ul>
-    <p>Paypal or Servired payments, need install in your server <a href="https://github.com/zikzakmedia/django-paypal">django-paypal</a> and <a href="https://github.com/zikzakmedia/django-sermepa">django-sermepa</a>.</p>
-
-    <h2 class="zoook-doc">Catalog Admin</h2>
-    <p>Super Users are available access to Catalog Admin. This section is only check catalog database sync OpenERP -> Django. Create your catalog in OpenERP</p>
+{% if user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 </div>
 {% endblock %}
+
+{% block jqueryload %}{% if values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endif %}{% endblock %}

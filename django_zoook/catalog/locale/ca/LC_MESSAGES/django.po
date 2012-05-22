@@ -419,6 +419,9 @@ msgstr "No hi ha productes relacionats"
 msgid "Add to cart"
 msgstr "Afegeix a la cistella"
 
+msgid "Featured Products"
+msgstr "Productes Destacats"
+
 #~ msgid "Pricelist"
 #~ msgstr "Tarifa"
 
