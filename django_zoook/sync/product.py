@@ -37,7 +37,7 @@ from django.utils.translation import ugettext as _
 from django_zoook.catalog.models import ProductProduct, ProductTemplate
 from django_zoook.tools.conn import conn_webservice
 
-logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Running')))
+logging.info(_('Sync. Products. Running'))
 
 """
 for product.template
@@ -54,13 +54,18 @@ django_product_template_fields = [field.name for field in ProductTemplate._meta.
 django_product_product_fields = [field.name for field in ProductProduct._meta.fields]
 
 if len(results) == 0:
-    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Not products template news or modified')))
+    logging.info(_('Sync. Products Template. Not products template news or modified'))
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result['product_template']],context,langs])
+    try:
+        values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.template',[result['product_template']],context,langs])
+    except Exception, e:
+        logging.error(_('Sync. Products Template. Error getting template ID %s from OpenERP') % result['product_template'])
+        logging.error('Exception: %s' % e)
+        sys.exit(-1)
 
-    logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+    logging.debug(values)
 
     if len(values) > 0:
         product_template = values[0]
@@ -99,19 +104,19 @@ for result in results:
                 prod_template.save()
                 #~ prod_template.save_m2m()
 
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Product Template save ID %s') % product_template['id']))
+            logging.info(_('Sync. Products Template. Product Template save ID %s') % product_template['id'])
         except Exception, e:
-            logging.error('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Template. Error save ID %s') % product_template['id']))
+            logging.error(_('Sync. Products Template. Error save ID %s') % product_template['id'])
             logging.error('Exception: %s' % e)
     
         for prod in result['product_product']:
-            logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products Product. Get ID %s') % prod))
+            logging.debug(_('Sync. Products Product. Get ID %s') % prod)
 
             # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
             context = {'shop':OERP_SALE, 'product_id': prod}
             values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.product',[prod],context,langs])
 
-            logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+            logging.debug(values)
 
             if len(values) > 0:
                 product = values[0]
@@ -123,12 +128,12 @@ for result in results:
                 prod = ProductProduct(**product_copy)
                 try:
                     prod.save()
-                    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Product save ID %s') % product['id']))
+                    logging.info(_('Sync. Products. Product save ID %s') % product['id'])
                 except Exception, e:
-                    logging.error('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Error save ID %s') % product['id']))
+                    logging.error(_('Sync. Products. Error save ID %s') % product['id'])
                     logging.error('Exception: %s' % e)
                     sys.exit(-1)
 
-logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Done')))
+logging.info(_('Sync. Products. Done'))
 
 print True
