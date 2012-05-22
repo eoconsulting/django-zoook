@@ -36,12 +36,21 @@ from django_zoook.settings import *
 def doc(request):
     """HomePage Zoook - Developer documentation"""
 
-    title = _('Zoook. OpenERP e-sale')
+    site_configuration = siteConfiguration(SITE_ID)
+    title = site_configuration.site_title
+    metadescription = site_configuration.site_metadescription
+    metakeywords = site_configuration.site_metakeywords
+
     return render_to_response("doc.html", locals(), context_instance=RequestContext(request))
 
 
 def index(request):
     """All root category products (Featured Products)"""
+
+    site_configuration = siteConfiguration(SITE_ID)
+    title = site_configuration.site_title
+    metadescription = site_configuration.site_metadescription
+    metakeywords = site_configuration.site_metakeywords
 
     values = []
 
@@ -63,11 +72,10 @@ def index(request):
             values.append({'product': tplproduct, 'name': tplproduct.name.lower(), 'product_variant': len(prods), 'price': prods[0].price, 'base_image': base_image})
 
         # == template values ==
-        title = _('Zoook. OpenERP e-sale')
-        metadescription = ''
         category_values = {
             'title': title,
             'metadescription': metadescription,
+            'metakeywords': metakeywords,
             'values': values,
             'products': products,
             'currency': DEFAULT_CURRENCY,
