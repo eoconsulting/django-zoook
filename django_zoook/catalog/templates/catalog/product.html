@@ -151,5 +151,5 @@
 {% if update_price and user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 {% endblock %}
 
-{% block jqueryload %}{% if user.is_authenticated and values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );
-    $("a.zoom").fancybox({overlayColor:'#333'});{% endif %}{% endblock %}
+{% block jqueryload %}{% if update_price and user.is_authenticated and values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );{% endif %}
+    $("a.zoom").fancybox({overlayColor:'#333'});{% endblock %}
