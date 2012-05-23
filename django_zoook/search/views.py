@@ -125,7 +125,9 @@ def search(request):
             'catalog_orders': CATALOG_ORDERS,
             'total': total,
             'currency': DEFAULT_CURRENCY,
-            'COMPARE_ON': COMPARE_ON
+            'compare_on': COMPARE_ON,
+            'update_price': UPDATE_PRICE,
+            'currency_position': CURRENCY_LABEL_POSITION,
         }
         return render_to_response("search/search.html", category_values, context_instance=RequestContext(request))
     else:

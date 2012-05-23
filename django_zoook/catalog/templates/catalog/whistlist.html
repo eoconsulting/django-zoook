@@ -35,7 +35,8 @@
                     <td class="a-right">
                         <div id="product-price-{{product.product.id}}" class="price-box">
                         <span class="regular-price">
-                            <span class="price">{{product.price}} €</span>
+                            {% if currency_position == 'before' %}<span class="price">{{ currency }} {{product.price}}</span>{% else %}
+                                <span class="price">{{product.price}} {{ currency }}</span>{% endif %}
                         </span>
                         </div>
                     </td>
@@ -46,8 +47,8 @@
         </div>
     </div>
     
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>
+{% if update_price and products|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 </div>
 {% endblock %}
 
-{% block jqueryload %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endblock %}
+{% block jqueryload %}{% if update_price and products|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endif %}{% endblock %}

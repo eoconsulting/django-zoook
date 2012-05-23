@@ -12,7 +12,8 @@
                         </form>{%endif %}{% endfor %}
                         <div id="product-price-{{product.id}}" class="price-box">
                             <span class="regular-price">
-                                <span class="price">{{price}} {{ currency }}</span>
+                                {% if currency_position == 'before' %}<span class="price">{{ currency }} {{price}}</span>{% else %}
+                                <span class="price">{{price}} {{ currency }}</span>{% endif %}
                             </span>
                         </div>
                     </div>
