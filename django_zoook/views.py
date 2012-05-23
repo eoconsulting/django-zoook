@@ -36,11 +36,7 @@ from django_zoook.settings import *
 def doc(request):
     """HomePage Zoook - Developer documentation"""
 
-    site_configuration = siteConfiguration(SITE_ID)
-    title = site_configuration.site_title
-    metadescription = site_configuration.site_metadescription
-    metakeywords = site_configuration.site_metakeywords
-
+    title = _('Zoook. OpenERP e-sale')
     return render_to_response("doc.html", locals(), context_instance=RequestContext(request))
 
 
