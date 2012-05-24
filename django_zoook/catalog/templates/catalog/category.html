@@ -5,7 +5,7 @@
 
 {% block head %}{% endblock %}
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/">{% trans "Catalog" %}</a></li>
-{% for path in categories_path %}<li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/{{path.fslug}}">{{path.name}}</a></li>{% endfor %}</ul></div>{% endblock %}
+{% for path in categories_path %}<li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/{%if path.fslug%}{{path.fslug}}{%else%}{{path.slug}}{%endif%}">{{path.name}}</a></li>{% endfor %}</ul></div>{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">

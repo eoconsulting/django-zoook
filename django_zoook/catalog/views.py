@@ -89,11 +89,11 @@ def pathcategory(category):
     categories = ProductCategory.objects.filter(id=category)
 
     path = []
-    path.append({'name':categories[0].name,'slug':categories[0].slug})
+    path.append({'name':categories[0].name,'slug':categories[0].slug,'fslug':categories[0].fslug})
 
     while categories[0].parent:
         categories = ProductCategory.objects.filter(id=categories[0].parent.id)
-        path.append({'name':categories[0].name,'fslug':categories[0].fslug})
+        path.append({'name':categories[0].name,'slug':categories[0].slug,'fslug':categories[0].fslug})
     path.pop() #delete last category = firts category
     path.reverse()
 
