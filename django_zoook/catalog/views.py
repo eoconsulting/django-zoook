@@ -277,7 +277,7 @@ def product(request,product):
         'base_image': base_image,
         'thumb_images': thumb_images,
         'search_keywords': search_keywords,
-        'url': LIVE_URL,
+        'url': LIVE_URL[0:-1],
         'currency': DEFAULT_CURRENCY,
         'currency_position': CURRENCY_LABEL_POSITION,
         'NEWSLATTER_ON': NEWSLATTER_ON,
