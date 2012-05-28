@@ -1,11 +1,11 @@
 /* CATEGORY INDEX */
 #catalog-index { padding:10px}
 .categories-list-1 { padding-left:0px; margin-top:10px; border-bottom:1px solid #D2D6D8; font-size:15px; font-weight: bold; color:#8a0000}
-.categories-list-2 { padding-left:10px; }
-.categories-list-3 { padding-left:20px }
-.categories-list-4 { padding-left:30px }
-.categories-list-5 { padding-left:40px }
-.categories-list-6 { padding-left:50px }
+.categories-list-2 { padding-left:10px; margin-top:5px; }
+.categories-list-3 { padding-left:20px; margin-top:5px; }
+.categories-list-4 { padding-left:30px; margin-top:5px; }
+.categories-list-5 { padding-left:40px; margin-top:5px; }
+.categories-list-6 { padding-left:50px; margin-top:5px; }
 
 /* CATALOG CATEGORY */
 #catalog-category					{ padding:10px }
@@ -207,3 +207,5 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 
 .checkout-options p {font-size:12px; color:#0a6c77}
 .button-confirm { width:250px; margin-top:10px; padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#0a6c77; color:#fff; font-weight:bold }
+
+#catalog-whistlist table td { padding: 10px; }
