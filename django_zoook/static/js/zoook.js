@@ -13,13 +13,7 @@ function mainmenu()
             },function(){
             $(this).find('.sub').fadeOut(200);
             });
-
-    $("#nav .topmenu").hover(function(){
-            $('a:first',this).css('color','#703f45');
-            },function(){
-            $('a:first',this).css('color','#e2001a');
-            });
-    }
+}
 
 function setLocation(key, value){
 	window.location.href = putURLParam(window.location.href, key, value);
