@@ -11,7 +11,7 @@
 #nav .topmenu a		{ display:block; float:left; color:#e2001a; padding:4px 19px 0 4px; line-height:36px; height:36px; margin-left:10px; position:relative }
 #nav .topmenu a:hover	{ color:#e2001a }
 
-#nav .sub 			{ position:absolute; top:40px; left:0; background:#d9e5f0; font-size:12px; display:none; width:940px; padding:15px 0 0 20px; border-radius:0 0 15px 15px; }
+#nav .sub 			{ position:absolute; top:40px; left:0; background:#d9e5f0; font-size:12px; display:none; width:920px; padding:15px 0 0 20px; border-radius:0 0 15px 15px; }
 #nav .sub a					{ color:#000; float:none; display:block; line-height:20px !important; text-indent:0; height:auto; border-bottom:1px solid #bfd2e4 }
 #nav .sub a:hover			{ color:#703f45; text-decoration:underline }
 #nav .sub ul ul				{ list-style:none; margin:0; padding-left:5px !important; }
