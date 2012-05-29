@@ -52,7 +52,7 @@
                     <ul class="other-img">
                         <li><a rel="zoom" href="{% thumbnail base_image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail base_image.url 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{base_image.name}}" /></a></li>
                         {% for image in thumb_images %}
-                        <li><a rel="zoom" href="{% thumbnail image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail image.url 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{image.name}}" /></a></li>
+                        <li><a rel="zoom" href="{% thumbnail image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail image.url 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{image.name}}" /></a></li>
                         {% endfor %}
                     </ul>
                 </div>
