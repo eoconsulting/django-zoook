@@ -86,7 +86,7 @@ BASE_TEMPLATE = 'default'
 """
 Url's conf
 """
-LIVE_URL = "http://127.0.0.1:8000/"
+LIVE_URL = "http://dev.tienda.kikailabs.com.ar:8000/"
 MEDIA_URL = LIVE_URL + "static/"
 
 """
