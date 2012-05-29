@@ -56,7 +56,7 @@
         <ul id="page-footer-menu">{% load menubuilder %}{% menu main-menu %}{% for item in menuitems %}
             <li class="page-footer-menu {{ item.css }}"><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></li>
         {% endfor %}</ul>
-        <p>{% trans 'Licence' %}: <strong>AGPL-3</strong>. {% trans 'Develop by' %} <a href="http://www.eoconsulting.com.ar" title="Enterprise Objects Consulting" target="_blank">Enterprise Objects Consulting</a></p>
+        {% trans 'Develop by' %} <a href="http://www.eoconsulting.com.ar" title="Enterprise Objects Consulting" target="_blank">Enterprise Objects Consulting</a></p>
     </div>
 </div>  
 
