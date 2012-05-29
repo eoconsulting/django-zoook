@@ -41,8 +41,8 @@ js_info_dict = {
 }
 
 urlpatterns = patterns('',
-    #(r"^$", index),
-    (r"^$", doc),
+    (r"^$", index),
+    #(r"^$", doc),
     #~ catalog 
     (r"^%s/" % catalog_url['en'], include("django_zoook.catalog.urlsCatalog")),
     (r"^%s/"% catalog_url['es'], include("django_zoook.catalog.urlsCatalog")),
