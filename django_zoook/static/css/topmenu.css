@@ -1,18 +1,18 @@
 /* TopMenu */
 /* Menu superior */
-.links		{ position:absolute; right:20px; top:15px; line-height:16px; z-index:2 }
+.links		{ position:absolute; right:0px; top:15px; line-height:16px; z-index:2 }
 .links li	{ float:left; margin-left:8px; padding-right:8px; border-right:1px solid #fff; font-size:12px }
 .links a		{ color:#218ecd; font-family: "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif; }
 .links a:hover	{ color:#703f45 }
 .links li.last	{ border:0 }
 
-#nav		        { font-size:16px; font-weight:normal; margin:20px 0 0 0; height:40px; position:relative; z-index:999; background: #218ecd; font-weight: bolder; border-radius: 4px 4px 4px 4px;}
+#nav		        { font-size:16px; font-weight:normal; margin:20px 0 0 0; height:42px; position:relative; z-index:999; background: #218ecd; font-weight: bolder; border-radius: 4px 4px 4px 4px;}
 #nav:hover          { border-radius: 4px 4px 0px 0px; }
 #nav .topmenu		{ float:left; }
-#nav .topmenu a		{ display:block; float:left; color:#fff; padding:4px 19px 0 4px; line-height:36px; height:36px; margin-left:10px; position:relative }
+#nav .topmenu a		{ display:block; float:left; color:#fff; padding:4px 19px 2px 4px; line-height:36px; height:36px; margin-left:10px; position:relative }
 #nav .topmenu a:hover	{ color:#ccc }
 
-#nav .sub 			{ position:absolute; top:40px; left:0; background:#d9e5f0; font-size:12px; display:none; width:920px; padding:15px 0 0 20px; border-radius:0 0 15px 15px; }
+#nav .sub 			{ position:absolute; top:42px; left:0; background:#d9e5f0; font-size:12px; display:none; width:920px; padding:15px 0 0 20px; border-radius:0 0 15px 15px; }
 #nav .sub a					{ color:#000; float:none; display:block; line-height:20px !important; text-indent:0; height:auto; border-bottom:1px solid #bfd2e4 }
 #nav .sub a:hover			{ color:#703f45; text-decoration:underline }
 #nav .sub ul ul				{ list-style:none; margin:0; padding-left:5px !important; }
