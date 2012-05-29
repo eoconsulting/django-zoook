@@ -11,7 +11,7 @@
     {% include 'partner/menu.html' %}
 
     <div id="profile-content">
-        {% blocktrans %}Hello {{full_name}}.{% endblocktrans %}
+        <p>{% blocktrans %}Hello {{full_name}}.{% endblocktrans %}</p>
 
         <ul id="menu-profile-home">
             <li><a href="{% url sale_index %}" title="{% trans "Orders" %}">{% trans "Orders" %}</a></li>

@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5 { }
 h1	{ font-size:24px }
 h2	{ font-size:18px }
 h3	{ font-size:14px }
-p	{ font-size:11px; line-height:16px }
+p	{ font-size:12px; line-height:16px; margin: 5px 0px; }
 
 input, select, textarea	{ font-family:sans-serif; font-size:12px }
 
@@ -92,11 +92,13 @@ label {display:block;float:left;clear:left;width:90px}
 #page-footer-menu li a:hover { }  
 
 /* User */
-.new-users h3{ color:#e2001a; font-size:18px}
-.registered-users h3{ color:#e2001a; font-size:18px}
-.register-users h3{ color:#e2001a}
-.required{color:#e2001a}
+.new-users h3{ color:#218ecd; font-size:18px}
+.registered-users h3{ color:#218ecd; font-size:18px}
+.register-users h3{ color:#218ecd}
+.required{color:#000}
 .profile{ list-style: none}
+.changepassword table { margin-top: 15px; }
+.changepassword td { padding: 5px; }
 .login-box .content { min-height:230px; }
 
 /* Message */
@@ -140,7 +142,7 @@ ul.user-add li a:hover{ background: #232323; color: #fff; padding-left: 11px;}
 .msg-info {padding:10px; color: #00529B;background-color: #BDE5F8; background-image: url('../images/icons/info.png') no-repeat}
 .msg-success {padding:10px; color: #4F8A10;background-color: #DFF2BF; background-image:url('../images/icons/success.png') no-repeat}
 .msg-warning {padding:10px; color: #9F6000;background-color: #FEEFB3; background-image: url('../images/icons/warning.png') no-repeat}
-.msg-error {padding:10px; color: #D8000C;background-color: #FFBABA; background-image: url('../images/icons/error.png') no-repeat}
+.msg-error {padding:10px; color: #D8000C;background-color: #FFBABA; background-image: url('../images/icons/error.png') no-repeat; margin: 10px 0px;}
 
 /* Content Box */
 #content-box h2 { border-bottom: 1px solid #F2F2F2; margin:10px 0 5px 0}
