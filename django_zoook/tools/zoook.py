@@ -38,8 +38,11 @@ def siteConfiguration(site):
     try:
         site_configuration = SiteConfiguration.objects.get(id=site)
     except Exception, e:
-        logging.error("Error getting site_configuration with id=%d: %s" % (site, str(e)))
-        site_configuration = ''
+        msg = """Error getting site configuration. Maybe you have not configured the site yet?
+Exception getting SiteConfiguration with SITE_ID=%d: %s""" % (site, str(e))
+        logging.error(msg)
+        logging.error("Run configuration.py to setup the site.")
+        raise Exception(msg)
 
     return site_configuration
 

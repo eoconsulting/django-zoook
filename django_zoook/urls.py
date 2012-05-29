@@ -23,7 +23,7 @@
 from django.conf.urls.defaults import *
 from django.contrib.sitemaps import GenericSitemap
 
-from django_zoook.views import index
+from django_zoook.views import index, doc
 from django_zoook.search.views import search
 from django_zoook.tag.views import keyword
 from django_zoook.settings import MEDIA_ROOT
@@ -41,7 +41,8 @@ js_info_dict = {
 }
 
 urlpatterns = patterns('',
-    (r"^$", index),
+    #(r"^$", index),
+    (r"^$", doc),
     #~ catalog 
     (r"^%s/" % catalog_url['en'], include("django_zoook.catalog.urlsCatalog")),
     (r"^%s/"% catalog_url['es'], include("django_zoook.catalog.urlsCatalog")),

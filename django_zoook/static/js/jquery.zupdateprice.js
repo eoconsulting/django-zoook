@@ -4,7 +4,6 @@
 
  		// Default options of plugin
         var defaults = {
-			url: 'json/test.php',
             timeInterval: '10000',
             delayUpdater: '5000',
 			idPriceAttr: 'product-price-',

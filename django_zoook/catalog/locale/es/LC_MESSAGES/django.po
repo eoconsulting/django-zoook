@@ -419,6 +419,9 @@ msgstr "No hay productos relacionados"
 msgid "Add to cart"
 msgstr "Añade a la cesta"
 
+msgid "Featured Products"
+msgstr "Productos Destacados"
+
 #~ msgid "Pricelist"
 #~ msgstr "Tarifa"
 

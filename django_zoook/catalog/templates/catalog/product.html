@@ -47,12 +47,12 @@
         <div id="content">
             <div id="product-{{product.id}}" class="product-page block border5 clearfix">
                 <div class="product-imgbox">
-                    <a rel="zoom" href="{% thumbnail base_image.filename 600x600 /static/images/product_detail_zoook.png %}" class="product-img zoom"><span class="zoom-icon"></span>
-                    <img src="{% thumbnail base_image.filename 300x300 /static/images/product_detail_zoook.png %}" width="300" height="300" title="{{base_image.name}}" /></a>
+                    <a rel="zoom" href="{% thumbnail base_image.url 600x600 /static/images/product_detail_zoook.png %}" class="product-img zoom"><span class="zoom-icon"></span>
+                    <img src="{% thumbnail base_image.url 300x300 /static/images/product_detail_zoook.png %}" width="300" height="300" title="{{base_image.name}}" /></a>
                     <ul class="other-img">
-                        <li><a rel="zoom" href="{% thumbnail base_image.filename 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail base_image.filename 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{base_image.name}}" /></a></li>
+                        <li><a rel="zoom" href="{% thumbnail base_image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail base_image.url 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{base_image.name}}" /></a></li>
                         {% for image in thumb_images %}
-                        <li><a rel="zoom" href="{% thumbnail image.filename 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail image.filename 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{image.name}}" /></a></li>
+                        <li><a rel="zoom" href="{% thumbnail image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail image.url 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{image.name}}" /></a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -60,17 +60,17 @@
                 <div class="product-item block border5 clearfix">
                    <div class="product-name" title="{{product.name}}"><h2>{{product.name}}</h2></div>
                     <ul class="add-to">
-                        {% if COMPARE_ON %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a><span class="separator">|</span></li>{% endif %}
+                        {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a><span class="separator">|</span></li>{% endif %}
                         {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
                     </ul>
 
                     <div class="social_network">
                         <div class="tweet">
+                            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
                             <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="zoook_eshop" >Tweet</a>
                         </div>
                         <div class="facebook">
-                            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-                            <iframe  src="http://www.facebook.com/plugins/like.php?href={{product.get_absolute_url}}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
+                            <iframe src="http://www.facebook.com/plugins/like.php?href={{url}}{{product.get_absolute_url}}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
                         </div>
                     </div>
                     
@@ -105,7 +105,7 @@
                 <table id="product-related-table" class="cart-table">
                 <tbody>
                     {% for product in related_products %}<tr>
-                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
                         <td><h2 class="product-name-related"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="product-related-description a-right">{{ product.product.shortdescription }}</td>
                         <td class="product-related-price a-right">
@@ -124,7 +124,7 @@
                 <table id="product-upsells-table" class="cart-table">
                 <tbody>
                     {% for product in upsells_products %}<tr>
-                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
                         <td><h2 class="product-name-upsells"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="product-upsells-description a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
                         <td class="product-upsells-price a-right">
@@ -148,8 +148,8 @@
 
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zproduct.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.fancybox-1.3.4.pack.js"></script>
-{% if user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
+{% if update_price and user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 {% endblock %}
 
-{% block jqueryload %}{% if user.is_authenticated and values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );
-    $("a.zoom").fancybox({overlayColor:'#333'});{% endif %}{% endblock %}
+{% block jqueryload %}{% if update_price and user.is_authenticated and values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );{% endif %}
+    $("a.zoom").fancybox({overlayColor:'#333'});{% endblock %}

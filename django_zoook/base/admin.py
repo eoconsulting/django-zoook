@@ -22,7 +22,7 @@
 
 from django.contrib import admin
 
-from base.models import *
+from django_zoook.base.models import *
 
 class ResCountryAdmin(admin.ModelAdmin):
 

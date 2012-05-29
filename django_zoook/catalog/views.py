@@ -89,11 +89,11 @@ def pathcategory(category):
     categories = ProductCategory.objects.filter(id=category)
 
     path = []
-    path.append({'name':categories[0].name,'slug':categories[0].slug})
+    path.append({'name':categories[0].name,'slug':categories[0].slug,'fslug':categories[0].fslug})
 
     while categories[0].parent:
         categories = ProductCategory.objects.filter(id=categories[0].parent.id)
-        path.append({'name':categories[0].name,'fslug':categories[0].fslug})
+        path.append({'name':categories[0].name,'slug':categories[0].slug,'fslug':categories[0].fslug})
     path.pop() #delete last category = firts category
     path.reverse()
 
@@ -211,6 +211,9 @@ def category(request,category):
                 'total': total,
                 'categories_path': categories_path,
                 'currency': DEFAULT_CURRENCY,
+                'currency_position': CURRENCY_LABEL_POSITION,
+                'compare_on': COMPARE_ON,
+                'update_price': UPDATE_PRICE,
             }
             return render_to_response("catalog/category.html", category_values, context_instance=RequestContext(request))
         else:
@@ -274,10 +277,12 @@ def product(request,product):
         'base_image': base_image,
         'thumb_images': thumb_images,
         'search_keywords': search_keywords,
-        'url': LIVE_URL,
+        'url': LIVE_URL[0:-1],
         'currency': DEFAULT_CURRENCY,
+        'currency_position': CURRENCY_LABEL_POSITION,
         'NEWSLATTER_ON': NEWSLATTER_ON,
-        'COMPARE_ON': COMPARE_ON
+        'compare_on': COMPARE_ON,
+        'update_price': UPDATE_PRICE,
     }
     return render_to_response("catalog/product.html", values, context_instance=RequestContext(request))
 
@@ -350,7 +355,13 @@ def whistlist(request):
 
             products.append({'product': tplproduct, 'name': tplproduct.name, 'price': prods[0].price, 'base_image': base_image})
 
-    return render_to_response("catalog/whistlist.html", {'title': title, 'metadescription': metadescription, 'products': products}, context_instance=RequestContext(request))
+    return render_to_response("catalog/whistlist.html",
+                {'title': title, 'metadescription': metadescription,
+                 'products': products,
+                 'currency': DEFAULT_CURRENCY,
+                 'currency_position': CURRENCY_LABEL_POSITION,
+                 'update_price': UPDATE_PRICE},
+                context_instance=RequestContext(request))
 
 def compare(request):
     """

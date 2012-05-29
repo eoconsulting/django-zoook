@@ -20,19 +20,68 @@
 #
 ############################################################################################
 
+from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django_zoook.tools.zoook import siteConfiguration
-
+from django.utils.translation import get_language
+from django.db.models import Q
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django_zoook.catalog.models import *
+from django_zoook.catalog.views import pathcategory
 from django_zoook.settings import *
 
-def index(request):
-    """HomePage Zoook e-sale for OpenERP"""
+
+def doc(request):
+    """HomePage Zoook - Developer documentation"""
 
     title = _('Zoook. OpenERP e-sale')
-    metadescription = _('Zikzakmedia. Development opensource ERP and e-commerce APP. OpenERP SaaS services available')
-    metakeywords = 'openerp, django, erp, python, e-commerce'
-    return render_to_response("index.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("doc.html", locals(), context_instance=RequestContext(request))
+
+
+def index(request):
+    """All root category products (Featured Products)"""
+
+    site_configuration = siteConfiguration(SITE_ID)
+    title = site_configuration.site_title
+    metadescription = site_configuration.site_metadescription
+    metakeywords = site_configuration.site_metakeywords
+
+    values = []
+
+    categories = ProductCategory.objects.filter(parent=None)
+
+    if len(categories)>0:
+        products = ProductTemplate.objects.filter(Q(productproduct__active=True), Q(categ=categories[0]), Q(visibility='all') | Q(visibility='catalog'))
+
+        # get price and base_image product            
+        for tplproduct in products:
+            prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id)
+
+            prod_images = ProductImages.objects.filter(product=prods[0].id,base_image=True)
+
+            base_image = False
+            if len(prod_images) > 0:
+                base_image = prod_images[0]
+
+            values.append({'product': tplproduct, 'name': tplproduct.name.lower(), 'product_variant': len(prods), 'price': prods[0].price, 'base_image': base_image})
+
+        # == template values ==
+        category_values = {
+            'title': title,
+            'metadescription': metadescription,
+            'metakeywords': metakeywords,
+            'values': values,
+            'products': products,
+            'currency': DEFAULT_CURRENCY,
+            'currency_position': CURRENCY_LABEL_POSITION,
+            'compare_on': COMPARE_ON,
+            'update_price': UPDATE_PRICE,
+        }
+        return render_to_response("index.html", category_values, context_instance=RequestContext(request))
+    else:
+        raise Http404(_('This category is not available because you navigate with bookmarks or search engine. Use navigation menu'))
+
 
 """ Custom views """

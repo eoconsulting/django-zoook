@@ -29,13 +29,14 @@
             </thead>
             <tbody>
                 {% for product in products %}<tr>
-                    <td><a href="{{product.product.get_absolute_url}}" title="{{ product.name }}" class="product-image"><img src="{% thumbnail product.base_image.filename 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.name }}" /></a></td>
+                    <td><a href="{{product.product.get_absolute_url}}" title="{{ product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.name }}" /></a></td>
                     <td><h2 class="product-name"><a href="{{product.product.get_absolute_url}}">{{ product.name }}</a></h2></td>
                     <td class="a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
                     <td class="a-right">
                         <div id="product-price-{{product.product.id}}" class="price-box">
                         <span class="regular-price">
-                            <span class="price">{{product.price}} €</span>
+                            {% if currency_position == 'before' %}<span class="price">{{ currency }} {{product.price}}</span>{% else %}
+                                <span class="price">{{product.price}} {{ currency }}</span>{% endif %}
                         </span>
                         </div>
                     </td>
@@ -46,8 +47,8 @@
         </div>
     </div>
     
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>
+{% if update_price and products|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 </div>
 {% endblock %}
 
-{% block jqueryload %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endblock %}
+{% block jqueryload %}{% if update_price and products|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} ){% endif %}{% endblock %}

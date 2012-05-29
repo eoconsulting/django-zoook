@@ -55,7 +55,14 @@ LOCALE_URI = True
 """
 Default Currency Sale Shop
 """
-DEFAULT_CURRENCY = 'ARS'
+DEFAULT_CURRENCY = '$'
+
+"""
+Currency Position:
+  'before' -> $ 999
+  'after'  -> 999 $
+"""
+CURRENCY_LABEL_POSITION = 'after'
 
 """
 Sale Order, when add product, continue if get warning
@@ -160,5 +167,6 @@ PASAT4B_BUTTON_TEXT = 'Comprar ahora'
 """
 Global Module Activation
 """
-NEWSLATTER_ON = False  # Not implemented yet
-COMPARE_ON = False     # Not implemented yet
+UPDATE_PRICE = True    # Active the update special price by ajax when the user is signed
+NEWSLATTER_ON = False  # Active the Newslatter info. Not implemented yet
+COMPARE_ON = False     # Active the "Add to Compare" function in products. Not implemented yet

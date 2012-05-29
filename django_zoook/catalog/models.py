@@ -162,7 +162,7 @@ class ProductImages(models.Model):
 
     name = models.CharField(_('Image Title'), max_length=128, null=True, blank=True)
     product = models.ForeignKey('ProductProduct', null=True, blank=True)
-    filename = models.CharField(_('File Location'), max_length=128, null=True, blank=True)
+    url = models.CharField(_('File Location'), max_length=128, null=True, blank=True)
     base_image = models.BooleanField(_('Base Image'), default=False)
     exclude = models.BooleanField(_('Exclude'), default=False)
 

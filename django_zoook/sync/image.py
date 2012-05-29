@@ -37,20 +37,25 @@ from django.utils.translation import ugettext as _
 from django_zoook.catalog.models import ProductImages
 from django_zoook.tools.conn import conn_webservice
 
-logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Images. Running')))
+logging.info(_('Sync. Images. Running'))
 
 django_product_images_fields = [field.name for field in ProductImages._meta.fields]
 
 results = conn_webservice('sale.shop', 'dj_export_images', [[OERP_SALE]])
 
 if len(results) == 0:
-    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Images. Not images news or modified')))
+    logging.info(_('Sync. Images. Not images news or modified'))
 
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.images',[result]])
+    try:
+        values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.images',[result]])
+    except Exception, e:
+        logging.error(_('Sync. Images. Error getting image ID %s from OpenERP') % result)
+        logging.error('Exception: %s' % e)
+        sys.exit(-1)
 
-    logging.debug('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), values))
+    logging.debug(values)
 
     if len(values) > 0:
         img = values[0]
@@ -63,12 +68,12 @@ for result in results:
         image = ProductImages(**img_copy)
         try:
             image.save()
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Images. Image save ID %s') % img['id']))
+            logging.info(_('Sync. Images. Image save ID %s') % img['id'])
         except Exception, e:
-            logging.error('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Images. Error save ID %s') % img['id']))
+            logging.error(_('Sync. Images. Error save ID %s') % img['id'])
             logging.error('Exception: %s' % e)
             sys.exit(-1)
 
-logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Images. Done')))
+logging.info(_('Sync. Images. Done'))
 
 print True
