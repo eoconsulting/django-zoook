@@ -239,14 +239,14 @@ msgid "%(metadescription)s"
 msgstr "%(metadescription)s"
 
 #: views.py:289
-msgid "Are you a customer? Please, contact us. We will create a new role"
-msgstr "Es usted un cliente? Por favor, contáctenos. Crearemos un nuevo rol"
+msgid "Are you a customer? Please, contact us. We will create a new role."
+msgstr "Es usted un cliente? Por favor, contáctenos. Crearemos un nuevo rol."
 
 #: views.py:295
-msgid "Error when connecting with our ERP. Try again or cantact us"
+msgid "Error when connecting with our ERP. Try again or cantact us."
 msgstr ""
 "Se ha producido un error conectando con nuestro ERP. Vuelva a probar o "
-"contáctenos"
+"contáctenos."
 
 #: views.py:330
 msgid "Whislist"

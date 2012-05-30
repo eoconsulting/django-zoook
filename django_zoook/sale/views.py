@@ -46,12 +46,12 @@ def orders(request):
 
     partner_id = checkPartnerID(request)
     if not partner_id:
-        error = _('Are you a customer? Please, contact us. We will create a new role')
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error when connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = {}
@@ -73,12 +73,12 @@ def order(request, order):
 
     partner_id = checkPartnerID(request)
     if not partner_id:
-        error = _('Are you a customer? Please, contact us. We will create a new role')
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error when connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
@@ -100,12 +100,12 @@ def payment(request, order):
 
     partner_id = checkPartnerID(request)
     if not partner_id:
-        error = _('Are you a customer? Please, contact us. We will create a new role')
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error when connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = conn.SaleOrder.filter(partner_id=partner_id, name=order, shop_id=OERP_SALE)
@@ -204,12 +204,12 @@ def checkout(request):
     message = False
     partner_id = checkPartnerID(request)
     if not partner_id:
-        error = _('Are you a customer? Please, contact us. We will create a new role')
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error when connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     order = check_order(conn, partner_id, OERP_SALE)
@@ -333,12 +333,12 @@ def checkout_remove(request, code):
     if len(products) > 0:
         partner_id = checkPartnerID(request)
         if not partner_id:
-            error = _('Are you a customer? Please, contact us. We will create a new role')
+            error = _('Are you a customer? Please, contact us. We will create a new role.')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
         full_name = checkFullName(request)
         conn = connOOOP()
         if not conn:
-            error = _('Error when connecting with our ERP. Try again or cantact us')
+            error = _('Error when connecting with our ERP. Try again or cantact us.')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
         order = check_order(conn, partner_id, OERP_SALE)
         order_lines = conn.SaleOrderLine.filter(order.id, product_id=products[0].id)
@@ -362,14 +362,14 @@ def checkout_confirm(request):
     if request.method == 'POST':
         partner_id = checkPartnerID(request)
         if not partner_id:
-            error = _('Are you a customer? Please, contact us. We will create a new role')
+            error = _('Are you a customer? Please, contact us. We will create a new role.')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
         full_name = checkFullName(request)
 
         conn = connOOOP()
         if not conn:
-            error = _('Error when connecting with our ERP. Try again or cantact us')
+            error = _('Error when connecting with our ERP. Try again or cantact us.')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
             
         partner = conn.ResPartner.get(partner_id)

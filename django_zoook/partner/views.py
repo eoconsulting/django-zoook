@@ -153,17 +153,17 @@ def register(request):
                         message.append(msg)
 
                 if users:
-                    msg = _('Sorry. This user already exists. Use another username')
+                    msg = _('Sorry. This user already exists. Use another username.')
                     message.append(msg)
                 if emails:
-                    msg = _('Sorry. This email already exists. Use another email or remember password')
+                    msg = _('Sorry. This email already exists. Use another email or remember password.')
                     message.append(msg)
 
                 #check if this vat exists ERP
                 if not message:
                     conn = connOOOP()
                     if not conn:
-                        error = _('Error when connecting with our ERP. Try again or cantact us')
+                        error = _('Error when connecting with our ERP. Try again or cantact us.')
                         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
                     partner = conn.ResPartner.filter(vat__ilike=data['vat_code']+data['vat'])
@@ -237,10 +237,10 @@ def register(request):
                         auth_login(request, user)
                         return HttpResponseRedirect("%s/partner/profile/" % context_instance['LOCALE_URI'])
             else:
-                msg = _("Sorry. Error form values. Try again")
+                msg = _("Sorry. Error form values. Try again.")
                 message.append(msg)
         else:
-            msg = _("Sorry. Passwords do not match. Try again")
+            msg = _("Sorry. Passwords do not match. Try again.")
             message.append(msg)
 
     form = UserCreationForm()
@@ -297,7 +297,7 @@ def remember(request):
                     email = ''
                     message.append(msg)
                 else:
-                    msg = _('Sorry. This email not exist. Try again')
+                    msg = _('Sorry. This email not exist. Try again.')
                     message.append(msg)
             else:
                 msg = _('Sorry. The email is not valid. Try again.')
@@ -350,9 +350,9 @@ def changepassword(request):
                     email.send()
                 error = _("New password is added")
             else:
-                error = _("Sorry. Passwords need %(size)s characters or more. Try again") % {'size':KEY_LENGHT}
+                error = _("Sorry. Passwords need %(size)s characters or more. Try again.") % {'size':KEY_LENGHT}
         else:
-            error = _("Sorry. Passwords don't match. Try again")
+            error = _("Sorry. Passwords don't match. Try again.")
 
     form = UserCreationForm()
     return render_to_response("partner/changepassword.html", locals(), context_instance=RequestContext(request))
@@ -363,11 +363,11 @@ def partner(request):
 
     partner_id = checkPartnerID(request)
     if not partner_id:
-        error = _('Are you a customer? Please, contact us. We will create a new role')
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     conn = connOOOP()
     if not conn:
-        error = _('Error when connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
         
     site_configuration = siteConfiguration(SITE_ID)
