@@ -79,7 +79,7 @@ label {display:block;float:left;clear:left;width:90px}
 #pathway li { display:inline; list-style-type:none; padding-right:5px}
 
 /* Columns */
-#top-header { background: #333; color:#fff; padding: 5px; margin-bottom:10px}
+#top-header { background: #fafaec; color:#000; padding: 10px; margin-bottom:10px; font-weight: bolder; font-size: 13px;}
 .col2-set, .col3-set, .col4-set, .col5-set { clear:both; background-color:#000; }
 .col2-set .col-1, .col2-set .col-2 { width:48.5%; }
 .col2-set .col-1 { float:left; }
@@ -99,6 +99,9 @@ label {display:block;float:left;clear:left;width:90px}
 .profile{ list-style: none}
 .changepassword table { margin-top: 15px; }
 .changepassword td { padding: 5px; }
+.remember p, .remember td { padding-top: 5px; }
+.remember input[type=text] { width: 15em; }
+.remember input[type=submit] { min-width: 6em; }
 .login-box .content { min-height:230px; }
 
 /* Message */

@@ -125,7 +125,7 @@ msgstr "Referència"
 #: templates/sale/checkout.html:44
 #: templates/sale/order.html:47
 msgid "Qty"
-msgstr "Qty"
+msgstr "Quantitat"
 
 #: templates/sale/checkout.html:45
 #: templates/sale/order.html:48
@@ -155,7 +155,7 @@ msgid "product"
 msgstr "producte"
 
 #: templates/sale/checkout.html:59
-msgid "Remove Item"
+msgid "Remove item"
 msgstr "Treu el producte"
 
 #: templates/sale/checkout.html:65

@@ -12,21 +12,20 @@
 {% endblock %}
 
 {% block content %}
-<div class="primary-content span-12 last">
+<div class="primary-content span-12 last remember">
 
-<div id="top-header">{{ title }}</div>
 
 {% if message %}
-    <div id="message">
-        <h1>
+    <div id="message" class="error-msg">
+        <h3>
         {% for msg in message %}
            {{ msg }}<br/>
         {% endfor %}
-        </h1>
+        </h3>
     </div>
 {% endif %}
 
-<p>{% trans "Insert your email and username and new password are you send it" %}</p>
+<p>{% trans "Insert your email and username and new password are you send it" %}.</p>
 <form method="post" action="{{ LOCALE_URI }}/partner/remember/">
     <table>
         <tr> 
@@ -36,7 +35,7 @@
         <tr><td colspan="2">{{ html_captcha|safe }}</td></tr>
         <tr>
             <td>
-                <input type="submit" value="{% trans "Remember" %}" />
+                <input type="submit" value="{% trans "Submit" %}" />
             </td>
         </tr>
     </table>

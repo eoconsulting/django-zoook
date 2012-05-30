@@ -56,7 +56,7 @@
                     <td>{{ line.discount }}</td>
                     <td>{{ line.price_unit }}</td>
                     <td>{{ line.price_subtotal }}</td>
-                    <td class="a-center"><a href="{{ LOCALE_URI }}/sale/checkout/remove/{{line.product_id.code}}" title="{% trans "Remove Item" %}" class="btn-trash">{% trans "Remove Item" %}</a></td>
+                    <td class="a-center"><a href="{{ LOCALE_URI }}/sale/checkout/remove/{{line.product_id.code}}" title="{% trans "Remove item" %}" class="btn-trash">{% trans "Remove item" %}</a></td>
                 </tr>{% endfor %}
             </tbody>
             </table>

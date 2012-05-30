@@ -26,7 +26,7 @@
                 </div>
                 <div class="items-sort">
                     <span class="sort-drop">{% trans "Sort by" %}
-                    <select onchange="setLocation('order',this.value)">{% for order in catalog_orders %}<option value="{{ order }}"{% if order_option == order %} selected="selected"{% endif %}>{{ order }}</option>{% endfor %}</select>
+                    <select onchange="setLocation('order',this.value)">{% for order in catalog_orders %}<option value="{{ order }}"{% if order_option == order %} selected="selected"{% endif %}>{% trans order %}</option>{% endfor %}</select>
                     {% if order_by_option = 'desc' %}<a href="?order_by=asc">{% trans "ASC" %}</a>{% else %}<a href="?order_by=desc">{% trans "DESC" %}</a>{% endif %}</span>
                     <span class="view-mode">{% trans "View as" %}: 
                         {% if mode_option == 'grid' %}<span class="active">{% trans "Grid" %}</span>{% else %} <a href="?mode=grid">{% trans "Grid" %}</a>{% endif %}

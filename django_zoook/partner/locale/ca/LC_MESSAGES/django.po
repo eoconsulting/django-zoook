@@ -53,7 +53,7 @@ msgid "Password is short. Minimum %(size)s characters"
 msgstr "Contrasenya curta. Mínim %(size)s caràcters"
 
 #: views.py:137 views.py:284
-msgid "Sorry. This email is not valid. Try again"
+msgid "Sorry. The email is not valid. Try again."
 msgstr "Aquesta adreça de correu electrònic no és vàlida. Torneu a provar."
 
 #: views.py:142
@@ -242,8 +242,8 @@ msgid "Insert your new password"
 msgstr "Escribiu la vostra nova contrasenya"
 
 #: templates/partner/login.html:17
-msgid "Log in or Create an Account"
-msgstr "Identifiqueu-vos o creeu un compte"
+msgid "Log in or create an account."
+msgstr "Identifiqueu-vos o creeu un compte."
 
 #: templates/partner/login.html:23 templates/partner/register.html:41
 msgid "New customers"
@@ -251,11 +251,11 @@ msgstr "Nous clients"
 
 #: templates/partner/login.html:24
 msgid ""
-"If you create an account in our store, you could buy , gain access the "
-"orders and the invoices quickly and more facilities."
+"If you create an account in our store, "
+"you could buy and access the orders quickly."
 msgstr ""
-"Si creeu un compte a la nostra botiga, podreu comprar, tenir accés a les "
-"comandes i a les factures de forma ràpida i més facilitats."
+"Si creeu un compte a la nostra botiga, podreu comprar i tenir accés a les "
+"comandes de forma ràpida."
 
 #: templates/partner/login.html:27
 msgid "Registered customers"
@@ -382,6 +382,12 @@ msgstr "Per crear un compte introdiu el mateix número"
 msgid "Insert your email and username and new password are you send it"
 msgstr ""
 "Introdueixi el correu electrònic i se li enviarà una nova constrasenya."
+
+msgid "Create an account."
+msgstr "Crea un compte."
+
+msgid "Error sending new password. Try again, or contact with the Administrator."
+msgstr "Error en enviar la nova contrasenya. Proveu-ho o poseu-vos en contacte amb l'Administrador."
 
 #~ msgid "partner"
 #~ msgstr "empresa"

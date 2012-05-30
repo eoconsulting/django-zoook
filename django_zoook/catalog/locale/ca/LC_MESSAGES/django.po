@@ -407,7 +407,7 @@ msgid "Product Name"
 msgstr "Nom del producte"
 
 #: templates/catalog/whistlist.html:42
-msgid "Remove Item"
+msgid "Remove item"
 msgstr "Treu el producte"
 
 #: templates/catalog/tags/product_related.html:5
@@ -421,6 +421,12 @@ msgstr "Afegeix a la cistella"
 
 msgid "Featured Products"
 msgstr "Productes Destacats"
+
+msgid "name"
+msgstr "Nom"
+
+msgid "price"
+msgstr "Preu"
 
 #~ msgid "Pricelist"
 #~ msgstr "Tarifa"

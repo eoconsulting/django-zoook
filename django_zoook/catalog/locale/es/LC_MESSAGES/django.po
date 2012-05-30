@@ -154,7 +154,7 @@ msgstr "EAN13"
 
 #: models.py:142 templates/catalog/whistlist.html:26
 msgid "Price"
-msgstr "Precio unidad"
+msgstr "Precio"
 
 #: models.py:143
 msgid "Manufacturer"
@@ -309,7 +309,7 @@ msgstr "Ver como"
 
 #: templates/catalog/category.html:32
 msgid "Grid"
-msgstr "Parrilla"
+msgstr "Galería"
 
 #: templates/catalog/category.html:33
 msgid "List"
@@ -407,8 +407,8 @@ msgid "Product Name"
 msgstr "Nombre del producto"
 
 #: templates/catalog/whistlist.html:42
-msgid "Remove Item"
-msgstr "Borra el producte"
+msgid "Remove item"
+msgstr "Borrar el producto"
 
 #: templates/catalog/tags/product_related.html:5
 msgid "There are not related products"
@@ -421,6 +421,12 @@ msgstr "Añade a la cesta"
 
 msgid "Featured Products"
 msgstr "Productos Destacados"
+
+msgid "name"
+msgstr "Nombre"
+
+msgid "price"
+msgstr "Precio"
 
 #~ msgid "Pricelist"
 #~ msgstr "Tarifa"

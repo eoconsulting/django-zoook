@@ -115,8 +115,8 @@ def keyword(request,tag):
         values.sort(key=lambda x: x[request.session['order']], reverse = request.session['order_by'] == 'desc')
 
         # == template values ==
-        title = _('“%(query)s” - Page %(page)s of %(total)s') % {'query': q, 'page': products.number, 'total': products.paginator.num_pages}
-        metadescription = _('%(query)s. Page %(page)s of %(total)s') % {'query': q, 'page': products.number, 'total':products.paginator.num_pages}
+        title = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': products.paginator.num_pages}
+        metadescription = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total':products.paginator.num_pages}
         category_values = {
             'title': title,
             'query': '“%s”' % q,
