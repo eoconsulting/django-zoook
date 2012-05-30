@@ -209,8 +209,8 @@ msgstr ""
 "Por favor, no conteste este correo electrónico"
 
 #: views.py:331
-msgid "New password is added"
-msgstr "Se ha añadido una nueva contraseña"
+msgid "New password is added."
+msgstr "Se ha añadido una nueva contraseña."
 
 #: views.py:333
 #, python-format
@@ -386,7 +386,7 @@ msgid "Create an account."
 msgstr "Crear una cuenta."
 
 msgid "Error sending new password. Try again, or contact with the Administrator."
-msgstr "Error enviando nueva password. Intente nuevamente, o contactese con el Administrador."
+msgstr "Error enviando nueva password. Intente nuevamente, o contáctese con el Administrador."
 
 #~ msgid "partner"
 #~ msgstr "empresa"

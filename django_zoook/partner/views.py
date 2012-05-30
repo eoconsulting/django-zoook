@@ -347,8 +347,15 @@ def changepassword(request):
                     subject = _('New password is added - %(name)s') % {'name':site_configuration.site_title}
                     body = _("This email is generated  automatically from %(site)s\n\nNew password: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'password':data['password1'],'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[request.user.email])
-                    email.send()
-                error = _("New password is added")
+                    try:
+                        email.send()
+                    except Exception, e:
+                        logging.error("Error sending new password to user email.\nException: %s" % str(e))
+                        error = _("Error sending new password. Try again, or contact with the Administrator.")
+                    else:
+                        error = _("New password is added.")
+                else:
+                    error = _("New password is added.")
             else:
                 error = _("Sorry. Passwords need %(size)s characters or more. Try again.") % {'size':KEY_LENGHT}
         else:

@@ -209,8 +209,8 @@ msgstr ""
 "Si us plau, no contesteu aquest correu electrònic"
 
 #: views.py:331
-msgid "New password is added"
-msgstr "Nova contrasenya afegida"
+msgid "New password is added."
+msgstr "Nova contrasenya afegida."
 
 #: views.py:333
 #, python-format
