@@ -88,7 +88,7 @@ msgstr "Referencia"
 
 #: templates/account/invoice.html:39
 msgid "Qty"
-msgstr "Qty"
+msgstr "Cant"
 
 #: templates/account/invoice.html:40
 msgid "Discount"
@@ -96,7 +96,7 @@ msgstr "Descuento"
 
 #: templates/account/invoice.html:41
 msgid "Unit Price"
-msgstr "Unidad Precio"
+msgstr "Precio Unit"
 
 #: templates/account/invoice.html:42
 msgid "Subtotal"

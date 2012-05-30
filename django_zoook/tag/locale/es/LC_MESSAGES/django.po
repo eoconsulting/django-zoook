@@ -193,8 +193,8 @@ msgstr "Lista todas las categorías de %s"
 
 #: views.py:195
 #, python-format
-msgid "%(category)s - Page %(page)s of %(total)s"
-msgstr "%(category)s - Página %(page)s de %(total)s"
+msgid "'%(tag)s' - Page %(page)s of %(total)s"
+msgstr "'%(tag)s' - Página %(page)s de %(total)s"
 
 #: views.py:196
 #, python-format
@@ -278,7 +278,7 @@ msgstr "Ver como"
 
 #: templates/tag/tag.html:32
 msgid "Grid"
-msgstr "Parrilla"
+msgstr "Galería"
 
 #: templates/tag/tag.html:33
 msgid "List"

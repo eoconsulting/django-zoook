@@ -48,6 +48,8 @@ from django_zoook.tools.conn import conn_webservice
 from django_zoook.tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
 
 import base64
+from symbol import except_clause
+from psycopg2.extras import logging
 
 def is_valid_email(email):
     """Email validation"""
@@ -141,7 +143,7 @@ def register(request):
                     users = User.objects.filter(username__exact=username)
                     emails = User.objects.filter(email__exact=email)
                 else:
-                    msg = _('Sorry. This email is not valid. Try again')
+                    msg = _('Sorry. The email is not valid. Try again.')
                     message.append(msg)
 
                 if RECAPTCHA_PUB_KEY != '':
@@ -285,15 +287,20 @@ def remember(request):
                     subject = _('Remember username - %(name)s') % {'name':site_configuration.site_title}
                     body = _("This email is generated  automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'username':user.username,'password':key,'live_url':LIVE_URL}
                     email = EmailMessage(subject, body, to=[user.email])
-                    email.send()
+                    try:
+                        email.send()
+                    except Exception, e:
+                        logging.error("Error sending new password to user email.\nException: %s" % str(e))
+                        msg = _("Error sending new password. Try again, or contact with the Administrator.")
+                    else:
+                        msg = _('A new password are sent to %(email)s') % {'email':user.email}
                     email = ''
-                    msg = _('A new password are sent to %(email)s') % {'email':user.email}
                     message.append(msg)
                 else:
                     msg = _('Sorry. This email not exist. Try again')
                     message.append(msg)
             else:
-                msg = _('Sorry. This email is not valid. Try again')
+                msg = _('Sorry. The email is not valid. Try again.')
                 message.append(msg)
 
     form = UserCreationForm()
