@@ -48,11 +48,11 @@
             <div id="product-{{product.id}}" class="product-page block border5 clearfix">
                 <div class="product-imgbox">
                     <a rel="zoom" href="{% thumbnail base_image.url 600x600 /static/images/product_detail_zoook.png %}" class="product-img zoom"><span class="zoom-icon"></span>
-                    <img src="{% thumbnail base_image.url 300x300 /static/images/product_detail_zoook.png %}" width="300" height="300" title="{{base_image.name}}" /></a>
+                    <img src="{% thumbnail base_image.url 300x300 /static/images/product_detail_zoook.png %}" title="{{base_image.name}}" /></a>
                     <ul class="other-img">
-                        <li><a rel="zoom" href="{% thumbnail base_image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail base_image.url 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{base_image.name}}" /></a></li>
+                        <li><a rel="zoom" href="{% thumbnail base_image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail base_image.url 150x150 /static/images/product_thumb_zoook.png %}" title="{{base_image.name}}" /></a></li>
                         {% for image in thumb_images %}
-                        <li><a rel="zoom" href="{% thumbnail image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail image.url 150x150 /static/images/product_thumb_zoook.png %}" width="60" height="60" title="{{image.name}}" /></a></li>
+                        <li><a rel="zoom" href="{% thumbnail image.url 300x300 /static/images/product_detail_zoook.png %}"><img src="{% thumbnail image.url 150x150 /static/images/product_thumb_zoook.png %}" title="{{image.name}}" /></a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -105,7 +105,7 @@
                 <table id="product-related-table" class="cart-table">
                 <tbody>
                     {% for product in related_products %}<tr>
-                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" alt="{{ product.product.name }}" /></a></td>
                         <td><h2 class="product-name-related"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="product-related-description a-right">{{ product.product.shortdescription }}</td>
                         <td class="product-related-price a-right">
@@ -124,7 +124,7 @@
                 <table id="product-upsells-table" class="cart-table">
                 <tbody>
                     {% for product in upsells_products %}<tr>
-                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" width="80" height="80" alt="{{ product.product.name }}" /></a></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" alt="{{ product.product.name }}" /></a></td>
                         <td><h2 class="product-name-upsells"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="product-upsells-description a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
                         <td class="product-upsells-price a-right">
