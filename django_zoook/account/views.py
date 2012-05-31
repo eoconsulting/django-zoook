@@ -36,12 +36,12 @@ from django_zoook.tools.zoook import checkPartnerID, checkFullName, connOOOP, pa
 def invoices(request):
     partner_id = checkPartnerID(request)
     if not partner_id:
-        error = _('Are you a customer? Please, contact us. We will create a new role')
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error when connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     
     values = {}
@@ -60,12 +60,12 @@ def invoices(request):
 def invoice(request, invoice):
     partner_id = checkPartnerID(request)
     if not partner_id:
-        error = _('Are you a customer? Please, contact us. We will create a new role')
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
     full_name = checkFullName(request)
     conn = connOOOP()
     if not conn:
-        error = _('Error when connecting with our ERP. Try again or cantact us')
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     values = conn.AccountInvoice.filter(partner_id=partner_id, number=invoice, company_id=OERP_COMPANY)

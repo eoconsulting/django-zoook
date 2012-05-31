@@ -25,8 +25,8 @@ msgid "Order number is not available. Use navigation menu."
 msgstr "Número de comanda no està disponible. Utilitzeu el menú de navegació."
 
 #: views.py:59
-msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
+msgid "Error when connecting with our ERP. Try again or cantact us."
+msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres."
 
 #: views.py:98
 msgid "Error Payment Paypal"

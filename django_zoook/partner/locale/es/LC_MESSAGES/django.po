@@ -62,20 +62,19 @@ msgid "Error with captcha number. Copy same number."
 msgstr "Error en el código de verificación. Copie el mismo número."
 
 #: views.py:146
-msgid "Sorry. This user already exists. Use another username"
-msgstr "Este usuario ya existe. Utiliza otro nombre usuario"
+msgid "Sorry. This user already exists. Use another username."
+msgstr "Este usuario ya existe. Utilice otro nombre de usuario."
 
 #: views.py:149
 msgid ""
-"Sorry. This email already exists. Use another email or remember password"
+"Sorry. This email already exists. Use another email or remember password."
 msgstr ""
 "Este correo electrónico ya existe. Utilice otro o recuerde la contraseña."
 
 #: views.py:156 views.py:350
-msgid "Error when connecting with our ERP. Try again or cantact us"
+msgid "Error when connecting with our ERP. Try again or cantact us."
 msgstr ""
-"Error conectando con nuestro ERP. Vuelva a intentarlo o, contacte con "
-"nosotros."
+"Error conectando con nuestro ERP. Vuelva a intentarlo, o contáctenos."
 
 #: views.py:161
 msgid ""
@@ -115,11 +114,11 @@ msgstr ""
 "Por favor, no conteste este correo"
 
 #: views.py:227
-msgid "Sorry. Error form values. Try again"
+msgid "Sorry. Error form values. Try again."
 msgstr "Error en los valores del formulario. Vuelva a intentarlo."
 
 #: views.py:230
-msgid "Sorry. Passwords do not match. Try again"
+msgid "Sorry. Passwords do not match. Try again."
 msgstr "Las contraseñas no coinciden. Vuelva a intentarlo."
 
 #: views.py:248 templates/partner/remember.html:39
@@ -167,7 +166,7 @@ msgid "A new password are sent to %(email)s"
 msgstr "Se ha enviado una nueva contraseña a su cuenta %(email)s"
 
 #: views.py:281
-msgid "Sorry. This email not exist. Try again"
+msgid "Sorry. This email not exist. Try again."
 msgstr "Esta dirección de correo electrónico no existe. Vuelva a intentarlo."
 
 #: views.py:300
@@ -210,24 +209,24 @@ msgstr ""
 "Por favor, no conteste este correo electrónico"
 
 #: views.py:331
-msgid "New password is added"
-msgstr "Se ha añadido una nueva contraseña"
+msgid "New password is added."
+msgstr "Se ha añadido una nueva contraseña."
 
 #: views.py:333
 #, python-format
-msgid "Sorry. Passwords need %(size)s characters or more. Try again"
+msgid "Sorry. Passwords need %(size)s characters or more. Try again."
 msgstr ""
 "Las contraseñas deben tener %(size)s caracteres o más. Vuelva a intentarlo."
 
 #: views.py:335
-msgid "Sorry. Passwords don't match. Try again"
+msgid "Sorry. Passwords don't match. Try again."
 msgstr "Las contraseñas no coinciden. Vuelva a intentarlo."
 
 #: views.py:346
-msgid "Are you a customer? Please, contact us. We will create a new role"
+msgid "Are you a customer? Please, contact us. We will create a new role."
 msgstr ""
-"¿Eres cliente? Contacte con nosotros. Os crearemos un cliente en nuestra "
-"tienda"
+"¿Eres cliente? Contáctese con nosotros. Le crearemos un cliente en nuestra "
+"tienda."
 
 #: views.py:359
 msgid "User Profile"
@@ -387,7 +386,7 @@ msgid "Create an account."
 msgstr "Crear una cuenta."
 
 msgid "Error sending new password. Try again, or contact with the Administrator."
-msgstr "Error enviando nueva password. Intente nuevamente, o contactese con el Administrador."
+msgstr "Error enviando nueva password. Intente nuevamente, o contáctese con el Administrador."
 
 #~ msgid "partner"
 #~ msgstr "empresa"

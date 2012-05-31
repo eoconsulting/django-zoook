@@ -26,8 +26,10 @@ msgstr "Su pedido está en proceso pero no se ha podido enviar el correo electr�
 #: views.py:207
 #: views.py:334
 #: views.py:364
-msgid "Are you a customer? Please, contact us. We will create a new role"
-msgstr "¿Eres un cliente? Contacte con nosotros. Os crearemos como cliente en nuestra tienda."
+msgid "Are you a customer? Please, contact us. We will create a new role."
+msgstr ""
+"¿Eres cliente? Contáctese con nosotros. Le crearemos un cliente en nuestra "
+"tienda."
 
 #: views.py:54
 #: views.py:81
@@ -35,8 +37,8 @@ msgstr "¿Eres un cliente? Contacte con nosotros. Os crearemos como cliente en n
 #: views.py:212
 #: views.py:339
 #: views.py:371
-msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr "Error conectando con nuestro ERP. Vuelva a intentarlo o, contacte con nosotros."
+msgid "Error when connecting with our ERP. Try again or cantact us."
+msgstr "Error al conectar con nuestro ERP. Intente de nuevo, o contáctenos."
 
 #: views.py:63
 msgid "All Orders"

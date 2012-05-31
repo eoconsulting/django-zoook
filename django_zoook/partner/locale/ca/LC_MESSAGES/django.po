@@ -61,18 +61,18 @@ msgid "Error with captcha number. Copy same number."
 msgstr "Error amb el codi de verificació. Copieu el mateix nombre."
 
 #: views.py:146
-msgid "Sorry. This user already exists. Use another username"
+msgid "Sorry. This user already exists. Use another username."
 msgstr "Aquest usuari ja existeix. Utilitzeu un altre nom."
 
 #: views.py:149
 msgid ""
-"Sorry. This email already exists. Use another email or remember password"
+"Sorry. This email already exists. Use another email or remember password."
 msgstr ""
 "Aquest correu electrònic ja existeix. Utilitzeu un altre o recordeu la "
 "contrasenya."
 
 #: views.py:156 views.py:350
-msgid "Error when connecting with our ERP. Try again or cantact us"
+msgid "Error when connecting with our ERP. Try again or cantact us."
 msgstr ""
 "Error connectant amb el nostre ERP. Torneu a provar o contacteu amb "
 "nosaltres."
@@ -113,11 +113,11 @@ msgstr ""
 "Si us plau, no contesteu aquest correu"
 
 #: views.py:227
-msgid "Sorry. Error form values. Try again"
+msgid "Sorry. Error form values. Try again."
 msgstr "Error en els valors del formulari. Torneu a provar."
 
 #: views.py:230
-msgid "Sorry. Passwords do not match. Try again"
+msgid "Sorry. Passwords do not match. Try again."
 msgstr "La contrasenya no coincideix. Torneu a prova."
 
 #: views.py:248 templates/partner/remember.html:39
@@ -209,22 +209,22 @@ msgstr ""
 "Si us plau, no contesteu aquest correu electrònic"
 
 #: views.py:331
-msgid "New password is added"
-msgstr "Nova contrasenya afegida"
+msgid "New password is added."
+msgstr "Nova contrasenya afegida."
 
 #: views.py:333
 #, python-format
-msgid "Sorry. Passwords need %(size)s characters or more. Try again"
+msgid "Sorry. Passwords need %(size)s characters or more. Try again."
 msgstr ""
 "Disculpleu. Les contrasenyes han de tenir %(size)s caràcters o més. Torneu a "
 "provar."
 
 #: views.py:335
-msgid "Sorry. Passwords don't match. Try again"
+msgid "Sorry. Passwords don't match. Try again."
 msgstr "Les contrasenyes no coincideixen. Torneu a provar."
 
 #: views.py:346
-msgid "Are you a customer? Please, contact us. We will create a new role"
+msgid "Are you a customer? Please, contact us. We will create a new role."
 msgstr ""
 "És client? Si us plau, contacteu amb nosaltres. Us crearem com a client."
 

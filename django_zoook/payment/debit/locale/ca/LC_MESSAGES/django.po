@@ -30,8 +30,8 @@ msgid "Payment Debit Bank"
 msgstr "Pagament rebut domiciliat"
 
 #: views.py:72
-msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
+msgid "Error when connecting with our ERP. Try again or cantact us."
+msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres."
 
 #: views.py:125
 msgid "Error payment this order or is null. Contact Us or use navigation menu"

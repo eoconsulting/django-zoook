@@ -18,13 +18,13 @@ msgstr ""
 
 #: views.py:39
 #: views.py:63
-msgid "Are you a customer? Please, contact us. We will create a new role"
+msgid "Are you a customer? Please, contact us. We will create a new role."
 msgstr "És client? Si us plau, contacteu amb nosaltres. Us crearem com a client."
 
 #: views.py:44
 #: views.py:68
-msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres"
+msgid "Error when connecting with our ERP. Try again or cantact us."
+msgstr "Error en connectar amb el nostre ERP. Intenteu-ho de nou o, contacteu amb nosaltres."
 
 #: views.py:53
 msgid "All Invoices"

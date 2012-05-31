@@ -27,8 +27,8 @@ msgstr "Número de pedido no está disponible. Utilize el menú de navegación."
 
 #: views.py:61
 #: views.py:156
-msgid "Error when connecting with our ERP. Try again or cantact us"
-msgstr "Error en conectar con nuestro ERP. Intente de nuevo, o contacte con nosotros."
+msgid "Error when connecting with our ERP. Try again or cantact us."
+msgstr "Error al conectar con nuestro ERP. Intente de nuevo, o contáctenos."
 
 #: views.py:92
 msgid "Error Payment Credit Card Pasat 4b"
