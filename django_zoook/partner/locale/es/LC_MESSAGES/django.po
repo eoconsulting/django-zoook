@@ -85,7 +85,7 @@ msgstr ""
 
 #: views.py:170
 msgid "Vat not valid. Check if vat is correct"
-msgstr "NIF/CIF no válido. Compruebe que el NIF/CIF es correcto."
+msgstr "NIF/CIF/CUIL/CUIT no válido. Compruebe que esté escrito correctamente."
 
 #: views.py:218
 #, python-format
@@ -348,7 +348,7 @@ msgstr "Cliente"
 
 #: templates/partner/register.html:48
 msgid "Vat"
-msgstr "NIF/CIF"
+msgstr "NIF/CIF/CUIL/CUIT"
 
 #: templates/partner/register.html:59
 msgid "ZIP"
