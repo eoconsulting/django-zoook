@@ -93,6 +93,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'maintenancemode.middleware.MaintenanceModeMiddleware',
+    'django_zoook.trace.TraceMiddleware',
 )
 
 ROOT_URLCONF = 'django_zoook.urls'
