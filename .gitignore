@@ -9,9 +9,13 @@
 log
 dist
 build
+
+# Ignore Eclipse IDE files
 .settings
 .project
 .pydevproject
+
+
 *.egg-info
 .directory
 
