@@ -279,3 +279,8 @@ msgstr "Debe seleccionar el pago"
 #~ "No tiene permisos para acceder esta sección o no se encuentra. Utiliza el "
 #~ "menú de navegación."
 
+msgid "Checkout Error"
+msgstr "Error al crear el pedido"
+
+msgid "Error creating/modifying the order. Try again, or contact with us."
+msgstr "Error creando/modificando la order. Intente de nuevo, o contáctenos."

@@ -244,7 +244,15 @@ def checkout(request):
                     '', #name
                     partner_id, #partner_id
                 ]
-                product_id_change = conn_webservice('sale.order.line','product_id_change', values)
+                try:
+                    product_id_change = conn_webservice('sale.order.line','product_id_change', values)
+                except Exception, e:
+                    logging.error("Error creating/modifying the order.\nValues: %s\nException: %s" % (str(values),str(e)))
+                    values = {
+                            'title': _('Checkout Error'),
+                            'error':_("Error creating/modifying the order. Try again, or contact with us."),
+                        }
+                    return render_to_response("sale/checkout.html", values, context_instance=RequestContext(request))
 
                 sale_order_add_product = True
                 not_enought_stock = None

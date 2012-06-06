@@ -29,79 +29,86 @@
         </div>
     </div>
     <div id="content">
-        <form id="checkoutForm" class="checkout" method="post" action="{% url sale_checkout_confirm %}">
-        <div id="catalog-order" class="block border5 clearfix">
-            {% if message %}
-                <div id="message">
-                    <h1>{{ message }}</h1>
-                </div>
-            {% endif %}
-
-            <table id="order-cart-table" class="order-table">
-            <thead>
-                <tr>
-                    <th>{% trans "Reference" %}</th>
-                    <th><span class="nobr">{% trans "Qty" %}</span></th>
-                    <th><span class="nobr">{% trans "Discount" %}</span></th>
-                    <th><span class="nobr">{% trans "Unit Price" %}</span></th>
-                    <th><span class="nobr">{% trans "Subtotal" %}</span></th>
-                    <th><span class="nobr">{% trans "Delete" %}</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if lines|length == 0 %}<tr><td colspan="6">{% trans "Your cart is empty" %}</td></tr>{%endif%}
-                {% for line in lines %}<tr class="{% cycle 'row1' 'row2' %}">
-                    <td><a href="{{ LOCALE_URI }}/{% trans "product" %}/{{ line.product_id.product_tmpl_id.slug }}" title="{{ line.name }}">{{ line.name }}</a>{% if line.product_id.cartdescription %}<br/>{{ line.product_id.cartdescription }}{%endif%}</td>
-                    <td>{{ line.product_uom_qty }}</td>
-                    <td>{{ line.discount }}</td>
-                    <td>{{ line.price_unit }}</td>
-                    <td>{{ line.price_subtotal }}</td>
-                    <td class="a-center"><a href="{{ LOCALE_URI }}/sale/checkout/remove/{{line.product_id.code}}" title="{% trans "Remove item" %}" class="btn-trash">{% trans "Remove item" %}</a></td>
-                </tr>{% endfor %}
-            </tbody>
-            </table>
-            {% if order.state == 'draft' and order.amount_total != 0.0 %}
-            <div id="checkout-total">
-                <p class="amount"><strong>{% trans "Untaxed Amount" %}:</strong> {{ order.amount_untaxed }} {{ order.pricelist_id.currency_id.symbol }}<br/>
-                <strong>{% trans "Taxes" %}:</strong> {{ order.amount_tax }} {{ order.pricelist_id.currency_id.symbol }}<br/>
-                <strong>{% trans "Total" %}:</strong> <span class="total">{{ order.amount_total }} {{ order.pricelist_id.currency_id.symbol }}</span></p>
-                <div class="checkout-options">
-                    <p>{% trans "Delivery" %}:
-                    <select name="delivery" class="delivery">
-                    {% for delivery in deliveries %}
-                        <option value="{{  delivery.code }}|{{ delivery.cost }}">{{  delivery.name }} (+{{  delivery.cost }})</option>
-                    {% endfor %}
-                    </select></p>
-                    <p>{% trans "Payment" %}:
-                    <select name="payment" class="payment">
-                    {% for payment in payments %}
-                        <option value="{{ payment.app_payment }}">{{ payment.name }}</option> 
-                    {% endfor %}
-                    </select></p>
-                    <p>{% trans "Code Promotion" %}:
-                        <input type="text" name="promotion" id="id_promotion" minlength="6"/>
-                    </p>
-                </div>
-                <input id="confirm" type="button" value="{% trans "Confirm" %}" class="border2 button-confirm"/>    
-            </div>
-            <div id="checkout-address">
-                <h2>{% trans "Address Invoice" %}</h2>
-                <select name="address_invoice" class="address">
-                {% for address_invoice in address_invoices %}
-                    <option value="{{ address_invoice.id }}" {% if order.partner_invoice_id.id == address_invoice.id %} selected="selected"{% endif %}>{{ address_invoice.street }} {{ address_invoice.zip }} {{ address_invoice.city }}</option>
-                {% endfor %}
-                </select>
-                <h2>{% trans "Address Delivery" %}</h2>
-                <select name="address_delivery" class="address">
-                {% for address_delivery in address_deliveries %}
-                    <option value="{{ address_delivery.id }}" {% if order.partner_shipping_id.id == address_delivery.id %} selected="selected"{% endif %}>{{ address_delivery.street }} {{ address_delivery.zip }} {{ address_delivery.city }}</option>
-                {% endfor %}
-                </select>
-            </div>
-            {% endif %}
-        </div>
-        {% csrf_token %}
-        </form>
+    	{% if error %}
+    		<div id="message" class="msg-error">
+    			<h2>{{ error }}</h2>
+    		</div>
+    	{% endif %}
+    	{% if order %}
+	        <form id="checkoutForm" class="checkout" method="post" action="{% url sale_checkout_confirm %}">
+	        <div id="catalog-order" class="block border5 clearfix">
+	            {% if message %}
+	                <div id="message">
+	                    <h1>{{ message }}</h1>
+	                </div>
+	            {% endif %}
+	
+	            <table id="order-cart-table" class="order-table">
+	            <thead>
+	                <tr>
+	                    <th>{% trans "Reference" %}</th>
+	                    <th><span class="nobr">{% trans "Qty" %}</span></th>
+	                    <th><span class="nobr">{% trans "Discount" %}</span></th>
+	                    <th><span class="nobr">{% trans "Unit Price" %}</span></th>
+	                    <th><span class="nobr">{% trans "Subtotal" %}</span></th>
+	                    <th><span class="nobr">{% trans "Delete" %}</span></th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                {% if lines|length == 0 %}<tr><td colspan="6">{% trans "Your cart is empty" %}</td></tr>{%endif%}
+	                {% for line in lines %}<tr class="{% cycle 'row1' 'row2' %}">
+	                    <td><a href="{{ LOCALE_URI }}/{% trans "product" %}/{{ line.product_id.product_tmpl_id.slug }}" title="{{ line.name }}">{{ line.name }}</a>{% if line.product_id.cartdescription %}<br/>{{ line.product_id.cartdescription }}{%endif%}</td>
+	                    <td>{{ line.product_uom_qty }}</td>
+	                    <td>{{ line.discount }}</td>
+	                    <td>{{ line.price_unit }}</td>
+	                    <td>{{ line.price_subtotal }}</td>
+	                    <td class="a-center"><a href="{{ LOCALE_URI }}/sale/checkout/remove/{{line.product_id.code}}" title="{% trans "Remove item" %}" class="btn-trash">{% trans "Remove item" %}</a></td>
+	                </tr>{% endfor %}
+	            </tbody>
+	            </table>
+	            {% if order.state == 'draft' and order.amount_total != 0.0 %}
+	            <div id="checkout-total">
+	                <p class="amount"><strong>{% trans "Untaxed Amount" %}:</strong> {{ order.amount_untaxed }} {{ order.pricelist_id.currency_id.symbol }}<br/>
+	                <strong>{% trans "Taxes" %}:</strong> {{ order.amount_tax }} {{ order.pricelist_id.currency_id.symbol }}<br/>
+	                <strong>{% trans "Total" %}:</strong> <span class="total">{{ order.amount_total }} {{ order.pricelist_id.currency_id.symbol }}</span></p>
+	                <div class="checkout-options">
+	                    <p>{% trans "Delivery" %}:
+	                    <select name="delivery" class="delivery">
+	                    {% for delivery in deliveries %}
+	                        <option value="{{  delivery.code }}|{{ delivery.cost }}">{{  delivery.name }} (+{{  delivery.cost }})</option>
+	                    {% endfor %}
+	                    </select></p>
+	                    <p>{% trans "Payment" %}:
+	                    <select name="payment" class="payment">
+	                    {% for payment in payments %}
+	                        <option value="{{ payment.app_payment }}">{{ payment.name }}</option> 
+	                    {% endfor %}
+	                    </select></p>
+	                    <p>{% trans "Code Promotion" %}:
+	                        <input type="text" name="promotion" id="id_promotion" minlength="6"/>
+	                    </p>
+	                </div>
+	                <input id="confirm" type="button" value="{% trans "Confirm" %}" class="border2 button-confirm"/>    
+	            </div>
+	            <div id="checkout-address">
+	                <h2>{% trans "Address Invoice" %}</h2>
+	                <select name="address_invoice" class="address">
+	                {% for address_invoice in address_invoices %}
+	                    <option value="{{ address_invoice.id }}" {% if order.partner_invoice_id.id == address_invoice.id %} selected="selected"{% endif %}>{{ address_invoice.street }} {{ address_invoice.zip }} {{ address_invoice.city }}</option>
+	                {% endfor %}
+	                </select>
+	                <h2>{% trans "Address Delivery" %}</h2>
+	                <select name="address_delivery" class="address">
+	                {% for address_delivery in address_deliveries %}
+	                    <option value="{{ address_delivery.id }}" {% if order.partner_shipping_id.id == address_delivery.id %} selected="selected"{% endif %}>{{ address_delivery.street }} {{ address_delivery.zip }} {{ address_delivery.city }}</option>
+	                {% endfor %}
+	                </select>
+	            </div>
+	            {% endif %}
+	        </div>
+	        {% csrf_token %}
+	        </form>
+        {% endif %}
     </div>
 </div>
   
