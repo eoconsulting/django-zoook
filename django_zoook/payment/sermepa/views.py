@@ -37,7 +37,6 @@ from sermepa.sermepa.models import SermepaResponse
 
 from django_zoook.sale.email import SaleOrderEmail
 
-import time
 import logging
 
 @login_required
@@ -91,7 +90,7 @@ def index(request):
 
         form = SermepaPaymentForm(initial=sermepa_dict)
         debug = DEBUG
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: sermepa form and redirect' % (order.name) ))
+        logging.info('Order %s: sermepa form and redirect' % order.name)
         return HttpResponse(render_to_response('sermepa/form.html', locals(), context_instance=RequestContext(request)))
 
     else:
@@ -138,7 +137,7 @@ def sermepa_confirm(request):
         #send email sale order
         SaleOrderEmail(order.id)
 
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Order %s: servired payment finish') % (order.name) ))
+        logging.info(_('Order %s: servired payment finish') % order.name)
 
         return HttpResponse(render_to_response('sermepa/confirm.html', values, context_instance=RequestContext(request)))
     else:

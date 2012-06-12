@@ -33,7 +33,7 @@ import django_zoook.logconfig
 
 from django_zoook.settings import *
 from django.utils.translation import ugettext as _
-from django_zoook.catalog.models import ProductProduct, ProductTemplate
+from django_zoook.catalog.models import ProductProduct, ProductTemplate, ResManufacturer
 from django_zoook.tools.conn import conn_webservice
 
 logging.info(_('Sync. Products. Running'))

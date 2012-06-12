@@ -40,8 +40,8 @@ from django.core.mail import EmailMessage
 
 from recaptcha.client import captcha
 
-from partner.models import *
-from base.models import *
+from django_zoook.partner.models import *
+from django_zoook.base.models import *
 
 from django_zoook.settings import *
 from django_zoook.tools.conn import conn_webservice

@@ -37,7 +37,6 @@ from pasat4b.pasat4b.models import pasat4bResponse
 
 from django_zoook.sale.email import SaleOrderEmail
 
-import time
 import logging
 
 @login_required
@@ -76,7 +75,7 @@ def index(request):
 
         form = pasat4bPaymentForm(initial=pasat4b_dict)
         debug = DEBUG
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: Pasat 4b form and redirect' % (order.name) ))
+        logging.info('Order %s: Pasat 4b form and redirect' % order.name)
         return HttpResponse(render_to_response('pasat4b/form.html', locals(), context_instance=RequestContext(request)))
 
     else:
@@ -108,7 +107,7 @@ def pasat4b_confirm(request):
     payment_pasat4b = pasat4bResponse.objects.filter(pszPurchorderNum=order)
     payment = False
 
-    if len(payment_pasat4b)>0:
+    if len(payment_pasat4b) > 0:
         if (payment_pasat4b[0].result == 0): #0 -> transaccin autorizada
             payment = True
 
@@ -119,14 +118,14 @@ def pasat4b_confirm(request):
         payment_order = conn_webservice('sale.order', 'sale_order_payment', [order.name, 'pasat4b'])
 
         title = _('Confirmation Payment Credit Card Pasat 4b')
-        values = {'order':request.session['sale_order'],'title':title}
+        values = {'order':request.session['sale_order'], 'title':title}
 
         del request.session['sale_order']
 
         #send email sale order
         SaleOrderEmail(order.id)
 
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Order %s: Pasat 4b payment finish') % (order.name) ))
+        logging.info(_('Order %s: Pasat 4b payment finish') % order.name)
 
         return HttpResponse(render_to_response('pasat4b/confirm.html', values, context_instance=RequestContext(request)))
     else:
@@ -162,16 +161,16 @@ def pasat4b_getorder(request):
         
         if (order.state == 'draft'):
             amount_total = '%.*f' % (PASAT4B_DECIMAL, order.amount_total)
-            amount_total = str(amount_total).replace('.','') # Replace 123,45 to 12345
-            value = "M978%s\n1\n1\n%s\n1\n%s\n\n" % ( amount_total, order.name, amount_total)
+            amount_total = str(amount_total).replace('.', '') # Replace 123,45 to 12345
+            value = "M978%s\n1\n1\n%s\n1\n%s\n\n" % (amount_total, order.name, amount_total)
 
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Order %s prossesing Pasat 4b') % (order_code) ))
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Pasat Values %s') % (value.replace('\n','|')) ))
+            logging.info(_('Order %s prossesing Pasat 4b') % order_code)
+            logging.info(_('Pasat Values %s') % value.replace('\n', '|'))
 
-            return render_to_response('pasat4b/order.html', {'value': value,})
+            return render_to_response('pasat4b/order.html', {'value': value, })
         else:
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Error Order %s Pasat 4b') % (order_code) ))
+            logging.info(_('Error Order %s Pasat 4b') % order_code)
             return render_to_response("pasat4b/order_error.html", locals(), context_instance=RequestContext(request))
     else:
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Error Order %s Pasat 4b. Not exist') % (order_code) ))
+        logging.info(_('Error Order %s Pasat 4b. Not exist') % order_code)
         return render_to_response("pasat4b/order_error.html", locals(), context_instance=RequestContext(request))
