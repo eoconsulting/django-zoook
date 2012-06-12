@@ -21,7 +21,7 @@
 ############################################################################################
 
 from django.contrib import admin
-from blog.models import *
+from django_zoook.blog.models import *
 from datetime import datetime
 
 class BlogAdmin(admin.ModelAdmin):

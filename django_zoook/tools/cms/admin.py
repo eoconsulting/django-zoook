@@ -22,7 +22,7 @@
 
 from django.contrib import admin
 
-from tools.cms.models import *
+from django_zoook.tools.cms.models import *
 from . import models
 
 class SiteConfigurationAdmin(admin.ModelAdmin):

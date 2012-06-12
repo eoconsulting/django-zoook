@@ -21,7 +21,7 @@
 ############################################################################################
 
 from django import template
-from freeel.blog.models import Blog
+from django_zoook.blog.models import Blog
 
 register = template.Library()
 

@@ -68,7 +68,7 @@ class Content(ContentBase):
         return self.name
 
     def save(self):
-        from middleware import threadlocals
+        from django_zoook.middleware import threadlocals
 
         if not self.id:
             self.created_by = threadlocals.get_current_user()
