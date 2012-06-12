@@ -26,5 +26,6 @@ from django_zoook.contact.views import *
 """Urls Contact"""
 
 urlpatterns = patterns("",
-    (r'^$', 'django_zoook.contact.views.contactForm'),
+    url(r'^(?P<contact>[^/]+)', 'django_zoook.contact.views.contactForm', name='contact_contact'),
+    url(r'^$', 'django_zoook.contact.views.contactForm', name='contact_contacts'),
 )

@@ -68,6 +68,54 @@ msgstr "Nombre"
 msgid "Email"
 msgstr "Email"
 
+#: models.py:40
+msgid "Show Email"
+msgstr "Mostrar el correo"
+
+#: models.py:41
+msgid "Street"
+msgstr "Calle"
+
+#: models.py:42
+msgid "Zip"
+msgstr "Código postal"
+
+#: models.py:43
+msgid "City"
+msgstr "Ciudad"
+
+#: models.py:44
+msgid "Country"
+msgstr "País"
+
+#: models.py:45
+msgid "Phone"
+msgstr "Teléfono"
+
+#: models.py:46
+msgid "Mobile Phone"
+msgstr "Móvil"
+
+#: models.py:47
+msgid "Fax"
+msgstr "Fax"
+
+#: models.py:48
+msgid "UTM"
+msgstr "UTM"
+
+#: models.py:49
+msgid "Twitter"
+msgstr "Twitter"
+
+#: models.py:50
+msgid "Miscellaneous"
+msgstr "Miscelánea"
+
+#: models.py:51
+msgid "Status"
+msgstr "Estado"
+
 #: templates/contact/form.html:37
 msgid "Message"
 msgstr "Mensaje"
