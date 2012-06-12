@@ -21,7 +21,7 @@
 ############################################################################################
 
 from django.contrib import admin
-from content.models import *
+from django_zoook.content.models import *
 from datetime import datetime
 
 class ContentAdmin(admin.ModelAdmin):
@@ -41,7 +41,12 @@ class ContentAdmin(admin.ModelAdmin):
         'updated_on',
         'status'
     )
-    search_fields = ["name", "description"]
+    search_fields = [
+        "name_en",
+        "description_en",
+        "name_es",
+        "description_es",
+        ]
     list_filter = ["status"]
     prepopulated_fields = {
         'slug_en': ('name_en',),
@@ -50,8 +55,8 @@ class ContentAdmin(admin.ModelAdmin):
 
     class Media:
         js = (
-            'js/ckeditor/ckeditor.js',
-            'js/ckeditor.js',
+            '/static/js/ckeditor/ckeditor.js',
+            '/static/js/ckeditor.js',
         )
 
     def save_model(self, request, obj, form, change): 

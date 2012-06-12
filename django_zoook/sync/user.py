@@ -24,11 +24,10 @@
 import os
 import sys
 import logging
-import time
 import optparse
 
 from config_path import zoook_root
-sys.path.append(zoook_root)
+sys.path.insert(0, zoook_root)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 import django_zoook.logconfig
@@ -40,7 +39,7 @@ from django_zoook.partner.models import *
 
 
 if __name__=="__main__":
-    logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. User. Running')))
+    logging.info(_('Sync. User. Running'))
     parser = optparse.OptionParser("usage: %prog [options]")
     parser.add_option("-u", "--username", dest="username", type="string", help="User Name")
     parser.add_option("-p", "--password", dest="password", type="string", help="Password")
@@ -72,8 +71,7 @@ if __name__=="__main__":
 
     if len(error) > 0:
         for err in error:
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), err))
-            print err
+            logging.error(err)
     else:
         users = User.objects.filter(username__exact=options.username)
         emails = User.objects.filter(email__exact=options.email)
@@ -85,7 +83,7 @@ if __name__=="__main__":
 
         if len(error) > 0:
             for err in error:
-                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), err))
+                logging.error(str(err))
                 print err
         else:
             user = User.objects.create_user(options.username, options.email, options.password)
@@ -98,6 +96,5 @@ if __name__=="__main__":
             authProfile = AuthProfile(user=user,partner_id=options.uid)
             authProfile.save()
 
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), _('Sync. Products. Done')))
+            logging.info(_('Sync. Users. Done'))
             print True
-

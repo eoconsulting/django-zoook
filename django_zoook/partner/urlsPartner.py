@@ -25,13 +25,13 @@ from django_zoook.partner.views import *
 
 """Urls Partner"""
 urlpatterns = patterns("",
-    (r'^$', 'django_zoook.partner.views.login','', 'partner_index'),
-    (r'^login', 'django_zoook.partner.views.login', '', 'auth_login'),
-    (r'^profile', 'django_zoook.partner.views.profile'),
-    #~ (r'^profile', 'django_zoook.sale.views.orders'),
-    (r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/"}, 'auth_logout'),
-    (r'^register', 'django_zoook.partner.views.register', '', 'auth_register'),
-    (r'^remember', 'django_zoook.partner.views.remember', '' , 'auth_remember'),
-    (r'^changepassword', 'django_zoook.partner.views.changepassword', '', 'auth_changepassword'),
-    (r'^partner', 'django_zoook.partner.views.partner','','partner_partner'),
+    url(r'^$', 'django_zoook.partner.views.login', name='partner'),
+    url(r'^login', 'django_zoook.partner.views.login', name='partner_login'),
+    url(r'^profile', 'django_zoook.partner.views.profile', name='partner_profile'),
+    #url(r'^profile', 'django_zoook.sale.views.orders'),
+    url(r"^logout/$", "django.contrib.auth.views.logout", {"next_page":"/"}, name='partner_logout'),
+    url(r'^register', 'django_zoook.partner.views.register', name='partner_register'),
+    url(r'^remember', 'django_zoook.partner.views.remember', name='partner_remember'),
+    url(r'^changepassword', 'django_zoook.partner.views.changepassword', name='partner_changepassword'),
+    url(r'^partner', 'django_zoook.partner.views.partner', name='partner_partner'),
 )

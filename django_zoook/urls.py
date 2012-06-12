@@ -21,6 +21,8 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
+from django.conf import settings
+
 from django.contrib.sitemaps import GenericSitemap
 
 from django_zoook.views import index, doc
@@ -41,49 +43,64 @@ js_info_dict = {
 }
 
 urlpatterns = patterns('',
-    #(r"^$", index),
-    (r"^$", doc),
-    #~ catalog 
-    (r"^%s/" % catalog_url['en'], include("django_zoook.catalog.urlsCatalog")),
-    (r"^%s/"% catalog_url['es'], include("django_zoook.catalog.urlsCatalog")),
-    (r"^%s/"% catalog_url['ca'], include("django_zoook.catalog.urlsCatalog")),
-    
-    #~ product 
-    (r"^%s/" % product_url['en'], include("django_zoook.catalog.urlsProduct")),
-    (r"^%s/" % product_url['es'], include("django_zoook.catalog.urlsProduct")),
-    (r"^%s/" % product_url['ca'], include("django_zoook.catalog.urlsProduct")),
-    
-    #~ contact
-    (r"^%s/" % contact_url['en'], include("django_zoook.contact.urlsContact")),
-    (r"^%s/" % contact_url['es'], include("django_zoook.contact.urlsContact")),
-    (r"^%s/" % contact_url['ca'], include("django_zoook.contact.urlsContact")),
+    #url(r"^$", index, name='index'),
+    url(r"^$", doc),
 
-    #~ Search
-    (r"^search", search),
+    # catalog 
+    url(r"^%s/" % catalog_url['en'], include("django_zoook.catalog.urlsCatalog")),
+    url(r"^%s/"% catalog_url['es'], include("django_zoook.catalog.urlsCatalog")),
+    url(r"^%s/"% catalog_url['ca'], include("django_zoook.catalog.urlsCatalog")),
 
-    (r"^partner/", include("django_zoook.partner.urlsPartner")),
-    (r"^sale/", include("django_zoook.sale.urlsSale")),
-    (r"^account/", include("django_zoook.account.urlsAccount")),
-    (r"^payment/", include("django_zoook.payment.urlsPayment")),
+    # catalog manage
+    url(r'^catalogmanage/', include('django_zoook.catalog.urlsCatalogManage')),
 
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-    (r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
+    # manufacturer 
+    url(r"^%s/" % manufacturer_url['en'], include("django_zoook.catalog.urlsManufacturer")),
+    url(r"^%s/" % manufacturer_url['es'], include("django_zoook.catalog.urlsManufacturer")),
+    url(r"^%s/" % manufacturer_url['ca'], include("django_zoook.catalog.urlsManufacturer")),
 
-    #~ Ajax Paths
-    (r'^filemanager/', include('tools.filemanager.connector.urls')),
-    (r'^inplaceeditform/', include('inplaceeditform.urls')),
-    (r'^jsi18n$', 'django.views.i18n.javascript_catalog', js_info_dict),
+    # product 
+    url(r"^%s/" % product_url['en'], include("django_zoook.catalog.urlsProduct")),
+    url(r"^%s/" % product_url['es'], include("django_zoook.catalog.urlsProduct")),
+    url(r"^%s/" % product_url['ca'], include("django_zoook.catalog.urlsProduct")),
 
-    #~ Admin 
-    (r'^manager/', include(admin.site.urls)),
-    
-    #~ Cms
-    (r"^cms/", include("django_zoook.tools.cms.urlsCms")),
+    # contact
+    url(r"^%s/" % contact_url['en'], include("django_zoook.contact.urlsContact")),
+    url(r"^%s/" % contact_url['es'], include("django_zoook.contact.urlsContact")),
+    url(r"^%s/" % contact_url['ca'], include("django_zoook.contact.urlsContact")),
+
+    # Search
+    #url(r'^search/', include('haystack.urls')),
+    url(r"^search", search),
+
+    url(r"^partner/", include("django_zoook.partner.urlsPartner")),
+    url(r"^sale/", include("django_zoook.sale.urlsSale")),
+    url(r"^account/", include("django_zoook.account.urlsAccount")),
+    url(r"^payment/", include("django_zoook.payment.urlsPayment")),
+    url(r"^base/", include("django_zoook.base.urlsBase")),
+
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
+
+    # Ajax Paths
+    url(r'^filemanager/', include('tools.filemanager.connector.urls')),
+    url(r'^inplaceeditform/', include('inplaceeditform.urls')),
+    url(r'^jsi18n$', 'django.views.i18n.javascript_catalog', js_info_dict),
+
+    # Admin 
+    url(r'^manager/', include(admin.site.urls)),
+    url(r'^filebrowser/', include('filebrowser.urls')),
+
+    #  Blog
+    url(r"^blog/", include("django_zoook.blog.urlsBlog")),
+
+    # Cms
+    url(r"^cms/", include("django_zoook.tools.cms.urlsCms")),
 
     # Content
-    (r"^content/", include("django_zoook.content.urlsContent")),
-    (r"^(?P<content>[^/]+)", include("django_zoook.content.urlsContent")),
+    url(r"^content/", include("django_zoook.content.urlsContent")),
+    url(r"^(?P<content>[^/]+)", include("django_zoook.content.urlsContent")),
 
     # Tag
-    (r"(?P<tag>[^/]+)/$", keyword),
+    url(r"(?P<tag>[^/]+)/$", keyword),
 )

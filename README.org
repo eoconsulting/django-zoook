@@ -11,6 +11,9 @@ and errors.
 We forked this package to provide better packaging facilities to this
 module, bugfixing, and new features.
 
+Also, this version is compatible with *OpenERP v6.0 and v6.1*,
+and come with ALL SOURCES, including the templates and payment modules.
+
 This sources are available in https://github.com/eoconsulting/django-zoook
 
 The OpenERP module part is in https://github.com/eoconsulting/openerp-esale

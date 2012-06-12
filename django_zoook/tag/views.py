@@ -34,6 +34,7 @@ from django.db.models import Q
 from django_zoook.settings import *
 
 from django_zoook.catalog.models import *
+from django_zoook.tools.paginator import *
 
 
 def keyword(request,tag):
@@ -55,43 +56,19 @@ def keyword(request,tag):
         kwargs_end = {
             'metakeyword_'+get_language()+'__iendswith': ',%s' % q,
         }
-        products = ProductTemplate.objects.filter(Q(status=True), Q(productproduct__active=True),
+
+
+        products = ProductTemplate.objects.filter(Q(status=True), Q(product_product_set__active=True),
                                                   Q(visibility='all') | Q(visibility='search') | Q(visibility='catalog'),
                                                   Q(**kwargs_eq) | Q(**kwargs_start) | Q(**kwargs_md) | Q(**kwargs_end))
 
-        # == Sessions Catalog ==
-        # paginator options = session
-        if 'paginator' in request.session:
-            request.session['paginator'] = request.GET.get('paginator') and int(request.GET.get('paginator')) or request.session['paginator'] or PAGINATOR_TOTAL
-        else:
-            request.session['paginator'] = request.GET.get('paginator') and int(request.GET.get('paginator')) or PAGINATOR_TOTAL
-
-        # mode options = session
-        if 'mode' in request.session:
-            request.session['mode'] = request.GET.get('mode') and request.GET.get('mode') or request.session['mode'] or 'grid'
-        else:
-            request.session['mode'] = request.GET.get('mode') and request.GET.get('mode') or 'grid'
-
-        # order options = session
-        if 'order' in request.session:
-            request.session['order'] = request.GET.get('order') and request.GET.get('order') or request.session['order'] or 'price'
-        else:
-            request.session['order'] = request.GET.get('order') and request.GET.get('order') or 'price'
-
-        # order_by options = session
-        if 'order_by' in request.session:
-            request.session['order_by'] = request.GET.get('order_by') and request.GET.get('order_by') or request.session['order_by'] or 'asc'
-        else:
-            request.session['order_by'] = request.GET.get('order_by') and request.GET.get('order_by') or 'asc'
-
-        # == pagination ==
-        total = len(products)
+        # Pagination options
+        set_paginator_options(request, 'price')
+        total = products.count()
         paginator = Paginator(products, request.session['paginator'])
+        num_pages = get_num_pages(products, request.session['paginator'])
 
-        try:
-            page = int(request.GET.get('page', '1'))
-        except ValueError:
-            page = 1
+        page = int(request.GET.get('page', '1'))
 
         # If page request (9999) is out of range, deliver last page of results.
         try:
@@ -112,11 +89,15 @@ def keyword(request,tag):
             values.append({'product': tplproduct, 'name': tplproduct.name.lower(), 'product_variant': len(prods), 'price': prods[0].price, 'base_image': base_image})
 
         # == order by name or price ==
-        values.sort(key=lambda x: x[request.session['order']], reverse = request.session['order_by'] == 'desc')
+        try:
+            values.sort(key=lambda x: x[request.session['order']], reverse = request.session['order_by'] == 'desc')
+        except:
+            pass
+
 
         # == template values ==
-        title = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': products.paginator.num_pages}
-        metadescription = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total':products.paginator.num_pages}
+        title = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': num_pages}
+        metadescription = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': num_pages}
         category_values = {
             'title': title,
             'query': '“%s”' % q,

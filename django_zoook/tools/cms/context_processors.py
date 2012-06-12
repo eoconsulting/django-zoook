@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ############################################################################################
 #
 #    Zoook. OpenERP e-sale, e-commerce Open Source Management Solution
@@ -24,7 +24,7 @@ from django.utils.translation import get_language
 
 from django_zoook.tools.zoook import siteConfiguration
 
-from django_zoook.settings import BASE_TEMPLATE
+from django_zoook.settings import BASE_TEMPLATE, LIVE_URL
 from django_zoook.config import LOCALE_URI, SITE_ID
 
 def theme(request):
@@ -42,17 +42,33 @@ def theme(request):
         'THEME': BASE_TEMPLATE,
     }
 
-def locale_uri(request):
+def site_configuration(request):
     """
-    Site insert sufix locale uri (en, es, ca, ...)
-    LOCALE_URI true/false in config.py
+    Get Site Configuration values
+    :SITE_CONF:  Object Site Configuration
+    :LIVE_URL: Str URL Site
+    :LOCALE_URI: Available locale uri
     Return dicc
     """
+
+    site_configuration = siteConfiguration(SITE_ID)
 
     sufix = ''
     if LOCALE_URI:
         sufix = "/%s" % get_language()
 
+    user_name = False
+    full_name = False
+    if request.user.is_active:
+        user_name = request.user
+        full_name = request.user.get_full_name()
+        if not full_name:
+            full_name = user_name
+
     return {
+        'SITE_CONF': site_configuration,
+        'SITE_URI': LIVE_URL,
         'LOCALE_URI': sufix,
+        'USER_NAME': user_name,
+        'FULL_NAME': full_name,
     }

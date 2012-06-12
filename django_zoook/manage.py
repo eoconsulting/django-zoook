@@ -21,12 +21,21 @@
 #
 ############################################################################################
 
+
+import os
+
+# Add the parent directory of 'manage.py' to the python path, so manage.py can
+# be run from any directory. From http://www.djangosnippets.org/snippets/281/
+import sys
+zoook_root = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+sys.path.insert(0, zoook_root)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
+
 from django.core.management import execute_manager
 try:
     import settings # Assumed to be in the same directory.
     import logging
 except Exception, e:
-    import sys
     sys.stderr.write('''Error: Can't find the file 'settings.py' in the directory containing %r.
 It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.
 (If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n''' % __file__)

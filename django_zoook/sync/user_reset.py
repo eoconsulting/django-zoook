@@ -24,11 +24,10 @@
 import os
 import sys
 import logging
-import time
 import optparse
 
 from config_path import zoook_root
-sys.path.append(zoook_root)
+sys.path.insert(0, zoook_root)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 import django_zoook.logconfig
@@ -54,7 +53,7 @@ if __name__=="__main__":
 
     if len(error) > 0:
         for err in error:
-            logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), err))
+            logging.error(err)
             print err
     else:
         users = User.objects.filter(username__exact=options.username)
@@ -64,12 +63,10 @@ if __name__=="__main__":
 
         if len(error) > 0:
             for err in error:
-                logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), err))
-                print err
+                logging.error(err)
         else:
             user = users[0]
             user.set_password(options.password)
             user.save()
 
             print True
-

@@ -11,7 +11,7 @@ from django.core.servers.basehttp import FileWrapper
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
-from settings import PATH as PROJECT_DIR
+from django_zoook.settings import PATH as PROJECT_DIR
 
 import os, urllib, time
 import traceback

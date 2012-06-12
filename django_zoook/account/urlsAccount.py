@@ -25,6 +25,6 @@ from django.conf.urls.defaults import *
 """Urls Account"""
 
 urlpatterns = patterns("",
-    (r'^$', 'django_zoook.account.views.invoices','','account_index'),
-    (r"^invoice/(?P<invoice>[^/]+)$", 'django_zoook.account.views.invoice'),
+    url(r'^$', 'django_zoook.account.views.invoices','', name='account'),
+    url(r"^invoice/(?P<invoice>[^/]+)$", 'django_zoook.account.views.invoice', name='account_invoice'),
 )

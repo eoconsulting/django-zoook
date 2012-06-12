@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ############################################################################################
 #
 #    Zoook. OpenERP e-sale, e-commerce Open Source Management Solution
@@ -33,9 +33,12 @@ class SiteConfiguration(Site):
     __metaclass__ = TransMeta
 
     site_title = models.CharField(_('site title'),max_length=150)
+    site_slogan = models.CharField(_('site slogan'),max_length=150, blank=True)
+    site_footer1 = models.TextField( _('footer 1'), blank=True)
+    site_footer2 = models.TextField( _('footer 2'), blank=True)
     site_metadescription = models.CharField(_('site metadescription'),max_length=150)
     site_metakeywords = models.CharField(_('site metakeywords'),max_length=150)
-    contact_email = models.TextField(_('Contact emails'), help_text=_('Separated by comma (,)') )
+    contact_email = models.TextField(_('contact emails'), help_text=_('Separated by comma (,)') )
     rss_max = models.FloatField(_('rss max'))
 
     class Meta:
@@ -44,6 +47,7 @@ class SiteConfiguration(Site):
         verbose_name_plural = _('configurations')
         translate = (
             'site_title',
+            'site_slogan',
             'site_metadescription',
             'site_metakeywords',
         )
@@ -89,12 +93,13 @@ class MenuItem(models.Model):
     order = models.IntegerField(_('order'),)
     css = models.CharField(_('css class'),max_length=100, blank=True)
     login_required = models.BooleanField(_('login required'),)
-    status = models.IntegerField(_('status'), choices=enums.CMS_STATUS_CHOICES, default=enums.STATUS_INACTIVE, help_text=_("Only items with their status set to 'Active' will be displayed."))
+    status = models.IntegerField(_('status'), choices=enums.CMS_STATUS_CHOICES, default=enums.STATUS_ACTIVE, help_text=_("Only items with their status set to 'Active' will be displayed."))
 
     class Meta:
         verbose_name = _('menus item')
         verbose_name_plural = _('menus items')
         translate = ('title', 'link_url')
+        ordering = ['order']
 
     def __unicode__(self):
         return "%s %s. %s" % (self.menu.slug, self.order, self.title)
@@ -108,12 +113,13 @@ class Modules(models.Model):
     name = models.CharField(_('name'), max_length=255)
     position = models.CharField(_('position'), max_length=255, help_text=_("This is a unique identifier, ex 'position1'"))
     description = models.TextField(verbose_name=_('description'))
-    status = models.IntegerField(_('status'), choices=enums.CMS_STATUS_CHOICES, default=enums.STATUS_INACTIVE, help_text=_("Only modules with their status set to 'Active' will be displayed."))
+    status = models.IntegerField(_('status'), choices=enums.CMS_STATUS_CHOICES, default=enums.STATUS_ACTIVE, help_text=_("Only modules with their status set to 'Active' will be displayed."))
 
     class Meta:
         verbose_name = _('module')
         verbose_name_plural = _('modules')
         translate = ('description', )
+        ordering = ['position']
 
     def __unicode__(self):
         return self.name
@@ -158,12 +164,13 @@ class ImageSliderItem(models.Model):
     title = models.CharField(_('title'),max_length=100)
     link_url = models.CharField(_('link url'),max_length=100, help_text=_('URL or URI, eg /about/ or http://foo.com/'))
     order = models.IntegerField(_('order'),)
-    status = models.IntegerField(_('status'), choices=enums.CMS_STATUS_CHOICES, default=enums.STATUS_INACTIVE, help_text=_("Only items with their status set to 'Active' will be displayed."))
+    status = models.IntegerField(_('status'), choices=enums.CMS_STATUS_CHOICES, default=enums.STATUS_ACTIVE, help_text=_("Only items with their status set to 'Active' will be displayed."))
 
     class Meta:
         verbose_name = _('Sliders Image')
         verbose_name_plural = _('Sliders Images')
         translate = ('title', 'link_url', 'slimg')
+        ordering = ['order']
 
     def __unicode__(self):
         return "%s %s. %s" % (self.slider.slug, self.order, self.title)

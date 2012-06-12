@@ -24,10 +24,9 @@
 import os
 import sys
 import logging
-import time
 
 from config_path import zoook_root
-sys.path.append(zoook_root)
+sys.path.insert(0, zoook_root)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 import django_zoook.logconfig

@@ -34,6 +34,13 @@ product_url = {
     'ca':'producte',
 }
 
+#manufacturer
+manufacturer_url = {
+    'en':'manufacturer',
+    'es':'fabricante',
+    'ca':'fabricant',
+}
+
 #contact
 contact_url = {
     'en':'contact',

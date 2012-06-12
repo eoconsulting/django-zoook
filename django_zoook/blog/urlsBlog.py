@@ -27,7 +27,10 @@ from django_zoook.blog.feeds import *
 """Urls Blog"""
 
 urlpatterns = patterns("",
-    (r'^$', 'django_zoook.blog.views.blog_list'),
-    (r"^rss/$", BlogFeed()),
-    (r"^(?P<blog>[^/]+)", 'django_zoook.blog.views.blog_detail'),
+    url(r'^$', 'django_zoook.blog.views.blog_list', name='blog_list'),
+    url(r"^edit/(?P<blog_id>[^/]+)", 'django_zoook.blog.views.blog_edit', name='blog_edit'),
+    url(r"^add/", 'django_zoook.blog.views.blog_add', name='blog_add'),
+    url(r"^key/(?P<key>[^/]+)/", 'django_zoook.blog.views.blog_list', name='blog_key'),
+    url(r"^rss/$", BlogFeed()),
+    url(r"^(?P<blog>[^/]+)", 'django_zoook.blog.views.blog_detail', name='blog_blog'),
 )

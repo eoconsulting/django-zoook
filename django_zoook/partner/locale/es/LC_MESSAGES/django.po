@@ -78,10 +78,10 @@ msgstr ""
 
 #: views.py:161
 msgid ""
-"Sorry. This VAT already exists our ERP. Contact Us for create a new user"
+"Sorry. This VAT already exists our ERP. Contact Us for create a new user."
 msgstr ""
-"Este CIF/NIF ya existe en nuestro ERP. Contacte con nosotros para crearte un "
-"usuario a la tienda"
+"Este CIF/NIF ya existe en nuestro ERP. Contáctese con nosotros para crear un "
+"usuario en la tienda."
 
 #: views.py:170
 msgid "Vat not valid. Check if vat is correct"

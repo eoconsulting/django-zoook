@@ -20,3 +20,10 @@
 #
 ############################################################################################
 
+from django import forms
+from django.utils.translation import get_language, ugettext_lazy as _
+
+class PayorderForm(forms.Form):
+    """Contact Form"""
+    name = forms.CharField(max_length=100)
+    total = forms.DecimalField(_('Total'), max_digits=9, decimal_places=2)
