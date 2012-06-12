@@ -24,6 +24,7 @@ from django.contrib.syndication.views import Feed
 from django.utils.translation import get_language
 
 from django_zoook.tools.zoook import siteConfiguration
+from django_zoook.tools.cms.templatetags.wiki import stripwiki
 from django_zoook.catalog.models import ProductTemplate
 from transurl import *
 from django_zoook.settings import *
@@ -36,7 +37,10 @@ class ProductFeed(Feed):
     site_configuration = siteConfiguration(SITE_ID)
 
     title = site_configuration.site_title
-    link = "/%s/" % (catalog_url[get_language()])
+    if LOCALE_URI:
+        link = "/%s/" % (catalog_url[get_language()])
+    else:
+        link = ''
     description = site_configuration.site_metadescription
 
     def items(self):
@@ -47,4 +51,4 @@ class ProductFeed(Feed):
         return item.name
 
     def item_description(self, item):
-        return item.description
+        return stripwiki(item.shortdescription)

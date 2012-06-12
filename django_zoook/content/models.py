@@ -21,11 +21,12 @@
 ############################################################################################
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language, ugettext_lazy as _
 from django.contrib.auth.models import User
 
-from django.utils.translation import get_language
 from transmeta import TransMeta
+
+from django_zoook.settings import LIVE_URL, LOCALE_URI
 
 from datetime import datetime
 import django_zoook.content.enums as enums
@@ -44,9 +45,9 @@ class Content(ContentBase):
     name = models.CharField(_('Name'), max_length=256)
     slug = models.SlugField(_('slug'), max_length=128, help_text=_("This is a unique identifier, ex 'how-can-i-contribute'"), unique=True)
     description = models.TextField( _('description'))
-    metadesc = models.TextField('metadesc')
-    metakey = models.TextField('metakey')
-    status = models.IntegerField(_('status'), choices=enums.STATUS_CHOICES, default=enums.STATUS_INACTIVE, help_text=_("Only contents with their status set to 'Active' will be displayed."))
+    metadesc = models.CharField('metadesc', max_length=155)
+    metakey = models.CharField('metakey', max_length=155)
+    status = models.IntegerField(_('status'), choices=enums.STATUS_CHOICES, default=enums.STATUS_ACTIVE, help_text=_("Only contents with their status set to 'Active' will be displayed."))
     sort_order = models.IntegerField(_('sort order'), default=0, help_text=_('The order you would like the content to be displayed.'))
     template = models.CharField(max_length=256, help_text=_("If don't specific template, use default.html template"), blank=True)
 
@@ -61,13 +62,23 @@ class Content(ContentBase):
             'metadesc',
             'metakey',
         )
+        ordering = ['-created_on']
 
     def __unicode__(self):
         return self.name
 
     def save(self):
+        from middleware import threadlocals
+
+        if not self.id:
+            self.created_by = threadlocals.get_current_user()
+    
         self.updated_on = datetime.now()
         super(Content, self).save()
 
     def get_absolute_url(self):
-        return '/%s/%s' % (get_language(), self.slug)
+        if LOCALE_URI:
+            url = '/%s/%s' % (get_language(), self.slug)
+        else:
+            url = '/%s' % (self.slug)
+        return url

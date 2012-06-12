@@ -24,10 +24,10 @@
 import os
 import sys
 import logging
-import time
+import optparse
 
 from config_path import zoook_root
-sys.path.append(zoook_root)
+sys.path.insert(0, zoook_root)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 import django_zoook.logconfig
@@ -39,9 +39,20 @@ from django_zoook.tools.conn import conn_webservice
 
 logging.info(_('Sync. Images. Running'))
 
-django_product_images_fields = [field.name for field in ProductImages._meta.fields]
+usage = "usage: %prog [options]"
+parser = optparse.OptionParser(usage)
+parser.add_option("-p", "--products", dest="products",
+                default=False,
+                help="Get product list.")
+options, args = parser.parse_args()
 
-results = conn_webservice('sale.shop', 'dj_export_images', [[OERP_SALE]])
+products = []
+if options.products:
+    products = options.products.split(',')
+
+results = conn_webservice('sale.shop', 'dj_export_images', [[OERP_SALE], products])
+
+django_product_images_fields = [field.name for field in ProductImages._meta.fields]
 
 if len(results) == 0:
     logging.info(_('Sync. Images. Not images news or modified'))

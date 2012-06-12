@@ -177,7 +177,20 @@ msgstr "Posición"
 msgid "Status"
 msgstr "Estado"
 
-#: templatetags/cms.py:42
+
+#: templatetags/cms.py:50
+msgid "string"
+msgstr "texto"
+
+#: templatetags/cms.py:57
+msgid "Media Files"
+msgstr "Media Files"
+
+#: templatetags/cms.py:58
 msgid "Go to Admin"
 msgstr "Ir al Administrador"
+
+#: templatetags/wiki.py:38
+msgid "Table of Contents"
+msgstr "Tabla de contenido"
 

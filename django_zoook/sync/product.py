@@ -24,10 +24,9 @@
 import os
 import sys
 import logging
-import time
 
 from config_path import zoook_root
-sys.path.append(zoook_root)
+sys.path.insert(0, zoook_root)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 import django_zoook.logconfig
@@ -79,6 +78,14 @@ for result in results:
             else:
                 if k in django_product_template_fields:
                     prod_template[k] = v
+        
+        # add manufacturer if available
+        if 'manufacturer' in prod_template:
+            manufacturer = prod_template['manufacturer']
+            del prod_template['manufacturer']
+            res_manufacturer = ResManufacturer.objects.filter(id=manufacturer)
+            if res_manufacturer:
+                prod_template['manufacturer'] = res_manufacturer[0]
 
         prod_template = ProductTemplate(**prod_template)
 

@@ -25,11 +25,13 @@ from django.conf.urls.defaults import *
 """Urls Sale"""
 
 urlpatterns = patterns("",
-    (r'^$', 'sale.views.orders','', 'sale_index'),
-    (r'^payment/(?P<order>[^/]+)$', 'sale.views.payment', '', 'sale_payment'),
-    (r"^order/(?P<order>[^/]+)$", 'sale.views.order', '', 'sale_order'),
-    (r"^checkout/remove/(?P<code>[^/]+)$", 'sale.views.checkout_remove'),
-    (r"^checkout/confirm/", 'sale.views.checkout_confirm', '', 'sale_checkout_confirm'),
-    (r"^checkout/payment/", 'sale.views.checkout_payment', '', 'sale_checkout_payment'),
-    (r"^checkout/", 'sale.views.checkout', '', 'sale_checkout'),
+    url(r'^$', 'sale.views.orders', name='sale'),
+    url(r'^cancel/(?P<order>[^/]+)$', 'django_zoook.sale.views.cancel', name='sale_cancel'),
+    url(r"^payorder/", 'django_zoook.sale.views.payorder', name='payment_order'),
+    url(r'^payment/(?P<order>[^/]+)$', 'django_zoook.sale.views.payment', name='sale_payment'),
+    url(r"^order/(?P<order>[^/]+)$", 'django_zoook.sale.views.order', name='sale_order'),
+    url(r"^checkout/remove/(?P<code>[^/]+)$", 'django_zoook.sale.views.checkout_remove', name='sale_checkout_remove'),
+    url(r"^checkout/confirm/", 'django_zoook.sale.views.checkout_confirm', name='sale_checkout_confirm'),
+    url(r"^checkout/payment/", 'django_zoook.sale.views.checkout_payment', name='sale_checkout_payment'),
+    url(r"^checkout/", 'django_zoook.sale.views.checkout', name='sale_checkout'),
 )

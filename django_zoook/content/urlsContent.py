@@ -26,7 +26,7 @@ from django_zoook.content.views import *
 """Urls Content"""
 
 urlpatterns = patterns("",
-    (r"^edit/(?P<content_id>[^/]+)", 'django_zoook.content.views.content_edit',''),
-    (r"^add/", 'django_zoook.content.views.content_add',''),
-    (r'^$', 'django_zoook.content.views.content_detail'),
+    url(r"^edit/(?P<content_id>[^/]+)", 'django_zoook.content.views.content_edit', name='content_edit'),
+    url(r"^add/", 'django_zoook.content.views.content_add', name='content_add'),
+    url(r'^$', 'django_zoook.content.views.content_detail', name='content_content'),
 )

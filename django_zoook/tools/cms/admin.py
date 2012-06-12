@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ############################################################################################
 #
 #    Zoook. OpenERP e-sale, e-commerce Open Source Management Solution
@@ -76,8 +76,8 @@ class ModulesAdmin(admin.ModelAdmin):
 
     class Media:
         js = (
-            'js/ckeditor/ckeditor.js',
-            'js/ckeditor.js',
+            '/static/js/ckeditor/ckeditor.js',
+            '/static/js/ckeditor.js',
         )
 
 admin.site.register(Modules,ModulesAdmin)
@@ -88,7 +88,9 @@ class ImageSliderInline(admin.TabularInline):
     """
 
     model = models.ImageSliderItem
-    
+    extra = 3
+    max_num = 6
+
 class ImageSliderAdmin(admin.ModelAdmin):
     """
     Image Slider Management Admin

@@ -23,14 +23,11 @@
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
+from django.utils.translation import get_language, ugettext as _
 from django_zoook.tools.zoook import siteConfiguration
-from django.utils.translation import get_language
-from django.db.models import Q
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django_zoook.catalog.models import *
-from django_zoook.catalog.views import pathcategory
 from django_zoook.settings import *
+from django.db.models import Q
 
 
 def doc(request):

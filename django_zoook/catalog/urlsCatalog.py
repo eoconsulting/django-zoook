@@ -21,17 +21,17 @@
 ############################################################################################
 
 from django.conf.urls.defaults import *
-from catalog.views import *
-from catalog.feeds import *
+from django_zoook.catalog.views import *
+from django_zoook.catalog.feeds import *
 
 """Urls Catalog"""
 urlpatterns = patterns("",
-    (r'^$', 'catalog.views.index'),
-    (r"^updateprice", 'django_zoook.catalog.views.updateprice',''),
-    (r"^compare", 'django_zoook.catalog.views.compare',''),
-    (r"^whistlist", 'django_zoook.catalog.views.whistlist',''),
-    (r"^rss/$", ProductFeed()),
-    (r"^.+/(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category'),
-    (r"(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category'),
-#    (r"^(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category'),
+    url(r'^$', 'catalog.views.index', name='catalog_index'),
+    url(r"^updateprice", 'django_zoook.catalog.views.updateprice', name='catalog_updateprice'),
+    url(r"^compare", 'django_zoook.catalog.views.compare', name='catalog_compare'),
+    url(r"^whistlist", 'django_zoook.catalog.views.whistlist', name='catalog_whistlist'),
+    url(r"^rss/$", ProductFeed()),
+    url(r"^.+/(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category', name='catalog_category_child'),
+    url(r"(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category', name='catalog_category'),
+#    url(r"^(?P<category>[^/]+)/$", 'django_zoook.catalog.views.category'),
 )

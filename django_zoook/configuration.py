@@ -24,7 +24,6 @@
 import os
 import sys
 
-sys.path.append('..')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_zoook.settings'
 
 from django_zoook.settings import *

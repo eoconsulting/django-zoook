@@ -31,7 +31,10 @@ class BlogFeed(Feed):
     site_configuration = siteConfiguration(SITE_ID)
 
     title = site_configuration.site_title
-    link = "/%s/blog/" % get_language()
+    if LOCALE_URI:
+        link = "/%s/blog/" % get_language()
+    else:
+        link = ''
     description = site_configuration.site_metadescription
 
     def items(self):

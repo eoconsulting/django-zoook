@@ -21,7 +21,7 @@
 ############################################################################################
 
 from django.contrib import admin
-from partner.models import *
+from django_zoook.partner.models import *
 
 class AuthProfileAdmin(admin.ModelAdmin):
 

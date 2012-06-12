@@ -27,9 +27,27 @@ zoook_root = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
 import logconfig
 from django.utils.translation import ugettext_lazy as _
 
+import re
 
 DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
 MAINTENANCE_MODE = False
+ROOT_URLCONF = 'django_zoook.urls'
+ADMIN_URI = '/manager/'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+        'TIMEOUT': 900,
+        'OPTIONS': {
+            'MAX_ENTRIES': 500
+        }
+    }
+}
+LOCALE_PATHS = (
+    #'/django_zoook/locale',
+)
 
 """
 Site Django
@@ -51,6 +69,11 @@ LANGUAGES = (
 )
 DEFAULT_LANGUAGE = 1
 LOCALE_URI = True
+LOCALEURL_USE_ACCEPT_LANGUAGE = True
+LOCALES =  {
+    'en':'en_US',
+    'es':'es_ES',
+}
 
 """
 Default Currency Sale Shop
@@ -75,8 +98,17 @@ SALE_ORDER_PRODUCT_CHECK = True
 OpenERP Conf
 """
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
+OERP_SALES = [1,2] #Sale Shops. Orders by Sale Shops
 OERP_COMPANY = 1 #Account Invoice. All invoices... use this Company ID.
-COUNTRY_DEFAULT = 'AR'
+COUNTRY_DEFAULT = 'ES'
+PRODUCT_METADESCRIPTION = True
+ATTACHMENT_SYNC = True
+ATTACHMENT_SERVER = 'resteve@localhost'
+ATTACHMENT_SERVER_PORT = '22'
+ATTACHMENT_SSH_OPTION = ''
+ATTACHMENT_RSYNC_OPTION = ''
+ATTACHMENT_SOURCE = '/home/resteve/prova/openerp/'
+ATTACHMENT_ROOT = '/home/resteve/prova/django/'
 
 """
 Base template
@@ -95,7 +127,7 @@ Database conf
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'zoook_kikai',     # Or path to database file if using sqlite3.
+        'NAME': 'zoook61_kikai',     # Or path to database file if using sqlite3.
         #'NAME': 'dj_zoook',     # Or path to database file if using sqlite3.
         'USER': 'zoook',      # Not used with sqlite3.
         'PASSWORD': 'postgres', # Not used with sqlite3.
@@ -110,7 +142,7 @@ OpenERP Webservice Connection
 OERP_CONF = {
     'username':'admin',
     'password':'admin',
-    'dbname':'openerp6kikai',
+    'dbname':'openerp61kikai',
     #'dbname':'openerp6dev',
     'protocol':'xmlrpc', #xmlrpc
     'uri':'http://localhost', #xmlrpc
@@ -120,11 +152,52 @@ OERP_CONF = {
 #    'port':8071, #pyro
 }
 
+PROJECT_APPS = (
+    'django_zoook.blog',
+    'south',
+    #'sermepa.sermepa',
+    #'sermepa.sermepa_test',
+    #'payment.sermepa',
+    #'paypal.standard.ipn',
+    #'payment.paypal',
+    #'pasat4b.pasat4b',
+    #'payment.pasat4b',
+    #'payment.check',
+    'payment.cashondelivery',
+    #'payment.debit',
+)
+
+"""
+Pagination values
+"""
+PAGINATION_DEFAULT_TOTAL = 9
+PAGINATOR_ITEMS = [9,18,36]
+PAGINATOR_ORDER_TOTAL = 5 #remember change this value in your order template
+PAGINATOR_INVOICE_TOTAL = 5 #remember change this value in your invoice template
+PAGINATOR_BLOG_TOTAL = 5 #remember change this value in your blog template
+PAGINATOR_MANUFACTURER_TOTAL = 49
+PAGINATOR_DEFAULT_MODE = 'grid' # 'grid' or 'list'
+
+"""
+Project User Add APP
+"""
+PROJECT_USER_ADD_APP = [
+    {'app':'django_zoook.blog.blog','url':'/blog/add/','string':'Add Blog'},
+    {'app':'django_zoook.catalog.producthome','url':'/catalogmanage/producthome/','string':'Prod. Home'},
+    {'app':'django_zoook.catalog.productrecommended','url':'/catalogmanage/productrecommended/','string':'Prod. Recommended'},
+    {'app':'django_zoook.catalog.productoffer','url':'/catalogmanage/productoffer/','string':'Prod. Offer'},
+]
+
+"""
+Project locale independent paths
+"""
+PROJECT_LOCALE_INDEPENDENT_PATHS  = ()
+
 """
 Email conf
 """
-#EMAIL_USE_TLS = True
-EMAIL_HOST = ''
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 #EMAIL_PORT = 587
@@ -132,7 +205,7 @@ EMAIL_FROM = ''
 EMAIL_REPPLY = ''
 
 """
-Captcha conf
+Recaptcha keys
 """
 RECAPTCHA_PUB_KEY = ""
 RECAPTCHA_PRIVATE_KEY = ""
@@ -163,6 +236,12 @@ Passat 4b Configuration
 PASAT4B_MERCHANT_CODE = 'PI00000000'
 PASAT4B_BUTTON_IMG = '/static/images/icons/passat4b.png'
 PASAT4B_BUTTON_TEXT = 'Comprar ahora'
+PASAT4B_DECIMAL = 2
+
+"""
+Twitter
+"""
+TWITTER_USER = 'zoook_esale'
 
 """
 Global Module Activation

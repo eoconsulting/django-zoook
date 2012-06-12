@@ -279,3 +279,8 @@ msgstr "Si us plau, seleccioneu el pagament"
 #~ msgid "Payment order %s"
 #~ msgstr "Pagament de la comanda %s"
 
+msgid "Checkout Error"
+msgstr "Comanda d'error"
+
+msgid "Error creating/modifying the order. Try again, or contact with us."
+msgstr "Error en crear/modificar l'ordre. Intenteu-ho de nou o, contacteu amb nosaltres."

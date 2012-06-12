@@ -168,7 +168,7 @@ def register(request):
 
                     partner = conn.ResPartner.filter(vat__ilike=data['vat_code']+data['vat'])
                     if len(partner) > 0:
-                        msg = _('Sorry. This VAT already exists our ERP. Contact Us for create a new user')
+                        msg = _('Sorry. This VAT already exists our ERP. Contact Us for create a new user.')
                         message.append(msg)
 
                 #check if this vat valid

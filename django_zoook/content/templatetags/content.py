@@ -21,7 +21,7 @@
 ############################################################################################
 
 from django import template
-from zoook.content.models import Content
+from django_zoook.content.models import Content
 
 register = template.Library()
 

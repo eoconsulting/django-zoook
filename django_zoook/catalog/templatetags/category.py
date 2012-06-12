@@ -23,20 +23,18 @@
 from django import template
 
 from django_zoook.catalog.models import ProductCategory
-from django_zoook.catalog.views import collect_children
 from django.utils.translation import get_language
 from django_zoook.config import LOCALE_URI
 
 register = template.Library()
 
-@register.inclusion_tag('catalog/tags/horizontal_menu.html', takes_context = True)
-def render_horizontal_menu(context):
+def render_category_menu(context):
     root_category = ProductCategory.objects.filter(parent=None)
 
     oldlevel = 0
     values = []
-    if len(root_category) > 0:
-        categories = collect_children(root_category[0].id, 1, None)
+    if root_category.count() > 0:
+        categories = root_category[0].collect_children(level=1, children = [])
 
         for (category, level) in categories:
             values.append((ProductCategory.objects.get(id=category), level, oldlevel))
@@ -47,3 +45,14 @@ def render_horizontal_menu(context):
         'lastlevel': oldlevel,
         'LOCALE_URI': context['LOCALE_URI'],
     }
+
+@register.inclusion_tag('catalog/tags/horizontal_menu.html', takes_context = True)
+def render_horizontal_menu(context):
+    """Render category tree (all categories and childs) to horizontal menu.
+    Horizontal Menu only suport 5 levels"""
+    return render_category_menu(context)
+
+@register.inclusion_tag('catalog/tags/vertical_menu.html', takes_context = True)
+def render_vertical_menu(context):
+    """Render category tree (all categories and childs) to vertical menu."""
+    return render_category_menu(context)

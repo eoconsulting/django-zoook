@@ -38,7 +38,7 @@
             {% if mode_option == 'grid' %}
             <ul id="catalog-grid">{% for value in values %}
                 <li id="product-{{value.product.id}}" class="product-item block border5{% cycle '' '' ' last' %}">
-                    <a href="{{value.product.get_absolute_url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 /static/images/product_zoook.png %}" title="{{value.product.name}}" class="product-image-grid" /></a>
+                    <a href="{{value.product.get_absolute_url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.product.name}}" class="product-image-grid" /></a>
                     <a href="{{value.product.get_absolute_url}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
                     <div id="product-price-{{value.product.id}}" class="price-box">
                         <span class="regular-price">
@@ -56,7 +56,7 @@
             {% else %}
             <ul id="catalog-list">{% for value in values %}
                     <li id="product-{{value.product.id}}" class="product-item block border5 clearfix">
-                        <a href="{{value.product.get_absolute_url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 /static/images/product_zoook.png %}" title="{{value.product.name}}" /></a>
+                        <a href="{{value.product.get_absolute_url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.product.name}}" /></a>
                         <a href="{{value.product.get_absolute_url}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
                         <p class="product-description">{{value.product.shortdescription}}</p>
                         <div id="product-price-{{value.product.id}}" class="price-box">

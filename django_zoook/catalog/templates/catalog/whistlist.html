@@ -29,7 +29,7 @@
             </thead>
             <tbody>
                 {% for product in products %}<tr>
-                    <td><a href="{{product.product.get_absolute_url}}" title="{{ product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 /static/images/product_zoook.png %}" alt="{{ product.name }}" /></a></td>
+                    <td><a href="{{product.product.get_absolute_url}}" title="{{ product.name }}" class="product-image"><img src="{% thumbnail product.base_image.url 80x80 product_zoook.png %}" alt="{{ product.name }}" /></a></td>
                     <td><h2 class="product-name"><a href="{{product.product.get_absolute_url}}">{{ product.name }}</a></h2></td>
                     <td class="a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
                     <td class="a-right">

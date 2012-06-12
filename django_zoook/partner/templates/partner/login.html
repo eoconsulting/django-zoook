@@ -16,7 +16,7 @@
 
 <div id="top-header">{% trans "Log in or create an account." %}</div>
 
-<form action="{% url partner_index %}" method="post" id="login-form">
+<form action="{% url partner %}" method="post" id="login-form">
 <fieldset>
     <div class="col2-set">
         <div class="col-1 new-users">
@@ -41,12 +41,12 @@
     <div class="col2-set">
         <div class="col-1">
             <div class="buttons-set">
-                <a href="{% url auth_register %}"><span class="btn-create-account">{% trans "Create new account" %}</span></a>
+                <a href="{% url partner_register %}"><span class="btn-create-account">{% trans "Create new account" %}</span></a>
             </div>
         </div>
         <div class="col-2">
             <div class="buttons-set">
-                <input type="submit" value="{% trans "Login" %}" class="btn-login"/> <a href="{% url auth_remember %}" alt="{% trans "Remember Password" %}">{% trans "Remember Password" %}</a>
+                <input type="submit" value="{% trans "Login" %}" class="btn-login"/> <a href="{% url partner_remember %}" alt="{% trans "Remember Password" %}">{% trans "Remember Password" %}</a>
                 <p class="required">* {% trans "Required Fields" %}</p>
             </div>
         </div>
