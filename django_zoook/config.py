@@ -157,14 +157,13 @@ PROJECT_APPS = (
     'south',
     #'sermepa.sermepa',
     #'sermepa.sermepa_test',
-    #'payment.sermepa',
+    #'django_zoook.payment.sermepa',
     #'paypal.standard.ipn',
-    #'payment.paypal',
-    #'pasat4b.pasat4b',
-    #'payment.pasat4b',
-    #'payment.check',
-    'payment.cashondelivery',
-    #'payment.debit',
+    #'django_zoook.payment.paypal',
+    #'django_zoook.payment.pasat4b',
+    #'django_zoook.payment.check',
+    'django_zoook.payment.cashondelivery',
+    #'django_zoook.payment.debit',
 )
 
 """
