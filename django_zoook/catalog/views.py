@@ -191,7 +191,10 @@ def product(request, product):
 
     base_image, thumb_images = prods[0].get_all_images()
 
-    title = _('%(product)s') % {'product': tplproduct.name}
+    if tplproduct.metatitle:
+        title = tplproduct.metatitle
+    else:
+        title = tplproduct.name
     if PRODUCT_METADESCRIPTION:
         metadescription = _('Buy %(name)s for %(price)s %(currency)s.') % {
                                 'name': tplproduct.name,
@@ -201,7 +204,7 @@ def product(request, product):
         if tplproduct.metadescription:
             metadescription = metadescription+' '+tplproduct.metadescription
     else:
-        metadescription = '%(metadescription)s' % {'metadescription': tplproduct.metadescription}
+        metadescription = tplproduct.metadescription
     search_keywords = tplproduct.metakeyword and tplproduct.metakeyword.split(',') or []
     metakeywords = tplproduct.metakeyword and tplproduct.metakeyword or ''
 
