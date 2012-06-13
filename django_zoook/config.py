@@ -103,12 +103,12 @@ OERP_COMPANY = 1 #Account Invoice. All invoices... use this Company ID.
 COUNTRY_DEFAULT = 'ES'
 PRODUCT_METADESCRIPTION = True
 ATTACHMENT_SYNC = True
-ATTACHMENT_SERVER = 'resteve@localhost'
+ATTACHMENT_SERVER = 'user@localhost'
 ATTACHMENT_SERVER_PORT = '22'
 ATTACHMENT_SSH_OPTION = ''
 ATTACHMENT_RSYNC_OPTION = ''
-ATTACHMENT_SOURCE = '/home/resteve/prova/openerp/'
-ATTACHMENT_ROOT = '/home/resteve/prova/django/'
+ATTACHMENT_SOURCE = '/home/user/attach/openerp/'
+ATTACHMENT_ROOT = '/home/user/attach/django/'
 
 """
 Base template
@@ -222,7 +222,7 @@ Sermepa/Servired Configuration
 SERMEPA_URL_PRO = 'https://sis.sermepa.es/sis/realizarPago'
 SERMEPA_URL_TEST = 'https://sis-t.sermepa.es:25443/sis/realizarPago'
 SERMEPA_MERCHANT_URL = "http://127.0.0.1:8000/payment/sermepa/ipn"
-SERMEPA_MERCHANT_NAME = "Zikzakmedia SL"
+SERMEPA_MERCHANT_NAME = "My Company SL"
 SERMEPA_MERCHANT_CODE = ''
 SERMEPA_SECRET_KEY = ''
 SERMEPA_BUTTON_IMG = '/static/images/icons/sermepa.png'
