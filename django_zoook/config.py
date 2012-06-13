@@ -118,7 +118,7 @@ BASE_TEMPLATE = 'default'
 """
 Url's conf
 """
-LIVE_URL = "http://127.0.0.1:8000/"
+LIVE_URL = "http://dev.tienda.kikailabs.com.ar:8000/"
 MEDIA_URL = LIVE_URL + "static/"
 
 """
@@ -127,9 +127,10 @@ Database conf
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dj_zoook',     # Or path to database file if using sqlite3.
-        'USER': 'openerp',      # Not used with sqlite3.
-        'PASSWORD': 'openerp',  # Not used with sqlite3.
+        'NAME': 'zoook61_kikai',     # Or path to database file if using sqlite3.
+        #'NAME': 'dj_zoook',     # Or path to database file if using sqlite3.
+        'USER': 'zoook',      # Not used with sqlite3.
+        'PASSWORD': 'postgres', # Not used with sqlite3.
         'HOST': 'localhost',    # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',         # Set to empty string for default. Not used with sqlite3.
     }
@@ -141,7 +142,8 @@ OpenERP Webservice Connection
 OERP_CONF = {
     'username':'admin',
     'password':'admin',
-    'dbname':'oerp_zoook',
+    'dbname':'openerp61kikai',
+    #'dbname':'openerp6dev',
     'protocol':'xmlrpc', #xmlrpc
     'uri':'http://localhost', #xmlrpc
     'port':8069, #xmlrpc
@@ -160,7 +162,7 @@ PROJECT_APPS = (
     #'django_zoook.payment.paypal',
     #'django_zoook.payment.pasat4b',
     #'django_zoook.payment.check',
-    #'django_zoook.payment.cashondelivery',
+    'django_zoook.payment.cashondelivery',
     #'django_zoook.payment.debit',
 )
 
@@ -243,6 +245,6 @@ TWITTER_USER = 'zoook_esale'
 """
 Global Module Activation
 """
-UPDATE_PRICE = True    # Active the update special price by ajax when the user is signed
+UPDATE_PRICE = False    # Active the update special price by ajax when the user is signed
 NEWSLATTER_ON = False  # Active the Newslatter info. Not implemented yet
 COMPARE_ON = False     # Active the "Add to Compare" function in products. Not implemented yet

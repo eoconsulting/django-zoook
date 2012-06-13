@@ -74,11 +74,19 @@ msgstr "categoría"
 msgid "categories"
 msgstr "categorías"
 
-#: models.py:89
+#: models.py:141
 msgid "created on"
 msgstr "creado el"
 
-#: models.py:92
+#: models.py:136
+msgid "Codes"
+msgstr "Códigos"
+
+#: models.py:136
+msgid "Separated by comma"
+msgstr "Separado por coma"
+
+#: models.py:145
 msgid "Short Description"
 msgstr "Descripción corta"
 
@@ -130,13 +138,23 @@ msgstr "Peso bruto"
 msgid "Net weight"
 msgstr "Peso neto"
 
-#: models.py:120
-msgid "template"
-msgstr "plantilla"
+#: models.py:161
+#: views.py:43
+#: templates/catalog/form_list.html:6
+msgid "Position"
+msgstr "Posición"
 
-#: models.py:121
+#: models.py:162
+msgid "New"
+msgstr "Novedad"
+
+#: models.py:169
+msgid "template"
+msgstr "producto"
+
+#: models.py:170
 msgid "templates"
-msgstr "plantillas"
+msgstr "productos"
 
 #: models.py:139
 msgid "Active"
@@ -156,9 +174,9 @@ msgstr "EAN13"
 msgid "Price"
 msgstr "Precio"
 
-#: models.py:143
-msgid "Manufacturer"
-msgstr "Fabricante"
+#: models.py:268
+msgid "Special Price"
+msgstr "Precio especial"
 
 #: models.py:144
 msgid "Attribute Group"
@@ -167,7 +185,7 @@ msgstr "Atributo"
 #: models.py:145
 #, fuzzy
 msgid "Cart Description"
-msgstr "Descripción corta"
+msgstr "Descripción carrito"
 
 #: models.py:151
 msgid "product"
@@ -189,6 +207,10 @@ msgstr "Ubicación de los archivos"
 msgid "Base Image"
 msgstr "Imagen base"
 
+#: models.py:340
+msgid "Thumb Image"
+msgstr "Miniatura"
+
 #: models.py:167
 msgid "Exclude"
 msgstr "Excluye"
@@ -201,9 +223,126 @@ msgstr "imagen"
 msgid "images"
 msgstr "imágenes"
 
+#: models.py:359
+msgid "Check Documentation about size image"
+msgstr "Compruebe la documentación del tamaño de la imagen."
+
+#: models.py:360
+msgid "description"
+msgstr "Descripción"
+
+#: models.py:361
+#: models.py:380
+#: models.py:398
+msgid "status"
+msgstr "Estado"
+
+#: models.py:361
+#: models.py:380
+#: models.py:398
+msgid "Only items with their status set to 'Active' will be displayed."
+msgstr "Sólo los elementos con el estado activo se mostrarán."
+
+#: models.py:362
+#: models.py:381
+#: models.py:399
+#: models.py:518
+#: models.py:540
+msgid "order"
+msgstr "ordenación"
+
+#: models.py:366
+#: views.py:507
+msgid "Product Home"
+msgstr "Producto Inicio"
+
+#: models.py:367
+msgid "Products Home"
+msgstr "Productos Inicio"
+
+#: models.py:385
+#: views.py:614
+msgid "Product Recommended"
+msgstr "Producto recomendado"
+
+#: models.py:386
+msgid "Products Recommended"
+msgstr "Productos recomendados"
+
+#: models.py:403
+#: views.py:721
+msgid "Product Offer"
+msgstr "Producto oferta"
+
+#: models.py:404
+msgid "Products Offer"
+msgstr "Productos oferta"
+
+#: models.py:416
+msgid "This is a unique identifier that allows your blogs to display its detail view, ex 'how-can-i-contribute'"
+msgstr "Identificador único que permite a sus contenidos mostrar su vista de detalle, ej. 'como-puedo-ayudar'"
+
+#: models.py:419
+msgid "Resize image. Check documentation about logo template"
+msgstr "Compruebe la documentación del tamaño de la imagen."
+
+#: models.py:423
+msgid "Manufacturer"
+msgstr "Fabricante"
+
+#: models.py:424
+#: templates/catalog/manufacturer.html:9
+#: templates/catalog/manufacturers.html:5
+msgid "Manufacturers"
+msgstr "Fabricantes"
+
 #: views.py:119
 msgid "Categories"
 msgstr "Categorías"
+
+#: models.py:485
+msgid "Available Price Search"
+msgstr "Disponible buscador por precios"
+
+#: models.py:487
+msgid "Default"
+msgstr "Defecto"
+
+#: models.py:487
+msgid "Default Attribute Search Box. If you don't select some category, use this search box"
+msgstr "Defecto buscador de atributos. Si no selecciona ninguna categoría, se usará este buscador"
+
+#: models.py:491
+msgid "Attribute Search"
+msgstr "Buscador de atributo"
+
+#: models.py:492
+msgid "Attributes Search"
+msgstr "Buscador de atributos"
+
+#: models.py:523
+msgid "Attribute Search Item"
+msgstr "Elementos buscador de atributos"
+
+#: models.py:524
+msgid "Attribute Search Items"
+msgstr "Elementos del buscador de atributos"
+
+#: models.py:537
+msgid "From"
+msgstr "Desde"
+
+#: models.py:538
+msgid "To"
+msgstr "A"
+
+#: models.py:544
+msgid "Attribute Search Price"
+msgstr "Precio buscador de atributos"
+
+#: models.py:545
+msgid "Attribute Search Prices"
+msgstr "Precios buscador de atributos"
 
 #: views.py:120
 #, python-format
@@ -220,18 +359,19 @@ msgstr "%(category)s - Página %(page)s de %(total)s"
 msgid "%(category)s. Page %(page)s of %(total)s"
 msgstr "%(category)s. Página %(page)s def %(total)s"
 
-#: views.py:215 views.py:217
-msgid ""
-"This category is not available because you navigate with bookmarks or search "
-"engine. Use navigation menu"
-msgstr ""
-"Esta categoría no está disponible porque navega con marcadores o motor de "
-"búsqueda. Utilice el menú del navegador"
+#: views.py:90
+msgid "This category is not available because you navigate with bookmarks or search engine. Use navigation menu"
+msgstr "Esta categoría no está disponible porque navega con marcadores o motor de búsqueda. Utilice el menú del navegador"
 
 #: views.py:245
 #, python-format
 msgid "%(product)s"
 msgstr "%(product)s"
+
+#: views.py:180
+#, python-format
+msgid "Buy %(name)s for %(price)s %(currency)s."
+msgstr "Compra %(name)s por %(price)s %(currency)s."
 
 #: views.py:246
 #, python-format
