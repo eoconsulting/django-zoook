@@ -72,7 +72,7 @@ LOCALE_URI = True
 LOCALEURL_USE_ACCEPT_LANGUAGE = True
 LOCALES =  {
     'en':'en_US',
-    'es':'es_ES',
+    'es':'es_AR',
 }
 
 """
