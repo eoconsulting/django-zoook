@@ -50,8 +50,10 @@ button:hover			{ background-color:#000 }
 .product-item button:hover	{ background-color:#000 }
 
 /* PRICE BOX */
-.price-box		{ margin-bottom:10px }
-.price			{ color:#990000; font-size:20px; line-height:32px; font-weight:bold }
+.price-box		{ margin-bottom:10px; }
+.price			{ color:#da5406; font-size:24px; line-height:32px; font-weight:bold; }
+.price-decimal  { font-size: 16px}
+.special-price  { display:block; color:#AD9090; font-size:14px; line-height:32px; text-decoration: line-through;}
 
 .price-box .loader { padding:0 0 0 5px }
 
@@ -74,7 +76,6 @@ button:hover			{ background-color:#000 }
 .zoom-icon { display:none; width:300px; height:300px; background:url(../images/product-zoom.png) left top no-repeat; position:absolute; top:0; left:0; opacity:0 }
 .product-page .product-imgbox		{ float:left; margin:0 20px 0 0 }
 .product-page .product-img img		{ max-width:300px; max-height:300px; }
-
 /* Product other imgs */
 .product-page .other-img		{ margin-top:20px; width:300px }
 .product-page .other-img li			{ float:left; margin:0 10px 10px 0; position:relative; width:60px; height:60px }
@@ -129,7 +130,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .tabs .active,
 .tabs .active a:hover  { background:#fff; border-bottom:1px solid #fff; color:#000 }
 
-.tab-container 	{ border:1px solid #e7e7e7; overflow:hidden; clear:both; float:left; width:100%; background:#fff; -webkit-border-bottom-right-radius:5px; -webkit-border-bottom-left-radius:5px; -moz-border-radius-bottomright:5px; -moz-border-radius-bottomleft:5px; border-bottom-right-radius:5px; border-bottom-left-radius:5px }
+.tab-container 	{ border:1px solid #e7e7e7; overflow:hidden; float:left; width:100%; background:#fff; -webkit-border-bottom-right-radius:5px; -webkit-border-bottom-left-radius:5px; -moz-border-radius-bottomright:5px; -moz-border-radius-bottomleft:5px; border-bottom-right-radius:5px; border-bottom-left-radius:5px }
 .tab-content		{ padding:20px; font-size:11px; line-height:18px }
 .tab-content p		{ line-height:18px }
 .tab-content ul		{ list-style:circle; padding-left:20px }
@@ -177,6 +178,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 
 .btn-remove { display:block; width:13px; height:13px; font-size:0; line-height:0; background:url(../images/icons/btn_remove.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
 .btn-trash { display:block; width:16px; height:16px; font-size:0; line-height:0; background:url(../images/icons/btn_trash.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
+.btn-add { display:block; width:20px; height:16px; font-size:0; line-height:0; background:url(../images/icons/shop-cart.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
 
 /* Sale / Invoice */
 .page-previous { padding-right:10px}
@@ -185,6 +187,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 #catalog-order h2{padding-top:10px}
 #payment-order { padding:10px}
 .payment-buttom{ margin-top:10px; padding:5px; color:#fff; background-color:#0a6c77}
+.cancel-buttom{ margin-top:10px; padding:5px; color:#0a6c77; background-color:#E5E5E5}
 .amount-invoice { margin-top:10px; padding:10px; background-color:#f3f5f6}
 .amount-sale { margin-top:10px; padding:10px; background-color:#f3f5f6}
 #payment-sale { margin-top:10px}
@@ -210,3 +213,30 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .button-confirm { width:250px; margin-top:10px; padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#0a6c77; color:#fff; font-weight:bold }
 
 #catalog-whistlist table td { padding: 10px; }
+
+/* Attribute Search Box */
+#attribute_search_box{ margin:10px}
+#attribute_search_box h2{ font-size:1.09em; font-weight:bold; border-bottom:1px solid #D2D6D8; margin-bottom:10px}
+#attribute_search_box label{ width: 90px; float: left; display: block}
+#attribute_search_box select{ width: 100px}
+#attribute_search_box input{ width: 80px}
+
+/* Manufacturer */
+#manufacturers-grid li { width: 120px; min-height: 120px; border: 1px solid #D2D6D8; display: inline-block; vertical-align: top; margin: 5px; text-align:center}
+#manufacturers-grid a { font-size:14px}
+#manufacturer-content h1 { font-size:18px; border: None}
+#manufacturer-categories { float: left; display: block}
+#manufacturer-categories li { width: 300px; display: inline-block; vertical-align: top; margin-right: 2px}
+#manufacturer-categories h2{ font-size:12px; font-weight: bold}
+#manufacturer-content { float:left; width:680px; padding: 10px 10px 10px 10px}
+#manufacturer-content .product-item { width:196px; min-height:250px; padding:15px 10px; margin:0 10px 10px 0; float:left; text-align:center }
+#manufacturer-data p { color:#666}
+
+/* Products Last Visited */
+#catalog-last-visited { padding: 10px}
+#catalog-last-visited h2 { font-size:16px; color: #e2001a; border-bottom:1px solid #e2001a}
+#products_last_visited li { text-align: center; padding:10px 0 0 0}
+#products_last_visited li img { text-align: center}
+#products_last_visited .price { font-size:16px}
+#products_last_visited .price-decimal { font-size:12px}
+

@@ -44,30 +44,7 @@ js_info_dict = {
 
 urlpatterns = patterns('',
     url(r"^$", index, name='index'),
-    #url(r"^$", doc),
-
-    # catalog 
-    url(r"^%s/" % catalog_url['en'], include("django_zoook.catalog.urlsCatalog")),
-    url(r"^%s/"% catalog_url['es'], include("django_zoook.catalog.urlsCatalog")),
-    url(r"^%s/"% catalog_url['ca'], include("django_zoook.catalog.urlsCatalog")),
-
-    # catalog manage
-    url(r'^catalogmanage/', include('django_zoook.catalog.urlsCatalogManage')),
-
-    # manufacturer 
-    url(r"^%s/" % manufacturer_url['en'], include("django_zoook.catalog.urlsManufacturer")),
-    url(r"^%s/" % manufacturer_url['es'], include("django_zoook.catalog.urlsManufacturer")),
-    url(r"^%s/" % manufacturer_url['ca'], include("django_zoook.catalog.urlsManufacturer")),
-
-    # product 
-    url(r"^%s/" % product_url['en'], include("django_zoook.catalog.urlsProduct")),
-    url(r"^%s/" % product_url['es'], include("django_zoook.catalog.urlsProduct")),
-    url(r"^%s/" % product_url['ca'], include("django_zoook.catalog.urlsProduct")),
-
-    # contact
-    url(r"^%s/" % contact_url['en'], include("django_zoook.contact.urlsContact")),
-    url(r"^%s/" % contact_url['es'], include("django_zoook.contact.urlsContact")),
-    url(r"^%s/" % contact_url['ca'], include("django_zoook.contact.urlsContact")),
+    #url(r"^$", doc, name='index'),
 
     # catalog 
     url(r"^%s/" % catalog_url['en'], include("django_zoook.catalog.urlsCatalog")),
