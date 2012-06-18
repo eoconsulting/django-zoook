@@ -52,3 +52,6 @@ msgstr "Província"
 msgid "states"
 msgstr "Províncies"
 
+#: layout.html:26
+msgid "Loading..."
+msgstr "Carregant..."
