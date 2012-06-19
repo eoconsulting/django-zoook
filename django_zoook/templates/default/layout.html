@@ -42,7 +42,9 @@
                 {% if user.is_authenticated %}<li class="first"><a href="{% url 'partner' %}">{% trans "My Account" %}</a></li>{% endif %}
                 {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/" class="loading">{% trans "My Whishlist" %}</a></li>{% endif %}
                 {% if user.is_authenticated %}<li><a href="{% url 'sale_checkout' %}" class="loading">{% trans "My Cart" %}</a></li>{% endif %}
-                {% for language in LANGUAGES %}<li><a href="/{{ language.0 }}/" alt="{{ language.1 }}">{{ language.1|capfirst  }}</a></li>{% endfor %}
+                {% if LANGUAGES|length > 1 %}
+                	{% for language in LANGUAGES %}<li><a href="/{{ language.0 }}/" alt="{{ language.1 }}">{{ language.1|capfirst  }}</a></li>{% endfor %}
+                {% endif %}
             </ul>
 
         </div>
