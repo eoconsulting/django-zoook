@@ -42,7 +42,7 @@ class ProductProductInline(admin.StackedInline):
 class ProductTemplateAdmin(admin.ModelAdmin):
 
     list_display = (
-        'name_en',
+        'name',
     )
     search_fields = ["name"]
     extra = 0

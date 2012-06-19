@@ -23,12 +23,13 @@
 from django.contrib import admin
 from django_zoook.content.models import *
 from datetime import datetime
+from transmeta import get_real_fieldname_in_each_language
 
 class ContentAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,   {'fields': ['name_en','name_es','slug_en','slug_es']}),
-        ('Description', {'fields': ['description_en','description_es']}),
-        ('SEO', {'fields': ['metadesc_en','metadesc_es','metakey_en','metakey_es']}),
+        (None,   {'fields': get_real_fieldname_in_each_language('name') + get_real_fieldname_in_each_language('slug')}),
+        ('Description', {'fields': get_real_fieldname_in_each_language('description')}),
+        ('SEO', {'fields': get_real_fieldname_in_each_language('metadesc') + get_real_fieldname_in_each_language('metakey')}),
         ('Page', {'fields': ['status','sort_order','template']}),
     ]
     list_display = (
@@ -41,17 +42,13 @@ class ContentAdmin(admin.ModelAdmin):
         'updated_on',
         'status'
     )
-    search_fields = [
-        "name_en",
-        "description_en",
-        "name_es",
-        "description_es",
-        ]
+    search_fields = get_real_fieldname_in_each_language('name') \
+                  + get_real_fieldname_in_each_language('description')
     list_filter = ["status"]
-    prepopulated_fields = {
-        'slug_en': ('name_en',),
-        'slug_es': ('name_es',),
-    }
+    #prepopulated_fields = {
+    #    'slug_en': ('name_en',),
+    #    'slug_es': ('name_es',),
+    #}
 
     class Media:
         js = (

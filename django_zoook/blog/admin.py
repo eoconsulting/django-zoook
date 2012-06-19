@@ -23,6 +23,7 @@
 from django.contrib import admin
 from django_zoook.blog.models import *
 from datetime import datetime
+from transmeta import get_real_fieldname_in_each_language
 
 class BlogAdmin(admin.ModelAdmin):
 
@@ -36,17 +37,13 @@ class BlogAdmin(admin.ModelAdmin):
         'updated_on',
         'status'
     )
-    search_fields = [
-        "name_en",
-        "description_en",
-        "name_es",
-        "description_es",
-        ]
+    search_fields = get_real_fieldname_in_each_language('name') \
+                  + get_real_fieldname_in_each_language('description')
     list_filter = ["status"]
-    prepopulated_fields = {
-        'slug_en': ('name_en',),
-        'slug_es': ('name_es',),
-    }
+    #prepopulated_fields = {
+    #    'slug_en': ('name_en',),
+    #    'slug_es': ('name_es',),
+    #}
 
     class Media:
         js = (
