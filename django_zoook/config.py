@@ -153,6 +153,7 @@ OERP_CONF = {
 PROJECT_APPS = (
     'django_zoook.blog',
     'south',
+    'transmeta',
     #'sermepa.sermepa',
     #'sermepa.sermepa_test',
     #'django_zoook.payment.sermepa',
