@@ -9,7 +9,7 @@
 
 /* CATALOG CATEGORY */
 #catalog-category					{ padding:10px }
-#catalog-category .product-name h2  { font-size:13px; line-height:18px; font-weight:bold; color: #990000; }
+#catalog-category .product-name h2  { font-size:13px; line-height:18px; font-weight:bold }
 
 /* CATALOG CATEGORY GRID */
 #catalog-grid .product-item					{ width:196px; height:310px; padding:15px 10px; margin:0 10px 10px 0; float:left; text-align:center }
@@ -22,7 +22,7 @@
 #catalog-list .product-description			{ }
 #catalog-list .button-details				{ float: left; text-align: center; width: 100px; margin: 12px; }
 
-.button-details{ width:250px; margin-top:10px; padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#218ecd; color:#fff; font-weight:bold}
+.button-details{ width:250px; margin-top:10px; padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#0a6c77; color:#fff; font-weight:bold}
 .button-details a:hover{ color:#fff}
 
 /* CATALOG TOOLBAR */
@@ -70,7 +70,7 @@ button:hover			{ background-color:#000 }
 .product-page { padding:20px 20px 0 20px }
 
 /* Prodcut img */
-.product-page .product-name h2 { font-size:18px; line-height:24px; color: #990000; }
+.product-page .product-name h2 { font-size:18px; line-height:24px }
 
 .product-page .product-img 		{ position:relative; width:300px; height:300px; display:block }
 .zoom-icon { display:none; width:300px; height:300px; background:url(../images/product-zoom.png) left top no-repeat; position:absolute; top:0; left:0; opacity:0 }
@@ -123,7 +123,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .tabs		{ margin:10px 0 0 0; padding:0; float:left; height:36px; width:100% }
 .tabs li			{ float:left; margin:0 5px 0 0; height:35px; line-height:35px; margin-bottom:-1px; overflow:hidden; position:relative }
 .tabs  a		{ font-size:11px; font-weight:bold; color:#fff; display:block; padding:0 20px; outline:none; background:#2d2d2d; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:5px; border-top-left-radius:5px; border-top-right-radius:5px; }
-.tabs  a:hover 	{ background: #218ecd; }
+.tabs  a:hover 	{ background:#DA5406 }
 
 .tabs .active	{ border:1px solid #e7e7e7; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:5px; border-top-left-radius:5px; border-top-right-radius:5px; }
 .tabs .active a	{ color:#000; background-color:#fff }
