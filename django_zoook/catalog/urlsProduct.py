@@ -26,7 +26,5 @@ from django_zoook.catalog.views import *
 """Urls Product"""
 
 urlpatterns = patterns("",
-    (r"^(?P<product>[^/]+)$", 'django_zoook.catalog.views.product'),
-    (r"^.+/(?P<product>[^/]+)/$", 'django_zoook.catalog.views.product'),
-    (r"(?P<product>[^/]+)/$", 'django_zoook.catalog.views.product'),
+    url(r"^(?P<product>[^/]+)$", 'django_zoook.catalog.views.product', name='catalog_product'),
 )
