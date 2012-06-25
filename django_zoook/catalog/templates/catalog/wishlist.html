@@ -4,7 +4,7 @@
 {% load modules %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist">{% trans "Whishlist" %}</a></li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist">{% trans "Wishlist" %}</a></li></ul></div>{% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
@@ -12,11 +12,11 @@
 
     <div id="sidebar">
         <div class="block border5">
-            {% module whistlist.right %}
+            {% module wishlist.right %}
         </div>
     </div>
     <div id="content">
-        <div id="catalog-whistlist" class="block border5 clearfix">
+        <div id="catalog-wishlist" class="block border5 clearfix">
             <table id="shopping-cart-table" class="cart-table">
             <thead>
                 <tr>
@@ -40,7 +40,7 @@
                         </span>
                         </div>
                     </td>
-                    <td class="a-center"><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/remove/{{product.product.slug}}" title="{% trans "Remove item" %}" class="btn-trash">{% trans "Remove item" %}</a></td>
+                    <td class="a-center"><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/remove/{{product.product.slug}}" title="{% trans "Remove item" %}" class="btn-trash">{% trans "Remove item" %}</a></td>
                 </tr>{% endfor %}
             </tbody>
             </table>

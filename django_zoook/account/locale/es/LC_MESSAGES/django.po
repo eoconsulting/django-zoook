@@ -130,7 +130,7 @@ msgstr "No hay facturas disponibles. No le gusta nada de nuestra tienda?"
 
 msgid "My Account"
 msgstr "Mi Cuenta"
-msgid "My Whistlist"
+msgid "My Wishlist"
 msgstr "Lista de Deseos"
 msgid "My Cart"
 msgstr "Carrito"

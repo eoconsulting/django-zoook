@@ -71,7 +71,7 @@ urlpatterns = patterns('',
 
     # Search
     #url(r'^search/', include('haystack.urls')),
-    url(r"^search", search),
+    url(r"^search", search, name='search'),
 
     url(r"^partner/", include("django_zoook.partner.urlsPartner")),
     url(r"^sale/", include("django_zoook.sale.urlsSale")),
@@ -102,5 +102,5 @@ urlpatterns = patterns('',
     url(r"^(?P<content>[^/]+)", include("django_zoook.content.urlsContent")),
 
     # Tag
-    url(r"(?P<tag>[^/]+)/$", keyword),
+    url(r"^tag/(?P<tag>[^/]+)/$", keyword, name='tag'),
 )

@@ -22,7 +22,7 @@ msgid "Name"
 msgstr "Nom"
 
 #: models.py:39 models.py:44 templates/catalog/product.html:91
-#: templates/catalog/whistlist.html:25
+#: templates/catalog/wishlist.html:25
 msgid "Description"
 msgstr "Descripció"
 
@@ -170,7 +170,7 @@ msgstr "Codi"
 msgid "EAN13"
 msgstr "EAN13"
 
-#: models.py:142 templates/catalog/whistlist.html:26
+#: models.py:142 templates/catalog/wishlist.html:26
 msgid "Price"
 msgstr "Preu"
 
@@ -398,7 +398,7 @@ msgid "Whislist of %s"
 msgstr "Llista de desitjos de %s"
 
 #: templates/catalog/category.html:7 templates/catalog/index.html:5
-#: templates/catalog/product.html:9 templates/catalog/whistlist.html:7
+#: templates/catalog/product.html:9 templates/catalog/wishlist.html:7
 msgid "Home"
 msgstr "Inici"
 
@@ -407,7 +407,7 @@ msgstr "Inici"
 #: templates/catalog/category.html:68 templates/catalog/category.html.py:69
 #: templates/catalog/index.html:5 templates/catalog/index.html.py:18
 #: templates/catalog/product.html:61 templates/catalog/product.html.py:62
-#: templates/catalog/whistlist.html:7 templates/catalog/whistlist.html:42
+#: templates/catalog/wishlist.html:7 templates/catalog/wishlist.html:42
 #: templates/catalog/tags/horizontal_menu.html:17
 #: templates/catalog/tags/horizontal_menu.html:19
 #: templates/catalog/tags/horizontal_menu.html:21
@@ -474,7 +474,7 @@ msgid "Add to Compare"
 msgstr "Compara"
 
 #: templates/catalog/compare.html:19
-#: templates/catalog/whistlist.html:24
+#: templates/catalog/wishlist.html:24
 msgid "Product Name"
 msgstr "Nom del producte"
 
@@ -544,7 +544,7 @@ msgid "Next"
 msgstr "Següent"
 
 #: templates/catalog/category.html:91 templates/catalog/product.html:152
-#: templates/catalog/whistlist.html:53
+#: templates/catalog/wishlist.html:53
 msgid "Price updating..."
 msgstr "Actualització dels preus..."
 
@@ -596,11 +596,11 @@ msgstr "Vendes sugerides"
 msgid "Keywords"
 msgstr "Paraules clau"
 
-#: templates/catalog/whistlist.html:7
-msgid "Whishlist"
+#: templates/catalog/wishlist.html:7
+msgid "Wishlist"
 msgstr "Llista de desitjos"
 
-#: templates/catalog/whistlist.html:42
+#: templates/catalog/wishlist.html:42
 msgid "Remove item"
 msgstr "Treu el producte"
 

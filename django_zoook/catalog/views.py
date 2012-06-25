@@ -238,9 +238,9 @@ def product(request, product):
     return render_to_response("catalog/product.html", values, context_instance=RequestContext(request))
 
 @login_required
-def whistlist(request):
+def wishlist(request):
     """
-    Whistlist
+    Wishlist
     Favourites products customer
     """
 
@@ -255,9 +255,9 @@ def whistlist(request):
         error = _('Error when connecting with our ERP. Try again or cantact us.')
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
-    prod_whistlist = False
+    prod_wishlist = False
     partner = conn.ResPartner.get(partner_id)
-    product_obj = partner.product_whistlist_ids
+    product_obj = partner.product_wishlist_ids
 
     path = request.path_info.split('/')
     if 'remove' in path:
@@ -268,10 +268,10 @@ def whistlist(request):
         if tplproduct.count() > 0:
             try:
                 for prod in product_obj:
-                    if prod.id == tplproduct[0].id: #exist this product whistlist
-                        prod_whistlist = conn_webservice('res.partner','write', [[partner_id], {'product_whistlist_ids':[(3, tplproduct[0].id)]}])
+                    if prod.id == tplproduct[0].id: #exist this product wishlist
+                        prod_wishlist = conn_webservice('res.partner','write', [[partner_id], {'product_wishlist_ids':[(3, tplproduct[0].id)]}])
             except:
-                prod_whistlist = True
+                prod_wishlist = True
                 
     if 'add' in path:
         kwargs = {
@@ -282,17 +282,17 @@ def whistlist(request):
             check_add = False
             if product_obj:
                 for prod in product_obj:
-                    if prod.id == tplproduct[0].id: #exist this product whistlist
+                    if prod.id == tplproduct[0].id: #exist this product wishlist
                         check_add = True
             if not check_add:
-                prod_whistlist = conn_webservice('res.partner','write', [[partner_id], {'product_whistlist_ids':[(4, tplproduct[0].id)]}])
+                prod_wishlist = conn_webservice('res.partner','write', [[partner_id], {'product_wishlist_ids':[(4, tplproduct[0].id)]}])
 
     title = _('Whislist')
     metadescription = _('Whislist of %s') % full_name
     
-    if prod_whistlist:
-        partner = conn.ResPartner.get(partner_id) #refresh product_whistlist_ids if add or remove
-        product_obj = partner.product_whistlist_ids
+    if prod_wishlist:
+        partner = conn.ResPartner.get(partner_id) #refresh product_wishlist_ids if add or remove
+        product_obj = partner.product_wishlist_ids
     
     products = []
     if product_obj:
@@ -306,7 +306,7 @@ def whistlist(request):
 
             products.append({'product': tplproduct, 'name': tplproduct.name, 'price': prods[0].price, 'base_image': base_image})
 
-    return render_to_response("catalog/whistlist.html", {
+    return render_to_response("catalog/wishlist.html", {
                     'title': title, 'metadescription': metadescription, 
                     'products': products,
                     'currency': DEFAULT_CURRENCY,

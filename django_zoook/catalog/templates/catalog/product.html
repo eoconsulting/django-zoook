@@ -61,7 +61,7 @@
                    <div class="product-name" title="{{product.name}}"><h2>{{product.name}}</h2></div>
                     <ul class="add-to">
                         {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a><span class="separator">|</span></li>{% endif %}
-                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/whistlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
+                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
                     </ul>
 
                     <div class="social_network">
