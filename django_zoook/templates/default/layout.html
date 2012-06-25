@@ -30,7 +30,7 @@
         <h1 id="logo"><a href="{% url 'index' %}"><img src="{{ MEDIA_URL }}images/logo.png" title="{% trans "Zoook - OpenERP e-sale" %}"/></a></h1>
 
         <div class="navigation">
-            <form id="search_mini_form" action="{{ LOCALE_URI }}/search" method="get">
+            <form id="search_mini_form" action="{% url 'search' %}" method="get">
                 <fieldset class="form-search">
                     <input id="search" type="text" class="input-text-search" name="q" placeholder="{% trans "Search" %}" value="{{ request.GET.q }}" />
                     <button type="submit" class="button-search-mini"></button>
