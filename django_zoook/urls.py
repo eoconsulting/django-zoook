@@ -83,7 +83,7 @@ urlpatterns = patterns('',
     url(r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
 
     # Ajax Paths
-    url(r'^filemanager/', include('tools.filemanager.connector.urls')),
+    url(r'^filemanager/', include('django_zoook.tools.filemanager.connector.urls')),
     url(r'^inplaceeditform/', include('inplaceeditform.urls')),
     url(r'^jsi18n$', 'django.views.i18n.javascript_catalog', js_info_dict),
 

@@ -23,6 +23,6 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-    (r'^dirlist/$', 'tools.filemanager.connector.views.dirlist'),
-    (r'^$', 'tools.filemanager.connector.views.handler'),
+    (r'^dirlist/$', 'django_zoook.tools.filemanager.connector.views.dirlist'),
+    (r'^$', 'django_zoook.tools.filemanager.connector.views.handler'),
 )
