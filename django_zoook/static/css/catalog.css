@@ -79,7 +79,7 @@ button:hover			{ background-color:#000 }
 /* Product other imgs */
 .product-page .other-img		{ margin-top:20px; width:300px }
 .product-page .other-img li			{ float:left; margin:0 10px 10px 0; position:relative; width:60px; height:60px }
-.product-page .other-img img		{ width:58px; height:58px; border:1px solid #ddd; position:absolute; left:0; top:0;	-ms-interpolation-mode: bicubic }
+.product-page .other-img img		{ width:58px; border:1px solid #ddd; position:absolute; left:0; top:0;	-ms-interpolation-mode: bicubic }
 .product-page .other-img .hover 	{ border:5px solid #f1f1f1 }
 
 .product-page .product-item 	{ border:0; padding:0 10px 0 20px; margin-left:300px }

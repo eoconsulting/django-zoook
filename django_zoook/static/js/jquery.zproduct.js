@@ -34,7 +34,6 @@ $(".tabs a").click(function (event) {
 				top: '50%', 
 				left: '50%', 
 				width: '150px', 
-				height: '150px'
 			}, 200);
 		
 		} , function() {
@@ -46,7 +45,6 @@ $(".tabs a").click(function (event) {
 				top: '0', 
 				left: '0', 
 				width: '58px', 
-				height: '58px'
 			}, 400);
 	});
  
