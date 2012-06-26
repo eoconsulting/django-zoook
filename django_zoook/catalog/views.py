@@ -299,7 +299,7 @@ def wishlist(request):
         for prod in product_obj:
             prods = ProductProduct.objects.filter(product_tmpl=prod.id).order_by('price')
             tplproduct = ProductTemplate.objects.get(id=prod.id)
-            prod_images = ProductImages.objects.filter(product=prod.id,exclude=False)
+            prod_images = ProductImages.objects.filter(product=prod.id,exclude=False,base_image=True)
             base_image = False
             if prod_images.count() > 0:
                 base_image = prod_images[0]
