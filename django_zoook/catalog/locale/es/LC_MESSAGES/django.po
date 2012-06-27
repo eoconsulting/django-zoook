@@ -557,7 +557,7 @@ msgstr "No hay productos relacionados"
 #: templates/catalog/type/simple.html:8
 #: templates/catalog/type/variants.html:11
 msgid "Add to cart"
-msgstr "Añade a la cesta"
+msgstr "Agregar al carrito"
 
 msgid "Featured Products"
 msgstr "Productos Destacados"
