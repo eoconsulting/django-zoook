@@ -33,7 +33,7 @@ from django.db.models import Q
 def doc(request):
     """HomePage Zoook - Developer documentation"""
 
-    title = _('Zoook. OpenERP e-sale')
+    title = _(u'Zoook. OpenERP e-sale')
     return render_to_response("doc.html", locals(), context_instance=RequestContext(request))
 
 

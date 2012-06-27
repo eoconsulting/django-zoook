@@ -93,9 +93,9 @@ def contactForm(request, contact = 'default'):
 
     html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
     
-    title = _('Contact %(name)s') % {'name': contact_detail.name}
+    title = _(u'Contact %(name)s') % {'name': contact_detail.name}
     metakeywords = contact_detail.name
-    metadescription = _('Contact %(name)s details') % {'name': contact_detail.name}
+    metadescription = _(u'Contact %(name)s details') % {'name': contact_detail.name}
 
     return render_to_response("contact/form.html", {
                                         'contact': contact_detail,

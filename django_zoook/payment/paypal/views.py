@@ -47,7 +47,7 @@ def index(request):
     OpenERP Payment Type App is: paypal
     """
 
-    title = _('Payment Paypal')
+    title = _(u'Payment Paypal')
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
@@ -94,8 +94,8 @@ def paypal_error(request):
     Error Paypal view
     """
 
-    title = _('Error Payment Paypal')
-    error = _('Error return Paypal Payment. Go to sale orders and repeat payment')
+    title = _(u'Error Payment Paypal')
+    error = _(u'Error return Paypal Payment. Go to sale orders and repeat payment')
     return HttpResponse(render_to_response('paypal/error.html', {'error':error}, context_instance=RequestContext(request)))
 
 @login_required
@@ -104,7 +104,7 @@ def paypal_confirm(request):
     Confirmation Paypal view
     """
 
-    title = _('Confirm Payment Paypal')
+    title = _(u'Confirm Payment Paypal')
 
     conn = connOOOP()
     order = request.session['sale_order']

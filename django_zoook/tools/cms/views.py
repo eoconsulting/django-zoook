@@ -39,7 +39,7 @@ def modules_list(request):
         raise Http404
 
     modules = Modules.objects.filter()
-    title = _('Modules')
+    title = _(u'Modules')
 
     return render_to_response('cms/modules/list.html', {'title':title,'modules':modules}, context_instance=RequestContext(request))
 

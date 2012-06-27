@@ -50,8 +50,8 @@ def invoices(request):
 
     values = conn.AccountInvoice.filter(partner_id=partner_id, state__ne='draft', type='out_invoice', company_id=OERP_COMPANY, offset=offset, limit=PAGINATOR_INVOICE_TOTAL, order='name DESC')
 
-    title = _('All Invoices')
-    metadescription = _('List all invoices of %s') % full_name
+    title = _(u'All Invoices')
+    metadescription = _(u'List all invoices of %s') % full_name
 
     return render_to_response("account/invoices.html", {'title':title, 'metadescription':metadescription, 'values':values, 'page_previous':page_previous, 'page_next':page_next}, context_instance=RequestContext(request))
 
@@ -74,7 +74,7 @@ def invoice(request, invoice):
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
-    title = _('Invoice %s') % (value.number)
-    metadescription = _('Details invoice %s') % (value.number)
+    title = _(u'Invoice %s') % (value.number)
+    metadescription = _(u'Details invoice %s') % (value.number)
 
     return render_to_response("account/invoice.html", {'title': title, 'metadescription': metadescription, 'value': value}, context_instance=RequestContext(request))

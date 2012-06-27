@@ -75,8 +75,8 @@ def index(request):
 
     site_configuration = siteConfiguration(SITE_ID)
 
-    title = _('Categories')
-    metadescription = _('List all categories of %s') % site_configuration.site_title
+    title = _(u'Categories')
+    metadescription = _(u'List all categories of %s') % site_configuration.site_title
     return render_to_response("catalog/index.html", {
                     'title': title,
                     'metadescription': metadescription, 
@@ -149,12 +149,12 @@ def category(request, category):
         pass
 
     # == template values ==
-    title = _('%(category)s - Page %(page)s of %(total)s') % {
+    title = _(u'%(category)s - Page %(page)s of %(total)s') % {
                 'category': category.name,
                 'page': page,
                 'total': num_pages
             }
-    metadescription = _('%(category)s. Page %(page)s of %(total)s') % {
+    metadescription = _(u'%(category)s. Page %(page)s of %(total)s') % {
                 'category': category.description and category.description or category.name,
                 'page': page,
                 'total': num_pages
@@ -196,7 +196,7 @@ def product(request, product):
     else:
         title = tplproduct.name
     if PRODUCT_METADESCRIPTION:
-        metadescription = _('Buy %(name)s for %(price)s %(currency)s.') % {
+        metadescription = _(u'Buy %(name)s for %(price)s %(currency)s.') % {
                                 'name': tplproduct.name,
                                 'price': prods[0].price,
                                 'currency': DEFAULT_CURRENCY.decode("utf-8"),
@@ -287,8 +287,8 @@ def wishlist(request):
             if not check_add:
                 prod_wishlist = conn_webservice('res.partner','write', [[partner_id], {'product_wishlist_ids':[(4, tplproduct[0].id)]}])
 
-    title = _('Whislist')
-    metadescription = _('Whislist of %s') % full_name
+    title = _(u'Whislist')
+    metadescription = _(u'Whislist of %s') % full_name
     
     if prod_wishlist:
         partner = conn.ResPartner.get(partner_id) #refresh product_wishlist_ids if add or remove
@@ -369,8 +369,8 @@ def compare(request):
                 'base_image': base_image,
             })
 
-    title = _('Compare Products')
-    metadescription = _('Compare products of %s') % site_configuration.site_title
+    title = _(u'Compare Products')
+    metadescription = _(u'Compare products of %s') % site_configuration.site_title
 
     return render_to_response("catalog/compare.html", {
                     'title': title,
@@ -392,12 +392,12 @@ def manufacturers(request, key=False):
     manufacturers = ResManufacturer.objects.filter(active=True).order_by('name')
 
     num_pages = get_num_pages(manufacturers, PAGINATOR_MANUFACTURER_TOTAL)
-    title = _('Manufacturers on %(site)s - Page %(page)s of %(total)s') % {
+    title = _(u'Manufacturers on %(site)s - Page %(page)s of %(total)s') % {
                             'site': site_configuration.site_title,
                             'page': int(request.GET.get('page', '1')),
                             'total': num_pages
                         }
-    metadescription = _('Manufacturers of %(site)s - Page %(page)s of %(total)s') % {
+    metadescription = _(u'Manufacturers of %(site)s - Page %(page)s of %(total)s') % {
                             'site': site_configuration.site_title,
                             'page': int(request.GET.get('page', '1')),
                             'total': num_pages
@@ -480,13 +480,13 @@ def manufacturer(request, manufacturer):
 
     num_pages = get_num_pages(products_tmpl, request.session['paginator'])
 
-    title = _("%(manufacturer)s - %(site)s - Page %(page)s of %(total)s") % {
+    title = _(u"%(manufacturer)s - %(site)s - Page %(page)s of %(total)s") % {
         'manufacturer': manufacturer.name,
         'site': site_configuration.site_title,
         'page': int(request.GET.get('page', '1')),
         'total': num_pages,
     }
-    metadescription = _('Buy %(name)s on %(site)s. Page %(page)s of %(total)s') % {
+    metadescription = _(u'Buy %(name)s on %(site)s. Page %(page)s of %(total)s') % {
             'name': manufacturer.name,
             'site': site_configuration.site_title,
             'page': int(request.GET.get('page', '1')),

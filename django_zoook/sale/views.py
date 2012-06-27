@@ -71,8 +71,8 @@ def orders(request):
 
     values = conn.SaleOrder.filter(partner_id=partner_id, shop_id__in=OERP_SALES, offset=offset, limit=PAGINATOR_ORDER_TOTAL, order='date_order DESC, name DESC')
 
-    title = _('All Orders')
-    metadescription = _('List all orders of %s') % full_name
+    title = _(u'All Orders')
+    metadescription = _(u'List all orders of %s') % full_name
 
     return render_to_response("sale/orders.html", {
                 'title':title,
@@ -104,8 +104,8 @@ def order(request, order):
         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
     value = values[0]
-    title = _('Order %s') % (value.name)
-    metadescription = _('Details order %s') % (value.name)
+    title = _(u'Order %s') % (value.name)
+    metadescription = _(u'Details order %s') % (value.name)
     currency = value.pricelist_id.currency_id.symbol
         
     return render_to_response("sale/order.html", {
@@ -155,8 +155,8 @@ def cancel(request, order):
             del request.session['sale_order']
 
     value = conn.SaleOrder.get(value.id) #reload sale order values
-    title = _('Order %s cancelled') % (value.name)
-    metadescription = _('Order %s cancelled') % (value.name)
+    title = _(u'Order %s cancelled') % (value.name)
+    metadescription = _(u'Order %s cancelled') % (value.name)
 
     return render_to_response("sale/order.html", {
                 'title': title,
@@ -194,8 +194,8 @@ def payment(request, order):
     sale_shop = conn.SaleShop.filter(id=OERP_SALE)[0]
     payments = sale_shop.zoook_payment_types
     
-    title = _('Payment Order %s') % (value.name)
-    metadescription = _('Payment Order %s') % (value.name)
+    title = _(u'Payment Order %s') % (value.name)
+    metadescription = _(u'Payment Order %s') % (value.name)
     currency = value.pricelist_id.currency_id.symbol
 
     return render_to_response("sale/payment.html", {
@@ -379,8 +379,8 @@ def checkout(request):
     #list order lines
     lines = conn.SaleOrderLine.filter(order_id=order.id)
 
-    title = _('Checkout')
-    metadescription = _('Checkout order %s') % (site_configuration.site_title)
+    title = _(u'Checkout')
+    metadescription = _(u'Checkout order %s') % (site_configuration.site_title)
     
     values = {
         'title': title,
@@ -649,8 +649,8 @@ def payorder(request):
     name = request.GET.get('name', '')
     total = request.GET.get('total', '')
     
-    title = _('Payment Order by reference')
-    metadescription = _('Payment Order by reference')
+    title = _(u'Payment Order by reference')
+    metadescription = _(u'Payment Order by reference')
 
     message = False
     value = False
@@ -672,8 +672,8 @@ def payorder(request):
 
             if len(values)>0:
                 value = values[0]
-                title = _('Order %s') % (value.name)
-                metadescription = _('Details order %s') % (value.name)
+                title = _(u'Order %s') % (value.name)
+                metadescription = _(u'Details order %s') % (value.name)
                 sale_shop = conn.SaleShop.filter(id=OERP_SALE)[0]
                 payments = sale_shop.zoook_payment_types
                 currency = value.pricelist_id.currency_id.symbol

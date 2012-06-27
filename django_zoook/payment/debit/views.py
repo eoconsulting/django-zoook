@@ -42,7 +42,7 @@ def index(request):
     Debit Bank View
     """
 
-    title = _('Payment Debit Bank. Add Bank Number')
+    title = _(u'Payment Debit Bank. Add Bank Number')
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
@@ -59,7 +59,7 @@ def confirm(request):
     OpenERP Payment Type App is: debit
     """
 
-    title = _('Payment Debit Bank')
+    title = _(u'Payment Debit Bank')
     context_instance=RequestContext(request)
 
     if not 'sale_order' in request.session:

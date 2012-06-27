@@ -66,8 +66,8 @@ def login(request):
 
     site_configuration = siteConfiguration(SITE_ID)
 
-    title = _('Login')
-    metadescription = _('Account frontpage of %(site)s') % {'site':site_configuration.site_title}
+    title = _(u'Login')
+    metadescription = _(u'Account frontpage of %(site)s') % {'site':site_configuration.site_title}
 
     if 'username' in request.POST and 'password1' in request.POST:
         username = request.POST['username']
@@ -102,8 +102,8 @@ def register(request):
 
     site_configuration = siteConfiguration(SITE_ID)
 
-    title = _('Create an Account')
-    metadescription = _('Create an Account of %(site)s') % {'site':site_configuration.site_title}
+    title = _(u'Create an Account')
+    metadescription = _(u'Create an Account of %(site)s') % {'site':site_configuration.site_title}
 
     if request.method == "POST":
         message = []
@@ -258,8 +258,8 @@ def remember(request):
     message = []
     site_configuration = siteConfiguration(SITE_ID)
 
-    title = _('Remember')
-    metadescription = _('Remember account of %(site)s') % {'site':site_configuration.site_title}
+    title = _(u'Remember')
+    metadescription = _(u'Remember account of %(site)s') % {'site':site_configuration.site_title}
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -317,8 +317,8 @@ def profile(request):
 
     full_name = checkFullName(request)
 
-    title = _('Profile %(full_name)s') % {'full_name':full_name}
-    metadescription = _('Account frontpage of %(site)s') % {'site':site_configuration.site_title}
+    title = _(u'Profile %(full_name)s') % {'full_name':full_name}
+    metadescription = _(u'Account frontpage of %(site)s') % {'site':site_configuration.site_title}
 
     return render_to_response("partner/profile.html", locals(), context_instance=RequestContext(request))
 
@@ -328,8 +328,8 @@ def changepassword(request):
 
     site_configuration = siteConfiguration(SITE_ID)
 
-    title = _('Change password')
-    metadescription = _('Change password of %(site)s') % {'site':site_configuration.site_title}
+    title = _(u'Change password')
+    metadescription = _(u'Change password of %(site)s') % {'site':site_configuration.site_title}
 
     if request.method == "POST":
         error = ''
@@ -383,7 +383,7 @@ def partner(request):
     address_invoice = conn.ResPartnerAddress.filter(type='invoice',partner_id=partner_id)
     address_delivery = conn.ResPartnerAddress.filter(type='delivery',partner_id=partner_id)
 
-    title = _('User Profile')
-    metadescription = _('User profile of %(site)s') % {'site':site_configuration.site_title}
+    title = _(u'User Profile')
+    metadescription = _(u'User profile of %(site)s') % {'site':site_configuration.site_title}
     
     return render_to_response("partner/partner.html", locals(), context_instance=RequestContext(request))

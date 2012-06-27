@@ -87,11 +87,11 @@ def search(request):
             pass
 
         # == template values ==
-        title = _("'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': products.number, 'total': products.paginator.num_pages}
-        metadescription = _("'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': products.number, 'total': products.paginator.num_pages}
+        title = _(u"'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': products.number, 'total': products.paginator.num_pages}
+        metadescription = _(u"'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': products.number, 'total': products.paginator.num_pages}
         category_values = {
             'title': title,
-            'query': '“%s”' % q,
+            'query': u'“%s”' % q,
             'metadescription': metadescription,
             'values': values,
             'products': products,

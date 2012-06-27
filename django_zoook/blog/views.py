@@ -54,12 +54,12 @@ def blog_list(request, key=False):
         blogs = blogs.filter(query)
 
     num_pages = get_num_pages(blogs, PAGINATOR_BLOG_TOTAL)
-    title = _('Blog :: All Posts %(key)s - Page %(page)s of %(total)s') % {
+    title = _(u'Blog :: All Posts %(key)s - Page %(page)s of %(total)s') % {
                             'key': key and key or '',
                             'page': int(request.GET.get('page', '1')),
                             'total': num_pages
                         }
-    metadescription = _('List all post %(key)s blog of %(site)s. Page %(page)s of %(total)s') % {
+    metadescription = _(u'List all post %(key)s blog of %(site)s. Page %(page)s of %(total)s') % {
                             'key': key and key or '',
                             'site':site_configuration.site_title, 
                             'page':int(request.GET.get('page', '1')),

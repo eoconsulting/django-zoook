@@ -96,11 +96,11 @@ def keyword(request,tag):
 
 
         # == template values ==
-        title = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': num_pages}
-        metadescription = _("'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': num_pages}
+        title = _(u"'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': num_pages}
+        metadescription = _(u"'%(tag)s' - Page %(page)s of %(total)s") % {'tag': q, 'page': products.number, 'total': num_pages}
         category_values = {
             'title': title,
-            'query': '“%s”' % q,
+            'query': u'“%s”' % q,
             'metadescription': metadescription,
             'values': values,
             'products': products,

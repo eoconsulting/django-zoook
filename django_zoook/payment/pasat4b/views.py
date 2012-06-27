@@ -48,7 +48,7 @@ def index(request):
         - Minimium 4, Maximun 12
     """
 
-    title = _('Payment Credit Card Pasat 4b')
+    title = _(u'Payment Credit Card Pasat 4b')
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
@@ -87,8 +87,8 @@ def pasat4b_error(request):
     Error Pasat 4b view
     """
 
-    title = _('Error Payment Credit Card Pasat 4b')
-    error = _('Error return 4b (Pasat Internet 4b) Payment. Go to sale orders and repeat payment')
+    title = _(u'Error Payment Credit Card Pasat 4b')
+    error = _(u'Error return 4b (Pasat Internet 4b) Payment. Go to sale orders and repeat payment')
     return HttpResponse(render_to_response('pasat4b/error.html', {'error':error}, context_instance=RequestContext(request)))
 
 @login_required
@@ -117,7 +117,7 @@ def pasat4b_confirm(request):
         order = orders[0]
         payment_order = conn_webservice('sale.order', 'sale_order_payment', [order.name, 'pasat4b'])
 
-        title = _('Confirmation Payment Credit Card Pasat 4b')
+        title = _(u'Confirmation Payment Credit Card Pasat 4b')
         values = {'order':request.session['sale_order'], 'title':title}
 
         del request.session['sale_order']

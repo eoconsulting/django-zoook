@@ -43,7 +43,7 @@ def index(request):
     OpenERP Payment Type App is: cashondelivery
     """
 
-    title = _('Payment Cash On Delivery')
+    title = _(u'Payment Cash On Delivery')
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')

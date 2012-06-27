@@ -49,7 +49,7 @@ def index(request):
         - Minimium 4, Maximun 12
     """
 
-    title = _('Payment Credit Card Servired')
+    title = _(u'Payment Credit Card Servired')
 
     if not 'sale_order' in request.session:
         error = _('Order number is not available. Use navigation menu.')
@@ -102,8 +102,8 @@ def sermepa_error(request):
     Error Sermepa view
     """
 
-    title = _('Error Payment Credit Card Servired')
-    error = _('Error return Servired Payment. Go to sale orders and repeat payment')
+    title = _(u'Error Payment Credit Card Servired')
+    error = _(u'Error return Servired Payment. Go to sale orders and repeat payment')
     return HttpResponse(render_to_response('sermepa/error.html', {'error':error}, context_instance=RequestContext(request)))
 
 @login_required
@@ -112,7 +112,7 @@ def sermepa_confirm(request):
     Confirmation Sermepa view
     """
 
-    title = _('Confirmation Credit Card Servired')
+    title = _(u'Confirmation Credit Card Servired')
 
     conn = connOOOP()
     order = request.session['sale_order']
