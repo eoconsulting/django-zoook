@@ -552,10 +552,6 @@ msgstr "Actualització dels preus..."
 msgid "Products"
 msgstr "Productes"
 
-#: templates/catalog/product.html:19
-msgid "Product Related"
-msgstr "Productes"
-
 #: templates/catalog/product.html:26
 msgid "Your shopping cart"
 msgstr "La seva cistella de la compra"

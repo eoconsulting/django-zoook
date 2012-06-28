@@ -494,10 +494,6 @@ msgstr "Actualización de precios..."
 msgid "Products"
 msgstr "Productos"
 
-#: templates/catalog/product.html:19
-msgid "Product Related"
-msgstr "Productos"
-
 #: templates/catalog/product.html:26
 msgid "Your shopping cart"
 msgstr "Su cesta de la compra"
@@ -528,7 +524,7 @@ msgstr "Este producto no está disponible actualmente."
 
 #: templates/catalog/product.html:92
 msgid "Related Products"
-msgstr "Productos relacionados"
+msgstr "Productos Relacionados"
 
 #: templates/catalog/product.html:93
 msgid "Up-sells"
