@@ -170,6 +170,7 @@ def category(request, category):
         'order_by_option': request.session['order_by'],
         'paginator_items': PAGINATOR_ITEMS,
         'catalog_orders': CATALOG_ORDERS,
+        'currency_position': CURRENCY_LABEL_POSITION,
         'total': total,
         'categories_path': categories_path,
         'currency': DEFAULT_CURRENCY,
