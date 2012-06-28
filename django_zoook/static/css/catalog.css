@@ -131,7 +131,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .tabs .active a:hover  { background:#fff; border-bottom:1px solid #fff; color:#000 }
 
 .tab-container 	{ border:1px solid #e7e7e7; overflow:hidden; float:left; width:100%; background:#fff; -webkit-border-bottom-right-radius:5px; -webkit-border-bottom-left-radius:5px; -moz-border-radius-bottomright:5px; -moz-border-radius-bottomleft:5px; border-bottom-right-radius:5px; border-bottom-left-radius:5px }
-.tab-content		{ padding:20px; font-size:12px; line-height:18px }
+.tab-content		{ padding:20px; font-size:13px; line-height:18px }
 .tab-content p		{ line-height:18px }
 .tab-content ul		{ list-style:circle; padding-left:20px }
 

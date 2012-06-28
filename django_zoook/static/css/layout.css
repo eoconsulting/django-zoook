@@ -35,7 +35,7 @@ label {display:block;float:left;clear:left;width:90px}
 /* Containers -------------------------------------------------------------------------------------------- */
 .page   { width:940px; margin:0 auto }
 .page-wrap  { }
-#page-footer { margin-top:10px; border-top:1px solid #ff0404; text-align:center}
+#page-footer { margin-top:20px; border-top:1px solid #ff0404; text-align:center}
 
 #sidebar    { float:right; width:220px }
 #content    { float:left; width:700px }
@@ -87,7 +87,7 @@ label {display:block;float:left;clear:left;width:90px}
 .notice-msg { border-color:#fcd344; background-color:#fafaec; background-image:url(../images/icons/note_msg.gif); color:#3d6611}
 
 /* Pathway */
-#pathway    { margin:5px 0 10px 0}
+#pathway    { margin:5px 0 15px 0}
 #pathway li { display:inline; list-style-type:none; padding-right:5px}
 
 /* Columns */
