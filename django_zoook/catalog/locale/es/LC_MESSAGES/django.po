@@ -523,8 +523,8 @@ msgid "Subscribe"
 msgstr "Subscripción"
 
 #: templates/catalog/product.html:82
-msgid "This product is out of service"
-msgstr "Este producto está fuera de servicio"
+msgid "This product is currently unavailable."
+msgstr "Este producto no está disponible actualmente."
 
 #: templates/catalog/product.html:92
 msgid "Related Products"

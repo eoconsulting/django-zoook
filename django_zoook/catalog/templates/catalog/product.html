@@ -81,7 +81,7 @@
                     {% if product.status %}
                         {% if products|length > 1 %}{% include "catalog/type/variants.html" %}{%else%}{% include "catalog/type/simple.html" %}{% endif %}
                     {% else %}
-                        <div class="out-service ico border3b"><h3>{% trans "This product is out of service" %}</h3></div>
+                        <div class="out-service ico border3b"><h3>{% trans "This product is currently unavailable." %}</h3></div>
                     {% endif %}
 
                 </div>
