@@ -45,10 +45,10 @@ def search(request):
 
     if q:
         kwargs_name = {
-            'name_'+get_language()+'__icontains': q,
+            u'name_'+get_language()+u'__icontains': q,
         }
         kwargs_shortdescription = {
-            'shortdescription_'+get_language()+'__icontains': q,
+            u'shortdescription_'+get_language()+u'__icontains': q,
         }
         products = ProductTemplate.objects.filter(Q(status=True), Q(product_product_set__active=True),
                                                   Q(visibility='all') | Q(visibility='search') | Q(visibility='catalog'),

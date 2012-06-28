@@ -45,16 +45,16 @@ def keyword(request,tag):
 
     if q:
         kwargs_eq = {
-            'metakeyword_'+get_language(): '%s' % q,
+            'metakeyword_'+get_language(): u'%s' % q,
         }
         kwargs_start = {
-            'metakeyword_'+get_language()+'__istartswith': '%s,' % q,
+            'metakeyword_'+get_language()+'__istartswith': u'%s,' % q,
         }
         kwargs_md = {
-            'metakeyword_'+get_language()+'__icontains': ',%s,' % q,
+            'metakeyword_'+get_language()+'__icontains': u',%s,' % q,
         }
         kwargs_end = {
-            'metakeyword_'+get_language()+'__iendswith': ',%s' % q,
+            'metakeyword_'+get_language()+'__iendswith': u',%s' % q,
         }
 
 
