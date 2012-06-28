@@ -75,7 +75,9 @@
                     </div>
                     
                     <div class="product-description">
+                    {% autoescape off %}
                         {{product.shortdescription}}
+                    {% endautoescape %}
                     </div>
                     
                     {% if product.status %}
@@ -98,7 +100,9 @@
         
         <div class="tab-container">
             <div id="tab1" class="tab-content">
+            {% autoescape off %}
                 {{product.description}}
+            {% endautoescape %}
             </div>
 
             {% if related_products|length > 1 %}<div id="tab2" class="tab-content">
