@@ -202,7 +202,7 @@ def product(request, product):
                                 'price': prods[0].price,
                                 'currency': DEFAULT_CURRENCY.decode("utf-8"),
                         }
-        if tplproduct.metadescription:
+        if tplproduct.metadescription and tplproduct.metadescription != u'False':
             metadescription = metadescription+' '+tplproduct.metadescription
     else:
         metadescription = tplproduct.metadescription
