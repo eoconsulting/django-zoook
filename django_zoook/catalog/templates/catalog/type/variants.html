@@ -21,11 +21,13 @@
                             </span>
                         </div>
                         <script type="text/javascript">
-                        $('input:radio[name=code]').change(function() {
-                        	window.location = '?code=' + $(this).attr('value').toLowerCase();
-                        	$("#page-wrap").css({ opacity: 0.3 })
-                            $('#loading-bar').show();
-                        	return false;
+                        $(document).ready(function() {
+	                        $('input:radio[name=code]').change(function() {
+	                        	window.location = '?code=' + $(this).attr('value').toLowerCase();
+	                        	$("#esale").css({ opacity: 0.3 })
+	                            $('#loading-bar').show();
+	                        	return false;
+	                        });
                         });
                         </script>
                     </div>

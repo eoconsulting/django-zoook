@@ -216,7 +216,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .cart-add-form ul { margin: 10px; }
 .cart-add-form li { margin: 5px; }
 .cart-add-form label { float: none; display: inline; margin-left: 5px; }
-.cart-add-form label, .cart-add-form input { cursor: pointer; }
+.cart-add-form label, .cart-add-form input[type=radio] { cursor: pointer; }
 
 #catalog-whistlist table td { padding: 10px; }
 
