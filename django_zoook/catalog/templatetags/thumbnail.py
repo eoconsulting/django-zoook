@@ -48,6 +48,10 @@ class ThumbnailNode(Node):
         try:
             fname = fileimage.split('/')[-1:]
             fname = fname[0].split('.')
+            if len(fname)>2:    # The name of the file have more than one '.'
+                for i in range(1, len(fname)-1):
+                    fname[0] += '.' + fname[i]
+                fname[1] = fname[-1]
             size = size.split('x')
             base_image = '%s/%s/%s.%s' % (MEDIA_ROOT, 'catalog', fname[0], fname[1])
             thumb_image = '%s/%s/%sx%s/%s.%s' % (MEDIA_ROOT, 'catalog', size[0], size[1], fname[0], fname[1])
