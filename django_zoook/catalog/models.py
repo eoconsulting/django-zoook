@@ -354,10 +354,13 @@ class ProductProduct(models.Model):
 class ProductImages(models.Model):
     """ProductImages OpenERP"""
 
+    __metaclass__ = TransMeta
+
     name = models.CharField(_('Image Title'), max_length=128, null=True, blank=True)
     product = models.ForeignKey('ProductProduct', null=True, blank=True, related_name='product_images_set')
     url = models.CharField(_('File Location'), max_length=128, null=True, blank=True)
-    base_image = models.BooleanField(_('Thumb Image'), default=False)
+    base_image = models.BooleanField(_('Base Image'), default=False)
+    thumb_image = models.BooleanField(_('Thumb Image'), default=False)
     exclude = models.BooleanField(_('Exclude'), default=False)
 
     """ Custom fields model """
@@ -366,6 +369,9 @@ class ProductImages(models.Model):
         db_table = 'product_images'
         verbose_name = _('image')
         verbose_name_plural = _('images')
+        translate = (
+            'name',
+        )
 
     def __unicode__(self):
         return self.name

@@ -51,6 +51,9 @@ if options.products:
     products = options.products.split(',')
 
 results = conn_webservice('sale.shop', 'dj_export_images', [[OERP_SALE], products])
+langs = conn_webservice('sale.shop', 'zoook_sale_shop_langs', [[OERP_SALE]])
+langs = langs[str(OERP_SALE)]
+context = {}
 
 django_product_images_fields = [field.name for field in ProductImages._meta.fields]
 
@@ -60,7 +63,7 @@ if len(results) == 0:
 for result in results:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
     try:
-        values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.images',[result]])
+        values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.product.images',[result],context,langs])
     except Exception, e:
         logging.error(_('Sync. Images. Error getting image ID %s from OpenERP') % result)
         logging.error('Exception: %s' % e)
