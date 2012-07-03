@@ -4,11 +4,12 @@
 {% load modules %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
-<link rel="canonical" href="{{product.get_absolute_url}}" />{% endblock %}
+<link rel="canonical" href="{{url}}" />{% endblock %}
 
-{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="{{product.get_absolute_url}}">{{product.name}}</a></li></ul></div>{% endblock %}
+{% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="{{url}}">{{name}}</a></li></ul></div>{% endblock %}
 
 {% block content %}
+	<div id="loading-bar"><h1>{% trans "Loading..." %}</h1></div>
     <div id="page-wrap" class="clearfix">
         <div id="sidebar">
             <div class="block block-default ico border5">
@@ -58,7 +59,7 @@
                 </div>
 
                 <div class="product-item block border5 clearfix">
-                   <div class="product-name" title="{{product.name}}"><h2>{{product.name}}</h2></div>
+                   <div class="product-name" title="{{name}}"><h2>{{name}}</h2></div>
                     <ul class="add-to">
                         {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{product.slug}}">{% trans "Add to Compare" %}</a><span class="separator">|</span></li>{% endif %}
                         {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{product.slug}}">{% trans "Add to Wishlist" %}</a></li>{% endif %}
@@ -70,7 +71,7 @@
                             <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="zoook_eshop" >Tweet</a>
                         </div>
                         <div class="facebook">
-                            <iframe src="http://www.facebook.com/plugins/like.php?href={{url}}{{product.get_absolute_url}}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
+                            <iframe src="http://www.facebook.com/plugins/like.php?href={{live_url}}{{url}}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
                         </div>
                     </div>
                     

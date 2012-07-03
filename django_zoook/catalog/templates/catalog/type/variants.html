@@ -1,20 +1,31 @@
 {% load i18n %}
-                    <ul class="product-options border3t">
-                        {% for product in products %}<li><strong>{% trans "Code" %}:</strong> {{product.code}}</li>
-                        {% if product.ean13 %}<li><strong>{% trans "EAN13" %}:</strong> {{product.ean13}}{% endif %}{% endfor %}</li>
-                    </ul>
                     <div class="cart-box border3b">
-                        <select id="code">
-                        {% for product in products %}{% if product.active %}<option value="{{ product.code}}">{{ product.code}} ({{product.price}} €)</option>{%endif %}{% endfor %}
-                        </select>
                         <form class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
+	                        <div style="display: block;"><ul>
+	                        	{% for product in products %}{% if product.active %}
+                        		<li>
+	                        		<input type="radio" name="code" id="opt-{{product.code}}" value="{{product.code}}"{% if product.code == code %} checked="checked"{% endif %} />
+	                        		<label for="opt-{{product.code}}">{{product.code}} ({% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %})</label>
+                        		</li>
+	                        	{%endif %}{% endfor %}
+	                        </ul></div>
                             <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
                             <input name="qty" type="text" value="1" class="qty border2" />
                             {% csrf_token %}
                         </form>
                         <div id="product-price-{{product.id}}" class="price-box">
                             <span class="regular-price">
-                                <span class="price">{{price}} €</span>
+                                <span class="price">
+                                {% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %}
+                                </span>
                             </span>
                         </div>
+                        <script type="text/javascript">
+                        $('input:radio[name=code]').change(function() {
+                        	window.location = '?code=' + $(this).attr('value').toLowerCase();
+                        	$("#page-wrap").css({ opacity: 0.3 })
+                            $('#loading-bar').show();
+                        	return false;
+                        });
+                        </script>
                     </div>

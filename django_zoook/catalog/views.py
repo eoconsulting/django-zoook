@@ -126,18 +126,26 @@ def category(request, category):
         products_tmpl = paginator.page(paginator.num_pages)
 
     # get price and base_image product
-    for tplproduct in products_tmpl:
+    for i, tplproduct in enumerate(products_tmpl):
         product_products = tplproduct.product_product_set.order_by('price')
         if not product_products.count():
             continue
-        base_image = product_products[0].get_base_image()
+        product_variant = product_products.count()
+        code = product_products[i].code
+        url = tplproduct.get_absolute_url()
+        name = tplproduct.name
+        if product_variant > 1:
+            url += '?code=' + code.lower()
+            name += ' - ' + code
+        base_image = product_products[i].get_base_image()
         values.append({
                 'product': tplproduct,
-                'name': tplproduct.name.lower(), 
-                'product_variant': product_products.count(),
-                'price': product_products[0].get_price(),
-                'price_normal': product_products[0].price,
-                'price_special': product_products[0].price_special,
+                'name': name, 
+                'url': url,
+                'product_variant': product_variant,
+                'price': product_products[i].get_price(),
+                'price_normal': product_products[i].price,
+                'price_special': product_products[i].price_special,
                 'position': tplproduct.position,
                 'base_image': base_image
             })
@@ -190,16 +198,28 @@ def product(request, product):
     # get products ordered by price, the first is the cheapest
     prods = tplproduct.product_product_set.order_by('price')
 
-    base_image, thumb_images = prods[0].get_all_images()
+    name = tplproduct.name
+    url = tplproduct.get_absolute_url()
+    prods_i = 0
+    code = request.GET.get('code', None)
+    if code:
+        for i, prod in enumerate(prods):
+            if prod.code.lower() == code.lower():
+                code = prod.code
+                prods_i = i
+                name += ' - ' + prod.code
+                url += '?code=' + code.lower()
+
+    base_image, thumb_images = prods[prods_i].get_all_images()
 
     if tplproduct.metatitle:
         title = tplproduct.metatitle
     else:
-        title = tplproduct.name
+        title = name
     if PRODUCT_METADESCRIPTION:
         metadescription = _(u'Buy %(name)s for %(price)s %(currency)s.') % {
                                 'name': tplproduct.name,
-                                'price': prods[0].price,
+                                'price': prods[prods_i].price,
                                 'currency': DEFAULT_CURRENCY.decode("utf-8"),
                         }
         if tplproduct.metadescription and tplproduct.metadescription != u'False':
@@ -216,19 +236,22 @@ def product(request, product):
     tplproduct.set_last_visited(request, tplproduct)
     values = {
         'title': title,
+        'name': name,
+        'code': code,
         'metadescription': metadescription,
         'metakeywords': metakeywords,
         'product': tplproduct,
         'products': prods,
         'related_products': related_products,
         'upsells_products': upsells_products,
-        'price': prods[0].get_price(),
-        'price_normal': prods[0].price,
-        'price_special': prods[0].price_special,
+        'price': prods[prods_i].get_price(),
+        'price_normal': prods[prods_i].price,
+        'price_special': prods[prods_i].price_special,
         'base_image': base_image,
         'thumb_images': thumb_images,
         'search_keywords': search_keywords,
-        'url': LIVE_URL[0:-1],
+        'url': url,
+        'live_url': LIVE_URL[0:-1],
         'currency': DEFAULT_CURRENCY,
         'currency_position': CURRENCY_LABEL_POSITION,
         'NEWSLATTER_ON': NEWSLATTER_ON,

@@ -3,7 +3,7 @@
                         {% for product in products %}<li><strong>{% trans "Code" %}:</strong> {{product.code}}</li>
                         {% if product.ean13 %}<li><strong>{% trans "EAN13" %}:</strong> {{product.ean13}}{% endif %}{% endfor %}</li>
                     </ul>
-                    <div class="cart-box border3b">
+                    <div class="cart-box cart-box-simple border3b">
                         {% for product in products %}{% if product.active %}<form class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
                             <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
                             <input name="qty" type="text" value="1" class="qty border2" />
@@ -12,8 +12,9 @@
                         </form>{%endif %}{% endfor %}
                         <div id="product-price-{{product.id}}" class="price-box">
                             <span class="regular-price">
-                                {% if currency_position == 'before' %}<span class="price">{{ currency }} {{price}}</span>{% else %}
-                                <span class="price">{{price}} {{ currency }}</span>{% endif %}
+                                <span class="price">
+                                {% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %}
+                                </span>
                             </span>
                         </div>
                     </div>
