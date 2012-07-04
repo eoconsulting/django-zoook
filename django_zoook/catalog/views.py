@@ -87,8 +87,6 @@ def index(request):
 def category(request, category):
     """All Products filtered by category"""
 
-    values = []
-
     if not category:
         raise Http404(_('This category is not available because you navigate with bookmarks or search engine. Use navigation menu'))
 
@@ -99,62 +97,31 @@ def category(request, category):
     category = get_object_or_404(ProductCategory, **kwargs)
     categories_path = category.get_path() #pathway
 
-    qtmpl, qprod = ProductTemplate.get_qattributes(request)
+    qtmpl, qprod = ProductProduct.get_qattributes(request)
 
-    products_tmpl = ProductTemplate.objects.filter(
+    product_products = ProductProduct.objects.filter(
             Q(**qtmpl),
             Q(**qprod),
-            Q(product_product_set__active=True),
-            Q(categ=category),
-            Q(visibility='all') | 
-            Q(visibility='catalog')
+            Q(active=True),
+            Q(product_tmpl__categ=category),
+            Q(product_tmpl__visibility='all') | 
+            Q(product_tmpl__visibility='catalog')
         )
 
     # Pagination options
-    default = category.default_sort_by and category.default_sort_by or 'position'
-    set_paginator_options(request, default)
-    total = products_tmpl.count()
-    paginator = Paginator(products_tmpl, request.session['paginator'])
-    num_pages = get_num_pages(products_tmpl, request.session['paginator'])
+    default_paginator = category.default_sort_by and category.default_sort_by or 'position'
+    set_paginator_options(request, default_paginator)
+    total = product_products.count()
+    paginator = Paginator(product_products, request.session['paginator'])
+    num_pages = get_num_pages(product_products, request.session['paginator'])
 
     page = int(request.GET.get('page', '1'))
 
     # If page request (9999) is out of range, deliver last page of results.
     try:
-        products_tmpl = paginator.page(page)
+        product_products = paginator.page(page)
     except (EmptyPage, InvalidPage):
-        products_tmpl = paginator.page(paginator.num_pages)
-
-    # get price and base_image product
-    for i, tplproduct in enumerate(products_tmpl):
-        product_products = tplproduct.product_product_set.order_by('price')
-        if not product_products.count():
-            continue
-        product_variant = product_products.count()
-        code = product_products[i].code
-        url = tplproduct.get_absolute_url()
-        name = tplproduct.name
-        if product_variant > 1:
-            url += '?code=' + code.lower()
-            name += ' - ' + code
-        base_image = product_products[i].get_base_image()
-        values.append({
-                'product': tplproduct,
-                'name': name, 
-                'url': url,
-                'product_variant': product_variant,
-                'price': product_products[i].get_price(),
-                'price_normal': product_products[i].price,
-                'price_special': product_products[i].price_special,
-                'position': tplproduct.position,
-                'base_image': base_image
-            })
-
-    # == order by position, name or price ==
-    try:
-        values.sort(key=lambda x: x[request.session['order']], reverse = request.session['order_by'] == 'desc')
-    except:
-        pass
+        product_products = paginator.page(paginator.num_pages)
 
     # == template values ==
     title = _(u'%(category)s - Page %(page)s of %(total)s') % {
@@ -169,9 +136,9 @@ def category(request, category):
             }
     category_values = {
         'title': title,
-        'category': category,
+        'query': category,
         'metadescription': metadescription,
-        'values': values,
+        'product_products': product_products,
         'paginator_option': request.session['paginator'],
         'mode_option': request.session['mode'],
         'order_option': request.session['order'],

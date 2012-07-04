@@ -1,4 +1,4 @@
-{% load i18n %}{% load thumbnail %}
+{% load i18n %}
 <ul>{% for value in values %}
 <li><a href="{{ LOCALE_URI }}/product/{{value.product.slug}}">{{value.product.name}}</a></li>
 {% endfor %}</ul>

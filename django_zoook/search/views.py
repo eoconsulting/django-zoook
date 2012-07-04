@@ -41,60 +41,41 @@ def search(request):
     """All Products filtered by query"""
 
     q = request.GET.get('q')
-    values = []
 
     if q:
         kwargs_name = {
-            u'name_'+get_language()+u'__icontains': q,
+            u'product_tmpl__name_'+get_language()+u'__icontains': q,
         }
         kwargs_shortdescription = {
-            u'shortdescription_'+get_language()+u'__icontains': q,
+            u'product_tmpl__shortdescription_'+get_language()+u'__icontains': q,
         }
-        products = ProductTemplate.objects.filter(Q(status=True), Q(product_product_set__active=True),
-                                                  Q(visibility='all') | Q(visibility='search') | Q(visibility='catalog'),
-                                                  Q(**kwargs_name) | Q(**kwargs_shortdescription))
+        product_products = ProductProduct.objects.filter(
+                Q(product_tmpl__status=True), Q(active=True),
+                Q(product_tmpl__visibility='all') | Q(product_tmpl__visibility='search') | Q(product_tmpl__visibility='catalog'),
+                Q(**kwargs_name) | Q(**kwargs_shortdescription))
 
         # Pagination options
         set_paginator_options(request, 'price')
-        total = products.count()
-        paginator = Paginator(products, request.session['paginator'])
-        num_pages = get_num_pages(products, request.session['paginator'])
-
+        total = product_products.count()
+        paginator = Paginator(product_products, request.session['paginator'])
+        num_pages = get_num_pages(product_products, request.session['paginator'])
+    
         page = int(request.GET.get('page', '1'))
-
+    
         # If page request (9999) is out of range, deliver last page of results.
         try:
-            products = paginator.page(page)
+            product_products = paginator.page(page)
         except (EmptyPage, InvalidPage):
-            products = paginator.page(paginator.num_pages)
-
-        # get price and base_image product            
-        for tplproduct in products.object_list:
-            prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id).order_by('price')
-
-            prod_images = ProductImages.objects.filter(product=prods[0].id,base_image=True)
-
-            base_image = False
-            if len(prod_images) > 0:
-                base_image = prod_images[0]
-
-            values.append({'product': tplproduct, 'name': tplproduct.name.lower(), 'product_variant': len(prods), 'price': prods[0].price, 'base_image': base_image})
-
-        # == order by name or price ==
-        try:
-            values.sort(key=lambda x: x[request.session['order']], reverse = request.session['order_by'] == 'desc')
-        except:
-            pass
+            product_products = paginator.page(paginator.num_pages)
 
         # == template values ==
-        title = _(u"'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': products.number, 'total': products.paginator.num_pages}
-        metadescription = _(u"'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': products.number, 'total': products.paginator.num_pages}
+        title = _(u"'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': product_products.number, 'total': product_products.paginator.num_pages}
+        metadescription = _(u"'%(query)s' - Page %(page)s of %(total)s") % {'query': q, 'page': product_products.number, 'total': product_products.paginator.num_pages}
         category_values = {
             'title': title,
             'query': u'“%s”' % q,
             'metadescription': metadescription,
-            'values': values,
-            'products': products,
+            'product_products': product_products,
             'paginator_option': request.session['paginator'],
             'mode_option': request.session['mode'],
             'order_option': request.session['order'],

@@ -1,0 +1,83 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load modules %}
+<div id="page-wrap" class="clearfix">
+    <div id="sidebar">
+        <div class="block border5">
+            {% module catalog.right %}
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="catalog-category" class="block border5 clearfix">
+            <h1>{{query}}</h1>
+
+            <div class="toolbar toolbar-top">
+                <div class="items-pager">
+                    <span class="items-drop">{% trans "Show" %} <select onchange="setLocation('paginator',this.value)">{% for item in paginator_items %}<option value="{{ item }}"{% if paginator_option == item %} selected="selected"{% endif %}>{{ item }}</option>{% endfor %}</select> {% trans "items" %}</span>
+                    <span class="view-mode">{{ values|length }}/{{ total }} {% trans "item" %}{{ products.object_list|pluralize }}</span>
+                </div>
+                <div class="items-sort">
+                    <span class="sort-drop">{% trans "Sort by" %}
+                    <select onchange="setLocation('order',this.value)">{% for order in catalog_orders %}<option value="{{ order }}"{% if order_option == order %} selected="selected"{% endif %}>{% trans order %}</option>{% endfor %}</select>
+                    {% if order_by_option = 'desc' %}<a href="?order_by=asc">{% trans "ASC" %}</a>{% else %}<a href="?order_by=desc">{% trans "DESC" %}</a>{% endif %}</span>
+                    <span class="view-mode">{% trans "View as" %}: 
+                        {% if mode_option == 'grid' %}<span class="active">{% trans "Grid" %}</span>{% else %} <a href="?mode=grid">{% trans "Grid" %}</a>{% endif %}
+                        {% if mode_option == 'list' %}<span class="active">{% trans "List" %}</span>{% else %} <a href="?mode=list">{% trans "List" %}</a>{% endif %}
+                    </span>
+                </div>
+            </div>
+            {% if values|length == 0 %}<p class="note-msg">{% trans "There are any products matching the selection." %}</p>{% endif %}
+            {% if mode_option == 'grid' %}
+            <ul id="catalog-grid">{% for value in values %}
+                <li id="product-{{value.product.id}}" class="product-item block border5{% cycle '' '' ' last' %}">
+                    <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" class="product-image-grid" /></a>
+                    <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
+                    <div id="product-price-{{value.product.id}}" class="price-box">
+                        <span class="regular-price">
+                            {% if currency_position == 'before' %}<span class="price">{{ currency }} {{value.price}}</span>{% else %}
+                                <span class="price">{{value.price}} {{ currency }}</span>{% endif %}
+                        </span>
+                    </div>
+                    <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
+                    <ul class="add-to">
+                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
+                        {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
+                    </ul>
+                </li>{% endfor %}
+            </ul>
+            {% else %}
+            <ul id="catalog-list">{% for value in values %}
+                    <li id="product-{{value.product.id}}" class="product-item block border5 clearfix">
+                        <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.product.name}}" /></a>
+                        <a href="{{value.url}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
+                        <p class="product-description">{% autoescape off %}{{value.product.shortdescription}}{% endautoescape %}</p>
+                        <div id="product-price-{{value.product.id}}" class="price-box">
+                            <span class="regular-price">
+                                {% if currency_position == 'before' %}<span class="price">{{ currency }} {{value.price}}</span>{% else %}
+                                <span class="price">{{value.price}} {{ currency }}</span>{% endif %}
+                            </span>
+                        </div>
+                        <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
+                        <ul class="add-to">
+                            {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
+                            {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
+                        </ul>
+                    </li>{% endfor %}
+            </ul>
+            {% endif %}
+            {% if products.paginator.num_pages > 1 %}
+            <div id="paginator" class="pagination toolbar-bottom">
+                <span class="step-links">
+                    {% if products.has_previous %}<a href="?page={{ products.previous_page_number }}">{% trans "Previous" %}</a>{% endif %}
+                    <span class="current">
+                        {% trans "Page" %} {{ products.number }} of {{ products.paginator.num_pages }}.
+                    </span>
+                    {% if products.has_next %}<a href="?page={{ products.next_page_number }}">{% trans "Next" %}</a>{% endif %}
+                </span>
+            </div>{% endif %}
+        </div>
+    </div>
+
+{% if update_price and user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
+</div>

@@ -351,6 +351,55 @@ class ProductProduct(models.Model):
             data = json.dumps(values)
         return data
 
+    @staticmethod
+    def get_qattributes(request):
+
+        prod_template_fields = ProductTemplate._meta.get_all_field_names()
+        prod_fields = ProductProduct._meta.get_all_field_names()
+        #search products by attributes
+        qtmpl = {}
+        qprod = {}
+
+        field_int = [
+            'ForeignKey',
+            'ManyToManyField',
+        ]
+        parameters = request.GET
+        if len(parameters.keys()) > 0:
+            for key, value in parameters.iteritems():
+                if key[:2] == 'x_': #product product. Only fields start by x_ (product attribute)
+                    if key in prod_fields:
+                        if ProductProduct._meta.get_field(key).get_internal_type() in field_int:
+                            try:
+                                value = int(value)
+                            except ValueError:
+                                value = False
+                        if value:
+                            qprod[key] = value
+                else: #product template
+                    if key in prod_template_fields:
+                        if ProductTemplate._meta.get_field(key).get_internal_type() in field_int:
+                            try:
+                                value = int(value)
+                            except ValueError:
+                                value = False
+                        if value:
+                            qtmpl['product_tmpl__' + key] = value
+
+        #price
+        price = request.GET.get('price', False)
+        if price:
+            try:
+                price = price.split(",")
+                pf = int(price[0])
+                pt = int(price[1])
+                qprod['price__lte'] = pt
+                qprod['price__gte'] = pf
+            except:
+                pass
+        # #end search products by attributes
+        return qtmpl, qprod
+
 class ProductImages(models.Model):
     """ProductImages OpenERP"""
 
