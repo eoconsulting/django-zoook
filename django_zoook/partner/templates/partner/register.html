@@ -40,8 +40,8 @@
 <form action="{% url partner_register %}" method="post" id="registerForm">
 <fieldset>
     <div class="col2-set">
-        <div class="col-1 new-users">
-            <h3>{% trans "New customers" %}</h3>
+        <div class="new-users">
+            <h1>{% trans "New customers" %}</h1>
             <ul class="register">
                 <li>
                     <label for="name">{% trans "Customer" %} <span class="required">*</span></label>
@@ -67,15 +67,15 @@
                     <input type="text" name="city" id="id_city" maxlength="128" value="{{ city }}" class="required" minlength="2"/>
                 </li>
                 <li>
-                    <label for="username">{{ form.username.label_tag }} <span class="required">*</span></label>
+                    <label for="username">{{ form.username.label }} <span class="required">*</span></label>
                     <input type="text" name="username" id="id_username" maxlength="30" value="{{ username }}" class="required" minlength="6"/> (az09)
                 </li>
                 <li class="register-field">
-                    <label for="pass1">{{ form.password1.label_tag }} <span class="required">*</span></label>
+                    <label for="pass1">{{ form.password1.label }} <span class="required">*</span></label>
                     <input type="password" name="password1" id="id_password1" class="required" minlength="6"/>
                 </li>
                 <li class="register-field">
-                    <label for="pass2">{{ form.password2.label_tag }} <span class="required">*</span></label>
+                    <label for="pass2">{{ form.password2.label }} <span class="required">*</span></label>
                     <input type="password" name="password2" id="id_password2" class="required" minlength="6"/>
                 </li>
                 <li class="register-field">
@@ -99,8 +99,8 @@
         </div>
         <div class="col-2">
             <div class="buttons-set">
-                <input type="submit" value="{% trans "Create new account" %}" />
-                <p class="required">* {% trans "Required Fields" %}</p>
+                <input type="submit" value="{% trans "Create new account" %}" class="btn-action" />
+                <p class="comment"><span class="required">*</span> {% trans "Required Fields" %}</p>
             </div>
         </div>
     </div>

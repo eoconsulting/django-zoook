@@ -3,6 +3,7 @@
 
 {% block head %}
     <link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ MEDIA_URL }}css/{{ THEME }}/form.css" rel="stylesheet" type="text/css" media="screen">
 {% endblock %}
 
 {% block content %}
@@ -28,11 +29,11 @@
             <p>{% trans "If you have an account with us, please log in." %}</p>
             <ul class="profile">
                 <li>
-                    <label for="username">{{ form.username.label_tag }} <span class="required">*</span></label><br />
+                    <label for="username">{{ form.username.label }} <span class="required">*</span></label>
                     {{ form.username }}
                 </li>
                 <li>
-                    <label for="password">{{ form.password1.label_tag }} <span class="required">*</span></label><br />
+                    <label for="password">{{ form.password1.label }} <span class="required">*</span></label>
                     {{ form.password1 }}
                 </li>
             </ul>
@@ -41,13 +42,13 @@
     <div class="col2-set">
         <div class="col-1">
             <div class="buttons-set">
-                <a href="{% url partner_register %}"><span class="btn-create-account">{% trans "Create new account" %}</span></a>
+                <a href="{% url partner_register %}" class="btn-action">{% trans "Create new account" %}</a>
             </div>
         </div>
         <div class="col-2">
             <div class="buttons-set">
-                <input type="submit" value="{% trans "Login" %}" class="btn-login"/> <a href="{% url partner_remember %}" alt="{% trans "Remember Password" %}">{% trans "Remember Password" %}</a>
-                <p class="required">* {% trans "Required Fields" %}</p>
+                <input type="submit" value="{% trans "Login" %}" class="btn-action"/> <a href="{% url partner_remember %}" alt="{% trans "Remember Password" %}">{% trans "Remember Password" %}</a>
+                <p class="comment"><span class="required">*</span> {% trans "Required Fields" %}</p>
             </div>
         </div>
     </div>

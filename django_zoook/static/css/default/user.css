@@ -1,5 +1,5 @@
 #menu-profile { float: left;list-style: none; margin: 0 0 10px 0;padding: 0;width: 100%; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
-#menu-profile li { float: left; font-family: 100% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif; font-size: 1em; font-weight: bold; margin: 0; padding: 0;}
+#menu-profile li { float: left; font-family: 100% "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", "Trebuchet Unicode MS", Verdana, Helvetica, sans-serif; font-size: 1em; font-weight: bold; margin: 0; padding: 0;}
 #menu-profile a { color: #333; display: block; float: left; margin: 0; padding: 8px 12px; text-decoration: none;}
 #menu-profile a:hover { background: #444; color: #fff; padding-bottom: 8px;}
 
@@ -7,8 +7,8 @@
 
 /* DETAILS */
 #partner-details {padding-top:40px}
-#partner-details h1,h2 {color:#e2001a; font-weight:bold; padding-top:15px; font-family: 100% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif; }
-#partner-details h1 { font-size:16px;}
+#partner-details h1,h2 {color:#e2001a; font-weight:bold; padding-top:15px; font-family: 100% "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", "Trebuchet Unicode MS", Verdana, Helvetica, sans-serif; }
+#partner-details h1 { font-size:16px;  padding-bottom: 15px; }
 #partner-details h2 { font-size:14px;}
 #partner-details .address { padding-left: 10px; }
 #menu-profile-home li { padding-top: 5px; }
@@ -18,11 +18,8 @@
 .row0{background-color:#f6f6f6}
 .row1{background-color:#fff}
 
-.btn-create-account{ background-color:#218ecd; color:#fff; padding:5px}
-.btn-login { background-color:#218ecd; color:#fff; padding:3px; border:none}
-
 /* Register Users form */
-ul.register li{ padding:2px}
+ul.register li, #login-form li { padding:4px; }
 #login-form label{ width: 160px}
-#registerForm label{width:130px}
+#registerForm label{width:200px}
 #registerForm .vat_code{width:50px}

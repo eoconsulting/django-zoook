@@ -3,6 +3,7 @@
 
 {% block head %}
     <link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ MEDIA_URL }}css/{{ THEME }}/form.css" rel="stylesheet" type="text/css" media="screen">
 
     <script type="text/javascript">
      var RecaptchaOptions = {
@@ -35,7 +36,7 @@
         <tr><td colspan="2">{{ html_captcha|safe }}</td></tr>
         <tr>
             <td>
-                <input type="submit" value="{% trans "Submit" %}" />
+                <input type="submit" class="btn-action" value="{% trans "Submit" %}" />
             </td>
         </tr>
     </table>

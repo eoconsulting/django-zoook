@@ -2,7 +2,7 @@
 #feedbackForm label { width: 250px; }
 #feedbackForm label.error, #commentForm input.submit { margin-left: 253px; }
 
-input, select, textarea, .inputbox { padding: 3px 5px; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 100%; border: 1px solid #333333;}
+input[type=text], input[type=password], select, textarea, .inputbox { padding: 3px 5px; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 100%; border: 1px solid #999; }
 .button { padding: 3px 5px; border: 1px solid #333333; color: #CCCCCC; font-size: 85%; text-transform: uppercase;}
 .button:hover, .button:focus { border: 1px solid #999999; background: #333333; color: #FFFFFF;}
 input.error { border: 1px dotted red; background-color: #FFBABA;}
@@ -25,3 +25,9 @@ form.cmxform label.error { margin-left: 103px; width: 220px;}
 form.cmxform input.submit { margin-left: 103px;}
 form.cmxform label.error { display: none; }	
 /*\*//*/ form.cmxform legend { display: inline-block; } /* IE Mac legend fix */
+
+.btn-action { background-color:#e2001a; color:#fff; padding:5px; border: none; cursor: pointer; }
+a.btn-action:hover { color: #fff; }
+.comment { color: #666; }
+span.required { color: #f00; }
+label.error { float: none; display: inline; clear: none; width: 400px; padding-left: 15px; }
