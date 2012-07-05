@@ -124,7 +124,16 @@ def register(request):
         street = data['street']
         zip = data['zip']
         city = data['city']
-        
+        same_address = 'delivery-same-address' in data
+        if same_address:
+            delivery_street = street
+            delivery_zip = zip
+            delivery_city = city
+        else:
+            delivery_street = data['delivery_street']
+            delivery_zip = data['delivery_zip']
+            delivery_city = data['delivery_city']
+
         countries = ResCountry.objects.filter(code=vat_code)
         if len(countries)>0:
             country = countries[0].id
@@ -166,14 +175,14 @@ def register(request):
                         error = _('Error when connecting with our ERP. Try again or cantact us.')
                         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
-                    partner = conn.ResPartner.filter(vat__ilike=data['vat_code']+data['vat'])
+                    partner = conn.ResPartner.filter(vat__ilike = vat_code+vat)
                     if len(partner) > 0:
                         msg = _('Sorry. This VAT already exists our ERP. Contact Us for create a new user.')
                         message.append(msg)
 
                 #check if this vat valid
                 if not message:
-                    checkvat = data['vat_code']+data['vat']
+                    checkvat = vat_code + vat
                     checkvat = checkvat.upper()
                     check_vat = conn_webservice('res.partner', 'dj_check_vat', [checkvat, OERP_SALE])
 
@@ -185,36 +194,46 @@ def register(request):
                 if len(message) == 0:
                     # create partner
                     partner = conn.ResPartner.new()
-                    partner.name = data['name']
+                    partner.name = name
                     partner.vat = checkvat
-                    partner.dj_username = data['username']
-                    partner.dj_email = data['email']
+                    partner.dj_username = username
+                    partner.dj_email = email
                     partner_id = partner.save()
                     
-                    # create address partner
-                    address_types = ['contact','invoice','delivery']
-                    for address_type in address_types:
-                        address = conn.ResPartnerAddress.new()
-                        address.name = data['name']
-                        address.partner_id = conn.ResPartner.get(partner_id)
-                        address.type = address_type
-                        address.street = data['street']
-                        address.zip = data['zip']
-                        address.city = data['city']
-                        address.country_id = conn.ResCountry.get(country)
-                        address.email = data['email']
-                        address_id = address.save()
-                    
+                    # Create contact invoice address partner
+                    address = conn.ResPartnerAddress.new()
+                    address.name = name
+                    address.partner_id = conn.ResPartner.get(partner_id)
+                    address.type = 'invoice'
+                    address.street = street
+                    address.zip = zip
+                    address.city = city
+                    address.country_id = conn.ResCountry.get(country)
+                    address.email = email
+                    address_id = address.save()
+
+                    # Create contact delivery address partner
+                    address = conn.ResPartnerAddress.new()
+                    address.name = name
+                    address.partner_id = conn.ResPartner.get(partner_id)
+                    address.type = 'delivery'
+                    address.street = delivery_street
+                    address.zip = delivery_zip
+                    address.city = delivery_city
+                    address.country_id = conn.ResCountry.get(country)
+                    address.email = email
+                    address_id = address.save()
+
                     # create user
                     # split name: first_name + last name
-                    name = data['name'].split(' ')
+                    name = name.split(' ')
                     if len(name) > 1:
                         first_name = name[0]
                         del name[0]
                         last_name = " ".join(name)
                     else:
                         first_name = ''
-                        last_name = data['name']
+                        last_name = name
                     user = User.objects.create_user(username, email, password)
                     user.first_name = first_name
                     user.last_name = last_name

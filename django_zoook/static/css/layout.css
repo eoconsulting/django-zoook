@@ -110,6 +110,8 @@ label {display:block;float:left;clear:left;width:90px}
 .registered-users h1, .new-users h1 { font-size:22px; }
 .registered-users h3, .new-users h3 { font-size:16px; }
 .new-users li { margin-left: 15px; }
+.new-users input { width: 220px; }
+.new-users select { width: 180px; }
 .error{color:#e2001a}
 .profile{ list-style: none}
 .changepassword h2 { margin-bottom: 10px; }

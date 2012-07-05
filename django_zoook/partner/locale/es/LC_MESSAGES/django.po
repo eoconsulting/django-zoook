@@ -352,6 +352,15 @@ msgstr "Información del Usuario"
 msgid "Customer Information"
 msgstr "Información del Cliente"
 
+msgid "Invoice Address"
+msgstr "Dirección de Factura"
+
+msgid "Delivery Address"
+msgstr "Dirección de Envío"
+
+msgid "Same address for delivery"
+msgstr "Misma dirección para el envío"
+
 msgid "Full Name"
 msgstr "Nombre Completo"
 

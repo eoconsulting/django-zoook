@@ -31,3 +31,8 @@ a.btn-action:hover { color: #fff; }
 .comment { color: #666; }
 span.required { color: #f00; }
 label.error { float: none; display: inline; clear: none; width: 400px; padding-left: 15px; }
+.new-users { padding: 15px 0px; }
+
+form ul { padding: 15px; }
+form li { padding:4px; }
+form ul:hover { background-color: #f4f4f4; }

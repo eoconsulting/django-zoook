@@ -12,6 +12,16 @@
     <script type="text/javascript">
     $(document).ready(function() {
 	    $("#registerForm").validate();
+
+		$('input[name=delivery-same-address]').change(function() {
+			if($(this).is(':checked')) {
+				$('#delivery-address').hide();
+				$('#delivery-address input').attr('disabled', 'disabled');
+			} else {
+				$('#delivery-address').show();
+				$('#delivery-address input').removeAttr('disabled');
+			}
+		})
     });
     </script>
 
@@ -42,29 +52,29 @@
     <div class="col2-set">
         <div class="new-users">
             <h1>{% trans "New customers" %}</h1>
-            <ul class="register">
+            <ul>
             	<h3>{% trans "User Information" %}</h3>
                 <li>
-                    <label for="username">{{ form.username.label }} <span class="required">*</span></label>
+                    <label for="id_username">{{ form.username.label }} <span class="required">*</span></label>
                     <input type="text" name="username" id="id_username" maxlength="30" value="{{ username }}" class="required" minlength="6"/> (az09)
                 </li>
                 <li class="register-field">
-                    <label for="email">{% trans "Email" %} <span class="required">*</span></label>
+                    <label for="id_email">{% trans "Email" %} <span class="required">*</span></label>
                     <input type="text" name="email" id="id_email" value="{{ email }}" class="required email"/>
                 </li>
                 <li class="register-field">
-                    <label for="pass1">{{ form.password1.label }} <span class="required">*</span></label>
+                    <label for="id_password1">{{ form.password1.label }} <span class="required">*</span></label>
                     <input type="password" name="password1" id="id_password1" class="required" minlength="6"/>
                 </li>
                 <li class="register-field">
-                    <label for="pass2">{{ form.password2.label }} <span class="required">*</span></label>
+                    <label for="id_password2">{{ form.password2.label }} <span class="required">*</span></label>
                     <input type="password" name="password2" id="id_password2" class="required" minlength="6"/>
                 </li>
             </ul>
-            <ul class="register">
+            <ul>
             	<h3>{% trans "Customer Information" %}</h3>
                 <li>
-                    <label for="name">{% trans "Full Name" %} <span class="required">*</span></label>
+                    <label for="id_name">{% trans "Full Name" %} <span class="required">*</span></label>
                     <input type="text" name="name" id="id_name" maxlength="128" value="{{ name }}" class="required" minlength="6"/>
                 </li>
                 <li>
@@ -74,25 +84,43 @@
                     </select>
                 </li>
                 <li>
-                    <label for="partner">{% trans "Vat" %} <span class="required">*</span></label>
+                    <label for="id_vat">{% trans "Vat" %} <span class="required">*</span></label>
                     <input type="text" name="vat" id="id_vat" maxlength="128" value="{{ vat }}" class="required" minlength="6"/>
                 </li>
             </ul>
-            <ul class="register">
+            <ul>
                 <h3>{% trans "Invoice Address" %}</h3>
                 <li>
-                    <label for="street">{% trans "Address" %} <span class="required">*</span></label>
+                    <label for="id_street">{% trans "Address" %} <span class="required">*</span></label>
                     <input type="text" name="street" id="id_street" maxlength="128" value="{{ street }}" class="required" minlength="6"/>
                 </li>
                 <li>
-                    <label for="zip">{% trans "ZIP" %} <span class="required">*</span></label>
+                    <label for="id_zip">{% trans "ZIP" %} <span class="required">*</span></label>
                     <input type="text" name="zip" id="id_zip" maxlength="128" value="{{ zip }}" class="required" minlength="4"/>
                 </li>
                 <li>
-                    <label for="city">{% trans "City" %} <span class="required">*</span></label>
+                    <label for="id_city">{% trans "City" %} <span class="required">*</span></label>
                     <input type="text" name="city" id="id_city" maxlength="128" value="{{ city }}" class="required" minlength="2"/>
                 </li>
-                <li><a href="{{ LOCALE_URI }}/partner/remember/">{% trans "Remember?" %}</a></li>
+                <li>
+                	<input type="checkbox" name="delivery-same-address" {% if same_address %} checked="checked"{% endif %} />
+                	<label for="delivery-same-address"><i>{% trans "Same address for delivery" %}</i></label>
+                </li>
+            </ul>
+            <ul id="delivery-address"{% if same_address %} style="display: none;"{% endif %}>
+                <h3>{% trans "Delivery Address" %}</h3>
+                <li>
+                    <label for="delivery_id_street">{% trans "Address" %} <span class="required">*</span></label>
+                    <input type="text" name="delivery_street" id="delivery_id_street" maxlength="128" value="{{ delivery_street }}" class="required" minlength="6"{% if same_address %} disabled="disabled"{% endif %}/>
+                </li>
+                <li>
+                    <label for="delivery_id_zip">{% trans "ZIP" %} <span class="required">*</span></label>
+                    <input type="text" name="delivery_zip" id="delivery_id_zip" maxlength="128" value="{{ delivery_zip }}" class="required" minlength="4"{% if same_address %} disabled="disabled"{% endif %}/>
+                </li>
+                <li>
+                    <label for="delivery_id_city">{% trans "City" %} <span class="required">*</span></label>
+                    <input type="text" name="delivery_city" id="delivery_id_city" maxlength="128" value="{{ delivery_city }}" class="required" minlength="2"{% if same_address %} disabled="disabled"{% endif %}/>
+                </li>
             </ul>
         </div>
         {% if html_captcha %}
