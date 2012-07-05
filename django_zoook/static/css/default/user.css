@@ -7,10 +7,10 @@
 
 /* DETAILS */
 #partner-details {padding-top:40px}
-#partner-details h1,h2 {color:#218ecd; font-weight:bold; padding-top:10px; font-family: 100% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif; }
+#partner-details h1,h2 {color:#e2001a; font-weight:bold; padding-top:15px; font-family: 100% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif; }
 #partner-details h1 { font-size:16px;}
-#partner-details h2 { font-size:14px; border-bottom:1px solid #218ecd;}
-#partner-details .address { border-bottom:1px solid #e7e7e7}
+#partner-details h2 { font-size:14px;}
+#partner-details .address { padding-left: 10px; }
 #menu-profile-home li { padding-top: 5px; }
 
 .register-field { padding-top:2px}
