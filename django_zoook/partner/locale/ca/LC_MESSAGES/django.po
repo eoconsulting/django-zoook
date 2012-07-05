@@ -346,6 +346,15 @@ msgstr "El seu compte"
 msgid "Customer"
 msgstr "Client"
 
+msgid "User Information"
+msgstr "Informació de l'usuari"
+
+msgid "Customer Information"
+msgstr "Informació del client"
+
+msgid "Full Name"
+msgstr "Nom complet"
+
 #: templates/partner/register.html:48
 msgid "Vat"
 msgstr "NIF"
