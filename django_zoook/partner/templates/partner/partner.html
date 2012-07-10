@@ -2,29 +2,101 @@
 {% load i18n %}
 
 {% block head %}
+    <link href="{{ MEDIA_URL }}css/{{ THEME }}/form.css" rel="stylesheet" type="text/css" media="screen">
     <link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">
+    <script src="{{ MEDIA_URL }}js/jquery.validate.min.js" type="text/javascript"></script>
+    {% if request.LANGUAGE_CODE != 'en' %}
+    	<script src="{{ MEDIA_URL }}js/localization/messages_{{ request.LANGUAGE_CODE }}.js" type="text/javascript"></script>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
     {% include 'partner/menu.html' %}
     <div id="partner-details">
+		{% if message %}
+		    <div id="message" class="msg-info">
+		        <h3>
+		        {% for msg in message %}
+		           {{ msg }}<br/>
+		        {% endfor %}
+		        </h3>
+		    </div>
+		{% endif %}
         <h1>{{title}}</h1>
 
-        <p><strong>{% trans "Name" %}:</strong> {{ partner.name }}</p>
-        <p><strong>{% trans "VAT" %}:</strong> {{ partner.vat }}</p>
+		<form action="{% url partner_partner %}" method="post" id="partnerForm">
+			<fieldset>
+			    <div class="col2-set">
+					<div class="new-users">
+					<ul class="noeditable">
+		            	<h3>{% trans "Customer Information" %}</h3>
+		                <li>
+		                    <label for="id_name">{% trans "Full Name" %}</label>
+		                    <strong>{{ partner.name }}</strong>
+		                </li>
+		                <li>
+		                    <label for="id_vat">{% trans "Vat" %}</label>
+		                    <span>{{ partner.vat }}</span>
+		                </li>
+		            </ul>
+		            {% if address_invoice|length = 0 %}{% trans "There are not invoice address available" %}{% endif %}
+		            {% for invoice in address_invoice %}
+		            <ul>
+		                <h3>{% trans "Invoice Address" %}</h3>
+		                <li>
+		                    <label for="{{ invoice.id }}_street">{% trans "Address" %} <span class="required">*</span></label>
+		                    <input type="text" name="{{ invoice.id }}_street" id="{{ invoice.id }}_street" maxlength="128" value="{{ invoice.street }}" class="required" minlength="6"/>
+		                </li>
+		                <li>
+		                    <label for="{{ invoice.id }}_zip">{% trans "ZIP" %} <span class="required">*</span></label>
+		                    <input type="text" name="{{ invoice.id }}_zip" id="{{ invoice.id }}_zip" maxlength="128" value="{{ invoice.zip }}" class="required" minlength="4"/>
+		                </li>
+		                <li>
+		                    <label for="{{ invoice.id }}_city">{% trans "City" %} <span class="required">*</span></label>
+		                    <input type="text" name="{{ invoice.id }}_city" id="{{ invoice.id }}_city" maxlength="128" value="{{ invoice.city }}" class="required" minlength="2"/>
+		                </li>
+		            </ul>
+		            {% endfor %}
+		            {% if address_delivery|length = 0 %}{% trans "There are not delivery address available" %}{% endif %}
+			        {% for delivery in address_delivery %}
+		            <ul id="delivery-address"{% if same_address %} style="display: none;"{% endif %}>
+		                <h3>{% trans "Delivery Address" %}</h3>
+		                <li>
+		                    <label for="{{ delivery.id }}_street">{% trans "Address" %} <span class="required">*</span></label>
+		                    <input type="text" name="{{ delivery.id }}_street" id="{{ delivery.id }}_street" maxlength="128" value="{{ delivery.street }}" class="required" minlength="6"{% if same_address %} disabled="disabled"{% endif %}/>
+		                </li>
+		                <li>
+		                    <label for="{{ delivery.id }}_zip">{% trans "ZIP" %} <span class="required">*</span></label>
+		                    <input type="text" name="{{ delivery.id }}_zip" id="{{ delivery.id }}_zip" maxlength="128" value="{{ delivery.zip }}" class="required" minlength="4"{% if same_address %} disabled="disabled"{% endif %}/>
+		                </li>
+		                <li>
+		                    <label for="{{ delivery.id }}_city">{% trans "City" %} <span class="required">*</span></label>
+		                    <input type="text" name="{{ delivery.id }}_city" id="{{ delivery.id }}_city" maxlength="128" value="{{ delivery.city }}" class="required" minlength="2"{% if same_address %} disabled="disabled"{% endif %}/>
+		                </li>
+		            </ul>
+		            {% endfor %}
+					</div>
+				</div>
+			    <div class="col2-set">
+			        <div class="col-1">
+			            <div class="buttons-set">
+			            </div>
+			        </div>
+			        <div class="col-2">
+			            <div class="buttons-set">
+			                <input type="submit" value="{% trans "Save" %}" class="btn-action" />
+			                <p class="comment"><span class="required">*</span> {% trans "Required Fields" %}</p>
+			            </div>
+			        </div>
+			    </div>
+			</fieldset>
+			{% csrf_token %}
+		</form>
 
-        <h2>{% trans "Address" %}</h2>
-        <p><strong>{% trans "Invoice" %}</strong></p>
-        {% if address_invoice|length = 0 %}{% trans "There are not invoice address available" %}{% endif %}
-        {% for invoice in address_invoice %}
-            <p class="address">{{ invoice.street }}<br/>{{ invoice.zip }} {{ invoice.city }} {{ invoice.country_id.name }}</p>
-        {% endfor %}
-        <p><strong>{% trans "Delivery" %}</strong></p>
-        {% if address_invoice|length = 0 %}{% trans "There are not delivery address available" %}{% endif %}
-        {% for delivery in address_delivery %}
-            <p class="address">{{ delivery.street }}<br/>{{ delivery.zip }} {{ delivery.city }} {{ delivery.country_id.name }}</p>
-        {% endfor %}
     </div>
 </div>
+{% endblock %}
+{% block jqueryload %}
+    $("#partnerForm").validate();
 {% endblock %}

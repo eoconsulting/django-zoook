@@ -392,6 +392,9 @@ msgstr "Correu electrònic"
 msgid "Remember?"
 msgstr "Recorda?"
 
+msgid "Successfully saved profile."
+msgstr "Saved amb èxit perfil."
+
 #: templates/partner/register.html:92
 msgid "To create an Account insert the same number"
 msgstr "Per crear un compte introdiu el mateix número"
@@ -418,3 +421,6 @@ msgstr "Error en enviar la nova contrasenya. Proveu-ho o poseu-vos en contacte a
 
 #~ msgid "Error validation form. Try again"
 #~ msgstr "Error en la validació del formulari. Torneu a provar"
+
+msgid "Save"
+msgstr "Guardar"

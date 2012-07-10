@@ -7,8 +7,8 @@
 
 /* DETAILS */
 #partner-details {padding-top:40px}
-#partner-details h1,h2 {color:#e2001a; font-weight:bold; padding-top:15px; font-family: 100% "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", "Trebuchet Unicode MS", Verdana, Helvetica, sans-serif; }
-#partner-details h1 { font-size:16px;  padding-bottom: 15px; }
+#partner-details h1,h2 {color:#e2001a; font-weight:bold; padding-top:15px; font-family: "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", "Trebuchet Unicode MS", Verdana, Helvetica, sans-serif; }
+#partner-details h1 { font-size:24px; }
 #partner-details h2 { font-size:14px;}
 #partner-details .address { padding-left: 10px; }
 #menu-profile-home li { padding-top: 5px; }
@@ -21,4 +21,4 @@
 /* Register Users form */
 #login-form li { padding:4px; }
 #login-form label{ width: 160px}
-#registerForm label{width:200px}
+#registerForm label, #partnerForm label {width:200px}

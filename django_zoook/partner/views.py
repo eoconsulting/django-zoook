@@ -399,10 +399,34 @@ def partner(request):
     site_configuration = siteConfiguration(SITE_ID)
 
     partner = conn.ResPartner.get(partner_id)
+
+    if request.method == 'POST':
+        data = get_contact_data(request.POST.copy())
+        for contact_id in data.keys():
+            address = conn.ResPartnerAddress.get(contact_id)
+            address.street = data[contact_id]['street']
+            address.zip = data[contact_id]['zip']
+            address.city = data[contact_id]['city']
+            address.save()
+        message = [_('Successfully saved profile.')]
+
     address_invoice = conn.ResPartnerAddress.filter(type='invoice',partner_id=partner_id)
     address_delivery = conn.ResPartnerAddress.filter(type='delivery',partner_id=partner_id)
-
+    
     title = _(u'User Profile')
     metadescription = _(u'User profile of %(site)s') % {'site':site_configuration.site_title}
     
     return render_to_response("partner/partner.html", locals(), context_instance=RequestContext(request))
+
+def get_contact_data(post):
+    data = {}
+    for k in post.keys():
+        try:
+            id, name = k.split('_')
+            id = int(id)
+            if not id in data:
+                data[id] = {}
+            data[id][name] = post[k]
+        except ValueError:
+            pass
+    return data

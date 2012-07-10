@@ -10,22 +10,6 @@
     {% endif %}
 
     <script type="text/javascript">
-    $(document).ready(function() {
-	    $("#registerForm").validate();
-
-		$('input[name=delivery-same-address]').change(function() {
-			if($(this).is(':checked')) {
-				$('#delivery-address').hide();
-				$('#delivery-address input').attr('disabled', 'disabled');
-			} else {
-				$('#delivery-address').show();
-				$('#delivery-address input').removeAttr('disabled');
-			}
-		})
-    });
-    </script>
-
-    <script type="text/javascript">
      var RecaptchaOptions = {
         theme : 'clean'
      };
@@ -147,4 +131,17 @@
 </form>
 
 </div>
+{% endblock %}
+{% block jqueryload %}
+    $("#registerForm").validate();
+
+	$('input[name=delivery-same-address]').change(function() {
+		if($(this).is(':checked')) {
+			$('#delivery-address').hide();
+			$('#delivery-address input').attr('disabled', 'disabled');
+		} else {
+			$('#delivery-address').show();
+			$('#delivery-address input').removeAttr('disabled');
+		}
+	});
 {% endblock %}
