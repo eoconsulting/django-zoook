@@ -380,6 +380,14 @@ msgstr "Ciudad"
 msgid "Country"
 msgstr "País"
 
+#: templates/partner/register.html:117
+msgid "Phone"
+msgstr "Teléfono"
+
+#: templates/partner/register.html:94
+msgid "Mobile"
+msgstr "Celular"
+
 #: templates/partner/register.html:74
 msgid "Login user"
 msgstr "Usuario registrado"

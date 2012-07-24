@@ -87,6 +87,10 @@
                     <input type="text" name="city" id="id_city" maxlength="128" value="{{ city }}" class="required" minlength="2"/>
                 </li>
                 <li>
+                    <label for="id_phone">{% trans "Phone" %}</label>
+                    <input type="text" name="phone" id="id_phone" maxlength="128" value="{{ phone }}" minlength="7"/>
+                </li>
+                <li>
                 	<input type="checkbox" name="delivery-same-address" {% if same_address %} checked="checked"{% endif %} />
                 	<label for="delivery-same-address"><i>{% trans "Same address for delivery" %}</i></label>
                 </li>
@@ -104,6 +108,10 @@
                 <li>
                     <label for="delivery_id_city">{% trans "City" %} <span class="required">*</span></label>
                     <input type="text" name="delivery_city" id="delivery_id_city" maxlength="128" value="{{ delivery_city }}" class="required" minlength="2"{% if same_address %} disabled="disabled"{% endif %}/>
+                </li>
+                <li>
+                    <label for="delivery_id_phone">{% trans "Phone" %}</label>
+                    <input type="text" name="delivery_phone" id="delivery_id_phone" maxlength="128" value="{{ delivery_phone }}" minlength="7"/>
                 </li>
             </ul>
         </div>

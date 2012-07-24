@@ -37,7 +37,7 @@
 		                </li>
 		                <li>
 		                    <label for="id_vat">{% trans "Vat" %}</label>
-		                    <span>{{ partner.vat }}</span>
+		                    <span>{{ vat }}</span>
 		                </li>
 		            </ul>
 		            {% if address_invoice|length = 0 %}{% trans "There are not invoice address available" %}{% endif %}
@@ -52,10 +52,14 @@
 		                    <label for="{{ invoice.id }}_zip">{% trans "ZIP" %} <span class="required">*</span></label>
 		                    <input type="text" name="{{ invoice.id }}_zip" id="{{ invoice.id }}_zip" maxlength="128" value="{{ invoice.zip }}" class="required" minlength="4"/>
 		                </li>
-		                <li>
-		                    <label for="{{ invoice.id }}_city">{% trans "City" %} <span class="required">*</span></label>
-		                    <input type="text" name="{{ invoice.id }}_city" id="{{ invoice.id }}_city" maxlength="128" value="{{ invoice.city }}" class="required" minlength="2"/>
-		                </li>
+                        <li>
+                            <label for="{{ invoice.id }}_city">{% trans "City" %} <span class="required">*</span></label>
+                            <input type="text" name="{{ invoice.id }}_city" id="{{ invoice.id }}_city" maxlength="128" value="{{ invoice.city }}" class="required" minlength="2"/>
+                        </li>
+                        <li>
+                            <label for="{{ invoice.id }}_phone">{% trans "Phone" %}</label>
+                            <input type="text" name="{{ invoice.id }}_phone" id="{{ invoice.id }}_phone" maxlength="30" value="{{ invoice.phone }}" minlength="7"/>
+                        </li>
 		            </ul>
 		            {% endfor %}
 		            {% if address_delivery|length = 0 %}{% trans "There are not delivery address available" %}{% endif %}
@@ -74,6 +78,10 @@
 		                    <label for="{{ delivery.id }}_city">{% trans "City" %} <span class="required">*</span></label>
 		                    <input type="text" name="{{ delivery.id }}_city" id="{{ delivery.id }}_city" maxlength="128" value="{{ delivery.city }}" class="required" minlength="2"{% if same_address %} disabled="disabled"{% endif %}/>
 		                </li>
+                        <li>
+                            <label for="{{ delivery.id }}_phone">{% trans "Phone" %}</label>
+                            <input type="text" name="{{ delivery.id }}_phone" id="{{ delivery.id }}_phone" maxlength="30" value="{{ delivery.phone }}" minlength="7"/>
+                        </li>
 		            </ul>
 		            {% endfor %}
 					</div>

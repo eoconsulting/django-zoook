@@ -124,15 +124,21 @@ def register(request):
         street = data['street']
         zip = data['zip']
         city = data['city']
+        phone = data['phone']
+        #mobile = data['mobile']
         same_address = 'delivery-same-address' in data
         if same_address:
             delivery_street = street
             delivery_zip = zip
             delivery_city = city
+            delivery_phone = phone
+            #delivery_mobile = mobile
         else:
             delivery_street = data['delivery_street']
             delivery_zip = data['delivery_zip']
             delivery_city = data['delivery_city']
+            delivery_phone = data['delivery_phone']
+            #delivery_mobile = data['delivery_mobile']
 
         countries = ResCountry.objects.filter(code=vat_code)
         if len(countries)>0:
@@ -208,6 +214,8 @@ def register(request):
                     address.street = street
                     address.zip = zip
                     address.city = city
+                    address.phone = phone
+                    #address.mobile = mobile
                     address.country_id = conn.ResCountry.get(country)
                     address.email = email
                     address_id = address.save()
@@ -220,6 +228,8 @@ def register(request):
                     address.street = delivery_street
                     address.zip = delivery_zip
                     address.city = delivery_city
+                    address.phone = delivery_phone
+                    #address.mobile = delivery_mobile
                     address.country_id = conn.ResCountry.get(country)
                     address.email = email
                     address_id = address.save()
@@ -399,6 +409,9 @@ def partner(request):
     site_configuration = siteConfiguration(SITE_ID)
 
     partner = conn.ResPartner.get(partner_id)
+    vat = partner.vat
+    if vat[0:2] == 'AR':
+        vat = format_vat_ar(vat)
 
     if request.method == 'POST':
         data = get_contact_data(request.POST.copy())
@@ -407,6 +420,7 @@ def partner(request):
             address.street = data[contact_id]['street']
             address.zip = data[contact_id]['zip']
             address.city = data[contact_id]['city']
+            address.phone = data[contact_id]['phone']
             address.save()
         message = [_('Successfully saved profile.')]
 
@@ -430,3 +444,14 @@ def get_contact_data(post):
         except ValueError:
             pass
     return data
+
+def format_vat_ar(vat):
+    '''
+    Returns VAT formated conform to Argentine mask (C.U.I.T.).
+    Eg.: "AR20101234569" -> "20-10123456-9" 
+    '''
+    if not vat:
+        return ''
+    if vat[:2] == "AR":
+        return "%s-%s-%s" % (vat[2:4], vat[4:12], vat[12:])
+    return vat
