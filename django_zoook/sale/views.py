@@ -388,6 +388,7 @@ def checkout(request):
         'message':message,
         'order':order,
         'lines': lines,
+        'currency_position': CURRENCY_LABEL_POSITION,
     }
 
     if len(lines)>0:

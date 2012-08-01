@@ -68,9 +68,11 @@
 	            </table>
 	            {% if order.state == 'draft' and order.amount_total != 0.0 %}
 	            <div id="checkout-total">
-	                <p class="amount"><strong>{% trans "Untaxed Amount" %}:</strong> {{ order.amount_untaxed }} {{ order.pricelist_id.currency_id.symbol }}<br/>
-	                <strong>{% trans "Taxes" %}:</strong> {{ order.amount_tax }} {{ order.pricelist_id.currency_id.symbol }}<br/>
-	                <strong>{% trans "Total" %}:</strong> <span class="total">{{ order.amount_total }} {{ order.pricelist_id.currency_id.symbol }}</span></p>
+	                <p class="amount">
+	                   <strong>{% trans "Untaxed Amount" %}:</strong> {% if currency_position == 'before' %}{{ order.pricelist_id.currency_id.symbol }} {{order.amount_untaxed}} {% else %} {{order.amount_untaxed}} {{ order.pricelist_id.currency_id.symbol }}{% endif %}<br/>
+	                   <strong>{% trans "Taxes" %}:</strong> {% if currency_position == 'before' %}{{ order.pricelist_id.currency_id.symbol }} {{order.amount_tax}} {% else %} {{order.amount_tax}} {{ order.pricelist_id.currency_id.symbol }}{% endif %}<br/>
+	                   <strong>{% trans "Total" %}:</strong> <span class="total"> {% if currency_position == 'before' %}{{ order.pricelist_id.currency_id.symbol }} {{order.amount_total}} {% else %} {{order.amount_total}} {{ order.pricelist_id.currency_id.symbol }}{% endif %}</span>
+	                </p>
 	                <div class="checkout-options">
 	                    <p>{% trans "Delivery" %}:
 	                    <select name="delivery" class="delivery">
