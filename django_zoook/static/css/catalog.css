@@ -148,8 +148,8 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .last			{ margin-right:0 !important }
 
 /* SIDEBAR -------------------------------------------------------------------------------------------- */
-#sidebar .block		{ margin-bottom:20px; background-color:#f9f9f9 }
-#sidebar .block-content { padding:0 10px 10px 10px; color:#777; font-size:11px }
+#sidebar.block, #sidebar .block	                { margin-bottom:20px; background-color:#f9f9f9 }
+#sidebar.block-content, #sidebar .block-content { padding:0 10px 10px 10px; color:#777; font-size:11px }
 
 #sidebar h3 		{ padding:8px 10px; font-size:11px; line-height:16px; font-weight:bold; text-transform:uppercase; color:#555 }
 #sidebar label		{ font-size:11px; margin-bottom:2px; display:block }

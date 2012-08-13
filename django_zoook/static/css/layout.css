@@ -37,11 +37,12 @@ label {display:block;float:left;clear:left;width:90px}
 .page-wrap  { }
 #page-footer { margin-top:20px; border-top:1px solid #ff0404; text-align:center}
 
-#sidebar            { float:right; width:220px; }
-#sidebar .block     { padding: 20px; }
-#sidebar .block p   { padding: 0px;}
+#sidebar           { float:right; width:220px; }
+#sidebar.block div { padding: 20px; }
+#sidebar.block p   { padding: 0px;}
 
-#content    { float:left; width:700px }
+#content            { float:left; width: 100%; }
+#sidebar + #content { width: 700px; }
 
 #loading-bar{ display: none; position: fixed; width:200px; height:65px; padding:15px; border:5px solid #ccc; z-index:200; margin: 5% auto; left: 0; right: 0; background:url(../images/loading.gif) center center no-repeat; background-color:#fff}
 #loading-bar h1{ font-size:18px; color:#e2001a}
