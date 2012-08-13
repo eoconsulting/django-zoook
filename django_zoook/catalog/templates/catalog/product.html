@@ -14,14 +14,14 @@
             <div class="block block-default ico border5">
                 {% module product.right %}
             </div>
-            
+
             <div class="block block-product-related ico border5">
                 <h3>{% trans "Related Products" %}</h3>
                 <div class="block-content">
                     {% load product_related %}{% render_product_related %}
                 </div>
             </div>
-            
+
             <!--div class="block block-minicart ico border5">
                 <h3>{% trans "Your shopping cart" %}</h3>
                 <div class="block-content">
@@ -43,7 +43,7 @@
             </div>
             {% endif %}
         </div>
-        
+
         <div id="content">
             <div id="product-{{product.id}}" class="product-page block border5 clearfix">
                 <div class="product-imgbox">
@@ -73,19 +73,14 @@
                             <iframe src="http://www.facebook.com/plugins/like.php?href={{live_url}}{{url}}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
                         </div>
                     </div>
-                    
+
                     <div class="product-description">
                     {% autoescape off %}
                         {{product.shortdescription}}
                     {% endautoescape %}
                     </div>
-                    
-                    {% if product.status %}
-                        {% if products|length > 1 %}{% include "catalog/type/variants.html" %}{%else%}{% include "catalog/type/simple.html" %}{% endif %}
-                    {% else %}
-                        <div class="out-service ico border3b"><h3>{% trans "This product is currently unavailable." %}</h3></div>
-                    {% endif %}
 
+                    {% if products|length > 1 %}{% include "catalog/type/variants.html" %}{%else%}{% include "catalog/type/simple.html" %}{% endif %}
                 </div>
             </div>
         </div>
@@ -97,7 +92,7 @@
             {% if related_products|length > 1 %}<li><a href="#tab3">{% trans "Up-sells" %}</a></li>{% endif %}
             <li><a href="#tab4">{% trans "Keywords" %}</a></li>
         </ul>
-        
+
         <div class="tab-container">
             <div id="tab1" class="tab-content">
             {% autoescape off %}
@@ -142,7 +137,7 @@
                 </tbody>
                 </table>
             </div>{% endif %}
-            
+
             <div id="tab4" class="tab-content">
                 {% for search_keyword in search_keywords %}<a class="tag" href="{{ LOCALE_URI }}/tag/{{ search_keyword }}" alt="{{ search_keyword }}" title="{{ search_keyword }}">{{ search_keyword }}</a> {% endfor %}
             </div>

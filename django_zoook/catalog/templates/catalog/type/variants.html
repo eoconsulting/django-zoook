@@ -2,24 +2,30 @@
                     <div class="cart-box border3b">
                         <form class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
 	                        <div style="display: block;"><ul>
-	                        	{% for product in products %}{% if product.active %}
+	                        	{% for prod in products %}{% if prod.active %}
                         		<li>
-	                        		<input type="radio" name="code" id="opt-{{product.code}}" value="{{product.code}}"{% if product.code == code %} checked="checked"{% endif %} />
-	                        		<label for="opt-{{product.code}}">{{product.code}} ({% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %})</label>
+	                        		<input type="radio" name="code" id="opt-{{prod.code}}" value="{{prod.code}}"{% if prod.code == code %} checked="checked"{% endif %} />
+	                        		<label for="opt-{{prod.code}}">{{prod.code}} ({% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %})</label>
                         		</li>
 	                        	{%endif %}{% endfor %}
 	                        </ul></div>
-                            <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
-                            <input name="qty" type="text" value="1" class="qty border2" />
+	                        {% if product.status %}
+                                <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
+                                <input name="qty" type="text" value="1" class="qty border2" />
+                            {% else %}
+                                <div class="out-service ico border3b"><h3>{% trans "This product is currently unavailable." %}</h3></div>
+                            {% endif %}
                             {% csrf_token %}
                         </form>
-                        <div id="product-price-{{product.id}}" class="price-box">
-                            <span class="regular-price">
-                                <span class="price">
-                                {% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %}
-                                </span>
-                            </span>
-                        </div>
+                        {% if product.status %}
+	                        <div id="product-price-{{product.id}}" class="price-box">
+	                            <span class="regular-price">
+	                                <span class="price">
+	                                {% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %}
+	                                </span>
+	                            </span>
+	                        </div>
+                        {% endif %}
                         <script type="text/javascript">
                         $(document).ready(function() {
 	                        $('input:radio[name=code]').change(function() {

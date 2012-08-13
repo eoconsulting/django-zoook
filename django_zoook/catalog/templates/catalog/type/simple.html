@@ -4,17 +4,23 @@
                         {% if product.ean13 %}<li><strong>{% trans "EAN13" %}:</strong> {{product.ean13}}{% endif %}{% endfor %}</li>
                     </ul>
                     <div class="cart-box cart-box-simple border3b">
-                        {% for product in products %}{% if product.active %}<form class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
-                            <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
-                            <input name="qty" type="text" value="1" class="qty border2" />
-                            <input name="code" type="hidden" value="{{ product.code }}"/>
-                            {% csrf_token %}
+                        {% for prod in products %}{% if prod.active %}<form class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
+	                        {% if product.status %}
+	                            <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
+	                            <input name="qty" type="text" value="1" class="qty border2" />
+	                            <input name="code" type="hidden" value="{{ prod.code }}"/>
+	                        {% else %}
+	                            <div class="out-service ico border3b"><h3>{% trans "This product is currently unavailable." %}</h3></div>
+	                        {% endif %}
+                        {% csrf_token %}
                         </form>{%endif %}{% endfor %}
-                        <div id="product-price-{{product.id}}" class="price-box">
-                            <span class="regular-price">
-                                <span class="price">
-                                {% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %}
-                                </span>
-                            </span>
-                        </div>
+                        {% if product.status %}
+	                        <div id="product-price-{{product.id}}" class="price-box">
+	                            <span class="regular-price">
+	                                <span class="price">
+	                                {% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %}
+	                                </span>
+	                            </span>
+	                        </div>
+                        {% endif %}
                     </div>
