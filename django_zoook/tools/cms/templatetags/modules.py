@@ -27,14 +27,20 @@ from django_zoook.tools.cms.models import Modules
 register = template.Library()
 
 class ModuleNode(Node):
-    def __init__(self, position):
-        self.position = position
+    def __init__(self, tokens):
+        self.tokens = tokens
  
     def render(self, context):
         entry = ''
-        entries = Modules.objects.filter(position=self.position,status=True)
+        entries = Modules.objects.filter(position=self.tokens[0],status=True)
         if entries:
             entry = entries[0].description
+
+        if len(self.tokens) > 1 and entry:
+            div = "<div "
+            for t in self.tokens[1:]:
+                div += t + " "
+            entry = div[:-1] + ">" + entry + "</div>"
 
         return entry
 
@@ -43,19 +49,24 @@ def module(parser, token):
     Show Module data CMS:
 
     Basic tag Syntax::
-        {% module [position]%}
+        {% module POSITION [html_token1=value_token1 html_token2=value_token2 ...] %}
 
     *position* Key ID position Module
 
+    IF HTML tokens are passed, the content is enclosed
+    within <div html_token1=value_token1 html_token2=value_token2 ...> tag.
+
     Demo:
       {% module catalog.right %}
+      {% module catalog.right id="catalog" class="border2" %}
     """
 
     parts = token.split_contents()
 
-    if len(parts) < 1:
-        raise template.TemplateSyntaxError("'module' tag must be of the form:  {% module identification%}")
+    if len(parts) < 2:
+        raise template.TemplateSyntaxError(
+            """'module' tag must be of the form:  {% module POSITION  [html_token1=value_token1 html_token2=value_token2 ...] %}""")
 
-    return ModuleNode(parts[1])
+    return ModuleNode(parts[1:])
 
 register.tag(module)

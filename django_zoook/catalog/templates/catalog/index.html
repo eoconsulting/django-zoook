@@ -6,11 +6,8 @@
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
-    <div id="sidebar">
-    	<div class="block border5">
-            {% module catalog.right %}
-        </div>
-    </div>
+
+    {% module catalog.right id="sidebar" class="block border5" %}
 
     <div id="content">
         <div id="catalog-index" class="block border5 clearfix">

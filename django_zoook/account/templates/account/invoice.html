@@ -9,11 +9,8 @@
 <div id="page-wrap" class="clearfix">
     {% include 'partner/menu.html' %}
 
-    <div id="sidebar">
-        <div class="block border5">
-            {% module catalog.right_sale %}
-        </div>
-    </div>
+    {% module catalog.right_sale id="sidebar" class="block border5" %}
+
     <div id="content">
         <div id="catalog-order" class="block border5 clearfix">
             <h2>{{ title }}</h2>

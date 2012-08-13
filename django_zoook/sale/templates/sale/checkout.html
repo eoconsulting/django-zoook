@@ -23,11 +23,9 @@
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
-    <div id="sidebar">
-        <div class="block border5">
-            {% module sale.right_checkout %}
-        </div>
-    </div>
+
+    {% module sale.right_checkout id="sidebar" class="block border5" %}
+
     <div id="content">
     	{% if error %}
     		<div id="message" class="msg-error">

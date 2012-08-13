@@ -30,11 +30,9 @@
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
-    <div id="sidebar">
-        <div class="block border5">
-            {% module catalog.right_sale %}
-        </div>
-    </div>
+
+   {% module catalog.right_sale id="sidebar" class="block border5" %}
+
     <div id="content">
         <div id="payment-order" class="block border5 clearfix"> 
             <h1>{{title}}</h1>
