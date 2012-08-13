@@ -558,6 +558,9 @@ msgstr "Agregar al carrito"
 msgid "Featured Products"
 msgstr "Productos Destacados"
 
+msgid "Pictures of this product are provided as a guide only. Colour and aspect may vary from the actual stock."
+msgstr "Fotos de este producto se proporcionan como guía. Color y el aspecto pueden variar del stock actual."
+
 msgid "name"
 msgstr "Nombre"
 

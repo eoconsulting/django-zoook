@@ -608,6 +608,9 @@ msgstr "Afegeix a la cistella"
 msgid "Featured Products"
 msgstr "Productes Destacats"
 
+msgid "Pictures of this product are provided as a guide only. Colour and aspect may vary from the actual stock."
+msgstr "Fotos d'aquest producte s'ofereix com una guia. Color i l'aspecte poden variar de les existències reals."
+
 msgid "name"
 msgstr "Nom"
 
