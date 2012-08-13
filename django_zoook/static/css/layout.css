@@ -37,7 +37,10 @@ label {display:block;float:left;clear:left;width:90px}
 .page-wrap  { }
 #page-footer { margin-top:20px; border-top:1px solid #ff0404; text-align:center}
 
-#sidebar    { float:right; width:220px }
+#sidebar            { float:right; width:220px; }
+#sidebar .block     { padding: 20px; }
+#sidebar .block p   { padding: 0px;}
+
 #content    { float:left; width:700px }
 
 #loading-bar{ display: none; position: fixed; width:200px; height:65px; padding:15px; border:5px solid #ccc; z-index:200; margin: 5% auto; left: 0; right: 0; background:url(../images/loading.gif) center center no-repeat; background-color:#fff}
@@ -50,7 +53,7 @@ label {display:block;float:left;clear:left;width:90px}
 
 /* BLOCKS STYLES BASE */
 .block 	{ border:1px solid #e7e7e7 }
-.block p { padding:10px}
+.block p { padding:10px;}
 #block-left{ padding-top:10px; padding-left:5px; float:left; width:200px}
 #block-right{ padding-top:10px; padding-left:5px; float:right; width:200px}
 #block-detail { padding-top:10px; border-top: 1px solid #bfbfbf}
