@@ -119,6 +119,7 @@ def order(request, order):
                 'metadescription': metadescription,
                 'value': value,
                 'currency': currency,
+                'show_vat': ORDER_SHOW_VAT,
             }, context_instance=RequestContext(request))
 
 @login_required
@@ -395,6 +396,7 @@ def checkout(request):
         'order':order,
         'lines': lines,
         'currency_position': CURRENCY_LABEL_POSITION,
+        'show_vat': ORDER_SHOW_VAT,
     }
 
     if len(lines)>0:

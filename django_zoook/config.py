@@ -247,3 +247,4 @@ Global Module Activation
 UPDATE_PRICE = True    # Active the update special price by ajax when the user is signed
 NEWSLATTER_ON = False  # Active the Newslatter info. Not implemented yet
 COMPARE_ON = False     # Active the "Add to Compare" function in products. Not implemented yet
+ORDER_SHOW_VAT = True  # Show the Base and VAT price in "Orders" and "My Cart" views?

@@ -58,8 +58,10 @@
             </tbody>
             </table>
             <ul class="amount-sale">
-                <li><strong>{% trans "Untaxed" %}:</strong> {{ value.amount_untaxed }}</li>
-                <li><strong>{% trans "Tax" %}:</strong> {{ value.amount_tax }}</li>
+                {% if show_vat %}
+	                <li><strong>{% trans "Untaxed" %}:</strong> {{ value.amount_untaxed }}</li>
+	                <li><strong>{% trans "Tax" %}:</strong> {{ value.amount_tax }}</li>
+                {% endif %}
                 <li><strong>{% trans "Total" %}:</strong> {{ value.amount_total }}</li>
             </ul>
             {% if value.state == 'draft' and value.amount_total != 0.0 %}<div id="payment-sale"><a href="{{ LOCALE_URI }}/sale/payment/{{ value.name }}" alt="{% trans "Payment" %}" title="{% trans "Payment" %}" class="payment-buttom">{% trans "Make Payment" %}</a></div>{% endif %}
