@@ -71,13 +71,19 @@ def orders(request):
 
     values = conn.SaleOrder.filter(partner_id=partner_id, shop_id__in=OERP_SALES, offset=offset, limit=PAGINATOR_ORDER_TOTAL, order='date_order DESC, name DESC')
 
+    orders = []
+    for order in values:
+        num_lines = len(conn.SaleOrderLine.filter(order_id=order.id))
+        if num_lines > 0:
+            orders.append(order)
+
     title = _(u'All Orders')
     metadescription = _(u'List all orders of %s') % full_name
 
     return render_to_response("sale/orders.html", {
                 'title':title,
                 'metadescription':metadescription,
-                'values':values,
+                'values':orders,
                 'page_previous':page_previous,
                 'page_next':page_next,
             }, context_instance=RequestContext(request))
