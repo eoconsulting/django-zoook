@@ -30,12 +30,14 @@
                 <li id="product-{{value.product.id}}" class="product-item block border5{% cycle '' '' ' last' %}">
                     <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" class="product-image-grid" /></a>
                     <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
-                    <div id="product-price-{{value.product.id}}" class="price-box">
-                        <span class="regular-price">
-                            {% if currency_position == 'before' %}<span class="price">{{ currency }} {{value.price}}</span>{% else %}
-                                <span class="price">{{value.price}} {{ currency }}</span>{% endif %}
-                        </span>
-                    </div>
+                    {% if value.product.status %}
+	                    <div id="product-price-{{value.product.id}}" class="price-box">
+	                        <span class="regular-price">
+	                            {% if currency_position == 'before' %}<span class="price">{{ currency }} {{value.price}}</span>{% else %}
+	                                <span class="price">{{value.price}} {{ currency }}</span>{% endif %}
+	                        </span>
+	                    </div>
+                    {% endif %}
                     <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
                     <ul class="add-to">
                         {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
