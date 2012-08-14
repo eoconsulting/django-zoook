@@ -50,7 +50,7 @@ def search(request):
             u'product_tmpl__shortdescription_'+get_language()+u'__icontains': q,
         }
         product_products = ProductProduct.objects.filter(
-                Q(product_tmpl__status=True), Q(active=True),
+                #Q(product_tmpl__status=True), Q(active=True),
                 Q(product_tmpl__visibility='all') | Q(product_tmpl__visibility='search') | Q(product_tmpl__visibility='catalog'),
                 Q(**kwargs_name) | Q(**kwargs_shortdescription))
 

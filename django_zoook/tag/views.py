@@ -59,7 +59,7 @@ def keyword(request,tag):
 
 
         product_products = ProductProduct.objects.filter(
-                Q(product_tmpl__status=True), Q(active=True),
+                #Q(product_tmpl__status=True), Q(active=True),
                 Q(product_tmpl__visibility='all') | Q(product_tmpl__visibility='search') | Q(product_tmpl__visibility='catalog'),
                 Q(**kwargs_eq) | Q(**kwargs_start) | Q(**kwargs_md) | Q(**kwargs_end))
 
