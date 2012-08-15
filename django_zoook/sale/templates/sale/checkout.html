@@ -6,7 +6,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $("#confirm").click(function() {
-            jConfirm('{% trans "Could you confirm the order?\nThen you will redirect payment type to finish your order" %}', '{% trans "Order confirmation" %}', function(r) {
+            jConfirm('{% trans "Confirm the order?\nThen you will redirect payment type to finish your order." %}', '{% trans "Order confirmation" %}', function(r) {
             if (r){
                 document.forms["checkoutForm"].submit();
                 return true

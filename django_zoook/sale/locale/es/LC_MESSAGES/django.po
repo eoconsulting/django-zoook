@@ -93,11 +93,11 @@ msgstr "Este tipo de pago no se encuentra disponible. Utilize los menús de nave
 
 #: templates/sale/checkout.html:9
 msgid ""
-"Could you confirm the order?\\n"
-"Then you will redirect payment type to finish your order"
+"Confirm the order?\\n"
+"Then you will redirect payment type to finish your order."
 msgstr ""
-"¿Puede confirmar el pedido?\\n"
-"Después será enviado al sistema de pago para finalizar el pedido"
+"¿Desea confirmar el pedido?\\n"
+"Será enviado al sistema de pago para finalizar el pedido."
 
 #: templates/sale/checkout.html:9
 msgid "Order confirmation"
