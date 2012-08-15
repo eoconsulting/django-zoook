@@ -93,15 +93,15 @@ msgstr "Este tipo de pago no se encuentra disponible. Utilize los menús de nave
 
 #: templates/sale/checkout.html:9
 msgid ""
-"Confirm the order?\\n"
+"Confirm the order?<br/>"
 "Then you will redirect payment type to finish your order."
 msgstr ""
-"¿Desea confirmar el pedido?\\n"
-"Será enviado al sistema de pago para finalizar el pedido."
+"¿Desea confirmar el pedido?<br/>"
+"Será enviado al sistema de pago para finalizarlo."
 
 #: templates/sale/checkout.html:9
-msgid "Order confirmation"
-msgstr "Confirmación de pedido"
+msgid "Confirmation"
+msgstr "Confirmación"
 
 #: templates/sale/checkout.html:14
 msgid "You are cancel this order! Do not you like it?"
@@ -272,6 +272,12 @@ msgstr "Seleccione el pago"
 #: templates/sale/payment.html:52
 msgid "Please select payment"
 msgstr "Debe seleccionar el pago"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "OK"
+msgstr "Aceptar"
 
 #~ msgid ""
 #~ "It is Not allowed to view this section or not found. Use navigation menu."

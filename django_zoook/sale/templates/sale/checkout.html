@@ -2,22 +2,34 @@
 {% load i18n %}
 {% load modules %}
 
-{% block head %}<link href="{{ MEDIA_URL }}css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+{% block head %}
+<link href="{{ MEDIA_URL }}css/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript">
     $(document).ready(function() {
+
         $("#confirm").click(function() {
-            jConfirm('{% trans "Confirm the order?\nThen you will redirect payment type to finish your order." %}', '{% trans "Order confirmation" %}', function(r) {
-            if (r){
-                document.forms["checkoutForm"].submit();
-                return true
-            }else{
-                jAlert('error', '{% trans "You are cancel this order! Do not you like it?" %}', '{% trans "Error" %}');
-                return false;
-            }
-            });
+	        $("#confirm-dialog").dialog({
+	            resizable: false,
+	            //height:240,
+	            modal: true,
+	            buttons: {
+	            	'{% trans "OK" %}': function() {
+                        $(this).dialog( "close" );
+	            		document.forms["checkoutForm"].submit();
+	                },
+	                '{% trans "Cancel" %}': function() {
+	                    $( this ).dialog( "close" );
+	                }
+	            }
+	        });
         });
+
     });
-</script>{% endblock %}
+</script>
+<style type="text/css">
+    #confirm-dialog { padding-top: 15px; }
+</style>
+{% endblock %}
 
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {{ title }}</li></ul></div>{% endblock %}
 
@@ -90,7 +102,10 @@
 	                        <input type="text" name="promotion" id="id_promotion" minlength="6"/>
 	                    </p>
 	                </div>
-	                <input id="confirm" type="button" value="{% trans "Confirm" %}" class="border2 button-confirm"/>    
+	                <input id="confirm" type="button" value="{% trans "Confirm" %}" class="border2 button-confirm"/>
+	                <div id="confirm-dialog" title="{% trans 'Confirmation' %}" style="display: none;">
+	                   {% trans "Confirm the order?<br/>Then you will redirect payment type to finish your order." %}
+	                </div>    
 	            </div>
 	            <div id="checkout-address">
 	                <h2>{% trans "Address Invoice" %}</h2>
@@ -113,8 +128,7 @@
         {% endif %}
     </div>
 </div>
-  
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.alerts.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.ui.draggable.js"></script>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui.min.js"></script>
 
 {% endblock %}

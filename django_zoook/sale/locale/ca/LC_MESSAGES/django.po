@@ -91,15 +91,15 @@ msgstr "Aquest pagament no es troba disponible. Utilitzi els menús de navegaci�
 
 #: templates/sale/checkout.html:9
 msgid ""
-"Confirm the order?\\n"
+"Confirm the order?<br/>"
 "Then you will redirect payment type to finish your order."
 msgstr ""
-"Confirmar la comanda?\\n"
+"Confirmar la comanda?<br/>"
 "A continuació, us renviarem per realitzar el pagament i finalitzar la comanda."
 
 #: templates/sale/checkout.html:9
-msgid "Order confirmation"
-msgstr "Confirmació de la comanda"
+msgid "Confirmation"
+msgstr "Confirmació"
 
 #: templates/sale/checkout.html:14
 msgid "You are cancel this order! Do not you like it?"
@@ -270,6 +270,12 @@ msgstr "Seleccioneu el pagament"
 #: templates/sale/payment.html:52
 msgid "Please select payment"
 msgstr "Si us plau, seleccioneu el pagament"
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgid "OK"
+msgstr "Acceptar"
 
 #~ msgid ""
 #~ "It is Not allowed to view this section or not found. Use navigation menu."
