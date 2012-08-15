@@ -17,11 +17,11 @@
             <thead>
                 <tr>
                     <th>{% trans "Reference" %}</th>
-                    <th><span class="nobr">{% trans "Date" %}</span></th>
-                    <th><span class="nobr">{% trans "Date Confirm" %}</span></th>
-                    <th><span class="nobr">{% trans "Total" %}</span></th>
-                    <th><span class="nobr">{% trans "State" %}</span></th>
-                    <th><span class="nobr">&nbsp;</span></th>
+                    <th class="center"><span class="nobr">{% trans "Date" %}</span></th>
+                    <th class="center"><span class="nobr">{% trans "Date Confirm" %}</span></th>
+                    <th class="center"><span class="nobr">{% trans "Total" %}</span></th>
+                    <th class="center"><span class="nobr">{% trans "State" %}</span></th>
+                    <th class="center"><span class="nobr">&nbsp;</span></th>
                 </tr>
             </thead>
             <tfoot><tr><td>{% if page_previous != -1 %}<a href="?page={{ page_previous }}" alt="{% trans "Previous" %}" title="{% trans "Previous" %}" class="page-previous">{% trans "Previous" %}</a></a>{% endif %} {% if page_next %}<a href="?page={{ page_next }}" alt="{% trans "Next" %}" title="{% trans "Next" %}" class="page-next">{% trans "Next" %}</a></a>{% endif %} </td></tr></tfoot>
@@ -30,8 +30,8 @@
                     <td><a href="{{ LOCALE_URI }}/sale/order/{{ value.name }}" alt="{{ value.name }}">{{ value.name }}</a></td>
                     <td>{{ value.date_order }}</td>
                     <td>{% if value.date_confirm %}{{ value.date_confirm }}{% else %}{% trans "Pending" %}{% endif %}</td>
-                    <td>{{ value.amount_total }}</td>
-                    <td>{% trans value.state|capfirst %}</td>
+                    <td class="number">{{ value.amount_total }}</td>
+                    <td class="center">{% trans value.state|capfirst %}</td>
                     <td>{% if value.state == 'draft' and value.amount_total != 0.0 %}<a href="{{ LOCALE_URI }}/sale/payment/{{ value.name }}" alt="{% trans "Payment" %}" title="{% trans "Payment" %}"><img src="{{ MEDIA_URL }}images/icons/shop-cart.gif" alt="{% trans "Payment" %}" /></a>{% else %}&nbsp;{% endif %}</td>
                 </tr>{% endfor %}
                 {% if not values %}

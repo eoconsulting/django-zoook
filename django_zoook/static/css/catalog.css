@@ -181,6 +181,7 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .btn-remove { display:block; width:13px; height:13px; font-size:0; line-height:0; background:url(../images/icons/btn_remove.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
 .btn-trash { display:block; width:16px; height:16px; font-size:0; line-height:0; background:url(../images/icons/btn_trash.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
 .btn-add { display:block; width:20px; height:16px; font-size:0; line-height:0; background:url(../images/icons/shop-cart.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
+td.center a.btn-trash { margin: 0px auto; }
 
 /* Sale / Invoice */
 .page-previous { padding-right:10px}
@@ -195,9 +196,9 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 #payment-sale { margin-top:10px}
 
 /* Order Table */
-.order-table{ width:100%}
-.order-table th{padding:10px; font-size:1.09em; font-weight:bold; border-bottom:1px solid #D2D6D8;}
-.order-table td{ padding-left:10px; vertical-align:middle; padding:3px 0 3px 10px}
+.order-table{ width:100%; margin-top: 20px; }
+.order-table th{font-size:1.09em; border-bottom:1px solid #D2D6D8;}
+.order-table td{ padding-left:10px; }
 .order-table tfoot td{padding:10px}
 .order-table .row1 { }
 .order-table .row2 { background-color:#f3f5f6}

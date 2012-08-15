@@ -41,19 +41,19 @@
             <thead>
                 <tr>
                     <th>{% trans "Reference" %}</th>
-                    <th><span class="nobr">{% trans "Qty" %}</span></th>
-                    <th><span class="nobr">{% trans "Discount" %}</span></th>
-                    <th><span class="nobr">{% trans "Unit Price" %}</span></th>
-                    <th><span class="nobr">{% trans "Subtotal" %}</span></th>
+                    <th class="center"><span class="nobr">{% trans "Qty" %}</span></th>
+                    <th class="center"><span class="nobr">{% trans "Discount" %}</span></th>
+                    <th class="center"><span class="nobr">{% trans "Unit Price" %}</span></th>
+                    <th class="center"><span class="nobr">{% trans "Subtotal" %}</span></th>
                 </tr>
             </thead>
             <tbody>
                 {% for line in value.order_line %}<tr class="{% cycle 'row1' 'row2' %}">
                     <td>{{ line.name }}</a></td>
-                    <td>{{ line.product_uom_qty }}</td>
-                    <td>{{ line.discount }}</td>
-                    <td>{{ line.price_unit }}</td>
-                    <td>{{ line.price_subtotal }}</td>
+                    <td class="number">{{ line.product_uom_qty }}</td>
+                    <td class="number">{{ line.discount }}</td>
+                    <td class="number">{{ line.price_unit }}</td>
+                    <td class="number">{{ line.price_subtotal }}</td>
                 </tr>{% endfor %}
             </tbody>
             </table>

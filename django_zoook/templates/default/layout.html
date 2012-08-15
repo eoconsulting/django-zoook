@@ -66,17 +66,18 @@
 $(document).ready(function() {
     mainmenu();
     {% block jqueryload %}{% endblock %}
-    {% if user.is_authenticated %}$('.loading').click(function() {
-        var target = $(this).attr('href');
-        window.location = target;
-        $("#esale").css({ opacity: 0.3 })
-        $('#loading-bar').show();
-    return false
-    });
-    $('#productForm').submit(function() { 
-        $("#esale").css({ opacity: 0.3 })
-        $('#loading-bar').show();
-    });
+    {% if user.is_authenticated %}
+	    $('.loading').click(function() {
+	        var target = $(this).attr('href');
+	        window.location = target;
+	        $("#esale").css({ opacity: 0.3 })
+	        $('#loading-bar').show();
+	        return false
+	    });
+	    $('#productForm').submit(function() { 
+	        $("#esale").css({ opacity: 0.3 })
+	        $('#loading-bar').show();
+	    });
     {%endif%}
 });
 </script>

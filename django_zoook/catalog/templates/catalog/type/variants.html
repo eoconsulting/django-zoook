@@ -1,6 +1,6 @@
 {% load i18n %}
                     <div class="cart-box border3b">
-                        <form class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
+                        <form id="cartAddForm" class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
 	                        <div style="display: block;"><ul>
 	                        	{% for prod in products %}{% if prod.active %}
                         		<li>
@@ -28,12 +28,18 @@
                         {% endif %}
                         <script type="text/javascript">
                         $(document).ready(function() {
-	                        $('input:radio[name=code]').change(function() {
-	                        	window.location = '?code=' + $(this).attr('value').toLowerCase();
-	                        	$("#esale").css({ opacity: 0.3 })
-	                            $('#loading-bar').show();
-	                        	return false;
-	                        });
+                            $('input:radio[name=code]').change(function() {
+                                window.location = '?code=' + $(this).attr('value').toLowerCase();
+                                $("#esale").css({ opacity: 0.3 })
+                                $('#loading-bar').show();
+                                return false;
+                            });
+                            $('.add-to-cart').click(function() {
+                                $("#esale").css({ opacity: 0.3 })
+                                $('#loading-bar').show();
+                                document.forms["cartAddForm"].submit();
+                            });
                         });
+                        
                         </script>
                     </div>
