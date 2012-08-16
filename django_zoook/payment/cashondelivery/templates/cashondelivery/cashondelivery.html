@@ -13,10 +13,10 @@
             {% module catalog.right_sale %}
         </div>
     </div>
-    <div id="content">
-        <p>{% blocktrans %}Your order {{order}} is created successfully. Remember do payment when receive delivery:{% endblocktrans %}<br/>
-        <strong>{% if payment_type.payment_type_id.note %}{{ payment_type.payment_type_id.note }}{% else %}{{ payment_type.payment_type_id.name }}{% endif %}</strong><br/>
-        <a href="{{ LOCALE_URI }}/sale/" title="{% trans "Orders" %}">{% blocktrans %}Go Orders for more details and status order{% endblocktrans %}</a></p>
+    <div id="content" class="payment">
+        <p>{% blocktrans %}Your order {{order}} is created successfully. Remember do payment when receive delivery:{% endblocktrans %}</p>
+        <p class="payment-type"><strong>{% if payment_type.payment_type_id.note %}{{ payment_type.payment_type_id.note }}{% else %}{{ payment_type.payment_type_id.name }}{% endif %}</strong></p>
+        <p><a href="{{ LOCALE_URI }}/sale/" title="{% trans "Orders" %}">{% blocktrans %}Go Orders for more details and status order{% endblocktrans %}</a></p>
     </div>
     
 </div>
