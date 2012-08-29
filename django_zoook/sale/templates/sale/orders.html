@@ -19,7 +19,7 @@
                     <th>{% trans "Reference" %}</th>
                     <th class="center"><span class="nobr">{% trans "Date" %}</span></th>
                     <th class="center"><span class="nobr">{% trans "Date Confirm" %}</span></th>
-                    <th class="center"><span class="nobr">{% trans "Total" %}</span></th>
+                    <th class="number"><span class="nobr">{% trans "Total" %}</span></th>
                     <th class="center"><span class="nobr">{% trans "State" %}</span></th>
                     <th class="center"><span class="nobr">&nbsp;</span></th>
                 </tr>
@@ -28,8 +28,8 @@
             <tbody>
                 {% for value in values %}<tr class="{% cycle 'row1' 'row2' %}">
                     <td><a href="{{ LOCALE_URI }}/sale/order/{{ value.name }}" alt="{{ value.name }}">{{ value.name }}</a></td>
-                    <td>{{ value.date_order }}</td>
-                    <td>{% if value.date_confirm %}{{ value.date_confirm }}{% else %}{% trans "Pending" %}{% endif %}</td>
+                    <td class="center">{{ value.date_order }}</td>
+                    <td class="center">{% if value.date_confirm %}{{ value.date_confirm }}{% else %}{% trans "Pending" %}{% endif %}</td>
                     <td class="number">{{ value.amount_total }}</td>
                     <td class="center">{% trans value.state|capfirst %}</td>
                     <td>{% if value.state == 'draft' and value.amount_total != 0.0 %}<a href="{{ LOCALE_URI }}/sale/payment/{{ value.name }}" alt="{% trans "Payment" %}" title="{% trans "Payment" %}"><img src="{{ MEDIA_URL }}images/icons/shop-cart.gif" alt="{% trans "Payment" %}" /></a>{% else %}&nbsp;{% endif %}</td>

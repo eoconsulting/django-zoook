@@ -18,7 +18,7 @@
                 <tr>
                     <th>{% trans "Reference" %}</th>
                     <th class="center"><span class="nobr">{% trans "Date" %}</span></th>
-                    <th class="center"><span class="nobr">{% trans "Total" %}</span></th>
+                    <th class="number"><span class="nobr">{% trans "Total" %}</span></th>
                     <th class="center"><span class="nobr">{% trans "State" %}</span></th>
                 </tr>
             </thead>
@@ -26,7 +26,7 @@
             <tbody>
                 {% for value in values %}<tr class="{% cycle 'row1' 'row2' %}">
                     <td><a href="{{ LOCALE_URI }}/account/invoice/{{ value.number }}" alt="{{ value.number }}">{{ value.number }}</a></td>
-                    <td>{{ value.date_invoice }}</td>
+                    <td class="center">{{ value.date_invoice }}</td>
                     <td class="number">{{ value.amount_total }}</td>
                     <td class="center">{% trans value.state|capfirst %}</td>
                 </tr>{% endfor %}
