@@ -51,7 +51,10 @@ def SaleOrderEmail(order):
     
     if customer_email != 'False':
         subject = body_template['value']['subject']
-        body = body_template['value']['body_text']
+        if body_template['value']['body_html']:
+            body = body_template['value']['body_html']
+        else:
+            body = body_template['value']['body_text']
         email = EmailMessage(subject, body, EMAIL_FROM, to=[customer_email], headers = {'Reply-To': EMAIL_REPPLY})
 
         try:
