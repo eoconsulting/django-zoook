@@ -48,6 +48,9 @@ def SaleOrderEmail(order):
     body_template = conn_webservice('poweremail.preview','on_change_ref', values)
 
     customer_email = body_template['value']['to']
+    bcc=None
+    if body_template['value']['bcc'] and body_template['value']['bcc'] != 'False':
+        bcc = [body_template['value']['bcc']]
     
     if customer_email != 'False':
         subject = body_template['value']['subject']
@@ -55,7 +58,9 @@ def SaleOrderEmail(order):
             body = body_template['value']['body_html']
         else:
             body = body_template['value']['body_text']
-        email = EmailMessage(subject, body, EMAIL_FROM, to=[customer_email], headers = {'Reply-To': EMAIL_REPPLY})
+        email = EmailMessage(subject, body, EMAIL_FROM, to=[customer_email], bcc=bcc, headers = {'Reply-To': EMAIL_REPPLY})
+        if body_template['value']['body_html']:
+            email.content_subtype = "html"
 
         try:
             email.send()
