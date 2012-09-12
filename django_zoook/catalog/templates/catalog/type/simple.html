@@ -7,7 +7,7 @@
                         {% for prod in products %}{% if prod.active %}<form id="cartAddForm" class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
 	                        {% if product.status %}
 	                            <button class="border2 add-to-cart">{% trans "Add to cart" %}</button>
-	                            <input name="qty" type="text" value="1" class="qty border2" />
+	                            <input name="qty" type="number" value="1" class="qty border2" />
 	                            <input name="code" type="hidden" value="{{ prod.code }}"/>
 	                        {% else %}
 	                            <div class="out-service ico border3b"><h3>{% trans "This product is currently unavailable." %}</h3></div>
