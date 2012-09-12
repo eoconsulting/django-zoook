@@ -29,8 +29,9 @@ from django.utils.translation import ugettext_lazy as _
 
 import re
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+DEVEL = DEBUG    # Is development enviroment?
 
 MAINTENANCE_MODE = False
 ROOT_URLCONF = 'django_zoook.urls'

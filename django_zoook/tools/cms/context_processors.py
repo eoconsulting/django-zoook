@@ -25,7 +25,7 @@ from django.utils.translation import get_language
 from django_zoook.tools.zoook import siteConfiguration
 
 from django_zoook.settings import BASE_TEMPLATE, LIVE_URL
-from django_zoook.config import LOCALE_URI, SITE_ID
+from django_zoook.config import LOCALE_URI, SITE_ID, DEBUG, DEVEL
 
 def theme(request):
     """
@@ -71,4 +71,5 @@ def site_configuration(request):
         'LOCALE_URI': sufix,
         'USER_NAME': user_name,
         'FULL_NAME': full_name,
+        'DEBUG': DEBUG or DEVEL,
     }

@@ -170,10 +170,13 @@ ul.user-add li a:hover{ background: #232323; color: #fff; padding-left: 11px;}
 #zoook-doc-content ul{margin-left:10px; font-size:12px}
 
 /* Alerts */
-.msg-info {padding:10px; margin: 10px 0px; color: #00529B;background-color: #BDE5F8; background-image: url('../images/icons/info.png') no-repeat}
-.msg-success {padding:10px; color: #4F8A10;background-color: #DFF2BF; background-image:url('../images/icons/success.png') no-repeat}
-.msg-warning {padding:10px; color: #9F6000;background-color: #FEEFB3; background-image: url('../images/icons/warning.png') no-repeat}
-.msg-error {padding:10px; color: #D8000C;background-color: #FFBABA; background-image: url('../images/icons/error.png') no-repeat; margin: 10px 0px;}
+.msg-info {padding:10px 5px 10px 50px; margin: 10px 0px; color: #00529B; background: url('../images/icons/info.png') #BDE5F8 10px center no-repeat;}
+.msg-success {padding:10px 5px 10px 50px; color: #4F8A10; background: url('../images/icons/success.png') #DFF2BF 10px center no-repeat;}
+.msg-warning {padding:10px 5px 10px 50px; color: #9F6000; background: url('../images/icons/warning.png') #FEEFB3 10px center no-repeat;}
+.msg-error {padding:10px 5px 10px 50px; color: #D8000C; background: url('../images/icons/error.png') #FFBABA 10px center no-repeat; margin: 10px 0px;}
+
+#debug.msg-warning { margin-bottom: 10px; border-radius: 5px; }
+#debug h1 { font-size: 1.3em; }
 
 /* 404 */
 #notfound-search{ float:right; margin-top:10px; width: 400px; padding:10px; border:1px solid #313131; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;}

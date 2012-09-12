@@ -55,3 +55,7 @@ msgstr "Províncias"
 #: layout.html:26
 msgid "Loading..."
 msgstr "Cargando..."
+
+#: layout.html:54
+msgid "This is a <strong>DEVELOPMENT</strong> site, <i>ALL</i> the <strong>content</strong> is only for <strong>testing</strong> purpose."
+msgstr "Este es un sitio de <strong>DESARROLLO</strong>, <i>TODO</i> el <strong>contenido</strong> es sólamente para propósitos de <strong>pruebas</strong>."

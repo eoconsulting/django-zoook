@@ -50,6 +50,9 @@
         </div>
         {% load category %}{% render_horizontal_menu %}
     </div>
+    {% if DEBUG %}<div id="debug" class="msg-warning">
+        <h1>{% trans "This is a <strong>DEVELOPMENT</strong> site, <i>ALL</i> the <strong>content</strong> is only for <strong>testing</strong> purpose." %}</h1>
+    </div>{% endif %}
     {% block pathway %}{% endblock %}
     <div id="page-wrap">
         {% block content %}{% endblock %}
