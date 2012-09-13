@@ -133,7 +133,8 @@ label {display:block;float:left;clear:left;width:90px}
 .login-box .content { min-height:230px; }
 
 /* Message */
-#message h1 { font-size:18px}
+#message h1 { font-size:1.3em; }
+#message h2 { font-size: 1.2em; }
 
 /* Edit Frontend */
 .more-details { background: transparent url("../images/icons/edit.png") no-repeat left center; }

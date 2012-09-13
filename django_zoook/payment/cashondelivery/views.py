@@ -33,7 +33,6 @@ from django_zoook.tools.zoook import connOOOP
 
 from django_zoook.sale.email import SaleOrderEmail
 
-import time
 import logging
 
 @login_required
@@ -69,9 +68,11 @@ def index(request):
         del request.session['sale_order']
         
         #send email sale order
-        SaleOrderEmail(order.id)
+        mailresult = SaleOrderEmail(order.id)
+        if mailresult:
+            values['error'] = mailresult
         
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: cashondelivery payment finish' % (order.name) ))
+        logging.info('Order %s: cashondelivery payment finish' % order.name)
         return render_to_response("cashondelivery/cashondelivery.html", values, context_instance=RequestContext(request))
     else:
         error = _('Error payment this order or is null. Contact Us or use navigation menu')

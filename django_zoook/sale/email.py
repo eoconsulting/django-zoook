@@ -23,6 +23,7 @@
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.core.mail import EmailMessage
+import logging
 
 from django_zoook.settings import *
 from django_zoook.tools.conn import conn_webservice
@@ -64,7 +65,8 @@ def SaleOrderEmail(order):
 
         try:
             email.send()
-            return True
-        except:
+            return None
+        except Exception, e:
+            logging.warn('SaleOrderEmail: Order ID %s - Error sending email: %s' % (order, str(e)))
             error = _("Your order is in process but we don't send email. Check in your order customer section.")
-            return False
+            return error

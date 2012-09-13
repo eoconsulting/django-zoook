@@ -18,7 +18,7 @@ msgstr ""
 
 #: email.py:60
 msgid "Your order is in process but we don't send email. Check in your order customer section."
-msgstr "Su pedido está en proceso pero no se ha podido enviar el correo electrónico. Puede hacer el seguimiento de sus pedidos en la área de clientes"
+msgstr "Su pedido está en proceso pero no se ha podido enviar el correo electrónico. Puede hacer el seguimiento de sus pedidos en la área de clientes."
 
 #: views.py:49
 #: views.py:76

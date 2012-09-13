@@ -11,6 +11,11 @@
     {% module sale.right_payment id="sidebar" class="block border5" %}
 
     <div id="content" class="payment">
+        {% if error %}
+            <div id="message" class="msg-warning">
+                <h2>{{ error }}</h2>
+            </div>
+        {% endif %}
         <p>{% blocktrans %}Your order {{order}} is created successfully. Remember do payment when receive delivery:{% endblocktrans %}</p>
         <p class="payment-type"><strong>{% if payment_type.payment_type_id.note %}{{ payment_type.payment_type_id.note }}{% else %}{{ payment_type.payment_type_id.name }}{% endif %}</strong></p>
         <p><b>&gt;&nbsp;&nbsp;</b><a href="{{ LOCALE_URI }}/sale/" title="{% trans "Orders" %}">{% blocktrans %}Go Orders for more details and status order{% endblocktrans %}</a></p>
