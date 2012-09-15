@@ -305,9 +305,13 @@ def checkout(request):
     if order == 'error':
         return HttpResponseRedirect("%s/partner/partner/" % (context_instance['LOCALE_URI']))
 
-    if request.method == 'POST':
-        qty = int(request.POST['qty'])
-        code = request.POST['code']
+    if request.method == 'POST' or request.GET.get('code'):
+        if request.POST.get('code'):
+            qty = int(request.POST['qty'])
+            code = request.POST['code']
+        else:
+            qty = int(request.GET['qty'])
+            code = request.GET['code']
         #check product is available to add to cart
         product = check_product(conn, code)
         if product:

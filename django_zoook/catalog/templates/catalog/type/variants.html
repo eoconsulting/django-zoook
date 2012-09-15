@@ -1,6 +1,6 @@
 {% load i18n %}
                     <div class="cart-box border3b">
-                        <form id="cartAddForm" class="cart-add-form" method="post" action="{{ LOCALE_URI }}/sale/checkout/">
+                        <form id="cartAddForm" class="cart-add-form" method="{% if user.is_authenticated %}post{% else %}get{% endif %}" action="{{ LOCALE_URI }}/sale/checkout/">
 	                        <div style="display: block;"><ul>
 	                        	{% for prod in products %}{% if prod.active %}
                         		<li>
