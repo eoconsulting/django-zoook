@@ -458,7 +458,7 @@ def checkout_remove(request, code):
             error = _('Error when connecting with our ERP. Try again or cantact us.')
             return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
         order = check_order(conn, partner_id, OERP_SALE)
-        order_lines = conn.SaleOrderLine.filter(order.id, product_id=products[0].id)
+        order_lines = conn.SaleOrderLine.filter(order_id=order.id, product_id=products[0].id)
         if len(order_lines) > 0:
             order_line = conn.SaleOrderLine.get(order_lines[0].id)
             order_line.delete()
