@@ -82,7 +82,7 @@
 	                </tr>{% endfor %}
 	            </tbody>
 	            </table>
-	            {% if order.state == 'draft' and order.amount_total != 0.0 %}
+	            {% if order.state == 'draft' and order.amount_total != 0.0 and lines|length != 0 %}
 	            <div id="checkout-total">
 	                <p class="amount">
 	                   {% if show_vat %}
