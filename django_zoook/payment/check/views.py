@@ -39,7 +39,7 @@ import logging
 @login_required
 def index(request):
     """
-    Cashondelivery
+    Check
     OpenERP Payment Type App is: check
     """
 
@@ -69,9 +69,11 @@ def index(request):
         del request.session['sale_order']
 
         #send email sale order
-        SaleOrderEmail(order.id)
-
-        logging.info('[%s] %s' % (time.strftime('%Y-%m-%d %H:%M:%S'), 'Order %s: check payment finish' % (order.name) ))
+        mailresult = SaleOrderEmail(order.id)
+        if mailresult:
+            values['error'] = mailresult
+        
+        logging.info('Order %s: check payment finish' % order.name)
         return render_to_response("check/check.html", values, context_instance=RequestContext(request))
     else:
         error = _('Error payment this order or is null. Contact Us or use navigation menu')

@@ -34,8 +34,8 @@ msgstr "Pagament errorni o comanda no existeix. Contacti amb nosaltres o utilitz
 
 #: templates/check/check.html:18
 #, python-format
-msgid "Your order %(order)s is created successfully. Remember do payment at:"
-msgstr "La seva comanda %(order)s s'ha creat correctament. Recordeu de fer el pagament:"
+msgid "Your order <strong>%(order)s</strong> is created successfully. Remember do payment at:"
+msgstr "La seva comanda <strong>%(order)s</strong> s'ha creat correctament. Recordeu de fer el pagament:"
 
 #: templates/check/check.html:20
 msgid "Orders"

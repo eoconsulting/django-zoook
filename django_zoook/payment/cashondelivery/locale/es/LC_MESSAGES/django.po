@@ -34,8 +34,8 @@ msgstr "Error de pago de este pedido o pedido no existente. Contacte con nosotro
 
 #: templates/cashondelivery/cashondelivery.html:18
 #, python-format
-msgid "Your order %(order)s is created successfully. Remember do payment when receive delivery:"
-msgstr "Su pedido %(order)s se ha creado correctamente. Recuerde de realizar el pago cuando reciba el envío:"
+msgid "Your order <strong>%(order)s</strong> is created successfully. Remember do payment when receive delivery:"
+msgstr "Su pedido <strong>%(order)s</strong> se ha creado correctamente. Recuerde de realizar el pago cuando reciba el envío:"
 
 #: templates/cashondelivery/cashondelivery.html:20
 msgid "Orders"

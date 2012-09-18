@@ -16,8 +16,13 @@
                 <h2>{{ error }}</h2>
             </div>
         {% endif %}
-        <p>{% blocktrans %}Your order {{order}} is created successfully. Remember do payment when receive delivery:{% endblocktrans %}</p>
-        <p class="payment-type"><strong>{% if payment_type.payment_type_id.note %}{{ payment_type.payment_type_id.note }}{% else %}{{ payment_type.payment_type_id.name }}{% endif %}</strong></p>
+        <p>{% blocktrans %}Your order <strong>{{order}}</strong> is created successfully. Remember do payment when receive delivery:{% endblocktrans %}</p>
+        <p class="payment-type"><strong>{{ payment_type.payment_type_id.name }}</strong></p>
+        {% if payment_type.payment_type_id.note %}
+            <div class="payment-note">
+                {% autoescape off %}{{ payment_type.payment_type_id.note }}{% endautoescape %}
+            </div>
+        {% endif %}
         <p><b>&gt;&nbsp;&nbsp;</b><a href="{{ LOCALE_URI }}/sale/" title="{% trans "Orders" %}">{% blocktrans %}Go Orders for more details and status order{% endblocktrans %}</a></p>
     </div>
 </div>

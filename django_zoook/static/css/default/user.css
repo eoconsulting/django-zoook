@@ -24,4 +24,6 @@
 #registerForm label, #partnerForm label {width:200px}
 
 #content.payment p { padding: 5px 0px; font-size: 14px; }
+#content.payment .payment-type, #content.payment .payment-note { margin-top: 20px; }
+#content.payment .payment-note { margin-left: 20px; }
 #content.payment .payment-type strong { background-color: #ffca70; padding: 8px; border-radius: 4px; }
