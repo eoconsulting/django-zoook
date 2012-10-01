@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load modules %}
+
+{% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
+{% block pathway %}{% endblock %}
+
+{% block content %}
+<div id="page-wrap" class="clearfix">
+    {% include 'partner/menu.html' %}
+
+    {% module sale.right_payment id="sidebar" class="block border5" %}
+
+    <div id="content" class="payment">
+        {% if error %}
+            <div id="message" class="msg-warning">
+                <h2>{{ error }}</h2>
+            </div>
+        {% endif %}
+        <p>{% blocktrans %}Your order <strong>{{order}}</strong> is created successfully. Remember do payment at:{% endblocktrans %}</p>
+        <p class="payment-type"><strong>{{ payment_type.payment_type_id.name }}</strong></p>
+        {% if payment_type.payment_type_id.note %}
+            <div class="payment-note">
+                {% autoescape off %}{{ payment_type.payment_type_id.note }}{% endautoescape %}
+            </div>
+        {% endif %}
+        <p><b>&gt;&nbsp;&nbsp;</b><a href="{{ LOCALE_URI }}/sale/" title="{% trans "Orders" %}">{% blocktrans %}Go Orders for more details and status order{% endblocktrans %}</a></p>
+    </div>
+    
+</div>
+{% endblock %}

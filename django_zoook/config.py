@@ -163,6 +163,7 @@ PROJECT_APPS = (
     #'django_zoook.payment.pasat4b',
     #'django_zoook.payment.check',
     #'django_zoook.payment.cashondelivery',
+    #'django_zoook.payment.banktransfer',
     #'django_zoook.payment.debit',
 )
 

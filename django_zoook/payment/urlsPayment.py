@@ -39,6 +39,9 @@ urlpatterns = patterns("",
     # Check Payment
     # url(r"^check/", 'django_zoook.payment.check.views.index', name='payment_check'),
 
+    # Bank Transfer Payment
+    # url(r"^banktransfer/", 'django_zoook.payment.banktransfer.views.index', name='payment_banktransfer'),
+
     # CashOnDelivery
     url(r"^cashondelivery/", 'django_zoook.payment.cashondelivery.views.index', name='payment_cashondelivery'),
 
