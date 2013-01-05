@@ -174,7 +174,7 @@ def product(request, product):
             if prod.code.lower() == code.lower():
                 code = prod.code
                 prods_i = i
-                name += ' - ' + prod.code
+                name += ' - ' + prod.variants
                 url += '?code=' + code.lower()
 
     base_image, thumb_images = prods[prods_i].get_all_images()

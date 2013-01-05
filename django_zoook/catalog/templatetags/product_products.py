@@ -38,11 +38,11 @@ def render_product_products(context):
         name = product.product_tmpl.name
         if product.product_tmpl.product_product_set.count() > 1:
             url += '?code=' + product.code.lower()
-            name += ' - ' + product.code
+            name += ' - ' + product.variants
         base_image = product.get_base_image()
         values.append({
                 'product': product.product_tmpl,
-                'name': name, 
+                'name': name,
                 'url': url,
                 'price': product.get_price(),
                 'price_normal': product.price,

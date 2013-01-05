@@ -284,6 +284,7 @@ class ProductProduct(models.Model):
     product_tmpl = models.ForeignKey('ProductTemplate', related_name='product_product_set')
     active = models.BooleanField(_('Active'), default=False)
     code = models.CharField(_('Code'), max_length=128, null=True) #Reference
+    variants = models.CharField(_('Variants'), max_length=64, null=True)
     ean13 = models.CharField(_('EAN13'), max_length=128, null=True, blank=True)
     price = models.DecimalField(_('Price'), max_digits=9, decimal_places=2, default=0)
     price_special = models.DecimalField(_('Special Price'), max_digits=9, decimal_places=2, default=0, null=True, blank=True)
@@ -298,6 +299,7 @@ class ProductProduct(models.Model):
         verbose_name_plural = _('products')
         translate = (
             'cartdescription',
+            'variants',
         )
         ordering = ['-code']
 
