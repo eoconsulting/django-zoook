@@ -42,7 +42,7 @@
     <div class="col2-set">
         <div class="col-1">
             <div class="buttons-set">
-                <a href="{% url partner_register %}" class="btn-action">{% trans "Create new account" %}</a>
+                <a href="{% url partner_register %}{% if next_url %}?next={{ next_url }}{% endif %}" class="btn-action">{% trans "Create new account" %}</a>
             </div>
         </div>
         <div class="col-2">

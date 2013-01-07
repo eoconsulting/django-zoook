@@ -87,7 +87,10 @@ def login(request):
             error = _('Sorry. Your username or password is not valid.')
 
     form = UserCreationForm()
+    if request.POST.get('redirect'):
+        redirect = request.POST.get('redirect')
     if request.GET.get('next'):
+        next_url = request.GET.get('next')
         redirect = base64.b64encode(request.GET.get('next'))
 
     return render_to_response("partner/login.html", locals(), context_instance=RequestContext(request))
@@ -264,6 +267,10 @@ def register(request):
                         # authentification / login user
                         user = authenticate(username=username, password=password)
                         auth_login(request, user)
+                        if 'redirect' in request.POST:
+                            redirect = base64.b64decode(request.POST['redirect'])
+                            return HttpResponseRedirect(redirect)
+
                         return HttpResponseRedirect("%s/partner/profile/" % context_instance['LOCALE_URI'])
             else:
                 msg = _("Sorry. Error form values. Try again.")
@@ -275,6 +282,13 @@ def register(request):
     form = UserCreationForm()
     if RECAPTCHA_PUB_KEY != '':
         html_captcha = captcha.displayhtml(RECAPTCHA_PUB_KEY)
+    if request.POST.get('redirect'):
+        redirect = request.POST.get('redirect')
+    if request.GET.get('next'):
+        if request.GET.get('qty'):
+            redirect = base64.b64encode(request.GET.get('next') + '&qty=' + request.GET.get('qty'))
+        else:
+            redirect = base64.b64encode(request.GET.get('next'))
 
     countries = ResCountry.objects.all()
     country_default = COUNTRY_DEFAULT

@@ -135,6 +135,7 @@
         </div>
     </div>
 </fieldset>
+{% if redirect %}<input type="hidden" value="{{ redirect }}" name="redirect"/>{% endif %}
 {% csrf_token %}
 </form>
 

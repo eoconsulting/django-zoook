@@ -307,11 +307,11 @@ def checkout(request):
 
     if request.method == 'POST' or request.GET.get('code'):
         if request.POST.get('code'):
-            qty = int(request.POST['qty'])
             code = request.POST['code']
+            qty = int(request.POST['qty'])
         else:
-            qty = int(request.GET['qty'])
             code = request.GET['code']
+            qty = int(request.GET['qty'])
         #check product is available to add to cart
         product = check_product(conn, code)
         if product:
