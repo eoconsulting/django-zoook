@@ -113,10 +113,6 @@ msgstr ""
 "\n"
 "Por favor, no conteste este correo"
 
-#: views.py:227
-msgid "Sorry. Error form values. Try again."
-msgstr "Error en los valores del formulario. Vuelva a intentarlo."
-
 #: views.py:230
 msgid "Sorry. Passwords do not match. Try again."
 msgstr "Las contraseñas no coinciden. Vuelva a intentarlo."
