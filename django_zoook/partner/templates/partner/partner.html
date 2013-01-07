@@ -58,7 +58,7 @@
                         </li>
                         <li>
                             <label for="{{ invoice.id }}_phone">{% trans "Phone" %}</label>
-                            <input type="text" name="{{ invoice.id }}_phone" id="{{ invoice.id }}_phone" maxlength="30" value="{{ invoice.phone }}" minlength="7"/>
+                            <input type="text" name="{{ invoice.id }}_phone" id="{{ invoice.id }}_phone" maxlength="30" value="{% if invoice.phone %}{{ invoice.phone }}{% endif %}" minlength="7"/>
                         </li>
 		            </ul>
 		            {% endfor %}
@@ -80,7 +80,7 @@
 		                </li>
                         <li>
                             <label for="{{ delivery.id }}_phone">{% trans "Phone" %}</label>
-                            <input type="text" name="{{ delivery.id }}_phone" id="{{ delivery.id }}_phone" maxlength="30" value="{{ delivery.phone }}" minlength="7"/>
+                            <input type="text" name="{{ delivery.id }}_phone" id="{{ delivery.id }}_phone" maxlength="30" value="{% if delivery.phone %}{{ delivery.phone }}{% endif %}" minlength="7"/>
                         </li>
 		            </ul>
 		            {% endfor %}

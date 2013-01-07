@@ -19,17 +19,17 @@
 {% block content %}
 <div class="primary-content span-12 last">
 
+<div id="top-header">{% trans "Create an account." %}</div>
+
 {% if message %}
     <div id="message" class="msg-error">
         <h1>
-        {% for msg in message %}
-           {{ msg }}<br/>
-        {% endfor %}
+	        {% for msg in message %}
+	           {{ msg }}<br/>
+	        {% endfor %}
         </h1>
     </div>
 {% endif %}
-
-<div id="top-header">{% trans "Create an account." %}</div>
 
 <form action="{% url partner_register %}" method="post" id="registerForm">
 <fieldset>

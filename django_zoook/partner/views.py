@@ -273,8 +273,9 @@ def register(request):
 
                         return HttpResponseRedirect("%s/partner/profile/" % context_instance['LOCALE_URI'])
             else:
-                msg = _("Sorry. Error form values. Try again.")
-                message.append(msg)
+                for field in form:
+                    for error in field.errors:
+                        message.append(error)
         else:
             msg = _("Sorry. Passwords do not match. Try again.")
             message.append(msg)
