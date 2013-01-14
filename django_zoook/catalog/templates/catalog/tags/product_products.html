@@ -12,7 +12,7 @@
             <div class="toolbar toolbar-top">
                 <div class="items-pager">
                     <span class="items-drop">{% trans "Show" %} <select onchange="setLocation('paginator',this.value)">{% for item in paginator_items %}<option value="{{ item }}"{% if paginator_option == item %} selected="selected"{% endif %}>{{ item }}</option>{% endfor %}</select> {% trans "items" %}</span>
-                    <span class="view-mode">{{ values|length }}/{{ total }} {% trans "item" %}{{ products.object_list|pluralize }}</span>
+                    <span class="view-mode">{{ values|length }}/{{ total }} {% trans "item" %}{{ product_products.object_list|pluralize }}</span>
                 </div>
                 <div class="items-sort">
                     <span class="sort-drop">{% trans "Sort by" %}
@@ -65,14 +65,14 @@
                     </li>{% endfor %}
             </ul>
             {% endif %}
-            {% if products.paginator.num_pages > 1 %}
+            {% if product_products.paginator.num_pages > 1 %}
             <div id="paginator" class="pagination toolbar-bottom">
                 <span class="step-links">
-                    {% if products.has_previous %}<a href="?page={{ products.previous_page_number }}">{% trans "Previous" %}</a>{% endif %}
+                    {% if product_products.has_previous %}<a href="?page={{ product_products.previous_page_number }}">{% trans "Previous" %}</a>{% endif %}
                     <span class="current">
-                        {% trans "Page" %} {{ products.number }} of {{ products.paginator.num_pages }}.
+                        {% trans "Page" %} {{ product_products.number }} {% trans "of" %} {{ product_products.paginator.num_pages }}
                     </span>
-                    {% if products.has_next %}<a href="?page={{ products.next_page_number }}">{% trans "Next" %}</a>{% endif %}
+                    {% if product_products.has_next %}<a href="?page={{ product_products.next_page_number }}">{% trans "Next" %}</a>{% endif %}
                 </span>
             </div>{% endif %}
         </div>

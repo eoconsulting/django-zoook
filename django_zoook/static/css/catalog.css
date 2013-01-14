@@ -29,7 +29,7 @@
 .toolbar			{ display:block; clear:both; padding-bottom:20px; font-size:11px }
 .toolbar select 	{ color:#86657f }
 .toolbar-top        { border-bottom:1px solid #e7e7e7; margin-bottom:10px }
-.toolbar-bottom     { border-top:1px solid #e7e7e7; margin-top: 10px }
+.toolbar-bottom     { display:block; clear:both; border-top:1px solid #e7e7e7; margin-top: 10px }
 .items-pager, items-sort 	{ height:32px; line-height:32px }
 
 .view-mode a 		{ text-decoration:underline }
