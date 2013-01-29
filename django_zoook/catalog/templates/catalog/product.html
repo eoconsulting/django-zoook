@@ -95,9 +95,11 @@
 
         <div class="tab-container">
             <div id="tab1" class="tab-content">
+            {% if product.description and product.description != 'False' %}
             {% autoescape off %}
                 {{product.description}}
             {% endautoescape %}
+            {% endif %}
             </div>
 
             {% if related_products|length > 1 %}<div id="tab2" class="tab-content">
