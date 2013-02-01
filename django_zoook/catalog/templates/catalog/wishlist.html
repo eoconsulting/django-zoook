@@ -32,8 +32,9 @@
                     <td class="a-right">
                         <div id="product-price-{{product.product.id}}" class="price-box">
                         <span class="regular-price">
-                            {% if currency_position == 'before' %}<span class="price">{{ currency }} {{product.price}}</span>{% else %}
-                                <span class="price">{{product.price}} {{ currency }}</span>{% endif %}
+                            <span class="price">
+	                            {% if currency_position == 'before' %}{{ currency }} {{product.price}}{% else %}{{product.price}} {{ currency }}{% endif %}
+	                        </span>
                         </span>
                         </div>
                     </td>

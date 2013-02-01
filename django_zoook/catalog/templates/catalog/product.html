@@ -88,8 +88,8 @@
     <div class="product-info">
         <ul class="tabs">
             <li><a href="#tab1">{% trans "Description" %}</a></li>
-            {% if related_products|length > 1 %}<li><a href="#tab2">{% trans "Related Products" %}</a></li>{% endif %}
-            {% if related_products|length > 1 %}<li><a href="#tab3">{% trans "Up-sells" %}</a></li>{% endif %}
+            {% if related_products|length > 0 %}<li><a href="#tab2">{% trans "Related Products" %}</a></li>{% endif %}
+            {% if upsells_products|length > 0 %}<li><a href="#tab3">{% trans "Up-sells" %}</a></li>{% endif %}
             <li><a href="#tab4">{% trans "Keywords" %}</a></li>
         </ul>
 
@@ -102,17 +102,19 @@
             {% endif %}
             </div>
 
-            {% if related_products|length > 1 %}<div id="tab2" class="tab-content">
+            {% if related_products|length > 0 %}<div id="tab2" class="tab-content">
                 <table id="product-related-table" class="cart-table">
                 <tbody>
                     {% for product in related_products %}<tr>
-                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image" title="{{base_image.name}}"><img src="{% thumbnail product.base_image.url 80x80 product_zoook.png %}" alt="{{ product.product.name }}" /></a></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.products.0.get_base_image.url 80x80 product_zoook.png %}" alt="{{ product.product.name }}" /></a></td>
                         <td><h2 class="product-name-related"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
-                        <td class="product-related-description a-right">{{ product.product.shortdescription }}</td>
+                        <td class="product-related-description a-right">{% autoescape off %}{{product.product.shortdescription}}{% endautoescape %}</td>
                         <td class="product-related-price a-right">
                             <div id="product-price-{{product.product.id}}" class="price-box">
                             <span class="regular-price">
-                                <span class="price">{{product.products.0.price}} €</span>
+                                <span class="price">
+	                                {% if currency_position == 'before' %}{{ currency }} {{product.products.0.price}}{% else %}{{product.products.0.price}} {{ currency }}{% endif %}
+	                            </span>
                             </span>
                             </div>
                         </td>
@@ -121,18 +123,18 @@
                 </table>
             </div>{% endif %}
 
-            {% if upsells_products|length > 1 %}<div id="tab3" class="tab-content">
+            {% if upsells_products|length > 0 %}<div id="tab3" class="tab-content">
                 <table id="product-upsells-table" class="cart-table">
                 <tbody>
                     {% for product in upsells_products %}<tr>
-                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image" title="{{base_image.name}}"><img src="{% thumbnail product.base_image.url 80x80 product_zoook.png %}" alt="{{ product.product.name }}" /></a></td>
+                        <td><a href="{{product.product.get_absolute_url}}" title="{{ product.product.name }}" class="product-image"><img src="{% thumbnail product.products.0.get_base_image.url 80x80 product_zoook.png %}" alt="{{ product.product.name }}" /></a></td>
                         <td><h2 class="product-name-upsells"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
-                        <td class="product-upsells-description a-right"><span class="cart-description"><span class="short-description">{{ product.product.shortdescription }}</span></span></td>
+                        <td class="product-upsells-description a-right"><span class="cart-description"><span class="short-description">{% autoescape off %}{{product.product.shortdescription}}{% endautoescape %}</span></span></td>
                         <td class="product-upsells-price a-right">
                             <div id="product-price-{{product.product.id}}" class="price-box">
-                            <span class="regular-price">
-                                <span class="price">{{product.products.0.price}} €</span>
-                            </span>
+                                <span class="price">
+	                                {% if currency_position == 'before' %}{{ currency }} {{product.products.0.price}}{% else %}{{product.products.0.price}} {{ currency }}{% endif %}
+	                            </span>
                             </div>
                         </td>
                     </tr>{% endfor %}

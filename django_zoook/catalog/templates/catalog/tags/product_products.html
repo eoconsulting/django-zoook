@@ -33,8 +33,9 @@
                     {% if value.product.status %}
 	                    <div id="product-price-{{value.product.id}}" class="price-box">
 	                        <span class="regular-price">
-	                            {% if currency_position == 'before' %}<span class="price">{{ currency }} {{value.price}}</span>{% else %}
-	                                <span class="price">{{value.price}} {{ currency }}</span>{% endif %}
+	                            <span class="price">
+	                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}
+	                            </span>
 	                        </span>
 	                    </div>
                     {% endif %}
@@ -53,8 +54,9 @@
                         <div class="product-description">{% autoescape off %}{{value.product.shortdescription}}{% endautoescape %}</div>
                         <div id="product-price-{{value.product.id}}" class="price-box">
                             <span class="regular-price">
-                                {% if currency_position == 'before' %}<span class="price">{{ currency }} {{value.price}}</span>{% else %}
-                                <span class="price">{{value.price}} {{ currency }}</span>{% endif %}
+                                <span class="price">
+	                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}
+	                            </span>
                             </span>
                         </div>
                         <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>

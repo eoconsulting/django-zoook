@@ -107,13 +107,13 @@ button:hover			{ background-color:#000 }
 /* Product Related */
 h2.product-name-related { font-size:12px; line-height:18px; font-weight:bold}
 #product-related-table .price { font-size:12px !important}
-#product-related-table .product-related-description { width:300px}
+#product-related-table .product-related-description { width:300px; padding: 5px 15px;}
 #product-related-table .product-related-price { width:100px !important}
 
 /* Product Upsells */
 h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 #product-upsells-table .price { font-size:12px !important}
-#product-upsells-table .product-upsells-description { width:300px}
+#product-upsells-table .product-upsells-description { width:300px; padding: 5px 15px;}
 #product-upsells-table .product-upsells-price { width:100px !important}
 
 .out-service	h3		{ padding-left:30px; background-position:9px center; background-repeat:no-repeat; background-image:url(../images/icons/icon_bell.gif); color:#da5406 }
