@@ -244,6 +244,11 @@ Twitter
 TWITTER_USER = 'zoook_esale'
 
 """
+Image Thumbnail size
+"""
+THUMBNAIL_SIZE = '800x520'
+
+"""
 Global Module Activation
 """
 UPDATE_PRICE = True    # Active the update special price by ajax when the user is signed

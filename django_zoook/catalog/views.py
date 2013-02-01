@@ -40,7 +40,6 @@ from django_zoook.tools.conn import conn_webservice
 
 from django_zoook.catalog.models import *
 
-from django_zoook.config import NEWSLATTER_ON, COMPARE_ON
 
 CATALOG_ORDERS = {
         'position':_('Position'),
@@ -225,6 +224,7 @@ def product(request, product):
         'compare_on': COMPARE_ON,
         'update_price': UPDATE_PRICE,
         'twitter_user':TWITTER_USER,
+        'thumbnail_size': THUMBNAIL_SIZE,
     }
     return render_to_response("catalog/product.html", values, context_instance=RequestContext(request))
 

@@ -43,7 +43,12 @@ class ThumbnailNode(Node):
         except:
             fileimage = str(self.source_var)[1:-1]
 
-        size = str(self.size)
+        if len(self.size.split('x')) == 2:
+            size = str(self.size)
+        elif len(template.Variable(self.size).resolve(context).split('x')) == 2:
+            size = str(template.Variable(self.size).resolve(context))
+        else:
+            raise ValueError('ThumbnailNode size="%s" invalid' % self.size)
 
         try:
             fname = fileimage.split('/')[-1:]

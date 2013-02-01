@@ -47,12 +47,12 @@
         <div id="content">
             <div id="product-{{product.id}}" class="product-page block border5 clearfix">
                 <div class="product-imgbox">
-                    <a rel="zoom" href="{% thumbnail base_image.url 600x600 product_detail_zoook.png %}" class="product-img zoom" title="{{base_image.name}}"><span class="zoom-icon"></span>
+                    <a rel="zoom" href="{% thumbnail base_image.url thumbnail_size product_detail_zoook.png %}" class="product-img zoom" title="{{base_image.name}}"><span class="zoom-icon"></span>
                     <img src="{% thumbnail base_image.url 300x300 product_detail_zoook.png %}" /></a>
                     <ul class="other-img">
-                        <li><a rel="zoom" class="zoom" href="{% thumbnail base_image.url 600x600 product_detail_zoook.png %}" title="{{base_image.name}}"><img src="{% thumbnail base_image.url 150x150 product_thumb_zoook.png %}" /></a></li>
+                        <li><a rel="zoom" class="zoom" href="{% thumbnail base_image.url thumbnail_size product_detail_zoook.png %}" title="{{base_image.name}}"><img src="{% thumbnail base_image.url 150x150 product_thumb_zoook.png %}" /></a></li>
                         {% for image in thumb_images %}
-                        <li><a rel="zoom" class="zoom" href="{% thumbnail image.url 600x600 product_detail_zoook.png %}" title="{{image.name}}"><img src="{% thumbnail image.url 150x150 product_thumb_zoook.png %}" /></a></li>
+                        <li><a rel="zoom" class="zoom" href="{% thumbnail image.url thumbnail_size product_detail_zoook.png %}" title="{{image.name}}"><img src="{% thumbnail image.url 150x150 product_thumb_zoook.png %}" /></a></li>
                         {% endfor %}
                     </ul>
                 </div>
