@@ -46,6 +46,7 @@ from django_zoook.base.models import *
 from django_zoook.settings import *
 from django_zoook.tools.conn import conn_webservice
 from django_zoook.tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
+from django_zoook.tools.vat import format_vat
 
 from django_zoook.config import PARTNER_VAT_REQUIRED
 
@@ -429,11 +430,7 @@ def partner(request):
     site_configuration = siteConfiguration(SITE_ID)
 
     partner = conn.ResPartner.get(partner_id)
-    vat = partner.vat
-    if not vat:
-        vat = ''
-    elif  vat[0:2] == 'AR':
-        vat = format_vat_ar(vat)
+    vat = format_vat(partner.vat)
 
     if request.method == 'POST':
         data = get_contact_data(request.POST.copy())
@@ -466,14 +463,3 @@ def get_contact_data(post):
         except ValueError:
             pass
     return data
-
-def format_vat_ar(vat):
-    '''
-    Returns VAT formated conform to Argentine mask (C.U.I.T.).
-    Eg.: "AR20101234569" -> "20-10123456-9" 
-    '''
-    if not vat:
-        return ''
-    if vat[:2] == "AR":
-        return "%s-%s-%s" % (vat[2:4], vat[4:12], vat[12:])
-    return vat
