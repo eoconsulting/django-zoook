@@ -26,7 +26,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.utils import simplejson
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
@@ -103,9 +103,10 @@ def category(request, category):
             Q(**qprod),
             Q(active=True),
             Q(product_tmpl__categ=category),
+            #Q(product_images_set__isnull=False),  # Hide product without images
             Q(product_tmpl__visibility='all') | 
             Q(product_tmpl__visibility='catalog')
-        )
+        ).distinct()
 
     # Pagination options
     default_paginator = category.default_sort_by and category.default_sort_by or 'position'

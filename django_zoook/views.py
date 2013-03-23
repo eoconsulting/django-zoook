@@ -50,13 +50,21 @@ def index(request):
     categories = ProductCategory.objects.filter(parent=None)
 
     if len(categories)>0:
-        products = ProductTemplate.objects.filter(Q(product_product_set__active=True), Q(categ=categories[0]), Q(visibility='all') | Q(visibility='catalog'))
+        products = ProductTemplate.objects.filter(
+                            Q(product_product_set__active=True),
+                            Q(categ=categories[0]),
+                            Q(visibility='all') | Q(visibility='catalog')
+                        ).distinct()
 
         # get price and base_image product            
         for tplproduct in products:
             prods = ProductProduct.objects.filter(product_tmpl=tplproduct.id)
 
-            prod_images = ProductImages.objects.filter(product=prods[0].id,base_image=True)
+            i = 0
+            prod_images = []
+            while i<len(prods) and len(prod_images)==0: 
+                prod_images = ProductImages.objects.filter(product=prods[i].id,base_image=True)
+                i+=1
 
             base_image = False
             if len(prod_images) > 0:
