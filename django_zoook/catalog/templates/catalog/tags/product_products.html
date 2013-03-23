@@ -7,66 +7,72 @@
 
     <div id="content">
         <div id="catalog-category" class="block border5 clearfix">
-            <h1>{{query}}</h1>
-
-            <div class="toolbar toolbar-top">
-                <div class="items-pager">
-                    <span class="items-drop">{% trans "Show" %} <select onchange="setLocation('paginator',this.value)">{% for item in paginator_items %}<option value="{{ item }}"{% if paginator_option == item %} selected="selected"{% endif %}>{{ item }}</option>{% endfor %}</select> {% trans "items" %}</span>
-                    <span class="view-mode">{{ values|length }}/{{ total }} {% trans "item" %}{{ product_products.object_list|pluralize }}</span>
-                </div>
-                <div class="items-sort">
-                    <span class="sort-drop">{% trans "Sort by" %}
-                    <select onchange="setLocation('order',this.value)">{% for order in catalog_orders %}<option value="{{ order }}"{% if order_option == order %} selected="selected"{% endif %}>{% trans order %}</option>{% endfor %}</select>
-                    {% if order_by_option = 'desc' %}<a href="#" onclick="setLocation('order_by','asc')">{% trans "ASC" %}</a>{% else %}<a href="#" onclick="setLocation('order_by','desc')">{% trans "DESC" %}</a>{% endif %}</span>
-                    <span class="view-mode">{% trans "View as" %}: 
-                        {% if mode_option == 'grid' %}<span class="active">{% trans "Grid" %}</span>{% else %} <a href="#" onclick="setLocation('mode','grid')">{% trans "Grid" %}</a>{% endif %}
-                        {% if mode_option == 'list' %}<span class="active">{% trans "List" %}</span>{% else %} <a href="#" onclick="setLocation('mode','list')">{% trans "List" %}</a>{% endif %}
-                    </span>
-                </div>
+        	<div class="catalog-head">
+	            <h1>{{query}}</h1>
+	
+	            <div class="toolbar toolbar-top">
+	                <div class="items-pager">
+	                    <span class="items-drop">{% trans "Show" %} <select onchange="setLocation('paginator',this.value)">{% for item in paginator_items %}<option value="{{ item }}"{% if paginator_option == item %} selected="selected"{% endif %}>{{ item }}</option>{% endfor %}</select> {% trans "items" %}</span>
+	                    <span class="view-mode">{{ values|length }}/{{ total }} {% trans "item" %}{{ product_products.object_list|pluralize }}</span>
+	                </div>
+	                <div class="items-sort">
+	                    <span class="sort-drop">{% trans "Sort by" %}
+	                    <select onchange="setLocation('order',this.value)">{% for order in catalog_orders %}<option value="{{ order }}"{% if order_option == order %} selected="selected"{% endif %}>{% trans order %}</option>{% endfor %}</select>
+	                    {% if order_by_option = 'desc' %}<a href="#" onclick="setLocation('order_by','asc')">{% trans "ASC" %}</a>{% else %}<a href="#" onclick="setLocation('order_by','desc')">{% trans "DESC" %}</a>{% endif %}</span>
+	                    <span class="view-mode">{% trans "View as" %}: 
+	                        {% if mode_option == 'grid' %}<span class="active">{% trans "Grid" %}</span>{% else %} <a href="#" onclick="setLocation('mode','grid')">{% trans "Grid" %}</a>{% endif %}
+	                        {% if mode_option == 'list' %}<span class="active">{% trans "List" %}</span>{% else %} <a href="#" onclick="setLocation('mode','list')">{% trans "List" %}</a>{% endif %}
+	                    </span>
+	                </div>
+	            </div>
+	            {% if values|length == 0 %}<p class="note-msg">{% trans "There are any products matching the selection." %}</p>{% endif %}
             </div>
-            {% if values|length == 0 %}<p class="note-msg">{% trans "There are any products matching the selection." %}</p>{% endif %}
-            {% if mode_option == 'grid' %}
-            <ul id="catalog-grid">{% for value in values %}
-                <li id="product-{{value.product.id}}" class="product-item block border5{% cycle '' '' ' last' %}">
-                    <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" class="product-image-grid" /></a>
-                    <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
-                    {% if value.product.status %}
-	                    <div id="product-price-{{value.product.id}}" class="price-box">
-	                        <span class="regular-price">
-	                            <span class="price">
-	                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}
-	                            </span>
-	                        </span>
-	                    </div>
-                    {% endif %}
-                    <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
-                    <ul class="add-to">
-                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
-                        {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
-                    </ul>
-                </li>{% endfor %}
-            </ul>
-            {% else %}
-            <ul id="catalog-list">{% for value in values %}
-                    <li id="product-{{value.product.id}}" class="product-item block border5 clearfix">
-                        <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" /></a>
-                        <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
-                        <div class="product-description">{% autoescape off %}{{value.product.shortdescription}}{% endautoescape %}</div>
-                        <div id="product-price-{{value.product.id}}" class="price-box">
-                            <span class="regular-price">
-                                <span class="price">
-	                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}
-	                            </span>
-                            </span>
-                        </div>
-                        <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
-                        <ul class="add-to">
-                            {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
-                            {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
-                        </ul>
-                    </li>{% endfor %}
-            </ul>
-            {% endif %}
+            <div class="catalog-body">
+	            {% if mode_option == 'grid' %}
+	            <ul id="catalog-grid">{% for value in values %}
+	                <li id="product-{{value.product.id}}" class="product-item block border5">
+	                    <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" class="product-image-grid" /></a>
+	                    <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
+	                    {% if value.product.status %}
+		                    <div id="product-price-{{value.product.id}}" class="price-box">
+		                        <span class="regular-price">
+		                            <span class="price">
+		                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}
+		                            </span>
+		                        </span>
+		                    </div>
+	                    {% endif %}
+	                    <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
+	                    <ul class="add-to">
+	                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
+	                        {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
+	                    </ul>
+	                </li>{% endfor %}
+	            </ul>
+	            {% else %}
+	            <ul id="catalog-list">{% for value in values %}
+	                    <li id="product-{{value.product.id}}" class="product-item block border5 clearfix">
+	                    	<div class="product-detail">
+		                        <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" /></a>
+		                        <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
+		                        <div class="product-description">{% autoescape off %}{{value.product.shortdescription}}{% endautoescape %}</div>
+		                        <div id="product-price-{{value.product.id}}" class="price-box">
+		                            <span class="regular-price">
+		                                <span class="price">
+			                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}
+			                            </span>
+		                            </span>
+		                        </div>
+		                        <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
+		                        <ul class="add-to">
+		                            {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
+		                            {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ MEDIA_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
+		                        </ul>
+	                        </div>
+	                    </li>{% endfor %}
+	            </ul>
+	            {% endif %}
+            </div>
             {% if product_products.paginator.num_pages > 1 %}
             <div id="paginator" class="pagination toolbar-bottom">
                 <span class="step-links">

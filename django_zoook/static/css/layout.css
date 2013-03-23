@@ -80,7 +80,7 @@ label {display:block;float:left;clear:left;width:90px}
 /* Paginator */
 #paginator { margin-top:10px}
 .pagination { margin: 15px auto 0; padding: 10px 0; text-align: center}
-.pagination a, .current { padding: 2px 10px 0 5px; font-size: 10px; text-transform:uppercase;}
+.pagination a, .current { padding: 2px 10px 0 5px; font-size: 12px; text-transform:uppercase;}
 
 /* Message */
 .error-msg,

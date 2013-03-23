@@ -5,18 +5,16 @@
 
 {% block content %}
 <div id="page-wrap" class="clearfix">
-    <div id="sidebar">
-        <div class="block border5">
-            {% module catalog.featured %}
-        </div>
-    </div>
+    {% module catalog.featured id="sidebar" class="block border5" %}
 
     <div id="content">
         <div id="catalog-category" class="block border5 clearfix">
-            <h1 class="featured">{% trans "Featured Products" %}</h1>
+        	<div class="toolbar-head">
+            	<h1 class="featured">{% trans "Featured Products" %}</h1>
+            </div>
 
             <ul id="catalog-grid">{% for value in values %}
-                <li id="product-{{value.product.id}}" class="product-item block border5{% cycle '' '' ' last' %}">
+                <li id="product-{{value.product.id}}" class="product-item block border5">
                     <a href="{{value.product.get_absolute_url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.product.name}}" class="product-image-grid" /></a>
                     <a href="{{value.product.get_absolute_url}}" class="product-name" alt="{{value.product.name}}" title="{{value.product.name}}"><h2>{{value.product.name}}</h2></a>
                     {% if value.product.status %}

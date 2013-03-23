@@ -8,19 +8,24 @@
 .categories-list-6 { padding-left:50px; margin-top:5px; }
 
 /* CATALOG CATEGORY */
-#catalog-category					{ padding:10px }
+#catalog-category					{ padding:10px 0px 10px 10px; }
 #catalog-category .product-name h2  { font-size:13px; line-height:18px; font-weight:bold }
+
+.catalog-head                       { padding: 10px 10px 10px 0px; }
 
 /* CATALOG CATEGORY GRID */
 #catalog-grid .product-item					{ width:196px; height:310px; padding:15px 10px; margin:0 10px 10px 0; float:left; text-align:center }
 #catalog-grid .product-item .product-img	{ display:block; margin-bottom:10px }
 
 /* CATALOG CATEGORY LIST */
-#catalog-list .product-item                 { width:650px; padding:15px 10px; margin-bottom:10px; float:left; text-align:left }
+#catalog-list .product-item                 { width: 100%; float:left; text-align:left; margin-bottom: 10px; }
+#catalog-list .product-item .product-detail { margin: 10px 0px 10px 10px; }
 #catalog-list .product-item .product-img    { display:block; margin-right:10px; float:left }
 #catalog-list .price-box					{ }
 #catalog-list .product-description			{ }
 #catalog-list .button-details				{ float: left; text-align: center; width: 100px; margin: 12px; }
+#catalog-list li                            { list-style-position: inside; }
+.catalog-body #catalog-list                 { padding: 0px 10px 0px 0px; }
 
 .button-details{ width:250px; margin-top:10px; padding:6px 12px; font-size:12px; cursor:pointer; border:0; background-color:#0a6c77; color:#fff; font-weight:bold}
 .button-details a:hover{ color:#fff}
@@ -145,7 +150,6 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .border5		{ border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px }
 .border3t		{ -webkit-border-top-left-radius: 3px; -webkit-border-top-right-radius: 3px; -moz-border-radius-topleft: 3px; -moz-border-radius-topright: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px }
 .border3b		{ -webkit-border-bottom-left-radius: 3px; -webkit-border-bottom-right-radius: 3px; -moz-border-radius-bottomleft: 3px; -moz-border-radius-bottomright: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px }
-.last			{ margin-right:0 !important }
 
 /* SIDEBAR -------------------------------------------------------------------------------------------- */
 #sidebar.block, #sidebar .block	                { margin-bottom:20px; background-color:#f9f9f9 }
