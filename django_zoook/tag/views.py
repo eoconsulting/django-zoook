@@ -83,6 +83,7 @@ def keyword(request,tag):
         category_values = {
             'title': title,
             'query': u'“%s”' % q,
+            'tag': q,
             'metadescription': metadescription,
             'product_products': product_products,
             'paginator_option': request.session['paginator'],

@@ -76,11 +76,15 @@
             {% if product_products.paginator.num_pages > 1 %}
             <div id="paginator" class="pagination toolbar-bottom">
                 <span class="step-links">
-                    {% if product_products.has_previous %}<a href="?page={{ product_products.previous_page_number }}">{% trans "Previous" %}</a>{% endif %}
+                    {% if product_products.has_previous %}
+                    	<a href="{% if categories_path or tag %}?{% else %}{{ request.path }}?q={{q}}&{% endif %}page={{ product_products.previous_page_number }}">{% trans "Previous" %}</a>
+                    {% endif %}
                     <span class="current">
                         {% trans "Page" %} {{ product_products.number }} {% trans "of" %} {{ product_products.paginator.num_pages }}
                     </span>
-                    {% if product_products.has_next %}<a href="?page={{ product_products.next_page_number }}">{% trans "Next" %}</a>{% endif %}
+                    {% if product_products.has_next %}
+                    	<a href="{% if categories_path or tag %}?{% else %}{{ request.path }}?q={{q}}&{% endif %}page={{ product_products.next_page_number }}">{% trans "Next" %}</a>
+                    {% endif %}
                 </span>
             </div>{% endif %}
         </div>

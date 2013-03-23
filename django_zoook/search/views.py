@@ -77,6 +77,7 @@ def search(request):
         category_values = {
             'title': title,
             'query': u'“%s”' % q,
+            'q': q,
             'metadescription': metadescription,
             'product_products': product_products,
             'paginator_option': request.session['paginator'],
