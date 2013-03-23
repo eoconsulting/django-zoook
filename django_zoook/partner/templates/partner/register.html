@@ -68,8 +68,8 @@
                     </select>
                 </li>
                 <li>
-                    <label for="id_vat">{% trans "Vat" %} <span class="required">*</span></label>
-                    <input type="text" name="vat" id="id_vat" maxlength="128" value="{{ vat }}" class="required" minlength="6"/>
+                    <label for="id_vat">{% trans "Vat" %} {% if partner_vat_required %}<span class="required">*</span>{% endif %}</label>
+                    <input type="text" name="vat" id="id_vat" maxlength="128" value="{{ vat }}" {% if partner_vat_required %}class="required"{% endif %} minlength="6"/>
                 </li>
             </ul>
             <ul>

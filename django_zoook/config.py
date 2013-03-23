@@ -248,6 +248,12 @@ Image Thumbnail size
 """
 THUMBNAIL_SIZE = '800x520'
 
+
+"""
+Require VAT number on registration page
+"""
+PARTNER_VAT_REQUIRED = False
+
 """
 Global Module Activation
 """

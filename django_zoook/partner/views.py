@@ -47,6 +47,8 @@ from django_zoook.settings import *
 from django_zoook.tools.conn import conn_webservice
 from django_zoook.tools.zoook import siteConfiguration, checkPartnerID, checkFullName, connOOOP
 
+from django_zoook.config import PARTNER_VAT_REQUIRED
+
 import base64
 from symbol import except_clause
 from psycopg2.extras import logging
@@ -107,6 +109,7 @@ def register(request):
 
     title = _(u'Create an Account')
     metadescription = _(u'Create an Account of %(site)s') % {'site':site_configuration.site_title}
+    partner_vat_required = PARTNER_VAT_REQUIRED
 
     if request.method == "POST":
         message = []
@@ -184,13 +187,14 @@ def register(request):
                         error = _('Error when connecting with our ERP. Try again or cantact us.')
                         return render_to_response("partner/error.html", locals(), context_instance=RequestContext(request))
 
-                    partner = conn.ResPartner.filter(vat__ilike = vat_code+vat)
-                    if len(partner) > 0:
-                        msg = _('Sorry. This VAT already exists our ERP. Contact Us for create a new user.')
-                        message.append(msg)
+                    if partner_vat_required or vat:
+                        partner = conn.ResPartner.filter(vat__ilike = vat_code+vat)
+                        if len(partner) > 0:
+                            msg = _('Sorry. This VAT already exists our ERP. Contact Us for create a new user.')
+                            message.append(msg)
 
                 #check if this vat valid
-                if not message:
+                if not message and (partner_vat_required or vat):
                     checkvat = vat_code + vat
                     checkvat = checkvat.upper()
                     check_vat = conn_webservice('res.partner', 'dj_check_vat', [checkvat, OERP_SALE])
@@ -204,7 +208,8 @@ def register(request):
                     # create partner
                     partner = conn.ResPartner.new()
                     partner.name = name
-                    partner.vat = checkvat
+                    if vat:
+                        partner.vat = checkvat
                     partner.dj_username = username
                     partner.dj_email = email
                     partner_id = partner.save()
@@ -239,14 +244,14 @@ def register(request):
 
                     # create user
                     # split name: first_name + last name
-                    name = name.split(' ')
-                    if len(name) > 1:
+                    if len(name.split(' ')) > 1:
+                        name = name.split(' ')
                         first_name = name[0]
                         del name[0]
-                        last_name = " ".join(name)
+                        last_name = ' '.join(name)
                     else:
-                        first_name = ''
-                        last_name = name
+                        first_name = name
+                        last_name = ''
                     user = User.objects.create_user(username, email, password)
                     user.first_name = first_name
                     user.last_name = last_name
@@ -425,7 +430,9 @@ def partner(request):
 
     partner = conn.ResPartner.get(partner_id)
     vat = partner.vat
-    if vat[0:2] == 'AR':
+    if not vat:
+        vat = ''
+    elif  vat[0:2] == 'AR':
         vat = format_vat_ar(vat)
 
     if request.method == 'POST':
