@@ -48,11 +48,12 @@ def index(request):
     values = []
 
     categories = ProductCategory.objects.filter(parent=None)
+    root_category = categories[0]
 
     if len(categories)>0:
         products = ProductTemplate.objects.filter(
                             Q(product_product_set__active=True),
-                            Q(categ=categories[0]),
+                            Q(categ=root_category),
                             Q(visibility='all') | Q(visibility='catalog')
                         ).distinct()
 
@@ -82,6 +83,7 @@ def index(request):
             'currency': DEFAULT_CURRENCY,
             'currency_position': CURRENCY_LABEL_POSITION,
             'compare_on': COMPARE_ON,
+            'category_decription': root_category.description if root_category.description != 'False' else None,
             'update_price': UPDATE_PRICE,
         }
         return render_to_response("index.html", category_values, context_instance=RequestContext(request))

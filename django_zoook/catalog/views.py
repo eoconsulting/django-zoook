@@ -148,6 +148,7 @@ def category(request, category):
         'currency_position': CURRENCY_LABEL_POSITION,
         'total': total,
         'categories_path': categories_path,
+        'category_decription': category.description if category.description != 'False' else None,
         'currency': DEFAULT_CURRENCY,
     }
     return render_to_response("catalog/category.html", category_values, context_instance=RequestContext(request))
