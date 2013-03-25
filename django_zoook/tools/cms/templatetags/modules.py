@@ -24,6 +24,16 @@ from django import template
 from django.template import Library, Node
 from django_zoook.tools.cms.models import Modules
 
+
+template_syntax_error_msg = """'module' tag must be of the form:
+  {% module [POSITION|{VARIABLE[|POSITION]}] [html_token1=value_token1 html_token2=value_token2 ...] %}"""
+
+def get_module_description(position):
+    entries = Modules.objects.filter(position=position,status=True)
+    if entries:
+        return entries[0].description
+    return None
+
 register = template.Library()
 
 class ModuleNode(Node):
@@ -32,9 +42,23 @@ class ModuleNode(Node):
  
     def render(self, context):
         entry = ''
-        entries = Modules.objects.filter(position=self.tokens[0],status=True)
-        if entries:
-            entry = entries[0].description
+        key = self.tokens[0]
+        if key.startswith('{') and key.endswith('}'):
+            key = key[1:-1]
+            if '|' not in key:
+                entry = template.Variable(key).resolve(context)
+            elif len(key.split('|')) == 2:
+                keyvar, key = key.split('|')
+                try:
+                    entry = template.Variable(keyvar).resolve(context)
+                    if not entry:
+                        entry = get_module_description(key)
+                except:
+                    entry = get_module_description(key)
+            else:
+                raise template.TemplateSyntaxError(template_syntax_error_msg)
+        else:
+            entry = get_module_description(key)
 
         if len(self.tokens) > 1 and entry:
             div = "<div "
@@ -42,14 +66,14 @@ class ModuleNode(Node):
                 div += t + " "
             entry = div[:-1] + ">" + entry + "</div>"
 
-        return entry
+        return entry or ''
 
 def module(parser, token):
     """
     Show Module data CMS:
 
     Basic tag Syntax::
-        {% module POSITION [html_token1=value_token1 html_token2=value_token2 ...] %}
+        {% module [POSITION|{VARIABLE[|POSITION]}] [html_token1=value_token1 html_token2=value_token2 ...] %}
 
     *position* Key ID position Module
 
@@ -64,8 +88,7 @@ def module(parser, token):
     parts = token.split_contents()
 
     if len(parts) < 2:
-        raise template.TemplateSyntaxError(
-            """'module' tag must be of the form:  {% module POSITION  [html_token1=value_token1 html_token2=value_token2 ...] %}""")
+        raise template.TemplateSyntaxError(template_syntax_error_msg)
 
     return ModuleNode(parts[1:])
 
