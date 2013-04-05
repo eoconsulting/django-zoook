@@ -52,7 +52,7 @@ LOGIN_URL = '/partner/'
 LOGIN_REDIRECT_URL = '/'
 
 ADMINS = (
-    ('Enterprise Objects Consulting','info@eoconsulting.com.ar'),
+    ('Enterprise Objects Consulting','postmaster@mail.com'),
 )
 
 MANAGERS = ADMINS
