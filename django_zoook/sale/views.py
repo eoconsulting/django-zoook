@@ -354,8 +354,9 @@ def checkout(request):
                 sale_order_add_product = True
                 not_enought_stock = None
                 if product_id_change['warning'] and SALE_ORDER_PRODUCT_CHECK:
-                    not_enought_stock = _('Not enough stock !')
-                    sale_order_add_product = False
+                    if SALE_ORDER_PRODUCE_PRODUCT_CHECK or product.supply_method != 'produce':
+                        not_enought_stock = _('Not enough stock !')
+                        sale_order_add_product = False
 
                 if sale_order_add_product:
                     product_value = product_id_change['value']

@@ -96,6 +96,16 @@ False: If get warning, add product
 SALE_ORDER_PRODUCT_CHECK = True
 
 """
+Sale Order, when add product with supply method
+is produce, continue if get warning
+True: If get warning, not add product
+False: If get warning, add product
+Note: If SALE_ORDER_PRODUCT_CHECK is False,
+this variable is ignored
+"""
+SALE_ORDER_PRODUCE_PRODUCT_CHECK = False
+
+"""
 OpenERP Conf
 """
 OERP_SALE = 1 #Sale Shop. All price, orders, ... use this Sale Shop ID.
