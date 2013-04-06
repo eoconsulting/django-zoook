@@ -1,5 +1,7 @@
 
-* Zoook
+* Zoook e-Sale
+
+[[https://raw.github.com/eoconsulting/django-zoook/master/artwork/Zoook_Screenshots.png]]
 
 This is a fork of the Django part of Zoook. This is what the
 developers have to say about Zoook:
