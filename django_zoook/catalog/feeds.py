@@ -24,7 +24,6 @@ from django.contrib.syndication.views import Feed
 from django.utils.translation import get_language
 
 from django_zoook.tools.zoook import siteConfiguration
-from django_zoook.tools.cms.templatetags.wiki import stripwiki
 from django_zoook.catalog.models import ProductTemplate
 from django_zoook.transurl import *
 from django_zoook.settings import *
@@ -51,4 +50,4 @@ class ProductFeed(Feed):
         return item.name
 
     def item_description(self, item):
-        return stripwiki(item.shortdescription)
+        return item.shortdescription

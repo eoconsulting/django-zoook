@@ -49,7 +49,6 @@ setup(
         'django-pagination',
         'django-filebrowser',
         'python-magic',
-        'mediawiki',
         'South',
         ],
     extras_require = {
