@@ -100,6 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django_zoook.trace.TraceMiddleware',
+    'pagination.middleware.PaginationMiddleware',
 )
 
 TEMPLATE_DIRS = (
