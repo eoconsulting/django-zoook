@@ -3,8 +3,8 @@
 
 {% block head %}<link href="{{ STATIC_URL }}css/{{ THEME }}/blog.css" rel="stylesheet" type="text/css" media="screen">
 <link rel="canonical" href="{{blog.get_absolute_url}}" />
-{% if user.is_staff %}<script type="text/javascript" src="/static/js/ckeditor/ckeditor.js"></script> 
-<script type="text/javascript" src="/static/js/ckeditor.js"></script>
+{% if user.is_staff %}<script type="text/javascript" src="{{ STATIC_URL }}js/ckeditor/ckeditor.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/ckeditor.js"></script>
 {% load inplace_edit %}{% inplace_media %}{% endif %}{% endblock %}
 
 {% block pathway %}<div id="pathway"><ul><li><a href="{% url 'index' %}">{% trans "Home" %}</a></li> <li><span>&gt;</span> <a href="{% url 'blog_list' %}">Blog</a></li><li><span>&gt;</span> {{blog.name}}</li></ul></div>{% endblock %}

@@ -23,24 +23,22 @@
     <p>Edit tpl index for customization frontend and custom your template.</p>
 
     <h2 class="zoook-doc">Django configuration</h2>
-    <ul>
-    <li>1. In <strong>static</strong> dir, create symbolic link at <strong>inplaceeditform</strong> library:
-    <pre>static$ ln -s /usr/local/lib/python2.6/dist-packages/django_inplaceedit-0.69-py2.6.egg/inplaceeditform/media/ inplaceeditform</pre></li>
-    <li>2. Add in <strong>config.py</strong> your configuration (database, OpenERP connection, sale, ....).</li>
-    <li>3. py files in sync dir: change execute permisions.</li>
-    <li>4. Edit <strong>config_path.py.</strong> Add you Django path.</li>
-    <li>5. Add same languages OpenERP in <strong>settings.py</strong> (LANGUAGES).</li>
-    <li>6. Create tables: <code>python manage.py syncdb</code></li>
-    <li>7. Important! Run <strong>configuration.py</strong>. Add new values site django (extra fields).</li>
-    <li>8. Run Server: <code>python manage.py runserver</code></li>
-    </ul>
+    <ol>
+	    <li>Add in <strong>config.py</strong> your configuration (database, OpenERP connection, sale, ....).</li>
+	    <li>py files in sync dir: change execute permisions.</li>
+	    <li>Edit <strong>config_path.py.</strong> Add you Django path.</li>
+	    <li>Add same languages OpenERP in <strong>settings.py</strong> (LANGUAGES).</li>
+	    <li>Create tables: <code>python manage.py syncdb</code></li>
+	    <li>Important! Run <strong>configuration.py</strong>. Add new values site django (extra fields).</li>
+	    <li>Run Server: <code>python manage.py runserver</code></li>
+    </ol>
 
     <h2 class="zoook-doc">OpenERP configuration</h2>
-    <ul>
-    <li>1. <i>Sale/Administration/Sales</i>. Configure your Sale Shop and paramiko connection (ssh).</li>
-    <li>2. Add Countries to Check Vat. This option is requiered because is same countries avalaible shop.</li>
-    <li>3. Sale Order or Invoices sequence not use / (for example, SO/001). URL navigator get order number and / it's a path url and broken.</li>
-    </ul>
+    <ol>
+	    <li><i>Sale/Administration/Sales</i>. Configure your Sale Shop and paramiko connection (ssh).</li>
+	    <li>Add Countries to Check Vat. This option is requiered because is same countries avalaible shop.</li>
+	    <li>Sale Order or Invoices sequence not use / (for example, SO/001). URL navigator get order number and / it's a path url and broken.</li>
+    </ol>
 
     <h2 class="zoook-doc">Catalog and Product Sync</h2>
     <p>Sales, partners, ... are creating in real time e-sale to OpenERP. Only nedd sync categories and products.
@@ -54,12 +52,12 @@
 
     <h2 class="zoook-doc">Active Payments</h2>
     <p>Default configuration not available payments active. How to active payments?</p>
-    <ul>
-    <li>1. Go to OpenERP <i>Sale->Shop</i>. In Payment tab, add payments active in this shop.</li>
-    <li>2. Edit <strong>settings.py</strong>. Add payment APP available (see comment app example)</li>
-    <li>3. Edit <strong>payment/urlsPayment.py</strong>. Add urls payment type available (see comment urls example)</li>
-    <li>4. Edit <strong>config.py</strong> if you payment type need configuration. There are some examples configuration params <i>Sermepa</i> and <i>Paypal</i>.</li>
-    </ul>
+    <ol>
+	    <li>Go to OpenERP <i>Sale->Shop</i>. In Payment tab, add payments active in this shop.</li>
+	    <li>Edit <strong>settings.py</strong>. Add payment APP available (see comment app example)</li>
+	    <li>Edit <strong>payment/urlsPayment.py</strong>. Add urls payment type available (see comment urls example)</li>
+	    <li>Edit <strong>config.py</strong> if you payment type need configuration. There are some examples configuration params <i>Sermepa</i> and <i>Paypal</i>.</li>
+    </ol>
     <p>Paypal or Servired payments, need install in your server <a href="https://github.com/zikzakmedia/django-paypal">django-paypal</a> and <a href="https://github.com/zikzakmedia/django-sermepa">django-sermepa</a>.</p>
 
     <h2 class="zoook-doc">Catalog Admin</h2>

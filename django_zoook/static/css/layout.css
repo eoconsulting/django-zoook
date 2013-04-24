@@ -7,7 +7,8 @@ td.number, th.number { vertical-align: middle; text-align: right;  padding: 3px 
 td.center { vertical-align: middle; text-align: center; padding: 3px 4px; }
 th.center { vertical-align: middle; text-align: center; padding: 3px 0px 3px 4px; }
 fieldset,img { border:0 }
-ol,ul {	list-style:none }
+ul { list-style:none }
+ol { margin-left: 3em; }
 caption,th { text-align:left }
 h1,h2,h3,h4,h5,h6 { font-size:100%; font-weight:normal }
 q:before,q:after { content:'' }

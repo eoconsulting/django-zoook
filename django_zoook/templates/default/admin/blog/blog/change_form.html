@@ -14,8 +14,8 @@
             ['NumberedList','BulletedList','-','Blockquote'],
             ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
         ],
-        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
-        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+        filebrowserBrowseUrl: '{{ STATIC_URL }}js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '{{ STATIC_URL }}js/filemanager/index.html?type=Images',
     });
     var CKeditor = new CKEDITOR.replace('id_description_es', { 
         customConfig : '', 
@@ -29,11 +29,11 @@
             ['NumberedList','BulletedList','-','Blockquote'],
             ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
         ],
-        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
-        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+        filebrowserBrowseUrl: '{{ STATIC_URL }}js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '{{ STATIC_URL }}js/filemanager/index.html?type=Images',
 
     });
 
-    CKeditor.BasePath = "/static/js/ckeditor/";
+    CKeditor.BasePath = "{{ STATIC_URL }}js/ckeditor/";
 </script>
 {% endblock %}

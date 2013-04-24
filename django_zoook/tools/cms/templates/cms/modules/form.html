@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% load i18n %}
 
-{% block head %}<script type="text/javascript" src="{{ url }}/static/js/ckeditor/ckeditor.js"></script> 
-<script type="text/javascript" src="{{ url }}/static/js/ckeditor.js"></script>{% endblock %}
+{% block head %}<script type="text/javascript" src="{{ STATIC_URL }}js/ckeditor/ckeditor.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/ckeditor.js"></script>{% endblock %}
 
 {% block content %}
     <div class="more-details-info">{% trans "Show this module in your site, also you need edit template and add this position" %}</div>
@@ -25,8 +25,8 @@
             ['NumberedList','BulletedList','-','Blockquote'],
             ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
         ],
-        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
-        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+        filebrowserBrowseUrl: '{{ STATIC_URL }}js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '{{ STATIC_URL }}js/filemanager/index.html?type=Images',
     });
     var CKeditor = new CKEDITOR.replace('id_description_es', { 
         customConfig : '', 
@@ -40,8 +40,8 @@
             ['NumberedList','BulletedList','-','Blockquote'],
             ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
         ],
-        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
-        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+        filebrowserBrowseUrl: '{{ STATIC_URL }}js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '{{ STATIC_URL }}js/filemanager/index.html?type=Images',
 
     });
     var CKeditor = new CKEDITOR.replace('id_description_ca', { 
@@ -56,11 +56,11 @@
             ['NumberedList','BulletedList','-','Blockquote'],
             ['TextColor', '-', 'SpecialChar', '-', 'Maximize']
         ],
-        filebrowserBrowseUrl: '/static/js/filemanager/index.html',
-        filebrowserImageBrowseUrl : '/static/js/filemanager/index.html?type=Images',
+        filebrowserBrowseUrl: '{{ STATIC_URL }}js/filemanager/index.html',
+        filebrowserImageBrowseUrl : '{{ STATIC_URL }}js/filemanager/index.html?type=Images',
 
     });
 
-    CKeditor.BasePath = "/static/js/ckeditor/";
+    CKeditor.BasePath = "{{ STATIC_URL }}js/ckeditor/";
 </script>
 {% endblock %}
