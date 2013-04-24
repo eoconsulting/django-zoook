@@ -20,6 +20,8 @@
 #
 ############################################################################################
 
+import re
+
 from django.conf.urls.defaults import *
 from django.conf import settings
 
@@ -101,3 +103,8 @@ urlpatterns = patterns('',
     # Content
     url(r"^content/", include("django_zoook.content.urlsContent")),
 )
+
+if settings.STATICFILES_IGNORE_DEBUG:
+    urlpatterns += patterns('',
+            url(r'^%s(?P<path>.*)$' % re.escape(settings.STATIC_URL.lstrip('/')), 'staticsfiles_ignoredebug.views.serve'),
+        )

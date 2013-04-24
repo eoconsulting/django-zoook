@@ -53,5 +53,8 @@ setup(
         ],
     extras_require = {
         'cache':  ['haystack'],
+        'server': [
+                'staticsfiles_ignoredebug',
+                ],
     }
 )

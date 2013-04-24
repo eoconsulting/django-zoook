@@ -33,6 +33,16 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 DEVEL = DEBUG    # Is development enviroment?
 
+"""
+If you just need to serve the static file from django.contrib.staticfiles
+including non DEBUG environment.
+If DEBUG=True this value is ignored.
+DISCLAIMER: Using this method is inefficient and insecure.
+Do not use this in a production setting. Use this only for development and
+testing environment with DEBUG=False.
+"""
+STATICFILES_IGNORE_DEBUG = True
+
 MAINTENANCE_MODE = False
 ROOT_URLCONF = 'django_zoook.urls'
 ADMIN_URI = '/manager/'
