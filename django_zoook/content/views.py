@@ -89,10 +89,10 @@ def content_form(request, content_id):
 
             content.save()
 
-        if LOCALE_URI:
-            redirect = '%s/%s' % (context_instance['LOCALE_URI'], content.slug)
-        else:
-            redirect =  '/%s' % (content.slug)
+            if LOCALE_URI:
+                redirect = '%s/content/%s' % (context_instance['LOCALE_URI'], content.slug)
+            else:
+                redirect =  '/content/%s' % (content.slug)
     else:
         if content_id:
             content = get_object_or_404(Content,id=content_id)
