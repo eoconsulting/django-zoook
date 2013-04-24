@@ -127,11 +127,6 @@ Base template
 BASE_TEMPLATE = 'default'
 
 """
-Url's conf
-"""
-MEDIA_URL = "/static/"
-
-"""
 Database conf
 """
 DATABASES = {
