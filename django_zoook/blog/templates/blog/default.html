@@ -1,7 +1,7 @@
 {% extends "layout.html" %}{% load modules i18n %}{% load cms %}{% load url from future %}
 {% if not user.is_authenticated %}{% load inplace_edit %}{% inplace_media %}{% endif %}
 
-{% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/blog.css" rel="stylesheet" type="text/css" media="screen">
+{% block head %}<link href="{{ STATIC_URL }}css/{{ THEME }}/blog.css" rel="stylesheet" type="text/css" media="screen">
 <link rel="canonical" href="{{blog.get_absolute_url}}" />
 {% if user.is_staff %}<script type="text/javascript" src="/static/js/ckeditor/ckeditor.js"></script> 
 <script type="text/javascript" src="/static/js/ckeditor.js"></script>

@@ -71,12 +71,14 @@ PATH = os.path.abspath(os.path.dirname(__file__).decode("utf-8"))
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PATH, "static")
+#STATIC_ROOT = MEDIA_ROOT
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-STATIC_URL = '/media/'
-ADMIN_MEDIA_PREFIX = '/media/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (MEDIA_ROOT,)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'YOUR_SECRET_KEY'
@@ -115,6 +117,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'django.core.context_processors.static',
     'django_zoook.tools.cms.context_processors.site_configuration',
     'django_zoook.tools.cms.context_processors.theme',
 )
@@ -129,6 +132,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'django.contrib.staticfiles',
     #'haystack',
     'inplaceeditform',
     'pagination',

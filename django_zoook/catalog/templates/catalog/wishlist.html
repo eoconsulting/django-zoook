@@ -3,7 +3,7 @@
 {% load thumbnail %}
 {% load modules %}
 
-{% block head %}<link href="{{ MEDIA_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
+{% block head %}<link href="{{ STATIC_URL }}css/{{ THEME }}/user.css" rel="stylesheet" type="text/css" media="screen">{% endblock %}
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> <a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist">{% trans "Wishlist" %}</a></li></ul></div>{% endblock %}
 
 {% block content %}
@@ -45,7 +45,7 @@
         </div>
     </div>
     
-{% if update_price and products|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
+{% if update_price and products|length > 0 %}<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 </div>
 {% endblock %}
 

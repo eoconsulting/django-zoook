@@ -3,7 +3,7 @@
 {% load modules %}
 
 {% block head %}
-<link href="{{ MEDIA_URL }}css/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="{{ STATIC_URL }}css/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -135,6 +135,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
 
 {% endblock %}

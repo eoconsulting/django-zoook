@@ -3,7 +3,7 @@
 {% load thumbnail %}
 {% load modules %}
 
-{% block head %}<link href="{{ MEDIA_URL }}css/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
+{% block head %}<link href="{{ STATIC_URL }}css/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
 <link rel="canonical" href="{{request.get_full_path}}" />{% endblock %}
 
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="{{url}}">{{name}}</a></li></ul></div>{% endblock %}
@@ -147,9 +147,9 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zproduct.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.fancybox-1.3.4.pack.js"></script>
-{% if update_price and user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.zproduct.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fancybox-1.3.4.pack.js"></script>
+{% if update_price and user.is_authenticated and values|length > 0 %}<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.zupdateprice.js"></script>{% endif %}
 {% endblock %}
 
 {% block jqueryload %}{% if update_price and user.is_authenticated and values|length > 0 %}$.zUpdatePrice( {url: '{{ LOCALE_URI }}/catalog/updateprice/', 'delayUpdater': 1000, 'textAlert' : '{% trans "Price updating..." %}'} );{% endif %}

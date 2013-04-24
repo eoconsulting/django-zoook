@@ -77,7 +77,7 @@ class ThumbnailNode(Node):
                 image = Image.open(base_image)
                 image.thumbnail([int(size[0]), int(size[1])], Image.ANTIALIAS)
                 image.save(thumb_image, image.format)
-            filename = '%s%s/%sx%s/%s.%s' % (MEDIA_URL, 'catalog', size[0], size[1], fname[0], fname[1])
+            filename = '%s%s/%sx%s/%s.%s' % (STATIC_URL, 'catalog', size[0], size[1], fname[0], fname[1])
         except:
             filename = self.default
 

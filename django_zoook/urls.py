@@ -28,7 +28,6 @@ from django.contrib.sitemaps import GenericSitemap
 from django_zoook.views import index, doc
 from django_zoook.search.views import search
 from django_zoook.tag.views import keyword
-from django_zoook.settings import MEDIA_ROOT
 from django_zoook.sitemaps import sitemaps
 from django_zoook.transurl import *
 
@@ -83,7 +82,6 @@ urlpatterns = patterns('',
     url(r"^base/", include("django_zoook.base.urlsBase")),
 
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-    url(r"^static/(?P<path>.*)$", "django.views.static.serve", {"document_root": MEDIA_ROOT}),
 
     # Ajax Paths
     url(r'^filemanager/', include('django_zoook.tools.filemanager.connector.urls')),
