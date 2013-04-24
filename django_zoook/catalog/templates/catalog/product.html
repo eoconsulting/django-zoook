@@ -4,7 +4,7 @@
 {% load modules %}
 
 {% block head %}<link href="{{ MEDIA_URL }}css/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
-<link rel="canonical" href="{{url}}" />{% endblock %}
+<link rel="canonical" href="{{request.get_full_path}}" />{% endblock %}
 
 {% block pathway %}<div id="pathway"><ul><li><a href="/">{% trans "Home" %}</a></li><li><span>&gt;</span> {% trans "Products" %}</li> <li><span>&gt;</span> <a href="{{url}}">{{name}}</a></li></ul></div>{% endblock %}
 
@@ -68,7 +68,7 @@
                             <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="zoook_eshop" >Tweet</a>
                         </div>
                         <div class="facebook">
-                            <iframe src="http://www.facebook.com/plugins/like.php?href={{live_url}}{{url}}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
+                            <iframe src="http://www.facebook.com/plugins/like.php?href={{ request.build_absolute_uri }}&amp;layout=standard&amp;show_faces=true&amp;width=380&amp;action=like&amp;colorscheme=light&amp;height=26" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:26px;" allowTransparency="true"></iframe>
                         </div>
                     </div>
 

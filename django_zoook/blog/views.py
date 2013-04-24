@@ -105,7 +105,6 @@ def blog_detail(request, blog):
         'metadescription':metadescription,
         'blog':blog,
         'twitter_user':TWITTER_USER,
-        'url': LIVE_URL,
         'change_blog':change_blog,
     }
 

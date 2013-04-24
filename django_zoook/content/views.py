@@ -55,7 +55,7 @@ def content_detail(request, content):
             tpl = 'default.html'
     change_content = request.user.has_perm('content.change_content')
 
-    return render_to_response("content/"+tpl, {'title':title,'metakeywords':metakeywords,'metadescription':metadescription,'content':content,'url':LIVE_URL,'change_content':change_content}, context_instance=RequestContext(request))
+    return render_to_response("content/"+tpl, {'title':title,'metakeywords':metakeywords,'metadescription':metadescription,'content':content,'change_content':change_content}, context_instance=RequestContext(request))
 
 """
 Content Form. Add/Edit

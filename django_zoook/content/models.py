@@ -26,7 +26,7 @@ from django.contrib.auth.models import User
 
 from transmeta import TransMeta
 
-from django_zoook.settings import LIVE_URL, LOCALE_URI
+from django_zoook.settings import LOCALE_URI
 
 from datetime import datetime
 import django_zoook.content.enums as enums

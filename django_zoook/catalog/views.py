@@ -167,7 +167,6 @@ def product(request, product):
     prods = tplproduct.product_product_set.order_by('price')
 
     name = tplproduct.name
-    url = tplproduct.get_absolute_url()
     prods_i = 0
     code = request.GET.get('code', None)
     if code:
@@ -176,7 +175,6 @@ def product(request, product):
                 code = prod.code
                 prods_i = i
                 name += ' - ' + prod.variants
-                url += '?code=' + code.lower()
 
     base_image, thumb_images = prods[prods_i].get_all_images()
 
@@ -218,8 +216,6 @@ def product(request, product):
         'base_image': base_image,
         'thumb_images': thumb_images,
         'search_keywords': search_keywords,
-        'url': url,
-        'live_url': LIVE_URL[0:-1],
         'currency': DEFAULT_CURRENCY,
         'currency_position': CURRENCY_LABEL_POSITION,
         'NEWSLATTER_ON': NEWSLATTER_ON,

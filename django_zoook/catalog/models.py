@@ -30,7 +30,7 @@ from django_zoook.tools.conn import conn_webservice
 from transmeta import TransMeta
 from django_zoook.transurl import catalog_url, product_url, manufacturer_url
 
-from django_zoook.settings import LIVE_URL, LOCALE_URI, OERP_SALE
+from django_zoook.settings import LOCALE_URI, OERP_SALE
 
 from datetime import datetime
 

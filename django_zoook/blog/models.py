@@ -27,7 +27,7 @@ from django.contrib.auth.models import User
 from transmeta import TransMeta
 from datetime import datetime
 
-from django_zoook.settings import LIVE_URL, LOCALE_URI
+from django_zoook.settings import LOCALE_URI
 import django_zoook.blog.enums as enums
 
 class BlogBase(models.Model):

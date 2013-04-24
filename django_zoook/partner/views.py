@@ -50,6 +50,8 @@ from django_zoook.tools.vat import format_vat
 
 from django_zoook.config import PARTNER_VAT_REQUIRED
 
+from django_zoook.tools.requestutils import get_live_url
+
 import base64
 from symbol import except_clause
 from psycopg2.extras import logging
@@ -266,7 +268,7 @@ def register(request):
                     try:
                         # send email
                         subject = _('New user is added - %(name)s') % {'name':site_configuration.site_title}
-                        body = _("This email is generated automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':site_configuration.site_title,'username':username,'password':password,'live_url':LIVE_URL}
+                        body = _("This email is generated automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, don't answer this email") % {'site':site_configuration.site_title,'username':username,'password':password,'live_url':get_live_url(request)}
                         emailobj = EmailMessage(subject, body, to=[email])
                         emailobj.send()
                     finally:
@@ -335,7 +337,7 @@ def remember(request):
                     user.save()
                     # send email
                     subject = _('Remember username - %(name)s') % {'name':site_configuration.site_title}
-                    body = _("This email is generated  automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'username':user.username,'password':key,'live_url':LIVE_URL}
+                    body = _("This email is generated  automatically from %(site)s\n\nUsername: %(username)s\nPassword: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'username':user.username,'password':key,'live_url':get_live_url(request)}
                     email = EmailMessage(subject, body, to=[user.email])
                     try:
                         email.send()
@@ -395,7 +397,7 @@ def changepassword(request):
                 if request.user.email:
                     # send email
                     subject = _('New password is added - %(name)s') % {'name':site_configuration.site_title}
-                    body = _("This email is generated  automatically from %(site)s\n\nNew password: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'password':data['password1'],'live_url':LIVE_URL}
+                    body = _("This email is generated  automatically from %(site)s\n\nNew password: %(password)s\n\n%(live_url)s\n\nPlease, do not answer the email") % {'site':site_configuration.site_title,'password':data['password1'],'live_url':get_live_url(request)}
                     email = EmailMessage(subject, body, to=[request.user.email])
                     try:
                         email.send()

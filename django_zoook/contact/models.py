@@ -27,7 +27,7 @@ from django import forms
 from transmeta import TransMeta
 from django_zoook.transurl import contact_url
 
-from django_zoook.settings import LIVE_URL, LOCALE_URI, MEDIA_ROOT
+from django_zoook.settings import LOCALE_URI, MEDIA_ROOT
 
 class Contact(models.Model):
     """Contact Model"""
