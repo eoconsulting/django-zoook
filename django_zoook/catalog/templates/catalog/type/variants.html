@@ -5,7 +5,7 @@
 	                        	{% for prod in products %}{% if prod.active %}
                         		<li>
 	                        		<input type="radio" name="code" id="opt-{{prod.code}}" value="{{prod.code}}"{% if forloop.counter == 1 and code == None %} checked="checked"{% elif prod.code == code %} checked="checked"{% endif %} />
-	                        		<label for="opt-{{prod.code}}" title="{% trans "Code" %}: {{prod.code}}">{{prod.variants}} ({% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %})</label>
+	                        		<label for="opt-{{prod.code}}" title="{% trans "Code" %}: {{prod.code}}">{{prod.variants}} ({% if currency_position == 'before' %}{{ currency }} {{prod.price}}{% else %}{{prod.price}} {{ currency }}{% endif %})</label>
                         		</li>
 	                        	{%endif %}{% endfor %}
 	                        </ul></div>
