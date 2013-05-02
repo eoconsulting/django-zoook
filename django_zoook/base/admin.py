@@ -21,12 +21,13 @@
 ############################################################################################
 
 from django.contrib import admin
+from transmeta import get_real_fieldname_in_each_language
 
 from django_zoook.base.models import *
 
 class ResCountryAdmin(admin.ModelAdmin):
 
-    search_fields = ["name"]
+    search_fields = get_real_fieldname_in_each_language('name')
 
     list_display = (
         'name',
