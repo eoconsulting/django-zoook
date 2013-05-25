@@ -505,6 +505,7 @@ def checkout_confirm(request):
         if delivery:
             delivery = delivery.split('|')
             carrier = conn.DeliveryCarrier.filter(code=delivery[0])
+            price_unit = float(re.sub(',','.',delivery[1]))
             if len(carrier) == 0:
                 return HttpResponseRedirect("%s/sale/checkout/" % (context_instance['LOCALE_URI']))
             carrier = carrier[0]
@@ -515,32 +516,34 @@ def checkout_confirm(request):
                 shop = conn.SaleShop.get(OERP_SALE)
                 pricelist = shop.pricelist_id.id
 
-            values = [
-                [order.id], #ids
-                pricelist, #pricelist
-                carrier.product_id.id, #product
-                1, #qty
-                False, #uom
-                0, #qty_uos
-                False, #uos
-                '', #name
-                partner.id, #partner_id
-            ]
-
-            product_id_change = conn_webservice('sale.order.line','product_id_change', values)
-            order_line = conn.SaleOrderLine.new()
-            order_line.order_id = order
-            order_line.name = carrier.product_id.name
-            order_line.product_id = carrier.product_id
-            order_line.product_uom_qty = 1
-            order_line.product_uom = carrier.product_id.product_tmpl_id.uom_id
-            order_line.delay = product_id_change['value']['delay']
-            order_line.th_weight = product_id_change['value']['th_weight']
-            order_line.type = product_id_change['value']['type']
-            order_line.price_unit = float(re.sub(',','.',delivery[1]))
-            order_line.tax_id = [conn.AccountTax.get(t_id) for t_id in product_id_change['value']['tax_id']]
-            order_line.product_packaging = ''
-            order_line.save()
+            if price_unit != 0.0:
+                # Add delivery product in the order
+                # if not free of charge
+                values = [
+                    [order.id], #ids
+                    pricelist, #pricelist
+                    carrier.product_id.id, #product
+                    1, #qty
+                    False, #uom
+                    0, #qty_uos
+                    False, #uos
+                    '', #name
+                    partner.id, #partner_id
+                ]
+                product_id_change = conn_webservice('sale.order.line','product_id_change', values)
+                order_line = conn.SaleOrderLine.new()
+                order_line.order_id = order
+                order_line.name = carrier.product_id.name
+                order_line.product_id = carrier.product_id
+                order_line.product_uom_qty = 1
+                order_line.product_uom = carrier.product_id.product_tmpl_id.uom_id
+                order_line.delay = product_id_change['value']['delay']
+                order_line.th_weight = product_id_change['value']['th_weight']
+                order_line.type = product_id_change['value']['type']
+                order_line.price_unit = price_unit
+                order_line.tax_id = [conn.AccountTax.get(t_id) for t_id in product_id_change['value']['tax_id']]
+                order_line.product_packaging = ''
+                order_line.save()
 
             #delivery
             order.carrier_id = carrier
