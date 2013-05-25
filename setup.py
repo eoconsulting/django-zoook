@@ -44,7 +44,7 @@ setup(
         'Pyro',
         'ooop',
         'django_inplaceedit',
-        'django_maintenancemode'
+        'django_maintenancemode',
         'feedparser',
         'django-pagination',
         'django-filebrowser',
