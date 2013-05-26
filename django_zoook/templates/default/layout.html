@@ -22,7 +22,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/zoook.js"></script>
     {% block head %}{% endblock %}
 </head>
-<body>
+<body onunload="">
 <div id="loading-bar"><h1>{% trans "Loading..." %}</h1></div>
 {% load cms %}{% render_useradd %}
 <div id="esale" class="page">
