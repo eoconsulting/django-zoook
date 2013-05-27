@@ -59,7 +59,7 @@ if site:
     try:
         site_configuration.save()
         print "Add new site configuration: %s" % site_configuration.domain
-        print "Start your Django APP: python manage runserver"
+        print "Start your Django APP: python manage.py runserver"
         print "Remember to clone Products and Categories OpenERP -> Django"
     except Exception, e:
         sys.stderr.write("Ups! Not save values? Try insert sql command...\n")
