@@ -120,6 +120,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django_zoook.tools.cms.context_processors.site_configuration',
     'django_zoook.tools.cms.context_processors.theme',
+    'googlytics.context_processors.googlytics',
 )
 
 INSTALLED_APPS = (
@@ -148,6 +149,7 @@ INSTALLED_APPS = (
     'django_zoook.tools.filemanager',
     'django_zoook.tools.cms',
     'filebrowser',
+    'googlytics',
 ) + PROJECT_APPS
 
 AUTH_PROFILE_MODULE = "partner.AuthProfile"

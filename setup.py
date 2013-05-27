@@ -49,6 +49,7 @@ setup(
         'django-pagination',
         'django-filebrowser',
         'python-magic',
+        'django-googlytics',
         'South',
         ],
     extras_require = {

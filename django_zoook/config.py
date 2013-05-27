@@ -258,6 +258,12 @@ Twitter
 TWITTER_USER = 'zoook_esale'
 
 """
+Google Analytics Key
+"""
+GOOGLE_ANALYTICS_KEY = ''
+GOOGLE_ANALYTICS_IGNORE_ADMIN = True
+
+"""
 Image Thumbnail size
 """
 THUMBNAIL_SIZE = '800x520'
