@@ -1,11 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 ############################################################################################
 #
 #    Zoook. OpenERP e-sale, e-commerce Open Source Management Solution
 #    Copyright (C) 2011 Zikzakmedia S.L. (<http://www.zikzakmedia.com>). All Rights Reserved
 #
-#    Source Created: 2012-06-07
+#    Module Created: 2013-06-07
 #    Author: Mariano Ruiz <mrsarm@gmail.com>,
 #            Enterprise Objects Consulting (<http://www.eoconsulting.com.ar>)
 #
@@ -24,38 +23,17 @@
 #
 ############################################################################################
 
+from django.utils.formats import number_format
+from django_zoook.settings import CURRENCY_LABEL_POSITION, DEFAULT_CURRENCY
 
 
-
-from setuptools import setup, find_packages
-
-setup(
-    name = 'django_zoook',
-    description = 'Django part of Zoook e-Sale.',
-    download_url = 'https://github.com/eoconsulting/django-zoook',
-    install_requires = [
-        'Django>=1.4',
-        'psycopg2',
-        'Pillow',
-        'django_localeurl',
-        'django_transmeta',
-        'paramiko',
-        'recaptcha_client',
-        'Pyro',
-        'ooop',
-        'django_inplaceedit',
-        'django_maintenancemode',
-        'feedparser',
-        'django-pagination',
-        'django-filebrowser',
-        'python-magic',
-        'django-googlytics',
-        'South',
-        ],
-    extras_require = {
-        'cache':  ['haystack'],
-        'server': [
-                'staticsfiles_ignoredebug',
-                ],
-    }
-)
+def money_format(value, decimal_pos=2):
+    """
+    Format number in money style. Ex 10230.3 -> "$ 10,230.30"
+    """
+    if value == None:
+        value = 0.0
+    val = number_format(value, decimal_pos, use_l10n=True, force_grouping=True)
+    if CURRENCY_LABEL_POSITION == 'before':
+        return DEFAULT_CURRENCY + " " + val
+    return val + " " + DEFAULT_CURRENCY

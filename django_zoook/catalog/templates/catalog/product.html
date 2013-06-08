@@ -43,7 +43,7 @@
         </div>
 
         <div id="content">
-            <div id="product-{{product.id}}" class="product-page block border5 clearfix">
+            <div id="product-{{product_product.id}}" class="product-page block border5 clearfix">
                 <div class="product-imgbox">
                     <a rel="zoom" href="{% thumbnail base_image.url thumbnail_size product_detail_zoook.png %}" class="product-img zoom" title="{{base_image.name}}"><span class="zoom-icon"></span>
                     <img src="{% thumbnail base_image.url 300x300 product_detail_zoook.png %}" /></a>
@@ -110,7 +110,7 @@
                         <td><h2 class="product-name-related"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="product-related-description a-right">{% autoescape off %}{{product.product.shortdescription}}{% endautoescape %}</td>
                         <td class="product-related-price a-right">
-                            <div id="product-price-{{product.product.id}}" class="price-box">
+                            <div id="product-price-{{product.products.0.id}}" class="price-box">
                             <span class="regular-price">
                                 <span class="price">
 	                                {% if currency_position == 'before' %}{{ currency }} {{product.products.0.price}}{% else %}{{product.products.0.price}} {{ currency }}{% endif %}
@@ -131,7 +131,7 @@
                         <td><h2 class="product-name-upsells"><a href="{{product.product.get_absolute_url}}">{{ product.product.name }}</a></h2></td>
                         <td class="product-upsells-description a-right"><span class="cart-description"><span class="short-description">{% autoescape off %}{{product.product.shortdescription}}{% endautoescape %}</span></span></td>
                         <td class="product-upsells-price a-right">
-                            <div id="product-price-{{product.product.id}}" class="price-box">
+                            <div id="product-price-{{product.products.0.id}}" class="price-box">
                                 <span class="price">
 	                                {% if currency_position == 'before' %}{{ currency }} {{product.products.0.price}}{% else %}{{product.products.0.price}} {{ currency }}{% endif %}
 	                            </span>

@@ -150,6 +150,7 @@ def category(request, category):
         'categories_path': categories_path,
         'category_decription': category.description if category.description != 'False' else None,
         'currency': DEFAULT_CURRENCY,
+        'update_price': UPDATE_PRICE,
     }
     return render_to_response("catalog/category.html", category_values, context_instance=RequestContext(request))
 
@@ -208,6 +209,7 @@ def product(request, product):
         'metakeywords': metakeywords,
         'product': tplproduct,
         'products': prods,
+        'product_product': prods[prods_i],
         'related_products': related_products,
         'upsells_products': upsells_products,
         'price': prods[prods_i].get_price(),
@@ -293,7 +295,7 @@ def wishlist(request):
             if prod_images.count() > 0:
                 base_image = prod_images[0]
 
-            products.append({'product': tplproduct, 'name': tplproduct.name, 'price': prods[0].price, 'base_image': base_image})
+            products.append({'product': tplproduct, 'name': tplproduct.name, 'products': prods, 'base_image': base_image})
 
     return render_to_response("catalog/wishlist.html", {
                     'title': title, 'metadescription': metadescription, 

@@ -28,6 +28,7 @@ from django.utils.translation import get_language
 
 from django_zoook.tools.conn import conn_webservice
 from transmeta import TransMeta
+from django_zoook.tools.format import money_format
 from django_zoook.transurl import catalog_url, product_url, manufacturer_url
 
 from django_zoook.settings import LOCALE_URI, OERP_SALE
@@ -36,6 +37,7 @@ from datetime import datetime
 
 import django_zoook.tools.cms.enums as enums
 import simplejson as json
+
 
 '''OpenERP Models'''
 class ProductCategory(models.Model):
@@ -350,6 +352,8 @@ class ProductProduct(models.Model):
                     pass
             # values => {"1":{"regularPrice":"50"},"2":{"regularPrice":"100"}}
             values = conn_webservice('product.product','zoook_compute_price', [OERP_SALE, products, partner_id])
+            for k in values.keys():
+                values[k]['regularPrice'] = money_format(values[k]['regularPrice'])
             data = json.dumps(values)
         return data
 

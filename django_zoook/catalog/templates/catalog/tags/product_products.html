@@ -30,11 +30,11 @@
             <div class="catalog-body">
 	            {% if mode_option == 'grid' %}
 	            <ul id="catalog-grid">{% for value in values %}
-	                <li id="product-{{value.product.id}}" class="product-item block border5">
+	                <li id="product-{{value.id}}" class="product-item block border5">
 	                    <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" class="product-image-grid" /></a>
 	                    <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
 	                    {% if value.product.status %}
-		                    <div id="product-price-{{value.product.id}}" class="price-box">
+		                    <div id="product-price-{{value.id}}" class="price-box">
 		                        <span class="regular-price">
 		                            <span class="price">
 		                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}
@@ -51,12 +51,12 @@
 	            </ul>
 	            {% else %}
 	            <ul id="catalog-list">{% for value in values %}
-	                    <li id="product-{{value.product.id}}" class="product-item block border5 clearfix">
+	                    <li id="product-{{value.id}}" class="product-item block border5 clearfix">
 	                    	<div class="product-detail">
 		                        <a href="{{value.url}}" class="product-img"><img src="{% thumbnail value.base_image.url 150x150 product_zoook.png %}" title="{{value.name}}" /></a>
 		                        <a href="{{value.url}}" class="product-name" alt="{{value.name}}" title="{{value.name}}"><h2>{{value.name}}</h2></a>
 		                        <div class="product-description">{% autoescape off %}{{value.product.shortdescription}}{% endautoescape %}</div>
-		                        <div id="product-price-{{value.product.id}}" class="price-box">
+		                        <div id="product-price-{{value.id}}" class="price-box">
 		                            <span class="regular-price">
 		                                <span class="price">
 			                                {% if currency_position == 'before' %}{{ currency }} {{value.price}}{% else %}{{value.price}} {{ currency }}{% endif %}

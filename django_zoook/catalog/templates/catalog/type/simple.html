@@ -15,7 +15,7 @@
                         {% csrf_token %}
                         </form>{%endif %}{% endfor %}
                         {% if product.status %}
-	                        <div id="product-price-{{product.id}}" class="price-box">
+	                        <div id="product-price-{{product_product.id}}" class="price-box">
 	                            <span class="regular-price">
 	                                <span class="price">
 	                                    {% if currency_position == 'before' %}{{ currency }} {{price}}{% else %}{{price}} {{ currency }}{% endif %}

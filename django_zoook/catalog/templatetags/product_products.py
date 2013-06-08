@@ -41,6 +41,7 @@ def render_product_products(context):
             name += ' - ' + product.variants
         base_image = product.get_base_image()
         values.append({
+                'id': product.id,
                 'product': product.product_tmpl,
                 'name': name,
                 'url': url,
