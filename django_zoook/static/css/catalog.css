@@ -9,7 +9,8 @@
 
 /* CATALOG CATEGORY */
 #catalog-category					{ padding:10px 0px 10px 10px; }
-#catalog-category .product-name h2  { font-size:13px; line-height:18px; font-weight:bold }
+#catalog-category .product-name h2  { font-size:14px; line-height:18px; font-weight:bold }
+#catalog-category #catalog-list .product-name h2  { font-size:16px; padding: 10px 0px; }
 
 .catalog-head                       { padding: 10px 10px 10px 0px; }
 
