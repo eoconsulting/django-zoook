@@ -60,6 +60,8 @@ button:hover			{ background-color:#000 }
 .price-decimal  { font-size: 16px}
 .special-price  { color:#ad9090; line-height:32px; text-decoration: line-through; font-weight: bold; }
 
+#catalog-list .price-updated { float: left; padding-right: 20px; }
+
 .price-box .loader { padding:0 0 0 5px }
 
 .product-image-grid { border:1px solid #e7e7e7;}

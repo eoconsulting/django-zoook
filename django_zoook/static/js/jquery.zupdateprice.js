@@ -62,7 +62,7 @@
 						if(pricesEl[0].innerHTML.trim() != prices.regularPrice) {
 							pricesEl.animate({opacity:0.5},250, function() { $(this).animate({opacity:1},250) })
 								    .addClass('special-price')
-								    .parent().append('<p class="price">' + prices.regularPrice + '</p>');
+								    .parent().append('<div class="price price-updated">' + prices.regularPrice + '</div>');
 						}
 					});
 				} 

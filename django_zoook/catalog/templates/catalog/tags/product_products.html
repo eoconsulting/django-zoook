@@ -42,7 +42,7 @@
 		                        </span>
 		                    </div>
 	                    {% endif %}
-	                    <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
+	                    <div><a href="{{value.url}}" class="button-details">{% trans "Details" %}</a></div>
 	                    <ul class="add-to">
 	                        {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ STATIC_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
 	                        {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ STATIC_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
@@ -63,7 +63,7 @@
 			                            </span>
 		                            </span>
 		                        </div>
-		                        <a  href="{{value.url}}" class="button-details">{% trans "Details" %}</a>
+		                        <div><a href="{{value.url}}" class="button-details">{% trans "Details" %}</a></div>
 		                        <ul class="add-to">
 		                            {% if user.is_authenticated %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/wishlist/add/{{value.product.slug}}"><img src="{{ STATIC_URL }}images/icons/wishlist.png" alt="{% trans "Add to Wishlist" %}" title="{% trans "Add to Wishlist" %}"/></a></li>{% endif %}
 		                            {% if compare_on %}<li><a href="{{ LOCALE_URI }}/{% trans 'catalog' %}/compare/add/{{value.product.slug}}"><img src="{{ STATIC_URL }}images/icons/compare.png" alt="{% trans "Add to Compare" %}" title="{% trans "Add to Compare" %}"/></a></li>{% endif %}
