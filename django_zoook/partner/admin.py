@@ -22,6 +22,7 @@
 
 from django.contrib import admin
 from django_zoook.partner.models import *
+from transmeta import get_real_fieldname_in_each_language
 
 class AuthProfileAdmin(admin.ModelAdmin):
 
@@ -31,3 +32,15 @@ class AuthProfileAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(AuthProfile, AuthProfileAdmin)
+
+class ResPartnerTitleAdmin(admin.ModelAdmin):
+
+    search_fields = get_real_fieldname_in_each_language('name')
+
+    list_display = (
+        'name',
+        'shortcut',
+        'update_price',
+    )
+
+admin.site.register(ResPartnerTitle, ResPartnerTitleAdmin)

@@ -25,6 +25,29 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django import forms
 
+from transmeta import TransMeta
+
+'''OpenERP Models'''
+class ResPartnerTitle(models.Model):
+    """Partner Title OpenERP"""
+    __metaclass__ = TransMeta
+
+    name = models.CharField(_('name'), max_length=64)
+    shortcut = models.CharField(_('shortcut'), max_length=16)
+    update_price = models.BooleanField(_('update price'))
+
+    class Meta:
+        db_table = 'res_partner_title'
+        verbose_name = _('partner title')
+        verbose_name_plural = _('partner titles')
+        translate = (
+            'name',
+            'shortcut',
+            )
+
+    def __unicode__(self):
+        return self.name
+
 class AuthProfile(models.Model):
     """Partner"""
     user = models.ForeignKey(User, verbose_name="User", related_name="user_profile_s", unique=True, null=True, blank=True)

@@ -34,6 +34,7 @@ import django_zoook.logconfig
 from django_zoook.settings import *
 from django.utils.translation import ugettext as _
 from django_zoook.base.models import ResCountry, ResCountryState
+from django_zoook.partner.models import ResPartnerTitle
 from django_zoook.tools.conn import conn_webservice
 
 logging.info(_('Sync. Configuration. Running'))
@@ -45,11 +46,10 @@ context = {}
 """
 countries / states
 """
-results = conn_webservice('sale.shop', 'dj_export_countries', [[OERP_SALE]])
-
-for result in results:
+countries = conn_webservice('sale.shop', 'dj_export_countries', [[OERP_SALE]])
+for country in countries:
     # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
-    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.res.country',[result],context,langs])
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.res.country',[country],context,langs])
 
     logging.debug(str(values))
 
@@ -76,8 +76,29 @@ for result in results:
         except Exception, e:
             logging.error(_('Sync. Configuration Country. Error save ID %s\nException: %s') % (count['id'], str(e)))
             sys.exit(-1)
+logging.info(_('Sync. Countries. Done'))
 
-logging.info(_('Sync. Configuration. Done'))
 
+"""
+Partner Titles
+"""
+titles = conn_webservice('sale.shop', 'dj_export_partner_titles', [[OERP_SALE]])
+for title in titles:
+    # minicalls with one id (step to step) because it's possible return a big dicctionay and broken memory.
+    values = conn_webservice('base.external.mapping', 'get_oerp_to_external', ['zoook.res.partner.title',[title],context,langs])
+
+    logging.debug(str(values))
+
+    if len(values) > 0:
+        count = values[0]
+        title = ResPartnerTitle(**count)
+
+        try:
+            title.save()
+            logging.info(_('Sync. Configuration. Partner Title ID %s') % count['id'])
+        except Exception, e:
+            logging.error(_('Sync. Configuration Partner Title. Error save ID %s\nException: %s') % (count['id'], str(e)))
+            sys.exit(-1)
+logging.info(_('Sync. Partner Titles. Done'))
 
 print True
