@@ -427,3 +427,15 @@ msgstr "Error enviando nueva password. Intente nuevamente, o contáctese con el 
 
 msgid "Save"
 msgstr "Guardar"
+
+#: models.py:35
+msgid "name"
+msgstr "nombre"
+
+#: models.py:36
+msgid "shortcut"
+msgstr "abreviación"
+
+#: models.py:37
+msgid "update price"
+msgstr "actualizar precio"

@@ -113,6 +113,8 @@ def register(request):
     title = _(u'Create an Account')
     metadescription = _(u'Create an Account of %(site)s') % {'site':site_configuration.site_title}
     partner_vat_required = PARTNER_VAT_REQUIRED
+    country_default = COUNTRY_DEFAULT
+    title_default = ''
 
     if request.method == "POST":
         message = []
@@ -129,6 +131,9 @@ def register(request):
         password = data['password1']
         name = data['name']
         vat_code = data['vat_code']
+        country_default = vat_code
+        title = data['title']
+        title_default = title
         vat = data['vat']
         street = data['street']
         zip = data['zip']
@@ -215,6 +220,11 @@ def register(request):
                         partner.vat = checkvat
                     partner.dj_username = username
                     partner.dj_email = email
+                    if title:
+                        res_partner_title = conn.ResPartnerTitle.get(int(title))
+                        partner.title = res_partner_title
+                        if res_partner_title.default_pricelist_id:
+                            partner.property_product_pricelist = res_partner_title.default_pricelist_id
                     partner_id = partner.save()
                     
                     # Create contact invoice address partner
@@ -300,7 +310,7 @@ def register(request):
             redirect = base64.b64encode(request.GET.get('next'))
 
     countries = ResCountry.objects.all()
-    country_default = COUNTRY_DEFAULT
+    titles = ResPartnerTitle.objects.all()
     
     return render_to_response("partner/register.html", locals(), context_instance=RequestContext(request))
 

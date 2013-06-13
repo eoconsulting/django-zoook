@@ -67,6 +67,15 @@
                     {% for country in countries %}<option value="{{ country.code }}" {% if country.code == country_default %} selected="selected"{% endif %}>{{ country.name }}</option>{% endfor %}
                     </select>
                 </li>
+                {% if titles|length >= 0 %}
+	                <li>
+	                    <label for="title">{% trans "You are ?" %} - {{ title_default }}</label>
+	                    <select name="title" id="title" class="title">
+	                        <option value=""></option>
+	                        {% for title in titles %}<option value="{{ title.id }}" {% ifequal title.id|slugify title_default %} selected="selected"{% endifequal %}>{{ title.name }}</option>{% endfor %}
+	                    </select>
+	                </li>
+                {% endif %}
                 <li>
                     <label for="id_vat">{% trans "Vat" %} {% if partner_vat_required %}<span class="required">*</span>{% endif %}</label>
                     <input type="text" name="vat" id="id_vat" maxlength="128" value="{{ vat }}" {% if partner_vat_required %}class="required"{% endif %} minlength="6"/>
