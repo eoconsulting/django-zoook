@@ -290,11 +290,14 @@ def wishlist(request):
         for prod in product_obj:
             prods = ProductProduct.objects.filter(product_tmpl=prod.id).order_by('price')
             tplproduct = ProductTemplate.objects.get(id=prod.id)
-            prod_images = ProductImages.objects.filter(product=prod.id,exclude=False,base_image=True)
+            i = 0
+            prod_images = []
+            while i<len(prods) and len(prod_images)==0: 
+                prod_images = ProductImages.objects.filter(product=prods[i].id,base_image=True)
+                i+=1
             base_image = False
             if prod_images.count() > 0:
                 base_image = prod_images[0]
-
             products.append({'product': tplproduct, 'name': tplproduct.name, 'products': prods, 'base_image': base_image})
 
     return render_to_response("catalog/wishlist.html", {
