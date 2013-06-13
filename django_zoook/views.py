@@ -71,7 +71,7 @@ def index(request):
             if len(prod_images) > 0:
                 base_image = prod_images[0]
 
-            values.append({'product': tplproduct, 'name': tplproduct.name.lower(), 'product_variant': len(prods), 'price': prods[0].price, 'base_image': base_image})
+            values.append({'product': tplproduct, 'name': tplproduct.name.lower(), 'product_variant': len(prods), 'prods': prods, 'base_image': base_image})
 
         # == template values ==
         category_values = {
