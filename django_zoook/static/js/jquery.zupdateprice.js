@@ -13,14 +13,14 @@
 		// Vars for avoid confusions
         var plugin = this;
  
-        plugin.settings = {}
+        plugin.settings = {};
 
         var $element = $(element),
              element = element;
 
         plugin.init = function() {
 // ---------------------------------------------------------- PLUGIN ACTION --------------------------------------------------
-            plugin.settings = $.extend({}, defaults, options)
+            plugin.settings = $.extend({}, defaults, options);
 
 			// Activem l'interval d'actualització de preus
 //			setInterval( function() {
@@ -58,7 +58,7 @@
 			$.getJSON(element.url, {"ides": ids_sended}, function(data) 
 			{ 
 					$.each(data, function(product, prices) {
-						var pricesEl = $('#'+element.idPriceAttr+ product+' .regular-price .price')
+						var pricesEl = $('#'+element.idPriceAttr+ product+' .regular-price .price');
 						if(pricesEl[0].innerHTML.trim() != prices.regularPrice) {
 							pricesEl.animate({opacity:0.5},250, function() { $(this).animate({opacity:1},250) })
 								    .addClass('special-price')
