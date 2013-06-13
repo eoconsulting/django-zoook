@@ -360,6 +360,9 @@ msgstr ""
 msgid "Full Name"
 msgstr "Nom complet"
 
+msgid "You are ?"
+msgstr "Vostè és ?"
+
 #: templates/partner/register.html:48
 msgid "Vat"
 msgstr "NIF"

@@ -443,6 +443,9 @@ def partner(request):
 
     partner = conn.ResPartner.get(partner_id)
     vat = format_vat(partner.vat)
+    partnet_title = False
+    if partner.title:
+        partnet_title = partner.title.name
 
     if request.method == 'POST':
         data = get_contact_data(request.POST.copy())

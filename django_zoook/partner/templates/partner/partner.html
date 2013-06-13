@@ -35,10 +35,20 @@
 		                    <label for="id_name">{% trans "Full Name" %}</label>
 		                    <strong>{{ partner.name }}</strong>
 		                </li>
+                        <li>
+                            <label for="email">{% trans "Email" %}</label>
+                            <span>{{ user.email }}</span>
+                        </li>
 		                <li>
 		                    <label for="id_vat">{% trans "Vat" %}</label>
-		                    <span>{{ vat }}</span>
+		                    <span>{{ vat }}&nbsp;</span>
 		                </li>
+		                {% if partnet_title %}
+	                        <li>
+	                            <label for="title">{% trans "You are ?" %}</label>
+	                            <span>{{ partnet_title }}</span>
+	                        </li>
+                        {% endif %}
 		            </ul>
 		            {% if address_invoice|length = 0 %}{% trans "There are not invoice address available" %}{% endif %}
 		            {% for invoice in address_invoice %}
