@@ -34,8 +34,8 @@
                 <tr>
                     <th>{% trans "Reference" %}</th>
                     <th class="number"><span class="nobr">{% trans "Qty" %}</span></th>
-                    <th class="number"><span class="nobr">{% trans "Discount %" %}</span></th>
                     <th class="number"><span class="nobr">{% trans "Unit Price" %}</span></th>
+                    <th class="number"><span class="nobr">{% trans "Discount %" %}</span></th>
                     <th class="number"><span class="nobr">{% trans "Subtotal" %}</span></th>
                 </tr>
             </thead>
@@ -43,8 +43,8 @@
                 {% for line in value.invoice_line %}<tr class="{% cycle 'row1' 'row2' %}">
                     <td>{{ line.name }}</a></td>
                     <td class="number">{{ line.quantity }}</td>
-                    <td class="number">{% if line.discount > 0.0 %}{{ line.discount }}{% endif %}</td>
                     <td class="number">{{ line.price_unit }}</td>
+                    <td class="number">{% if line.discount > 0.0 %}{{ line.discount }}{% endif %}</td>
                     <td class="number">{{ line.price_subtotal }}</td>
                 </tr>{% endfor %}
             </tbody>
