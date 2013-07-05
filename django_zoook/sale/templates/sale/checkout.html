@@ -64,7 +64,7 @@
 	                <tr>
 	                    <th>{% trans "Reference" %}</th>
 	                    <th class="number"><span class="nobr">{% trans "Qty" %}</span></th>
-	                    <th class="number"><span class="nobr">{% trans "Discount" %}</span></th>
+	                    <th class="number"><span class="nobr">{% trans "Discount %" %}</span></th>
 	                    <th class="number"><span class="nobr">{% trans "Unit Price" %}</span></th>
 	                    <th class="number"><span class="nobr">{% trans "Subtotal" %}</span></th>
 	                    <th class="center"><span class="nobr">{% trans "Delete" %}</span></th>
@@ -75,7 +75,7 @@
 	                {% for line in lines %}<tr class="{% cycle 'row1' 'row2' %}">
 	                    <td><a href="{{ LOCALE_URI }}/{% trans "product" %}/{{ line.product_id.product_tmpl_id.slug }}" title="{{ line.name }}">{{ line.name }}</a>{% if line.product_id.cartdescription %}<br/>{{ line.product_id.cartdescription }}{%endif%}</td>
 	                    <td class="number">{{ line.product_uom_qty }}</td>
-	                    <td class="number">{{ line.discount }}</td>
+	                    <td class="number">{% if line.discount > 0.0 %}{{ line.discount }}{% endif %}</td>
 	                    <td class="number">{{ line.price_unit }}</td>
 	                    <td class="number">{{ line.price_subtotal }}</td>
 	                    <td class="center"><a href="{{ LOCALE_URI }}/sale/checkout/remove/{{line.product_id.code}}" title="{% trans "Remove item" %}" class="btn-trash">{% trans "Remove item" %}</a></td>

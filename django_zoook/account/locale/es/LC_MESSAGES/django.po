@@ -91,8 +91,8 @@ msgid "Qty"
 msgstr "Cant"
 
 #: templates/account/invoice.html:40
-msgid "Discount"
-msgstr "Descuento"
+msgid "Discount %"
+msgstr "Descuento %"
 
 #: templates/account/invoice.html:41
 msgid "Unit Price"

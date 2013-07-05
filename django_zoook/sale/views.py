@@ -332,7 +332,7 @@ def checkout(request):
                     pricelist = shop.pricelist_id.id
                 values = [
                     [order.id], #ids
-                    partner.property_product_pricelist.id, #pricelist
+                    pricelist, #pricelist
                     product.id, #product
                     qty, #qty
                     False, #uom
@@ -362,18 +362,20 @@ def checkout(request):
                     product_value = product_id_change['value']
                     order_line = conn.SaleOrderLine.new()
                     order_line.order_id = order
-                    order_line.name = product_id_change['value']['name']
+                    order_line.name = product_value['name']
                     if 'notes' in product_value:
-                        order_line.notes = product_id_change['value']['notes']
+                        order_line.notes = product_value['notes']
                     order_line.product_id = product
                     order_line.product_uom_qty = qty
                     order_line.product_uom = product.product_tmpl_id.uom_id
-                    order_line.delay = product_id_change['value']['delay']
-                    order_line.th_weight = product_id_change['value']['th_weight']
-                    order_line.type = product_id_change['value']['type']
-                    order_line.price_unit = product_id_change['value']['price_unit']
-                    order_line.purchase_price = product_id_change['value']['purchase_price']
-                    order_line.tax_id = [conn.AccountTax.get(t_id) for t_id in product_id_change['value']['tax_id']]
+                    order_line.delay = product_value['delay']
+                    order_line.th_weight = product_value['th_weight']
+                    order_line.type = product_value['type']
+                    order_line.price_unit = product_value['price_unit']
+                    if 'discount' in product_value:
+                        order_line.discount = product_value['discount']
+                    order_line.purchase_price = product_value['purchase_price']
+                    order_line.tax_id = [conn.AccountTax.get(t_id) for t_id in product_value['tax_id']]
                     order_line.product_packaging = ''
                     order_line.save()
                 else:
@@ -537,11 +539,11 @@ def checkout_confirm(request):
                 order_line.product_id = carrier.product_id
                 order_line.product_uom_qty = 1
                 order_line.product_uom = carrier.product_id.product_tmpl_id.uom_id
-                order_line.delay = product_id_change['value']['delay']
-                order_line.th_weight = product_id_change['value']['th_weight']
-                order_line.type = product_id_change['value']['type']
+                order_line.delay = product_value['delay']
+                order_line.th_weight = product_value['th_weight']
+                order_line.type = product_value['type']
                 order_line.price_unit = price_unit
-                order_line.tax_id = [conn.AccountTax.get(t_id) for t_id in product_id_change['value']['tax_id']]
+                order_line.tax_id = [conn.AccountTax.get(t_id) for t_id in product_value['tax_id']]
                 order_line.product_packaging = ''
                 order_line.save()
 

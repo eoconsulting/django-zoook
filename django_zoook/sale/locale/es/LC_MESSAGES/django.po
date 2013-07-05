@@ -131,8 +131,8 @@ msgstr "Cant"
 
 #: templates/sale/checkout.html:45
 #: templates/sale/order.html:48
-msgid "Discount"
-msgstr "Descuento"
+msgid "Discount %"
+msgstr "Descuento %"
 
 #: templates/sale/checkout.html:46
 #: templates/sale/order.html:49
