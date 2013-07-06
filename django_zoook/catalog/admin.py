@@ -22,9 +22,7 @@
 
 from django.contrib import admin
 from django_zoook.catalog.models import *
-from datetime import datetime
 from transmeta import get_real_fieldname_in_each_language
-from . import models
 
 class ProductCategoryAdmin(admin.ModelAdmin):
 
@@ -38,7 +36,7 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 
 class ProductProductInline(admin.StackedInline):
-    model = models.ProductProduct
+    model = ProductProduct
 
 class ProductTemplateAdmin(admin.ModelAdmin):
 
@@ -58,7 +56,8 @@ class ProductImagesAdmin(admin.ModelAdmin):
         'name',
         'product',
     )
-    search_fields = ["product"]
+    search_fields = get_real_fieldname_in_each_language('name') \
+                    + get_real_fieldname_in_each_language('product__product_tmpl__name')
     extra = 0
 #    list_filter = ["status"]
 
