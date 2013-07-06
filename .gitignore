@@ -1,9 +1,9 @@
-# Ignore configuration files
-#django_zoook/settings.py
-#django_zoook/config.py
+# Ignore configuration files for differents enviroments
+django_zoook/settings_*.py
+django_zoook/config_*.py
 
 # Ignore byte compiled files
-*.pyc
+*.py[co]
 *.log
 
 log
@@ -21,4 +21,3 @@ build
 
 # Ignore linked resources
 paypal
-django_zoook/static/inplaceeditform
