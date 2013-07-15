@@ -442,3 +442,12 @@ msgstr "abreviación"
 #: models.py:37
 msgid "update price"
 msgstr "actualizar precio"
+
+msgid "Add new address"
+msgstr "Agregar nueva dirección"
+
+msgid "Invoice & Delivery Addresses"
+msgstr "Direcciones de Factura & Envío"
+
+msgid "Invoice & Delivery Address"
+msgstr "Dirección de Factura & Envío"

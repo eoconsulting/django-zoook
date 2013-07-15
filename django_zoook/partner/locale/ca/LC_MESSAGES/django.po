@@ -431,3 +431,12 @@ msgstr "Error en enviar la nova contrasenya. Proveu-ho o poseu-vos en contacte a
 
 msgid "Save"
 msgstr "Guardar"
+
+msgid "Add new address"
+msgstr "Afegir nova adreça"
+
+msgid "Invoice & Delivery Addresses"
+msgstr "Factura & lliurament Adreces"
+
+msgid "Invoice & Delivery Address"
+msgstr "Adreça de Factura & lliurament"

@@ -28,86 +28,105 @@
 		<form action="{% url partner_partner %}" method="post" id="partnerForm">
 			<fieldset>
 			    <div class="col2-set">
-					<div class="new-users">
-					<ul class="noeditable">
-		            	<h3>{% trans "Customer Information" %}</h3>
-		                <li>
-		                    <label for="id_name">{% trans "Full Name" %}</label>
-		                    <strong>{{ partner.name }}</strong>
-		                </li>
-                        <li>
-                            <label for="email">{% trans "Email" %}</label>
-                            <span>{{ user.email }}</span>
-                        </li>
-		                <li>
-		                    <label for="id_vat">{% trans "Vat" %}</label>
-		                    <span>{{ vat }}&nbsp;</span>
-		                </li>
-		                {% if partnet_title %}
+					<div class="registered-users">
+						<ul class="noeditable">
+			            	<h3>{% trans "Customer Information" %}</h3>
+			                <li>
+			                    <label for="id_name">{% trans "Full Name" %}</label>
+			                    <strong>{{ partner.name }}</strong>
+			                </li>
 	                        <li>
-	                            <label for="title">{% trans "You are ?" %}</label>
-	                            <span>{{ partnet_title }}</span>
+	                            <label for="email">{% trans "Email" %}</label>
+	                            <span>{{ user.email }}</span>
 	                        </li>
-                        {% endif %}
-		            </ul>
-		            {% if address_invoice|length = 0 %}{% trans "There are not invoice address available" %}{% endif %}
-		            {% for invoice in address_invoice %}
-		            <ul>
-		                <h3>{% trans "Invoice Address" %}</h3>
-		                <li>
-		                    <label for="{{ invoice.id }}_street">{% trans "Address" %} <span class="required">*</span></label>
-		                    <input type="text" name="{{ invoice.id }}_street" id="{{ invoice.id }}_street" maxlength="128" value="{{ invoice.street }}" class="required" minlength="6"/>
-		                </li>
-		                <li>
-		                    <label for="{{ invoice.id }}_zip">{% trans "ZIP" %} <span class="required">*</span></label>
-		                    <input type="text" name="{{ invoice.id }}_zip" id="{{ invoice.id }}_zip" maxlength="128" value="{{ invoice.zip }}" class="required" minlength="4"/>
-		                </li>
-                        <li>
-                            <label for="{{ invoice.id }}_city">{% trans "City" %} <span class="required">*</span></label>
-                            <input type="text" name="{{ invoice.id }}_city" id="{{ invoice.id }}_city" maxlength="128" value="{{ invoice.city }}" class="required" minlength="2"/>
-                        </li>
-                        <li>
-                            <label for="{{ invoice.id }}_phone">{% trans "Phone" %}</label>
-                            <input type="text" name="{{ invoice.id }}_phone" id="{{ invoice.id }}_phone" maxlength="30" value="{% if invoice.phone %}{{ invoice.phone }}{% endif %}" minlength="7"/>
-                        </li>
-		            </ul>
-		            {% endfor %}
-		            {% if address_delivery|length = 0 %}{% trans "There are not delivery address available" %}{% endif %}
-			        {% for delivery in address_delivery %}
-		            <ul id="delivery-address"{% if same_address %} style="display: none;"{% endif %}>
-		                <h3>{% trans "Delivery Address" %}</h3>
-		                <li>
-		                    <label for="{{ delivery.id }}_street">{% trans "Address" %} <span class="required">*</span></label>
-		                    <input type="text" name="{{ delivery.id }}_street" id="{{ delivery.id }}_street" maxlength="128" value="{{ delivery.street }}" class="required" minlength="6"{% if same_address %} disabled="disabled"{% endif %}/>
-		                </li>
-		                <li>
-		                    <label for="{{ delivery.id }}_zip">{% trans "ZIP" %} <span class="required">*</span></label>
-		                    <input type="text" name="{{ delivery.id }}_zip" id="{{ delivery.id }}_zip" maxlength="128" value="{{ delivery.zip }}" class="required" minlength="4"{% if same_address %} disabled="disabled"{% endif %}/>
-		                </li>
-		                <li>
-		                    <label for="{{ delivery.id }}_city">{% trans "City" %} <span class="required">*</span></label>
-		                    <input type="text" name="{{ delivery.id }}_city" id="{{ delivery.id }}_city" maxlength="128" value="{{ delivery.city }}" class="required" minlength="2"{% if same_address %} disabled="disabled"{% endif %}/>
-		                </li>
-                        <li>
-                            <label for="{{ delivery.id }}_phone">{% trans "Phone" %}</label>
-                            <input type="text" name="{{ delivery.id }}_phone" id="{{ delivery.id }}_phone" maxlength="30" value="{% if delivery.phone %}{{ delivery.phone }}{% endif %}" minlength="7"/>
-                        </li>
-		            </ul>
-		            {% endfor %}
-					</div>
+			                <li>
+			                    <label for="id_vat">{% trans "Vat" %}</label>
+			                    <span>{{ vat }}&nbsp;</span>
+			                </li>
+			                {% if partnet_title %}
+		                        <li>
+		                            <label for="title">{% trans "You are ?" %}</label>
+		                            <span>{{ partnet_title }}</span>
+		                        </li>
+	                        {% endif %}
+			            </ul>
+			            <ul>
+                            <h3>{% trans "Invoice & Delivery Addresses" %}</h3>
+                            {% if not del_have %}<div class="msg-error">{% trans "There are not delivery address available" %}</div>{% endif %}
+                            {% if not inv_have %}<div class="msg-error">{% trans "There are not invoice address available" %}</div>{% endif %}
+			            </ul>
+			            {% for address in addresses %}
+			            <ul>
+			                <li>
+			                    <label for="{{ address.id }}_street">{% trans "Address" %} <span class="required">*</span></label>
+			                    <input type="text" name="{{ address.id }}_street" id="{{ address.id }}_street" maxlength="128" value="{{ address.street }}" class="required" minlength="6"/>
+			                </li>
+			                <li>
+			                    <label for="{{ address.id }}_zip">{% trans "ZIP" %} <span class="required">*</span></label>
+			                    <input type="text" name="{{ address.id }}_zip" id="{{ address.id }}_zip" maxlength="128" value="{{ address.zip }}" class="required" minlength="4"/>
+			                </li>
+	                        <li>
+	                            <label for="{{ address.id }}_city">{% trans "City" %} <span class="required">*</span></label>
+	                            <input type="text" name="{{ address.id }}_city" id="{{ address.id }}_city" maxlength="128" value="{{ address.city }}" class="required" minlength="2"/>
+	                        </li>
+	                        <li>
+	                            <label for="{{ address.id }}_phone">{% trans "Phone" %}</label>
+	                            <input type="text" name="{{ address.id }}_phone" id="{{ address.id }}_phone" maxlength="30" value="{% if address.phone %}{{ address.phone }}{% endif %}" minlength="7"/>
+	                        </li>
+	                        <li>
+	                            <label for="{{ address.id }}_type">{% trans "Type" %}</label>
+	                            <select name="{{ address.id }}_type" id="{{ address.id }}_type" class="type">
+	                                <option value="invoice" {% if address.type == "invoice" %}selected="selected"{% endif %}>{% trans "Invoice Address" %}</option>
+	                                <option value="delivery" {% if address.type == "delivery" %}selected="selected"{% endif %}>{% trans "Delivery Address" %}</option>
+	                                <option value="default" {% if address.type != "invoice" and address.type != "delivery" %}selected="selected"{% endif %}>{% trans "Invoice & Delivery Address" %}</option>
+	                            </select>
+	                        </li>
+	                        <a href="{{ LOCALE_URI }}/partner/address/remove/{{ address.id }}" title="{% trans "Remove address" %}" class="btn-trash-label">{% trans "Remove address" %}</a>
+			            </ul>
+		                {% endfor %}
+		                <div id="add-address">
+                            <a href="#add-address-fields" title="{% trans "Add new address" %}" id="add-address-link" class="btn-add-label">{% trans "Add new address" %}</a>
+                        </div>
+                        <ul id="add-address-fields" {% if not newaddress %} style="display: none;"{% endif %}>
+                            <li>
+                                <label for="newaddress_street">{% trans "Address" %} <span class="required">*</span></label>
+                                <input type="text" name="newaddress_street" id="newaddress_street" maxlength="128" value="{{ newaddress_street }}" class="required" minlength="6"{% if not newaddress %} disabled="disabled"{% endif %}/>
+                            </li>
+                            <li>
+                                <label for="newaddress_zip">{% trans "ZIP" %} <span class="required">*</span></label>
+                                <input type="text" name="newaddress_zip" id="newaddress_zip" maxlength="128" value="{{ newaddress_zip }}" class="required" minlength="4"{% if not newaddress %} disabled="disabled"{% endif %}/>
+                            </li>
+                            <li>
+                                <label for="newaddress_city">{% trans "City" %} <span class="required">*</span></label>
+                                <input type="text" name="newaddress_city" id="newaddress_city" maxlength="128" value="{{ newaddress_city }}" class="required" minlength="2"{% if not newaddress %} disabled="disabled"{% endif %}/>
+                            </li>
+                            <li>
+                                <label for="newaddress_phone">{% trans "Phone" %}</label>
+                                <input type="text" name="newaddress_phone" id="newaddress_phone" maxlength="30" value="{{ newaddress_phone }}" minlength="7"{% if not newaddress %} disabled="disabled"{% endif %}/>
+                            </li>
+                            <li>
+                                <label for="newaddress_type">{% trans "Type" %}</label>
+                                <select name="newaddress_type" id="newaddress_type" class="type"{% if not newaddress %} disabled="disabled"{% endif %}>
+                                    <option value="invoice">{% trans "Invoice Address" %}</option>
+                                    <option value="delivery">{% trans "Delivery Address" %}</option>
+                                    <option value="default">{% trans "Invoice & Delivery Address" %}</option>
+                                </select>
+                            </li>
+                        </ul>
+				    </div>
+				    <div class="col2-set">
+				        <div class="col-1">
+				            <div class="buttons-set">
+				            </div>
+				        </div>
+				        <div class="col-2">
+				            <div class="buttons-set">
+				                <input type="submit" value="{% trans "Save" %}" class="btn-action" />
+				                <p class="comment"><span class="required">*</span> {% trans "Required Fields" %}</p>
+				            </div>
+				        </div>
+				    </div>
 				</div>
-			    <div class="col2-set">
-			        <div class="col-1">
-			            <div class="buttons-set">
-			            </div>
-			        </div>
-			        <div class="col-2">
-			            <div class="buttons-set">
-			                <input type="submit" value="{% trans "Save" %}" class="btn-action" />
-			                <p class="comment"><span class="required">*</span> {% trans "Required Fields" %}</p>
-			            </div>
-			        </div>
-			    </div>
 			</fieldset>
 			{% csrf_token %}
 		</form>
@@ -117,4 +136,10 @@
 {% endblock %}
 {% block jqueryload %}
     $("#partnerForm").validate();
+
+    $('#add-address-link').click(function() {
+        $('#add-address').hide();
+        $('#add-address-fields').show();
+        $('#add-address-fields input, #add-address-fields select').removeAttr('disabled');
+    });
 {% endblock %}

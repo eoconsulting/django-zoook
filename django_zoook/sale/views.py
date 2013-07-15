@@ -228,38 +228,42 @@ def check_order(conn, partner_id, OERP_SALE):
     # new order
     else:
         partner = conn.ResPartner.get(partner_id)
-        partner_addresses = conn.ResPartnerAddress.filter(partner_id=partner_id)
         address = {}
-        for partner_address in partner_addresses:
-            if partner_address.type == 'delivery':
-                address['delivery'] = partner_address
-            if partner_address.type == 'invoice':
-                address['invoice'] = partner_address
-            if partner_address.type == 'contact':
-                address['contact'] = partner_address
-       
-        if len(address) > 0:
-            if not 'delivery' in address:
-                address['delivery'] = partner_addresses[0]
-            if not 'invoice' in address:
-                address['invoice'] = partner_addresses[0]
-            if not 'contact' in address:
-                address['contact'] = partner_addresses[0]
-            
-            #create new order
-            shop = conn.SaleShop.get(OERP_SALE)
-            order = conn.SaleOrder.new()
-            order.shop_id = shop
-            order.date_order = datetime.date.today() # not time.strftime('%Y-%m-%d')
-            order.partner_id = partner
-            order.partner_invoice_id = address['invoice']
-            order.partner_order_id = address['contact']
-            order.partner_shipping_id = address['delivery']
-            order.picking_policy = 'one'
-            order.pricelist_id = partner.property_product_pricelist and partner.property_product_pricelist or shop.pricelist_id
-            order.save()
+        partner_addresses_del = conn.ResPartnerAddress.filter(partner_id=partner_id, type='delivery')
+        partner_addresses_def = conn.ResPartnerAddress.filter(partner_id=partner_id, type='default')
+        partner_addresses_none = conn.ResPartnerAddress.filter(partner_id=partner_id, type=False)
+        partner_addresses_inv = conn.ResPartnerAddress.filter(partner_id=partner_id, type='invoice')
+
+        if len(partner_addresses_del)>0:
+            address['delivery'] = partner_addresses_del[0]
+        elif len(partner_addresses_def)>0:
+            address['delivery'] = partner_addresses_def[0]
+        elif len(partner_addresses_none)>0:
+            address['delivery'] = partner_addresses_none[0]
         else:
-            order = 'error'
+            return 'error'
+
+        if len(partner_addresses_inv)>0:
+            address['invoice'] = partner_addresses_inv[0]
+        elif len(partner_addresses_def)>0:
+            address['invoice'] = partner_addresses_def[0]
+        elif len(partner_addresses_none)>0:
+            address['invoice'] = partner_addresses_none[0]
+        else:
+            return 'error'
+
+        #create new order
+        shop = conn.SaleShop.get(OERP_SALE)
+        order = conn.SaleOrder.new()
+        order.shop_id = shop
+        order.date_order = datetime.date.today() # not time.strftime('%Y-%m-%d')
+        order.partner_id = partner
+        order.partner_invoice_id = address['invoice']
+        order.partner_order_id = address['invoice']
+        order.partner_shipping_id = address['delivery']
+        order.picking_policy = 'one'
+        order.pricelist_id = partner.property_product_pricelist and partner.property_product_pricelist or shop.pricelist_id
+        order.save()
 
     return order
 
@@ -416,8 +420,8 @@ def checkout(request):
             values['deliveries'] = []
             
         #Address invoice/delivery
-        values['address_invoices'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type='invoice')
-        values['address_deliveries'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type='delivery')
+        values['address_invoices'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type__in=['invoice', 'default', False])
+        values['address_deliveries'] = conn.ResPartnerAddress.filter(partner_id=partner_id,type__in=['delivery', 'default', False])
         sale_shop = conn.SaleShop.filter(id=OERP_SALE)[0]
 
         #order payment by sequence

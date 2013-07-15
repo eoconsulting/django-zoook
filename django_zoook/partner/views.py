@@ -141,13 +141,7 @@ def register(request):
         phone = data['phone']
         #mobile = data['mobile']
         same_address = 'delivery-same-address' in data
-        if same_address:
-            delivery_street = street
-            delivery_zip = zip
-            delivery_city = city
-            delivery_phone = phone
-            #delivery_mobile = mobile
-        else:
+        if not same_address:
             delivery_street = data['delivery_street']
             delivery_zip = data['delivery_zip']
             delivery_city = data['delivery_city']
@@ -226,12 +220,11 @@ def register(request):
                         if res_partner_title.default_pricelist_id:
                             partner.property_product_pricelist = res_partner_title.default_pricelist_id
                     partner_id = partner.save()
-                    
+
                     # Create contact invoice address partner
                     address = conn.ResPartnerAddress.new()
                     address.name = name
                     address.partner_id = conn.ResPartner.get(partner_id)
-                    address.type = 'invoice'
                     address.street = street
                     address.zip = zip
                     address.city = city
@@ -239,21 +232,26 @@ def register(request):
                     #address.mobile = mobile
                     address.country_id = conn.ResCountry.get(country)
                     address.email = email
+                    if not same_address:
+                        address.type = 'invoice'
+                    else:
+                        address.type = 'default'
                     address_id = address.save()
 
-                    # Create contact delivery address partner
-                    address = conn.ResPartnerAddress.new()
-                    address.name = name
-                    address.partner_id = conn.ResPartner.get(partner_id)
-                    address.type = 'delivery'
-                    address.street = delivery_street
-                    address.zip = delivery_zip
-                    address.city = delivery_city
-                    address.phone = delivery_phone
-                    #address.mobile = delivery_mobile
-                    address.country_id = conn.ResCountry.get(country)
-                    address.email = email
-                    address_id = address.save()
+                    if not same_address:
+                        # Create contact delivery address partner
+                        address = conn.ResPartnerAddress.new()
+                        address.name = name
+                        address.partner_id = conn.ResPartner.get(partner_id)
+                        address.street = delivery_street
+                        address.zip = delivery_zip
+                        address.city = delivery_city
+                        address.phone = delivery_phone
+                        #address.mobile = delivery_mobile
+                        address.country_id = conn.ResCountry.get(country)
+                        address.email = email
+                        address.type = 'delivery'
+                        address_id = address.save()
 
                     # create user
                     # split name: first_name + last name
@@ -450,28 +448,72 @@ def partner(request):
     if request.method == 'POST':
         data = get_contact_data(request.POST.copy())
         for contact_id in data.keys():
-            address = conn.ResPartnerAddress.get(contact_id)
+            if contact_id == 'newaddress':
+                address = conn.ResPartnerAddress.new()
+                address.partner_id = partner
+            else:
+                address = conn.ResPartnerAddress.get(contact_id)
             address.street = data[contact_id]['street']
             address.zip = data[contact_id]['zip']
             address.city = data[contact_id]['city']
             address.phone = data[contact_id]['phone']
-            address.save()
+            address.type = data[contact_id]['type']
+            address_id = address.save()
         message = [_('Successfully saved profile.')]
 
-    address_invoice = conn.ResPartnerAddress.filter(type='invoice',partner_id=partner_id)
-    address_delivery = conn.ResPartnerAddress.filter(type='delivery',partner_id=partner_id)
-    
+    addresses = conn.ResPartnerAddress.filter(partner_id=partner_id, type__in=['delivery', 'invoice', 'default', False], order='id')
+    del_have = False
+    inv_have = False
+    i = 0
+    while i<len(addresses) and (not del_have or not inv_have):
+        if (not del_have or not inv_have) and addresses[i].type in ['default', False]:
+            del_have = True
+            inv_have = True
+        if not del_have and addresses[i].type == 'delivery':
+            del_have = True
+        if not inv_have and addresses[i].type == 'invoice':
+            inv_have = True
+        i+=1
+
     title = _(u'User Profile')
     metadescription = _(u'User profile of %(site)s') % {'site':site_configuration.site_title}
-    
+
     return render_to_response("partner/partner.html", locals(), context_instance=RequestContext(request))
+
+@login_required
+def partner_addressremove(request, adddress_id):
+    """
+    Remove partner address
+    """
+
+    context_instance=RequestContext(request)
+    conn = connOOOP()
+    if not conn:
+        error = _('Error when connecting with our ERP. Try again or cantact us.')
+        return render_to_response("partner/error.html", locals(), context_instance=context_instance)
+    partner_id = checkPartnerID(request)
+    if not partner_id:
+        error = _('Are you a customer? Please, contact us. We will create a new role.')
+        return render_to_response("partner/error.html", locals(), context_instance=context_instance)
+    addresses = conn.ResPartnerAddress.filter(partner_id=partner_id, id=adddress_id)
+    try:
+        if len(addresses) > 0:
+            address = conn.ResPartnerAddress.get(addresses[0].id)
+            address.delete()
+    except:
+        pass  # TODO: Display error message to user
+
+    return HttpResponseRedirect("%s/partner/partner" % (context_instance['LOCALE_URI']))
 
 def get_contact_data(post):
     data = {}
     for k in post.keys():
         try:
             id, name = k.split('_')
-            id = int(id)
+            try:
+                id = int(id)
+            except:
+                pass
             if not id in data:
                 data[id] = {}
             data[id][name] = post[k]

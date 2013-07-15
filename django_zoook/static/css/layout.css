@@ -116,10 +116,13 @@ label {display:block;float:left;clear:left;width:90px}
 .registered-users h3, .new-users h3 { color:#e2001a; padding: 10px 0px; font-weight: bold; font-family: Verdana, Helvetica, sans-serif; }
 .registered-users h1, .new-users h1 { font-size:22px; }
 .registered-users h3, .new-users h3 { font-size:16px; }
-.new-users li { margin-left: 15px; }
+.registered-users li, .new-users li { margin-left: 15px; }
+.registered-users input[type=text],
 .new-users input[type=text],
+.registered-users input[type=password],
 .new-users input[type=password] { width: 220px; }
 .new-users select { width: 180px; }
+.registered-users select { width: 210px; }
 .error{color:#e2001a}
 .profile{ list-style: none}
 .changepassword h2 { margin-bottom: 10px; }
@@ -130,6 +133,8 @@ label {display:block;float:left;clear:left;width:90px}
 .remember input[type=text] { width: 15em; }
 .remember input[type=submit] { min-width: 6em; }
 .login-box .content { min-height:230px; }
+
+#add-address { margin: 15px 0px; }
 
 /* Message */
 #message h1 { font-size:1.3em; }

@@ -189,6 +189,9 @@ h2.product-name-upsells { font-size:12px; line-height:18px; font-weight:bold}
 .btn-trash { display:block; width:16px; height:16px; font-size:0; line-height:0; background:url(../images/icons/btn_trash.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
 .btn-add { display:block; width:20px; height:16px; font-size:0; line-height:0; background:url(../images/icons/shop-cart.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden}
 td.center a.btn-trash { margin: 0px auto; }
+.btn-trash-label { background:url(../images/icons/btn_trash.gif) 0 0 no-repeat; padding-left: 20px; }
+.btn-add-label { background:url(../images/icons/btn_add.png) 0 0 no-repeat; padding-left: 20px; }
+
 
 /* Sale / Invoice */
 .page-previous { padding-right:10px}

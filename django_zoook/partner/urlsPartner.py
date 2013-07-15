@@ -34,4 +34,5 @@ urlpatterns = patterns("",
     url(r'^remember', 'django_zoook.partner.views.remember', name='partner_remember'),
     url(r'^changepassword', 'django_zoook.partner.views.changepassword', name='partner_changepassword'),
     url(r'^partner', 'django_zoook.partner.views.partner', name='partner_partner'),
+    url(r"^address/remove/(?P<adddress_id>[^/]+)$", 'django_zoook.partner.views.partner_addressremove', name='partner_address_remove'),
 )
