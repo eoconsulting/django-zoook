@@ -52,7 +52,7 @@ def render_useradd(context):
 
             #super admin
             if context['user'].is_staff:
-                FILEBROWSER_URI = getattr(settings, "FILEBROWSER_URI", "/filebrowser/browse/")
+                FILEBROWSER_URI = getattr(settings, "FILEBROWSER_URI", "/manager/filebrowser/browse/")
 
                 values.append({'url':FILEBROWSER_URI,'string':_('Media Files')})
                 values.append({'url':ADMIN_URI,'string':_('Go to Admin')})

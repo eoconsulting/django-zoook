@@ -47,7 +47,7 @@ setup(
         'django_maintenancemode',
         'feedparser',
         'django-pagination',
-        'django-filebrowser',
+        'django-filebrowser>=3.5.2',
         'python-magic',
         'django-googlytics',
         'South',

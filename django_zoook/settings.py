@@ -115,6 +115,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
+    'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.core.context_processors.static',
@@ -125,6 +126,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 INSTALLED_APPS = (
     'localeurl',
+    #'grappelli.dashboard',
+    'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
@@ -148,9 +152,13 @@ INSTALLED_APPS = (
     'django_zoook.sale',
     'django_zoook.tools.filemanager',
     'django_zoook.tools.cms',
-    'filebrowser',
     'googlytics',
 ) + PROJECT_APPS
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+)
 
 AUTH_PROFILE_MODULE = "partner.AuthProfile"
 
@@ -166,6 +174,13 @@ LOCALE_INDEPENDENT_PATHS = (
 MAINTENANCE_IGNORE_URLS = (
     r'^/static/*',
 )
+
+GRAPPELLI_ADMIN_TITLE = "Zoook e-Sale"
+
+FILEBROWSER_MAX_UPLOAD_SIZE = 200000000 # 200 Mb
+FILEBROWSER_CONVERT_FILENAME = False
+FILEBROWSER_SEARCH_TRAVERSE = True
+FILEBROWSER_MEDIA_URL = '/static/'
 
 """Search Engine"""
 HAYSTACK_CONNECTIONS = {

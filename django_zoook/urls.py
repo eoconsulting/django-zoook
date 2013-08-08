@@ -37,6 +37,8 @@ from django_zoook.transurl import *
 from django.contrib import admin
 admin.autodiscover()
 
+from filebrowser.sites import site
+
 js_info_dict = {
     'packages': ('django.conf',
                  'django.contrib.admin',
@@ -92,7 +94,8 @@ urlpatterns = patterns('',
 
     # Admin 
     url(r'^manager/', include(admin.site.urls)),
-    url(r'^filebrowser/', include('filebrowser.urls')),
+    url(r'^manager/filebrowser/', include(site.urls)),
+    url(r'^grappelli/', include('grappelli.urls')),
 
     #  Blog
     url(r"^blog/", include("django_zoook.blog.urlsBlog")),
