@@ -36,8 +36,8 @@ USER_ADD_APP = [
     {'app':'django_zoook.cms.modules','url':'/cms/modules/list/','string':'All Modules'},
 ] + PROJECT_USER_ADD_APP
 
-PAGINATOR_TOTAL = 9
-PAGINATOR_ITEMS = [9,18,36]
+PAGINATOR_TOTAL = 12
+PAGINATOR_ITEMS = [12,24,36]
 PAGINATOR_ORDER_TOTAL = 5
 PAGINATOR_INVOICE_TOTAL = 5
 
