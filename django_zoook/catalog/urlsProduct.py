@@ -20,8 +20,7 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from django_zoook.catalog.views import *
+from django.conf.urls.defaults import url, patterns
 
 """Urls Product"""
 

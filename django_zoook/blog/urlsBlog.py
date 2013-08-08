@@ -20,9 +20,8 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from django_zoook.blog.views import *
-from django_zoook.blog.feeds import *
+from django.conf.urls.defaults import url, patterns
+from django_zoook.blog.feeds import BlogFeed
 
 """Urls Blog"""
 

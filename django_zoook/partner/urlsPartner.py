@@ -20,8 +20,7 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from django_zoook.partner.views import *
+from django.conf.urls.defaults import url, patterns
 
 """Urls Partner"""
 urlpatterns = patterns("",

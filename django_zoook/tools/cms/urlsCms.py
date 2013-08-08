@@ -20,9 +20,7 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
-from partner.views import *
-from tools.cms.views import *
+from django.conf.urls.defaults import url, patterns
 
 """Urls Cms"""
 urlpatterns = patterns("",

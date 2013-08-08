@@ -20,7 +20,7 @@
 #
 ############################################################################################
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import url, patterns
 
 """Urls Payments"""
 urlpatterns = patterns("",
