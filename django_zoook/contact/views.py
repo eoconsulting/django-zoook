@@ -31,7 +31,12 @@ from django_zoook.tools.zoook import siteConfiguration
 from django_zoook.contact.models import *
 from django.core.mail import EmailMessage
 
-from recaptcha.client import captcha
+try:
+    from recaptcha.client import captcha
+except Exception, e:
+    if RECAPTCHA_PUB_KEY != '':
+        # Re-throw only if CAPTCHA is used
+        raise e
 
 def contactForm(request, contact = 'default'):
     """Contact Form"""

@@ -38,8 +38,6 @@ from django.contrib.auth import login as auth_login
 
 from django.core.mail import EmailMessage
 
-from recaptcha.client import captcha
-
 from django_zoook.partner.models import *
 from django_zoook.base.models import *
 
@@ -55,6 +53,13 @@ from django_zoook.tools.requestutils import get_live_url
 import base64
 from symbol import except_clause
 from psycopg2.extras import logging
+
+try:
+    from recaptcha.client import captcha
+except Exception, e:
+    if RECAPTCHA_PUB_KEY != '':
+        # Re-throw only if CAPTCHA is used
+        raise e
 
 def is_valid_email(email):
     """Email validation"""
