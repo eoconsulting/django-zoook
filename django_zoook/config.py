@@ -184,8 +184,8 @@ PROJECT_APPS = (
 """
 Pagination values
 """
-PAGINATION_DEFAULT_TOTAL = 9
-PAGINATOR_ITEMS = [9,18,36]
+PAGINATION_DEFAULT_TOTAL = 12
+PAGINATOR_ITEMS = [12,24,36]
 PAGINATOR_ORDER_TOTAL = 5 #remember change this value in your order template
 PAGINATOR_INVOICE_TOTAL = 5 #remember change this value in your invoice template
 PAGINATOR_BLOG_TOTAL = 5 #remember change this value in your blog template
