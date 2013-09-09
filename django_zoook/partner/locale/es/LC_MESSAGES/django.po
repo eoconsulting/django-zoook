@@ -451,3 +451,6 @@ msgstr "Direcciones de Factura & Envío"
 
 msgid "Invoice & Delivery Address"
 msgstr "Dirección de Factura & Envío"
+
+msgid "Remove address"
+msgstr "Borrar dirección"
