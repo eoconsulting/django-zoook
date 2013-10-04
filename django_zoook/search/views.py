@@ -43,6 +43,7 @@ def search(request):
     q = request.GET.get('q')
 
     if q:
+        q = q.strip()
         kwargs_name = {
             u'product_tmpl__name_'+get_language()+u'__icontains': q,
         }
