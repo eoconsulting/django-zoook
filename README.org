@@ -1,5 +1,6 @@
-
 * Zoook e-Sale
+
+**** This project has been moved to [[https://launchpad.net/zoook-esale][Launchpad]].
 
 [[https://raw.github.com/eoconsulting/django-zoook/master/artwork/Zoook_Screenshots.png]]
 
